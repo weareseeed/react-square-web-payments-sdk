@@ -44,6 +44,10 @@
       "url": "https://danestves.com/en"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:weareseeed/react-square-web-payments-sdk.git"
+  },
   "module": "dist/react-square-web-payments-sdk.esm.js",
   "size-limit": [
     {
