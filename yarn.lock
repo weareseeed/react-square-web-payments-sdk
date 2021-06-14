@@ -1674,6 +1674,16 @@
     webpack "^4.44.1"
     webpack-bundle-analyzer "^4.4.2"
 
+"@square/web-payments-sdk-types@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@square/web-payments-sdk-types/-/web-payments-sdk-types-1.1.1.tgz#3bbba6f31bf057000f9cb0c9543b8b5b5bbc6f99"
+  integrity sha512-D8n4Xm8H8jPvWk7pW1+Ongi1/paLwp9tVq30lm+lzxPI+Nm3SOHk3t559uYsuWgxuMbP+yxfegoElN6z1c8A8w==
+
+"@square/web-sdk@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@square/web-sdk/-/web-sdk-1.0.1.tgz#db764d3f91584c7f171001f6fcd725f2c0adc73a"
+  integrity sha512-LpSROBPmgsjMSGhAqaFzXIbfKjbd+rucLgJnNgZdGwnWbSx68ciN5wtGbdb2LxLJs3PvIn112azpDIiQlUBPNA==
+
 "@storybook/addon-actions@6.2.9":
   version "6.2.9"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-6.2.9.tgz#688413ac77410690755a5da3c277bfa0ff1a10b0"
