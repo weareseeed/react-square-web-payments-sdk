@@ -19,7 +19,10 @@
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
+    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
+    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags"
   },
   "peerDependencies": {
     "react": ">=17"
@@ -70,6 +73,7 @@
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
     "babel-loader": "^8.2.2",
+    "generate-changelog": "^1.8.0",
     "husky": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
