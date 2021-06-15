@@ -1,17 +1,8 @@
 // Vendor Modules
-import * as Square from '@square/web-sdk';
-import { document } from 'browser-monads-ts';
 import * as React from 'react';
-import {
-  AchTokenOptions,
-  Payments,
-  TokenResult,
-} from '@square/web-payments-sdk-types';
 
 // Internals
-import { INITIAL_STATE_METHODS, METHODS_KEY } from '../constants';
-import FormContext from '../contexts';
-import { methodsReducer } from '../reducers';
+import FormProvider from '../contexts';
 import { MethodsSupported } from '../@types';
 
 export interface Props {
@@ -72,135 +63,120 @@ export const SquareForm: React.FC<Props> = ({
   sandbox = false,
   ...props
 }) => {
-  const [methods, dispatch] = React.useReducer(
-    methodsReducer,
-    INITIAL_STATE_METHODS
-  );
-  const [errorMessage, setErrorMessage] = React.useState('');
-  const [scriptLoaded, setScriptLoaded] = React.useState(false);
+  // const [methods, dispatch] = React.useReducer(
+  //   methodsReducer,
+  //   INITIAL_STATE_METHODS
+  // );
+  // const [errorMessage, setErrorMessage] = React.useState('');
+  // const [scriptLoaded, setScriptLoaded] = React.useState(false);
 
-  /**
-   * Helper function to update the state of the form and retreive the available methods
-   *
-   * @param methods The methods that you want to support
-   */
-  function methodsSupported(
-    methods: MethodsSupported = props.methodsSupported || { card: true }
-  ): void {
-    const keys = Object.keys(methods);
+  // /**
+  //  * Helper function to update the state of the form and retreive the available methods
+  //  *
+  //  * @param methods The methods that you want to support
+  //  */
+  // function methodsSupported(
+  //   methods: MethodsSupported = props.methodsSupported || { card: true }
+  // ): void {
+  //   const keys = Object.keys(methods);
 
-    const res = keys.reduce(
-      (acc, method) => ({
-        ...acc,
-        [method]: METHODS_KEY.includes(method) ? 'ready' : 'unavailable',
-      }),
-      {}
-    );
+  //   const res = keys.reduce(
+  //     (acc, method) => ({
+  //       ...acc,
+  //       [method]: METHODS_KEY.includes(method) ? 'ready' : 'unavailable',
+  //     }),
+  //     {}
+  //   );
 
-    // @ts-ignore
-    dispatch({ type: 'CHANGE_STATE', payload: res });
-  }
+  //   // @ts-ignore
+  //   dispatch({ type: 'CHANGE_STATE', payload: res });
+  // }
 
-  const handleCardPayment = async (card: any) => {
-    try {
-      const result: TokenResult = await card.tokenize();
+  // const handleAchPayment = async (e: Event, ach: any) => {
+  //   e.preventDefault();
 
-      console.log(result);
-      // TODO: use result.token as source_id in /v2/payments API call
-    } catch (ex) {
-      console.error(ex);
-    }
-  };
+  //   try {
+  //     const result: TokenResult = await ach.tokenize({
+  //       accountHolderName: 'Daniel Esteves',
+  //     } as AchTokenOptions);
 
-  const handleAchPayment = async (e: Event, ach: any) => {
-    e.preventDefault();
+  //     console.log(result);
+  //   } catch (error) {
+  //     console.error(e);
+  //   }
+  // };
 
-    try {
-      const result: TokenResult = await ach.tokenize({
-        accountHolderName: 'Daniel Esteves',
-      } as AchTokenOptions);
+  // const handleGooglePayPayment = async (e: Event, googlePay: any) => {
+  //   e.preventDefault();
 
-      console.log(result);
-    } catch (error) {
-      console.error(e);
-    }
-  };
+  //   try {
+  //     const result = await googlePay.tokenize();
 
-  const handleGooglePayPayment = async (e: Event, googlePay: any) => {
-    e.preventDefault();
+  //     console.log(result);
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
-    try {
-      const result = await googlePay.tokenize();
+  // async function start() {
+  //   methodsSupported();
 
-      console.log(result);
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  //   const payments: Payments = await Square.payments(applicationId, locationId);
+  //   const card = await payments.card();
+  //   const ach = await payments.ach();
+  //   const paymentRequest = payments.paymentRequest({
+  //     countryCode: 'US',
+  //     currencyCode: 'USD',
+  //     total: {
+  //       amount: '1.00',
+  //       label: 'Total',
+  //     },
+  //   });
+  //   const googlePay = await payments.googlePay(paymentRequest);
 
-  async function start() {
-    methodsSupported();
+  //   await card.attach('#card');
 
-    const payments: Payments = await Square.payments(applicationId, locationId);
-    const card = await payments.card();
-    const ach = await payments.ach();
-    const paymentRequest = payments.paymentRequest({
-      countryCode: 'US',
-      currencyCode: 'USD',
-      total: {
-        amount: '1.00',
-        label: 'Total',
-      },
-    });
-    const googlePay = await payments.googlePay(paymentRequest);
+  //   props.methodsSupported?.googlePay &&
+  //     (await googlePay.attach('#google-pay-button'));
+  //   props.methodsSupported?.googlePay &&
+  //     document
+  //       .getElementById('google-pay-button')
+  //       ?.addEventListener('click', async e =>
+  //         handleGooglePayPayment(e, googlePay)
+  //       );
 
-    await card.attach('#card');
+  //   document
+  //     .querySelector('#pay')
+  //     ?.addEventListener('click', handleCardPayment);
 
-    props.methodsSupported?.googlePay &&
-      (await googlePay.attach('#google-pay-button'));
-    props.methodsSupported?.googlePay &&
-      document
-        .getElementById('google-pay-button')
-        ?.addEventListener('click', async e =>
-          handleGooglePayPayment(e, googlePay)
-        );
+  //   document
+  //     .getElementById('ach-button')
+  //     ?.addEventListener('click', async e => handleAchPayment(e, ach));
+  // }
 
-    document
-      .querySelector('#pay')
-      ?.addEventListener('click', handleCardPayment);
+  // console.log(methods, errorMessage, scriptLoaded);
 
-    document
-      .getElementById('ach-button')
-      ?.addEventListener('click', async e => handleAchPayment(e, ach));
-  }
+  // // Effects
+  // React.useEffect(() => {
+  //   if (applicationId && locationId) {
+  //     start()
+  //       .then(() => setScriptLoaded(true))
+  //       .catch(e => {
+  //         console.error(e);
 
-  console.log(methods, errorMessage, scriptLoaded);
+  //         setErrorMessage('Unable to load Square payment library');
+  //       });
+  //   }
+  // }, []);
 
-  // Effects
-  React.useEffect(() => {
-    if (applicationId && locationId) {
-      start()
-        .then(() => setScriptLoaded(true))
-        .catch(e => {
-          console.error(e);
-
-          setErrorMessage('Unable to load Square payment library');
-        });
-    }
-  }, []);
-
-  if (!applicationId || !locationId) {
-    return null;
-  }
-
-  const context = {
-    ...methods,
-  };
+  // if (!applicationId || !locationId) {
+  //   return null;
+  // }
 
   return (
-    <FormContext.Provider value={context}>
+    <FormProvider applicationId={applicationId} locationId={locationId}>
       <div id={formId}>{props.children}</div>
-    </FormContext.Provider>
+    </FormProvider>
   );
 };
 

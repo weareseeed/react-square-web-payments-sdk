@@ -86,6 +86,7 @@
   },
   "dependencies": {
     "@square/web-sdk": "^1.0.1",
-    "browser-monads-ts": "^1.2.2"
+    "browser-monads-ts": "^1.2.2",
+    "react-use": "^17.2.4"
   }
 }
