@@ -10,13 +10,11 @@ const meta: Meta = {
       control: {
         type: 'text',
       },
-      defaultValue: 'sandbox-sq0idb-s19cHf7ytO99NeFiS_CyrA',
     },
     locationId: {
       control: {
         type: 'text',
       },
-      defaultValue: '4P550BZQ0TQZA',
     },
   },
   parameters: {

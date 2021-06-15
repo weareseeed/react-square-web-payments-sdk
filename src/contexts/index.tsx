@@ -40,11 +40,11 @@ const FormProvider: React.FC<{ applicationId: string; locationId: string }> = ({
   );
 
   const getPaymentInstance = async () => {
-    (await Square.payments(applicationId, locationId).then(res => {
+    return (Square.payments(applicationId, locationId).then(res => {
       setLoading(false);
 
       return setPayments(res);
-    })) as Payments;
+    }) as unknown) as Payments;
   };
 
   React.useEffect(() => {
