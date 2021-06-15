@@ -1,3 +1,17 @@
+### 0.3.0 (2021-06-15)
+
+##### Bug Fixes
+
+* **test:**
+  *  passing test with basic test ([4144fc7e](https://github.com/weareseeed/react-square-web-payments-sdk/commit/4144fc7ee6fbd5652757baa100fd27087612e17a))
+  *  adding missing babel-jest ([af7fbd6d](https://github.com/weareseeed/react-square-web-payments-sdk/commit/af7fbd6d4ced2e4c6b0114e0f9d56ff969582f67))
+* **lint:**  linter for files ([50088001](https://github.com/weareseeed/react-square-web-payments-sdk/commit/50088001b346de091fb41197f3bc418813a536c2))
+* **ci:**
+  *  put a plain node v14 version ([ffe4e4a3](https://github.com/weareseeed/react-square-web-payments-sdk/commit/ffe4e4a326e01744a9f59805e54d61d0ff3640cd))
+  *  put a plain node v12 version ([bcc98188](https://github.com/weareseeed/react-square-web-payments-sdk/commit/bcc98188b3911ea3a9974720f84cc98fe64d3afd))
+  *  go back for node 12.x ([339f11a1](https://github.com/weareseeed/react-square-web-payments-sdk/commit/339f11a1345bb621c76c2e977cb7659730ba2029))
+  *  putting an * in node 12 ([06fa4f85](https://github.com/weareseeed/react-square-web-payments-sdk/commit/06fa4f857c67274eed38487e8ce1f1c075b38bcf))
+
 #### 0.2.2 (2021-06-15)
 
 ##### Bug Fixes
