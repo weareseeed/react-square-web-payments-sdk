@@ -1,3 +1,12 @@
+### 0.2.0 (2021-06-15)
+
+##### New Features
+
+* **global:**  context for all app ([3a8cd355](https://github.com/weareseeed/react-square-web-payments-sdk/commit/3a8cd3559f7a0f2a3a6b0b1a6df528d520bcf034))
+* **render:**  conditional render for methods ([9b249bf2](https://github.com/weareseeed/react-square-web-payments-sdk/commit/9b249bf241b7987e75dce5c92f4da48ab82d4cfc))
+* **square:**  init square settings ([6b59f3f9](https://github.com/weareseeed/react-square-web-payments-sdk/commit/6b59f3f9fdbf4836fadb2f191a4876afe2ecec8f))
+* **init:**  initializing square form with sdk ([c9fefe56](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c9fefe5611f446eff5666c44491c5fb134b28cd3))
+
 ### 0.1.0 (2021-06-14)
 
 ##### New Features
