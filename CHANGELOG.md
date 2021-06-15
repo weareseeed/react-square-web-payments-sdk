@@ -1,3 +1,9 @@
+#### 0.2.1 (2021-06-15)
+
+##### Bug Fixes
+
+* **docs:**  deleting unused text in readme ([9d7616e6](https://github.com/weareseeed/react-square-web-payments-sdk/commit/9d7616e6f401aafc8702bb413ea3692a57b61cef))
+
 ### 0.2.0 (2021-06-15)
 
 ##### New Features
