@@ -1,3 +1,9 @@
+#### 0.2.2 (2021-06-15)
+
+##### Bug Fixes
+
+* **ci:**  removing node 10 from github actions ([e19887d8](https://github.com/weareseeed/react-square-web-payments-sdk/commit/e19887d80733668ede48b9bcf4beb473b772570c))
+
 #### 0.2.1 (2021-06-15)
 
 ##### Bug Fixes
