@@ -1,11 +1,10 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Default as Thing } from '../stories/Thing.stories';
 
-describe('Thing', () => {
+describe('SquareForm', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Thing />, div);
+    ReactDOM.render(<>Hello world</>, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
