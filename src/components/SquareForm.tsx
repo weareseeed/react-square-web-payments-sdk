@@ -4,14 +4,15 @@ import { document } from 'browser-monads-ts';
 import * as React from 'react';
 import {
   AchTokenOptions,
-  Square as ISquare,
+  Payments,
   TokenResult,
 } from '@square/web-payments-sdk-types';
 
 // Internals
 import { INITIAL_STATE_METHODS, METHODS_KEY } from '../constants';
+import FormContext from '../contexts';
 import { methodsReducer } from '../reducers';
-import { Methods } from '../@types';
+import { MethodsSupported } from '../@types';
 
 export interface Props {
   /** <b>Required for all features</b><br/><br/>Identifies the calling form with a verified application ID generated from the Square Application Dashboard. */
@@ -40,7 +41,7 @@ export interface Props {
   // /** <b>Required for SCA</b><br/><br/> */
   // createVerificationDetails?: () => SqVerificationDetails;
   /* Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
-  methodsSupported?: (methods: Methods[]) => void;
+  methodsSupported?: MethodsSupported;
   // /** Invoked when visitors interact with the iframe elements. */
   // inputEventReceived?: () => void;
   // /** Invoked when payment form is fully loaded. */
@@ -83,8 +84,12 @@ export const SquareForm: React.FC<Props> = ({
    *
    * @param methods The methods that you want to support
    */
-  function methodsSupported(methods: Methods[] = ['Card']): void {
-    const res = methods.reduce(
+  function methodsSupported(
+    methods: MethodsSupported = props.methodsSupported || { card: true }
+  ): void {
+    const keys = Object.keys(methods);
+
+    const res = keys.reduce(
       (acc, method) => ({
         ...acc,
         [method]: METHODS_KEY.includes(method) ? 'ready' : 'unavailable',
@@ -94,8 +99,6 @@ export const SquareForm: React.FC<Props> = ({
 
     // @ts-ignore
     dispatch({ type: 'CHANGE_STATE', payload: res });
-
-    props.methodsSupported && props.methodsSupported(methods);
   }
 
   const handleCardPayment = async (card: any) => {
@@ -138,8 +141,7 @@ export const SquareForm: React.FC<Props> = ({
   async function start() {
     methodsSupported();
 
-    const square = (Square as unknown) as ISquare;
-    const payments = square.payments(applicationId, locationId);
+    const payments: Payments = await Square.payments(applicationId, locationId);
     const card = await payments.card();
     const ach = await payments.ach();
     const paymentRequest = payments.paymentRequest({
@@ -153,7 +155,15 @@ export const SquareForm: React.FC<Props> = ({
     const googlePay = await payments.googlePay(paymentRequest);
 
     await card.attach('#card');
-    await googlePay.attach('#google-pay-button');
+
+    props.methodsSupported?.googlePay &&
+      (await googlePay.attach('#google-pay-button'));
+    props.methodsSupported?.googlePay &&
+      document
+        .getElementById('google-pay-button')
+        ?.addEventListener('click', async e =>
+          handleGooglePayPayment(e, googlePay)
+        );
 
     document
       .querySelector('#pay')
@@ -162,11 +172,6 @@ export const SquareForm: React.FC<Props> = ({
     document
       .getElementById('ach-button')
       ?.addEventListener('click', async e => handleAchPayment(e, ach));
-    document
-      .getElementById('google-pay-button')
-      ?.addEventListener('click', async e =>
-        handleGooglePayPayment(e, googlePay)
-      );
   }
 
   console.log(methods, errorMessage, scriptLoaded);
@@ -176,7 +181,11 @@ export const SquareForm: React.FC<Props> = ({
     if (applicationId && locationId) {
       start()
         .then(() => setScriptLoaded(true))
-        .catch(() => setErrorMessage('Unable to load Square payment library'));
+        .catch(e => {
+          console.error(e);
+
+          setErrorMessage('Unable to load Square payment library');
+        });
     }
   }, []);
 
@@ -184,7 +193,15 @@ export const SquareForm: React.FC<Props> = ({
     return null;
   }
 
-  return <div id={formId}>{props.children}</div>;
+  const context = {
+    ...methods,
+  };
+
+  return (
+    <FormContext.Provider value={context}>
+      <div id={formId}>{props.children}</div>
+    </FormContext.Provider>
+  );
 };
 
 export default SquareForm;

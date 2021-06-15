@@ -2,12 +2,12 @@
 import { InitialStateMethods } from '../@types';
 
 export const INITIAL_STATE_METHODS: InitialStateMethods = {
-  'Apple Pay': 'loading',
-  'Cash App': 'loading',
-  'Gift Card': 'loading',
-  'Google Pay': 'loading',
-  ACH: 'loading',
-  Card: 'loading',
+  ach: 'loading',
+  applePay: 'loading',
+  card: 'loading',
+  cashApp: 'loading',
+  googlePay: 'loading',
+  giftCard: 'loading',
 };
 
 export const METHODS_KEY = Object.keys(INITIAL_STATE_METHODS);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { SquareForm, Props } from '../src/components';
+import { SquareForm, GooglePayButton, Props } from '../src/components';
 
 const meta: Meta = {
   title: 'Welcome',
@@ -27,7 +27,8 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story<Props> = args => (
-  <SquareForm {...args}>
+  <SquareForm methodsSupported={{ card: true, googlePay: true }} {...args}>
+    <GooglePayButton />
     <button id="ach-button" type="button">
       Pay with Bank Account
     </button>
