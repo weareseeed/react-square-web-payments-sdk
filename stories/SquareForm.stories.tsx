@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { CreditCardInput, SquareForm, Props } from '../src/components';
 
 const meta: Meta = {
-  title: 'Welcome',
+  title: 'Basic Form',
   component: SquareForm,
   argTypes: {
     applicationId: {
@@ -26,7 +26,7 @@ export default meta;
 
 const Template: Story<Props> = args => (
   <SquareForm {...args}>
-    <CreditCardInput />
+    <CreditCardInput includeInputLabels />
   </SquareForm>
 );
 

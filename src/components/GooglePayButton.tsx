@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 // Internals
-import FormContext from '../contexts';
+import { useForm } from '../hooks';
 
 interface Props {
   /** Placeholder view when the Google Pay is being initialized */
@@ -18,7 +18,7 @@ export const GooglePayButton = ({
   loadingView,
   unavailableView,
 }: Props): JSX.Element => {
-  const { googlePay } = React.useContext(FormContext);
+  const { googlePay } = useForm();
 
   return (
     <>

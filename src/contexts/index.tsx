@@ -5,6 +5,7 @@ import * as React from 'react';
 
 // Internals
 import { ActionMethodReducer, FormContextInterface } from '../@types';
+import { NoLocationIdOrAppId } from '../components';
 import { INITIAL_STATE_METHODS } from '../constants';
 import { methodsReducer } from '../reducers';
 
@@ -30,7 +31,7 @@ const FormProvider: React.FC<{ applicationId: string; locationId: string }> = ({
   children,
   ...props
 }) => {
-  const [loading, setLoading] = React.useState(() => true);
+  const [, /*loading*/ setLoading] = React.useState(() => true);
   const [payments, setPayments] = React.useState<null | Payments>(() => null);
   const [applicationId] = React.useState(() => props.applicationId);
   const [locationId] = React.useState(() => props.locationId);
@@ -53,14 +54,16 @@ const FormProvider: React.FC<{ applicationId: string; locationId: string }> = ({
     }
   }, [applicationId, locationId]);
 
-  if (loading) return null;
-
   const context = {
     ...methods,
     formId: '',
     payments,
     dispatchMethods: dispatch,
   };
+
+  if (!applicationId || !locationId) {
+    return <NoLocationIdOrAppId />;
+  }
 
   return (
     <FormContext.Provider value={context}>{children}</FormContext.Provider>

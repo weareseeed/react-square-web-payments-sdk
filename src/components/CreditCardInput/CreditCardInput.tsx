@@ -1,15 +1,24 @@
 // Vendor Modules
+import { CSSObject } from '@emotion/styled';
 import { Card, CardOptions } from '@square/web-payments-sdk-types';
 import { document } from 'browser-monads-ts';
 import * as React from 'react';
 import { useEvent } from 'react-use';
 
 // Internals
-import { FormContext } from '../contexts';
+import { useForm } from '../../hooks';
+import { PayButton } from './styles';
 
-export const CreditCardInput = (props: CardOptions): JSX.Element => {
+interface Props extends CardOptions {
+  overrideStyles?: CSSObject | undefined;
+}
+
+export const CreditCardInput = ({
+  overrideStyles,
+  ...props
+}: Props): JSX.Element => {
   const [card, setCard] = React.useState<Card | undefined>(() => undefined);
-  const { payments } = React.useContext(FormContext);
+  const { payments } = useForm();
 
   const handlePayment = async () => {
     try {
@@ -42,9 +51,13 @@ export const CreditCardInput = (props: CardOptions): JSX.Element => {
     <>
       <div id="card-container"></div>
 
-      <button id="pay-with-card" type="button">
+      <PayButton
+        id="pay-with-card"
+        type="button"
+        overrideStyles={overrideStyles}
+      >
         Pay
-      </button>
+      </PayButton>
     </>
   );
 };
