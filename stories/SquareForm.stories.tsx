@@ -26,7 +26,7 @@ export default meta;
 
 const Template: Story<Props> = args => (
   <SquareForm {...args}>
-    <CreditCardInput includeInputLabels />
+    <CreditCardInput />
   </SquareForm>
 );
 

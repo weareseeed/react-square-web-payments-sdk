@@ -7,7 +7,7 @@ import { useEvent } from 'react-use';
 
 // Internals
 import { useForm } from '../../hooks';
-import { PayButton } from './styles';
+import { LoadingCard, PayButton } from './styles';
 
 interface Props extends CardOptions {
   overrideStyles?: CSSObject | undefined;
@@ -49,7 +49,9 @@ export const CreditCardInput = ({
 
   return (
     <>
-      <div id="card-container"></div>
+      <div id="card-container" style={{ minHeight: 89 }}>
+        {!card && <LoadingCard />}
+      </div>
 
       <PayButton
         id="pay-with-card"
