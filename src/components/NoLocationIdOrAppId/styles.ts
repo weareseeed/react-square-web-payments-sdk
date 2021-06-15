@@ -19,11 +19,12 @@ export const Text = styled.p({
   fontFamily: 'sans-serif, system-ui',
   color: 'rgb(153,27,27)',
   textAlign: 'center',
-  '> pre': {
+  '> span.code': {
     background: 'black',
     borderRadius: 4,
     color: 'white',
     display: 'inline',
+    fontFamily: 'monospace',
     padding: '2px 8px',
   },
 });

@@ -6,11 +6,19 @@ import FormProvider from '../contexts';
 import { MethodsSupported } from '../@types';
 
 export interface Props {
-  /** <b>Required for all features</b><br/><br/>Identifies the calling form with a verified application ID generated from the Square Application Dashboard. */
+  /**
+   * **Required for all features**
+   *
+   * Identifies the calling form with a verified application ID generated from the Square Application Dashboard.
+   */
   applicationId: string;
-  /** <b>Required for all features</b><br/><br/>Identifies the location of the merchant that is taking the payment. Obtained from the Square Application Dashboard - Locations tab.*/
+  /**
+   * **Required for all features**
+   *
+   * Identifies the location of the merchant that is taking the payment. Obtained from the Square Application Dashboard - Locations tab.
+   */
   locationId: string;
-  /** <b>Required for all features</b><br/><br/>Identifies the DOM form element. */
+  /** Identifies the DOM form element. */
   formId?: string;
   /** Enables Sandbox mode. */
   sandbox?: boolean;
@@ -56,13 +64,13 @@ export interface Props {
   // focusField?: () => string;
 }
 
-export const SquareForm: React.FC<Props> = ({
+export const SquareForm = ({
   applicationId,
   locationId,
   formId = 'payment-form',
   sandbox = false,
   ...props
-}) => {
+}: Props): JSX.Element => {
   // const [methods, dispatch] = React.useReducer(
   //   methodsReducer,
   //   INITIAL_STATE_METHODS

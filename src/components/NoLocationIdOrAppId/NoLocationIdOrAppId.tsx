@@ -23,7 +23,8 @@ export const NoLocationIdOrAppId = (): JSX.Element => {
       </Svg>
 
       <Text>
-        There are no <pre>applicationId</pre> or <pre>locationId</pre> present.
+        There are no <span className="code">applicationId</span> or{' '}
+        <span className="code">locationId</span> present.
       </Text>
     </Container>
   );
