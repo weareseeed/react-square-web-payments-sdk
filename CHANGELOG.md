@@ -1,3 +1,12 @@
+### 0.4.0 (2021-06-15)
+
+##### New Features
+
+* **stories:**  documenting first story ([f7c414d0](https://github.com/weareseeed/react-square-web-payments-sdk/commit/f7c414d0336f965037598316756b968e63df4f92))
+* **styles:**
+  *  adding payment submit styles ([af90a936](https://github.com/weareseeed/react-square-web-payments-sdk/commit/af90a93642d034833b391cb968cab3d68e015b9a))
+  *  basic styles for no args presents ([dc7a12ed](https://github.com/weareseeed/react-square-web-payments-sdk/commit/dc7a12ed20a1989016ae9bac329a205fb8eb280e))
+
 ### 0.3.0 (2021-06-15)
 
 ##### Bug Fixes
