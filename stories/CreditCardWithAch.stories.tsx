@@ -42,6 +42,24 @@ export default {
         summary: 'string',
       },
     },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+    methodsSupported: {
+      control: {
+        type: 'object',
+        required: false,
+      },
+      defaultValue: {
+        ach: true,
+        card: true,
+      },
+      type: {
+        summary: 'MethodsSupported',
+      },
+    },
   },
   parameters: {
     controls: { expanded: true },

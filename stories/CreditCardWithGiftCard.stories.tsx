@@ -1,15 +1,25 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { CreditCardInput, SquareForm, Props } from '../src/components';
+import {
+  CreditCardInput,
+  GiftCardInput,
+  Separator,
+  SquareForm,
+  Props,
+} from '../src/components';
 
 export const Default: Story<Props> = (args) => (
   <SquareForm {...args}>
+    <GiftCardInput />
+
+    <Separator />
+
     <CreditCardInput />
   </SquareForm>
 );
 
 export default {
-  title: 'Basic Credit Card Form',
+  title: 'Credit Card with Gift Card',
   component: SquareForm,
   argTypes: {
     children: {
@@ -24,6 +34,7 @@ export default {
       },
       defaultValue: {
         card: true,
+        giftCard: true,
       },
       type: {
         summary: 'MethodsSupported',
