@@ -1,3 +1,10 @@
+### 0.7.0 (2021-06-16)
+
+##### New Features
+
+* **docs:**  adding ach story and more props for ach payment ([b6b16e32](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b6b16e32eb4e186c1c5ace81ae7b19bdd9d15f34))
+* **method:**  adding ach payment method ([14e1d962](https://github.com/weareseeed/react-square-web-payments-sdk/commit/14e1d962d6e07255f85f978adf3458d0ea643215))
+
 #### 0.6.1 (2021-06-16)
 
 ##### Bug Fixes
