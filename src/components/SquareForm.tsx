@@ -21,8 +21,6 @@ export interface Props {
   locationId: string;
   /** Identifies the DOM form element. */
   formId?: string;
-  /** Enables Sandbox mode. */
-  sandbox?: boolean;
   /** Square payment form components. */
   children?: React.ReactNode;
 
@@ -36,11 +34,14 @@ export interface Props {
   //   shippingContact?: ShippingContact,
   //   shippingOption?: ShippingOption
   // ) => void;
-  /** <b>Required for digital wallets</b><br/><br/>Invoked when a digital wallet payment button is clicked. */
+  /** **Required for digital wallets**
+   *
+   * Invoked when a digital wallet payment button is clicked.
+   */
   createPaymentRequest?: () => PaymentRequestOptions;
   // /** <b>Required for SCA</b><br/><br/> */
   // createVerificationDetails?: () => SqVerificationDetails;
-  /* Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
+  /** Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
   methodsSupported?: MethodsSupported;
   // /** Invoked when visitors interact with the iframe elements. */
   // inputEventReceived?: () => void;
@@ -69,7 +70,6 @@ export const SquareForm = ({
   applicationId,
   locationId,
   formId = 'payment-form',
-  sandbox = false,
   ...props
 }: Props): JSX.Element => {
   // const [methods, dispatch] = React.useReducer(
