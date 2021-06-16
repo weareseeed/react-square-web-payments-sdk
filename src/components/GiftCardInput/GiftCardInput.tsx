@@ -13,7 +13,7 @@ interface Props extends GiftCardOptions {
   overrideStyles?: CSSObject | undefined;
 }
 
-export const CreditCardInput = ({
+export const GiftCardInput = ({
   overrideStyles,
   ...props
 }: Props): JSX.Element => {
@@ -70,4 +70,4 @@ export const CreditCardInput = ({
   );
 };
 
-export default CreditCardInput;
+export default GiftCardInput;

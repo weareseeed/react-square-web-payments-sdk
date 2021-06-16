@@ -1,6 +1,7 @@
 export * from './AchPayButton';
 export * from './ApplePayButton';
 export * from './CreditCardInput';
+export * from './GiftCardInput';
 export * from './GooglePayButton';
 export * from './LoadingForm';
 export * from './NoLocationIdOrAppId';
