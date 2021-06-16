@@ -1,3 +1,11 @@
+### 0.5.0 (2021-06-16)
+
+##### New Features
+
+* **component:**
+  *  gpay component and story ([b366b6db](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b366b6db57dca12e5be75e963bc1fba1415e6399))
+  *  add separator component ([6638887d](https://github.com/weareseeed/react-square-web-payments-sdk/commit/6638887d58467a6c492fb333fe573fe7c3c7c972))
+
 ### 0.4.0 (2021-06-15)
 
 ##### New Features
