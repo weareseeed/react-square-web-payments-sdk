@@ -9,15 +9,15 @@ import * as React from 'react';
 import type { Payments, PaymentRequestOptions } from '@square/web-sdk';
 
 // Internals
-import {
+import { NoLocationIdOrAppId } from '@/components';
+import { INITIAL_STATE_METHODS } from '@/constants';
+import { useDynamicCallback } from '@/hooks';
+import { methodsReducer } from '@/reducers';
+import type {
   ActionMethodReducer,
   FormContextInterface,
   MethodsSupported,
-} from '../@types';
-import { NoLocationIdOrAppId } from '../components';
-import { INITIAL_STATE_METHODS } from '../constants';
-import { methodsReducer } from '../reducers';
-import { useDynamicCallback } from '../hooks';
+} from '@/@types';
 
 /**
  * Internal helper that the `SquareForm` uses to manage internal state and expose access to the Web Payment SDK library.

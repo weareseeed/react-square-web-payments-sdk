@@ -1,14 +1,14 @@
 // Vendor Modules
-import {
+import * as React from 'react';
+import { useEvent } from 'react-use';
+import type {
   GooglePay,
   GooglePayButtonOptions,
 } from '@square/web-payments-sdk-types';
-import * as React from 'react';
-import { useEvent } from 'react-use';
 
 // Internals
-import { useForm } from '../../hooks';
-import { renderWithoutSupportPaymentMethod } from '../../utils';
+import { useForm } from '@/hooks';
+import { renderWithoutSupportPaymentMethod } from '@/utils';
 
 const defaultProps: GooglePayButtonOptions = {
   buttonColor: 'black',

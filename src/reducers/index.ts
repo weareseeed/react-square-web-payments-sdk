@@ -1,5 +1,5 @@
 // Internals
-import { ActionMethodReducer, InitialStateMethods } from '../@types';
+import type { ActionMethodReducer, InitialStateMethods } from '@/@types';
 
 export const methodsReducer = (
   state: InitialStateMethods,

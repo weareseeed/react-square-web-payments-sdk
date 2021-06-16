@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 // Internals
-import { FormContext } from '../contexts';
+import { FormContext } from '@/contexts';
 
 export const useForm = () => {
   const context = React.useContext(FormContext);

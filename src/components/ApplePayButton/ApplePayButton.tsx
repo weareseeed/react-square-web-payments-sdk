@@ -4,9 +4,9 @@ import { useEvent } from 'react-use';
 import type { ApplePay } from '@square/web-sdk';
 
 // Internals
-import { useForm } from '../../hooks';
+import { useForm } from '@/hooks';
+import { renderWithoutSupportPaymentMethod } from '@/utils';
 import { ApplePayContainer, ErrorContainer } from './styles';
-import { renderWithoutSupportPaymentMethod } from '../../utils';
 
 /**
  * Renders a Apple Pay button to use in the Square Web Payment SDK, pre-styled to meet Apple Pay's branding guidelines.

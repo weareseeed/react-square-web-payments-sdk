@@ -6,7 +6,6 @@ module.exports = {
   // https://storybook.js.org/docs/react/configure/typescript#mainjs-configuration
   typescript: {
     check: true, // type-check stories during Storybook build
-    //reactDocgen: 'none',
   },
   webpackFinal: (config) => {
     if (config.resolve.plugins) {
@@ -14,5 +13,7 @@ module.exports = {
     } else {
       config.resolve.plugins = [new TsconfigPathsPlugin()];
     }
+
+    return config;
   },
 };

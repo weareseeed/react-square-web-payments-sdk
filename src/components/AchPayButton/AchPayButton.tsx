@@ -6,9 +6,9 @@ import { useEvent } from 'react-use';
 import type { ACH, AchTokenOptions } from '@square/web-sdk';
 
 // Internals
-import { useForm } from '../../hooks';
+import { useForm } from '@/hooks';
+import { renderWithoutSupportPaymentMethod } from '@/utils';
 import { PayButton, SvgIcon } from './styles';
-import { renderWithoutSupportPaymentMethod } from '../../utils';
 
 interface Props extends AchTokenOptions {
   children?: React.ReactNode;
