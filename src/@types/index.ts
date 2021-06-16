@@ -1,9 +1,9 @@
 // Vendor Modules
-import {
+import type {
   MethodType,
   Payments,
   PaymentRequestOptions,
-} from '@square/web-payments-sdk-types';
+} from '@square/web-sdk';
 
 type ValueOf<T> = T[keyof T];
 export type Methods = ValueOf<MethodType>;
@@ -37,7 +37,7 @@ export interface FormContextInterface extends InitialStateMethods {
    * @example
    * const payments = Square.payments(appId, locationId);
    */
-  payments?: Payments;
+  payments: Payments;
   /* Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
   dispatchMethods: React.Dispatch<ActionMethodReducer>;
   /**

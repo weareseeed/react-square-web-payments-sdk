@@ -1,10 +1,10 @@
 // Vendor Modules
 import * as React from 'react';
+import type { PaymentRequestOptions } from '@square/web-payments-sdk-types';
 
 // Internals
 import FormProvider from '../contexts';
 import { MethodsSupported } from '../@types';
-import { PaymentRequestOptions } from '@square/web-payments-sdk-types';
 
 export interface Props {
   /**

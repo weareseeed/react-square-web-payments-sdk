@@ -1,9 +1,9 @@
 // Vendor Modules
 import { CSSObject } from '@emotion/styled';
-import { Card, CardOptions } from '@square/web-payments-sdk-types';
 import { document } from 'browser-monads-ts';
 import * as React from 'react';
 import { useEvent } from 'react-use';
+import type { Card, CardOptions } from '@square/web-sdk';
 
 // Internals
 import { useForm } from '../../hooks';
@@ -32,7 +32,7 @@ export const CreditCardInput = ({
   };
 
   const start = async () => {
-    const card = await payments?.card(props).then(res => {
+    const card = await payments.card(props).then((res) => {
       setCard(res);
 
       return res;

@@ -1761,9 +1761,9 @@
     webpack-bundle-analyzer "^4.4.2"
 
 "@square/web-payments-sdk-types@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@square/web-payments-sdk-types/-/web-payments-sdk-types-1.1.1.tgz#3bbba6f31bf057000f9cb0c9543b8b5b5bbc6f99"
-  integrity sha512-D8n4Xm8H8jPvWk7pW1+Ongi1/paLwp9tVq30lm+lzxPI+Nm3SOHk3t559uYsuWgxuMbP+yxfegoElN6z1c8A8w==
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@square/web-payments-sdk-types/-/web-payments-sdk-types-1.1.2.tgz#f1f912a795b7a6606ab95ce439cec512f4ff683a"
+  integrity sha512-f08z+Qb+bVWMCOIvpXH75YdGZhJDqxrCH+G3m+iUWTuouZbxahfyEBNttRHfenaLNFN+yMEqpKGKfoOxu1M7CA==
 
 "@square/web-sdk@^1.0.0-beta.5":
   version "1.0.0-beta.5"

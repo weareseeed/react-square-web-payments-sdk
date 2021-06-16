@@ -43,10 +43,8 @@ export const GooglePayButton = (props: GooglePayButtonOptions): JSX.Element => {
   };
 
   const start = async () => {
-    const paymentRequest = payments?.paymentRequest(
-      createPaymentRequest
-    ) as PaymentRequest;
-    const googlePay = await payments?.googlePay(paymentRequest).then(res => {
+    const paymentRequest = payments.paymentRequest(createPaymentRequest);
+    const googlePay = await payments.googlePay(paymentRequest).then((res) => {
       setGPay(res);
 
       return res;

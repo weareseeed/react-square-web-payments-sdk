@@ -1,10 +1,7 @@
 // Vendor Modules
-import * as Square from '@square/web-sdk';
-import {
-  Payments,
-  PaymentRequestOptions,
-} from '@square/web-payments-sdk-types';
+import { payments } from '@square/web-sdk';
 import * as React from 'react';
+import type { Payments, PaymentRequestOptions } from '@square/web-sdk';
 
 // Internals
 import {
@@ -12,7 +9,7 @@ import {
   FormContextInterface,
   MethodsSupported,
 } from '../@types';
-import { LoadingForm, NoLocationIdOrAppId } from '../components';
+import { NoLocationIdOrAppId } from '../components';
 import { INITIAL_STATE_METHODS, METHODS_KEY } from '../constants';
 import { methodsReducer } from '../reducers';
 
@@ -43,10 +40,9 @@ interface ProviderProps {
 }
 
 const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
-  const [loading, setLoading] = React.useState(() => true);
-  const [payments, setPayments] = React.useState<null | Payments>(() => null);
   const [applicationId] = React.useState(() => props.applicationId);
   const [locationId] = React.useState(() => props.locationId);
+  const [pay, setPay] = React.useState<Payments>();
   const [createPaymentRequest] = React.useState<
     undefined | PaymentRequestOptions
   >(() => props.createPaymentRequest?.());
@@ -82,37 +78,41 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
     });
   };
 
-  const getPaymentInstance = async () => {
+  async function loadPayment(): Promise<void> {
     methodsSupported();
 
-    return (Square.payments(applicationId, locationId).then(res => {
-      setLoading(false);
+    await payments(applicationId, locationId).then((res) => {
+      if (res === null) {
+        throw new Error('Square Web Payments SDK failed to load');
+      }
 
-      return setPayments(res);
-    }) as unknown) as Payments;
-  };
+      setPay(res);
+
+      return res;
+    });
+  }
 
   React.useEffect(() => {
     if (applicationId && locationId) {
-      getPaymentInstance();
+      loadPayment();
     }
   }, [applicationId, locationId]);
-
-  const context = {
-    ...methods,
-    formId: '',
-    payments,
-    dispatchMethods: dispatch,
-    createPaymentRequest,
-  };
 
   if (!applicationId || !locationId) {
     return <NoLocationIdOrAppId />;
   }
 
-  if (loading) {
-    return <LoadingForm />;
+  if (!pay) {
+    return null;
   }
+
+  const context = {
+    ...methods,
+    formId: '',
+    payments: pay,
+    dispatchMethods: dispatch,
+    createPaymentRequest,
+  };
 
   return (
     <FormContext.Provider value={context}>{children}</FormContext.Provider>
