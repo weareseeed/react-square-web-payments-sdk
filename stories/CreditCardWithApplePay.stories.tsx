@@ -1,16 +1,16 @@
 // Vendor Modules
-import * as React from 'react';
 import { Meta, Story } from '@storybook/react';
+import * as React from 'react';
+
+// Internals
 import {
   ApplePayButton,
   CreditCardInput,
   Separator,
-  SquareForm,
-  Props,
+  SquarePaymentsForm,
 } from '../src/components';
-
-// Internals
 import { createPaymentRequestFunction } from '../src/utils/storybook';
+import type { SquarePaymentsFormProps } from '../src/components';
 
 const createPaymentRequestTypeDetails = `
  The payments.paymentRequest method argument
@@ -57,8 +57,8 @@ const createPaymentRequestTypeDetails = `
  }
 `;
 
-export const Default: Story<Props> = (args) => (
-  <SquareForm
+export const Default: Story<SquarePaymentsFormProps> = (args) => (
+  <SquarePaymentsForm
     {...args}
     createPaymentRequest={createPaymentRequestFunction}
     methodsSupported={{ applePay: true, card: true }}
@@ -68,12 +68,12 @@ export const Default: Story<Props> = (args) => (
     <Separator />
 
     <CreditCardInput />
-  </SquareForm>
+  </SquarePaymentsForm>
 );
 
 export default {
   title: 'Credit Card with Apple Pay',
-  component: SquareForm,
+  component: SquarePaymentsForm,
   argTypes: {
     children: {
       table: {

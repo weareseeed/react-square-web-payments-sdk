@@ -1,17 +1,17 @@
 // Vendor Modules
-import * as React from 'react';
 import { Meta, Story } from '@storybook/react';
+import * as React from 'react';
+import type { GooglePayButtonOptions } from '@square/web-sdk';
+
+// Internals
 import {
   CreditCardInput,
   GooglePayButton,
   Separator,
-  SquareForm,
-  Props,
+  SquarePaymentsForm,
 } from '../src/components';
-import { GooglePayButtonOptions } from '@square/web-payments-sdk-types';
-
-// Internals
 import { createPaymentRequestFunction } from '../src/utils/storybook';
+import type { SquarePaymentsFormProps } from '../src/components';
 
 const buttonColorTypeDetails = `
   /** The background color of the Google Pay button */
@@ -106,22 +106,24 @@ const createPaymentRequestTypeDetails = `
  }
 `;
 
-export const Default: Story<Props & GooglePayButtonOptions> = ({
-  buttonColor,
-  ...args
-}) => (
-  <SquareForm {...args} createPaymentRequest={createPaymentRequestFunction}>
+export const Default: Story<
+  SquarePaymentsFormProps & GooglePayButtonOptions
+> = ({ buttonColor, ...args }) => (
+  <SquarePaymentsForm
+    {...args}
+    createPaymentRequest={createPaymentRequestFunction}
+  >
     <GooglePayButton buttonColor={buttonColor} />
 
     <Separator />
 
     <CreditCardInput />
-  </SquareForm>
+  </SquarePaymentsForm>
 );
 
 export default {
   title: 'Credit Card with Google Pay',
-  component: SquareForm,
+  component: SquarePaymentsForm,
   args: {
     buttonColor: 'default',
     buttonSizeMode: 'fill',

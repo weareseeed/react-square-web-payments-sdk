@@ -11,7 +11,7 @@ import type {
 import { MethodsSupported } from '@/@types';
 import FormProvider from '@/contexts';
 
-export interface Props {
+export interface SquarePaymentsFormProps {
   /**
    * **Required for all features**
    *
@@ -40,7 +40,7 @@ export interface Props {
    * Invoked when a digital wallet payment button is clicked.
    */
   createPaymentRequest?: () => PaymentRequestOptions;
-  /** **<b>Required for SCA** */
+  /** **Required for SCA** */
   createVerificationDetails?: () =>
     | ChargeVerifyBuyerDetails
     | StoreVerifyBuyerDetails;
@@ -48,12 +48,12 @@ export interface Props {
   methodsSupported?: MethodsSupported;
 }
 
-export const SquareForm = ({
+export const SquarePaymentsForm = ({
   applicationId,
   locationId,
   formId = 'web-payment-sdk-form',
   ...props
-}: Props): JSX.Element => {
+}: SquarePaymentsFormProps): JSX.Element => {
   return (
     <FormProvider
       applicationId={applicationId}
@@ -68,4 +68,4 @@ export const SquareForm = ({
   );
 };
 
-export default SquareForm;
+export default SquarePaymentsForm;

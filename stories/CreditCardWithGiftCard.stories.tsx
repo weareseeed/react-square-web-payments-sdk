@@ -1,26 +1,29 @@
-import React from 'react';
+// Vendor Modules
 import { Meta, Story } from '@storybook/react';
+import * as React from 'react';
+
+// Internals
 import {
   CreditCardInput,
   GiftCardInput,
   Separator,
-  SquareForm,
-  Props,
+  SquarePaymentsForm,
 } from '../src/components';
+import type { SquarePaymentsFormProps } from '../src/components';
 
-export const Default: Story<Props> = (args) => (
-  <SquareForm {...args}>
+export const Default: Story<SquarePaymentsFormProps> = (args) => (
+  <SquarePaymentsForm {...args}>
     <GiftCardInput />
 
     <Separator />
 
     <CreditCardInput />
-  </SquareForm>
+  </SquarePaymentsForm>
 );
 
 export default {
   title: 'Credit Card with Gift Card',
-  component: SquareForm,
+  component: SquarePaymentsForm,
   argTypes: {
     children: {
       table: {

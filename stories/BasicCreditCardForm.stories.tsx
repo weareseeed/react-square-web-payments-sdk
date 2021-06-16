@@ -1,21 +1,25 @@
-import React from 'react';
+// Vendor Modules
 import { Meta, Story } from '@storybook/react';
-import { CreditCardInput, SquareForm, Props } from '../src/components';
+import * as React from 'react';
 
-export const Default: Story<Props> = (args) => (
-  <SquareForm
+// Internals
+import { CreditCardInput, SquarePaymentsForm } from '../src/components';
+import type { SquarePaymentsFormProps } from '../src/components';
+
+export const Default: Story<SquarePaymentsFormProps> = (args) => (
+  <SquarePaymentsForm
     {...args}
     cardTokenizeResponseReceived={(props) => {
       console.log(props);
     }}
   >
     <CreditCardInput />
-  </SquareForm>
+  </SquarePaymentsForm>
 );
 
 export default {
   title: 'Basic Credit Card Form',
-  component: SquareForm,
+  component: SquarePaymentsForm,
   argTypes: {
     children: {
       table: {
