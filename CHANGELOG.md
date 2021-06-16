@@ -1,3 +1,39 @@
+## 1.0.0 (2021-06-16)
+
+##### New Features
+
+* **docs:**
+  *  adding a simple readme ([051461a3](https://github.com/weareseeed/react-square-web-payments-sdk/commit/051461a37e263b4d4abc7e50dd75f54650cf9667))
+  *  organize stories and comments ([c5523c26](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c5523c2694a6125da73e5c452dfb1966dcd1363c))
+  *  export types and coments in gift card ([4728d099](https://github.com/weareseeed/react-square-web-payments-sdk/commit/4728d099446420ae88d140a8623a93b811a0d114))
+  *  comments for functions in credit cards ([c38d129b](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c38d129b0260bb4d6b446e3737adf9c7ee8d7c17))
+  *  comments for functions in ach ([5cbb02cf](https://github.com/weareseeed/react-square-web-payments-sdk/commit/5cbb02cf2be2dc1a0e832c7d16673f1c938bb8cc))
+  *  comments for funcitons ([109645c0](https://github.com/weareseeed/react-square-web-payments-sdk/commit/109645c0a26f524aa919629a4a9c550907d14d48))
+  *  adding comments for ach ([ae6d3603](https://github.com/weareseeed/react-square-web-payments-sdk/commit/ae6d3603c7dae41a083545d98ec768fca5a2f8f5))
+  *  adding comments for google pay ([e63ec7ba](https://github.com/weareseeed/react-square-web-payments-sdk/commit/e63ec7ba1b3020e75e120fbdb9ea029c064a794d))
+  *  adding more doc to credit card input ([503e63de](https://github.com/weareseeed/react-square-web-payments-sdk/commit/503e63dea58a2bb41e2816eae435b89b0ba2a173))
+  *  adding comments in apple pay ([1f114b9f](https://github.com/weareseeed/react-square-web-payments-sdk/commit/1f114b9f2b45f40b7c0f539e45a57bf31cf51063))
+  *  adding comments and export types for credit card ([5641502b](https://github.com/weareseeed/react-square-web-payments-sdk/commit/5641502b654e72fef8e8fea9762a732ddbe7d133))
+* **ci:**  github templates and vscode config ([c82e4b85](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c82e4b85ed5950c3060476de79cc3def7c7767a8))
+* **contributing:**  adding guides ([c0f8c52c](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c0f8c52cde240296c33b342416e45a6de7940b5a))
+* **paths:**  putting relative paths with ts ([423c104f](https://github.com/weareseeed/react-square-web-payments-sdk/commit/423c104ff89f6195db403848a28685d641e7487f))
+* **ts:**  adding paths in tsconfig ([2940bbf1](https://github.com/weareseeed/react-square-web-payments-sdk/commit/2940bbf1bb46aa489cbadb0ef70ea379b3aa9adc))
+
+##### Bug Fixes
+
+* **license:**  correct name for license ([a7d396b4](https://github.com/weareseeed/react-square-web-payments-sdk/commit/a7d396b4b2d528da28bbb395d7a1d917f3d3d778))
+* **ts:**  name and export of ach component ([4508ede7](https://github.com/weareseeed/react-square-web-payments-sdk/commit/4508ede705113a152995caf427164afea5787191))
+* **docs:**  add tsconfig compatibility to storybook ([c6b6af3d](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c6b6af3dd0659d81c258b235f193ef9fd4f61fca))
+
+##### Other Changes
+
+* **docs:**
+  *  comments for funcitons" ([bb929080](https://github.com/weareseeed/react-square-web-payments-sdk/commit/bb9290802f6610d75424a4b71f7fd8e7597177b0))
+  *  unused comments in props ([1635f2af](https://github.com/weareseeed/react-square-web-payments-sdk/commit/1635f2af0e997bc5f6feb5e38a58807f088b2bfb))
+* **chore:**
+  *  stable version of square sdk ([6f7c58f8](https://github.com/weareseeed/react-square-web-payments-sdk/commit/6f7c58f8488ff862d2d7be1084bfe5a5c0f34294))
+  *  update beta version of square sdk ([d48626e4](https://github.com/weareseeed/react-square-web-payments-sdk/commit/d48626e47aea11bbd1cdbd02995f6ff7b5a832ac))
+
 ### 0.10.0 (2021-06-16)
 
 ##### New Features
