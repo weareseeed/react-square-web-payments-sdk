@@ -1,3 +1,13 @@
+### 0.10.0 (2021-06-16)
+
+##### New Features
+
+* **cb:**  callback for tokenize response ([cf3e8716](https://github.com/weareseeed/react-square-web-payments-sdk/commit/cf3e8716922eb19685f1578fab952eb551500411))
+
+##### Other Changes
+
+* **files:**  unused exaples folder ([a45a657b](https://github.com/weareseeed/react-square-web-payments-sdk/commit/a45a657b3812dc555ca541aca0a1ca7e7d6adadc))
+
 ### 0.9.0 (2021-06-16)
 
 ##### New Features
