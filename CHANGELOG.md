@@ -1,3 +1,16 @@
+### 0.9.0 (2021-06-16)
+
+##### New Features
+
+* **error:**  error handle for supported payment method ([e0daf7c5](https://github.com/weareseeed/react-square-web-payments-sdk/commit/e0daf7c53528f7f16cfbb5b57a647f52e730b3b8))
+* **state:**  only change state of supported payment ([03a32d86](https://github.com/weareseeed/react-square-web-payments-sdk/commit/03a32d867207d5bf0c38ecb3525df4faf937e36e))
+* **form:**  putting an standard ID ([d85bb7d7](https://github.com/weareseeed/react-square-web-payments-sdk/commit/d85bb7d7d9962ba33821adecdd144d316f91cc72))
+* **docs:**  adjusting some docs of the form ([4f4c7a4e](https://github.com/weareseeed/react-square-web-payments-sdk/commit/4f4c7a4e9391a2409f66f9f17ad14ef265d2caf3))
+
+##### Other Changes
+
+* **code:**  unused code inside form instance ([01e031bb](https://github.com/weareseeed/react-square-web-payments-sdk/commit/01e031bb0223d98d7718ce39a2ba42a374309fdd))
+
 ### 0.8.0 (2021-06-16)
 
 ##### New Features
