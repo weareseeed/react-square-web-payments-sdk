@@ -10,6 +10,16 @@ import { renderWithoutSupportPaymentMethod } from '../../utils';
 
 /**
  * Renders a Apple Pay button to use in the Square Web Payment SDK, pre-styled to meet Apple Pay's branding guidelines.
+ *
+ * **Remember** that you need to set `createPaymentRequest()` in `SquareForm`
+ * if you going to use this Payment Method
+ *
+ * @example
+ * ```tsx
+ * <SquareForm {...props}>
+ *  <ApplePayButton />
+ * </SquareForm>
+ * ```
  */
 export const ApplePayButton = (): JSX.Element | null => {
   const [aPay, setAPay] = React.useState<ApplePay | undefined>(() => undefined);
@@ -27,6 +37,12 @@ export const ApplePayButton = (): JSX.Element | null => {
     );
   }
 
+  /**
+   * Handle the on click of the Apple Pay button click
+   *
+   * @param e An event which takes place in the DOM.
+   * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
+   */
   const handlePayment = async (e: Event) => {
     e.preventDefault();
 
@@ -41,6 +57,9 @@ export const ApplePayButton = (): JSX.Element | null => {
     }
   };
 
+  /**
+   * Initialize the Apple Pay instance to be used in the component
+   */
   const start = async () => {
     const paymentRequest = payments.paymentRequest(createPaymentRequest);
 
