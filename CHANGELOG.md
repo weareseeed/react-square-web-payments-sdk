@@ -1,3 +1,9 @@
+#### 0.6.1 (2021-06-16)
+
+##### Bug Fixes
+
+* **doc:**  name for apple pay button ([cd3b4dc8](https://github.com/weareseeed/react-square-web-payments-sdk/commit/cd3b4dc8e831693f6d5a4084df8561ff3a3f22be))
+
 ### 0.6.0 (2021-06-16)
 
 ##### New Features
