@@ -54,6 +54,12 @@ export const CreditCardInput = ({
   const [card, setCard] = React.useState<Card | undefined>(() => undefined);
   const { cardTokenizeResponseReceived, card: cardState, payments } = useForm();
 
+  /**
+   * Handle the on click of the Credit Card button click
+   *
+   * @param e An event which takes place in the DOM.
+   * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
+   */
   const handlePayment = async () => {
     try {
       const result = await card?.tokenize();
@@ -66,6 +72,9 @@ export const CreditCardInput = ({
     }
   };
 
+  /**
+   * Initialize the Card instance to be used in the component
+   */
   const start = async () => {
     const card = await payments.card(props).then((res) => {
       setCard(res);
