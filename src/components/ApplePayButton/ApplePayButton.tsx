@@ -8,7 +8,7 @@ import { useForm } from '../../hooks';
 import { ApplePayContainer, ErrorContainer } from './styles';
 
 /**
- * Renders a Google Pay button to use in the Square Web Payment SDK, pre-styled to meet Google's branding guidelines.
+ * Renders a Apple Pay button to use in the Square Web Payment SDK, pre-styled to meet Apple Pay's branding guidelines.
  */
 export const ApplePayButton = (): JSX.Element => {
   const [aPay, setAPay] = React.useState<ApplePay | undefined>(() => undefined);
