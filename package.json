@@ -51,6 +51,7 @@
     "type": "git",
     "url": "git@github.com:weareseeed/react-square-web-payments-sdk.git"
   },
+  "homepage": "https://weareseeed.github.io/react-square-web-payments-sdk/",
   "module": "dist/react-square-web-payments-sdk.esm.js",
   "size-limit": [
     {
