@@ -1,3 +1,14 @@
+### 1.1.0 (2021-06-16)
+
+##### New Features
+
+* **docs:**  adding code of conduct ([323eeedf](https://github.com/weareseeed/react-square-web-payments-sdk/commit/323eeedf74f7dc2bf2dd8bb094573698373a991c))
+* **ci:**  adding build and deploy gh-pages ([46a4e633](https://github.com/weareseeed/react-square-web-payments-sdk/commit/46a4e6330680b9c2490d1420952084632837877c))
+
+##### Bug Fixes
+
+* **docs:**  name for basic story ([ef9cd625](https://github.com/weareseeed/react-square-web-payments-sdk/commit/ef9cd6250996c05591aecfbeafdee03de3d1cff6))
+
 ## 1.0.0 (2021-06-16)
 
 ##### New Features
