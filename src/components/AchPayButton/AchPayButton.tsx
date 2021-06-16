@@ -8,6 +8,7 @@ import type { ACH, AchTokenOptions } from '@square/web-sdk';
 // Internals
 import { useForm } from '../../hooks';
 import { PayButton, SvgIcon } from './styles';
+import { renderWithoutSupportPaymentMethod } from '../../utils';
 
 interface Props extends AchTokenOptions {
   children?: React.ReactNode;
@@ -20,9 +21,9 @@ export const AchPayButton = ({
   overrideSvgStyles,
   overrideStyles,
   ...props
-}: Props): JSX.Element => {
+}: Props): JSX.Element | null => {
   const [ach, setAch] = React.useState<ACH | undefined>(() => undefined);
-  const { payments } = useForm();
+  const { ach: achState, payments } = useForm();
 
   const handlePayment = async () => {
     try {
@@ -47,6 +48,12 @@ export const AchPayButton = ({
   }, [payments]);
 
   useEvent('click', handlePayment, document.getElementById('pay-with-ach'));
+
+  if (achState !== 'ready') {
+    renderWithoutSupportPaymentMethod('ACH');
+
+    return null;
+  }
 
   if (children) {
     return (

@@ -8,6 +8,7 @@ import type { Card, CardOptions } from '@square/web-sdk';
 // Internals
 import { useForm } from '../../hooks';
 import { LoadingCard, PayButton } from './styles';
+import { renderWithoutSupportPaymentMethod } from '../../utils';
 
 interface Props extends CardOptions {
   overrideStyles?: CSSObject | undefined;
@@ -16,9 +17,9 @@ interface Props extends CardOptions {
 export const CreditCardInput = ({
   overrideStyles,
   ...props
-}: Props): JSX.Element => {
+}: Props): JSX.Element | null => {
   const [card, setCard] = React.useState<Card | undefined>(() => undefined);
-  const { payments } = useForm();
+  const { card: cardState, payments } = useForm();
 
   const handlePayment = async () => {
     try {
@@ -46,6 +47,12 @@ export const CreditCardInput = ({
   }, [payments]);
 
   useEvent('click', handlePayment, document.getElementById('pay-with-card'));
+
+  if (cardState !== 'ready') {
+    renderWithoutSupportPaymentMethod('Card');
+
+    return null;
+  }
 
   return (
     <>

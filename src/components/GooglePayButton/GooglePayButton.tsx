@@ -8,6 +8,7 @@ import { useEvent } from 'react-use';
 
 // Internals
 import { useForm } from '../../hooks';
+import { renderWithoutSupportPaymentMethod } from '../../utils';
 
 const defaultProps: GooglePayButtonOptions = {
   buttonColor: 'black',
@@ -18,11 +19,13 @@ const defaultProps: GooglePayButtonOptions = {
 /**
  * Renders a Google Pay button to use in the Square Web Payment SDK, pre-styled to meet Google's branding guidelines.
  */
-export const GooglePayButton = (props: GooglePayButtonOptions): JSX.Element => {
+export const GooglePayButton = (
+  props: GooglePayButtonOptions
+): JSX.Element | null => {
   const [gPay, setGPay] = React.useState<GooglePay | undefined>(
     () => undefined
   );
-  const { createPaymentRequest, payments } = useForm();
+  const { createPaymentRequest, googlePay, payments } = useForm();
 
   if (!createPaymentRequest) {
     throw new Error(
@@ -63,6 +66,12 @@ export const GooglePayButton = (props: GooglePayButtonOptions): JSX.Element => {
     handlePayment,
     document.getElementById('google-pay-button')
   );
+
+  if (googlePay !== 'ready') {
+    renderWithoutSupportPaymentMethod('Google Pay');
+
+    return null;
+  }
 
   return <div id="google-pay-button" style={{ height: 40 }}></div>;
 };

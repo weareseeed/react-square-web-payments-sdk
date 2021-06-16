@@ -6,14 +6,15 @@ import type { ApplePay } from '@square/web-sdk';
 // Internals
 import { useForm } from '../../hooks';
 import { ApplePayContainer, ErrorContainer } from './styles';
+import { renderWithoutSupportPaymentMethod } from '../../utils';
 
 /**
  * Renders a Apple Pay button to use in the Square Web Payment SDK, pre-styled to meet Apple Pay's branding guidelines.
  */
-export const ApplePayButton = (): JSX.Element => {
+export const ApplePayButton = (): JSX.Element | null => {
   const [aPay, setAPay] = React.useState<ApplePay | undefined>(() => undefined);
   const [error, setError] = React.useState('');
-  const { createPaymentRequest, payments } = useForm();
+  const { applePay, createPaymentRequest, payments } = useForm();
 
   if (!createPaymentRequest) {
     throw new Error(
@@ -56,6 +57,12 @@ export const ApplePayButton = (): JSX.Element => {
   }, [payments]);
 
   useEvent('click', handlePayment, document.getElementById('apple-pay-button'));
+
+  if (applePay !== 'ready') {
+    renderWithoutSupportPaymentMethod('Apple Pay');
+
+    return null;
+  }
 
   if (error) {
     return (

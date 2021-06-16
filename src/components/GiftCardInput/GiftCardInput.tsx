@@ -8,6 +8,7 @@ import type { GiftCard, GiftCardOptions } from '@square/web-sdk';
 // Internals
 import { useForm } from '../../hooks';
 import { LoadingCard, PayButton } from './styles';
+import { renderWithoutSupportPaymentMethod } from '../../utils';
 
 interface Props extends GiftCardOptions {
   overrideStyles?: CSSObject | undefined;
@@ -16,18 +17,17 @@ interface Props extends GiftCardOptions {
 export const GiftCardInput = ({
   overrideStyles,
   ...props
-}: Props): JSX.Element => {
+}: Props): JSX.Element | null => {
   const [gCard, setGCard] = React.useState<GiftCard | undefined>(
     () => undefined
   );
-  const { payments } = useForm();
+  const { giftCard, payments } = useForm();
 
   const handlePayment = async () => {
     try {
       const result = await gCard?.tokenize();
 
       console.log(result);
-      // TODO: use result.token as source_id in /v2/payments API call
     } catch (ex) {
       console.error(ex);
     }
@@ -52,6 +52,12 @@ export const GiftCardInput = ({
     handlePayment,
     document.getElementById('pay-with-gift-card')
   );
+
+  if (giftCard !== 'ready') {
+    renderWithoutSupportPaymentMethod('Gift Card');
+
+    return null;
+  }
 
   return (
     <>
