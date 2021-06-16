@@ -1,3 +1,18 @@
+### 0.8.0 (2021-06-16)
+
+##### New Features
+
+* **docs:**  adding gift card story and other adjustments ([943a91d1](https://github.com/weareseeed/react-square-web-payments-sdk/commit/943a91d17089f9bac7c7ea3c71a3dc584d7d2ca9))
+* **method:**  add gift card payment method ([b1024ab8](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b1024ab851b9f0e13ae84978754caefc51291bad))
+
+##### Bug Fixes
+
+* **import:**  correct import for gift card ([482b4cec](https://github.com/weareseeed/react-square-web-payments-sdk/commit/482b4cec5ecc1caf6ffa382a1dfb4ba2140b045d))
+
+##### Other Changes
+
+* **args:**  deleting unused args ([76412a53](https://github.com/weareseeed/react-square-web-payments-sdk/commit/76412a53067a2b247dc64066f07c4a46f71b7252))
+
 ### 0.7.0 (2021-06-16)
 
 ##### New Features
