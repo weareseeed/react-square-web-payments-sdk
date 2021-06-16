@@ -18,6 +18,16 @@ const defaultProps: GooglePayButtonOptions = {
 
 /**
  * Renders a Google Pay button to use in the Square Web Payment SDK, pre-styled to meet Google's branding guidelines.
+ *
+ * **Remember** that you need to set `createPaymentRequest()` in `SquareForm`
+ * if you going to use this Payment Method
+ *
+ * @example
+ * ```tsx
+ * <SquareForm {...props}>
+ *  <GooglePayButton buttonColor="white" />
+ * </SquareForm>
+ * ```
  */
 export const GooglePayButton = (
   props: GooglePayButtonOptions
@@ -38,6 +48,12 @@ export const GooglePayButton = (
     );
   }
 
+  /**
+   * Handle the on click of the Google Pay button click
+   *
+   * @param e An event which takes place in the DOM.
+   * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
+   */
   const handlePayment = async (e: Event) => {
     e.preventDefault();
 
@@ -52,6 +68,9 @@ export const GooglePayButton = (
     }
   };
 
+  /**
+   * Initialize the Google Pay instance to be used in the component
+   */
   const start = async () => {
     const paymentRequest = payments.paymentRequest(createPaymentRequest);
     const googlePay = await payments.googlePay(paymentRequest).then((res) => {

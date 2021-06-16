@@ -109,7 +109,7 @@ export const ApplePayButton = (): JSX.Element | null => {
             </svg>
           </div>
           <div className="text-container">
-            <h3 className="text-sm font-medium text-red-800">{error}</h3>
+            <h3>{error}</h3>
           </div>
         </div>
       </ErrorContainer>
