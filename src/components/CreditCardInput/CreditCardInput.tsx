@@ -34,6 +34,18 @@ export interface CreditCardInputProps extends CardOptions {
   focus?: CardFieldNamesValues;
 }
 
+/**
+ * Renders a Credit Card Input to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
+ *
+ * **_But with the option to override styles_**
+ *
+ * @example
+ * ```tsx
+ * <SquareForm {...props}>
+ *  <CreditCardInput focus="cardNumber" />
+ * </SquareForm>
+ * ```
+ */
 export const CreditCardInput = ({
   overrideStyles,
   focus = 'cardNumber',
