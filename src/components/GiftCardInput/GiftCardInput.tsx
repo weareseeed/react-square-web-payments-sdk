@@ -10,19 +10,38 @@ import { useForm } from '@/hooks';
 import { renderWithoutSupportPaymentMethod } from '@/utils';
 import { LoadingCard, PayButton } from './styles';
 
-interface Props extends GiftCardOptions {
+export interface GiftCardInputProps extends GiftCardOptions {
+  /**
+   * Sets the style for the Gift Card Button using a CSS object
+   *
+   * @example
+   * ```js
+   * const overrideStyles = {
+   *  background: "rgba(0, 0, 0, 1)",
+   *  "&:hover": {
+   *    background: "rgba(0, 0, 0, 0.85)"
+   *  }
+   * }
+   * ```
+   */
   overrideStyles?: CSSObject | undefined;
 }
 
 export const GiftCardInput = ({
   overrideStyles,
   ...props
-}: Props): JSX.Element | null => {
+}: GiftCardInputProps): JSX.Element | null => {
   const [gCard, setGCard] = React.useState<GiftCard | undefined>(
     () => undefined
   );
   const { cardTokenizeResponseReceived, giftCard, payments } = useForm();
 
+  /**
+   * Handle the on click of the Gift Card button click
+   *
+   * @param e An event which takes place in the DOM.
+   * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
+   */
   const handlePayment = async () => {
     try {
       const result = await gCard?.tokenize();
@@ -35,6 +54,9 @@ export const GiftCardInput = ({
     }
   };
 
+  /**
+   * Initialize the Gift Card instance to be used in the component
+   */
   const start = async () => {
     const gCard = await payments.giftCard(props).then((res) => {
       setGCard(res);
