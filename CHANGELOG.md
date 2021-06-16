@@ -1,3 +1,9 @@
+#### 1.2.1 (2021-06-16)
+
+##### New Features
+
+* **docs:**  adding homepage for package ([b68c7a79](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b68c7a79ada246e2e2bf5a4eeecbb3531c839e6f))
+
 ### 1.2.0 (2021-06-16)
 
 ### 1.1.0 (2021-06-16)
