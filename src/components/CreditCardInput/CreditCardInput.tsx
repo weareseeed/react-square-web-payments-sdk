@@ -3,21 +3,42 @@ import { CSSObject } from '@emotion/styled';
 import { document } from 'browser-monads-ts';
 import * as React from 'react';
 import { useEvent } from 'react-use';
-import type { Card, CardOptions } from '@square/web-sdk';
+import type { Card, CardFieldNamesValues, CardOptions } from '@square/web-sdk';
 
 // Internals
 import { useForm } from '../../hooks';
 import { LoadingCard, PayButton } from './styles';
 import { renderWithoutSupportPaymentMethod } from '../../utils';
 
-interface Props extends CardOptions {
+export interface CreditCardInputProps extends CardOptions {
+  /**
+   * Sets the style for the Payment Button using a CSS object
+   *
+   * @example
+   * ```js
+   * const overrideStyles = {
+   *  background: "red",
+   *  "&:hover": {
+   *    background: "green"
+   *  }
+   * }
+   * ```
+   */
   overrideStyles?: CSSObject | undefined;
+  /**
+   * Sets the DOM focus of one of the input fields within the credit card form.
+   *
+   * For more details about the available options, see [CardFieldNames](https://developer.squareup.com/reference/sdks/web/payments/enums/CardFieldNames).
+   * @throws {InvalidFieldNameError} the specified field name is invalid
+   */
+  focus?: CardFieldNamesValues;
 }
 
 export const CreditCardInput = ({
   overrideStyles,
+  focus = 'cardNumber',
   ...props
-}: Props): JSX.Element | null => {
+}: CreditCardInputProps): JSX.Element | null => {
   const [card, setCard] = React.useState<Card | undefined>(() => undefined);
   const { cardTokenizeResponseReceived, card: cardState, payments } = useForm();
 
@@ -41,6 +62,7 @@ export const CreditCardInput = ({
     });
 
     await card?.attach('#card-container');
+    await card?.focus(focus);
   };
 
   React.useEffect(() => {
