@@ -69,7 +69,7 @@ export interface Props {
 export const SquareForm = ({
   applicationId,
   locationId,
-  formId = 'payment-form',
+  formId = 'web-payment-sdk-form',
   ...props
 }: Props): JSX.Element => {
   return (
