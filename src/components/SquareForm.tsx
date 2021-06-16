@@ -46,27 +46,6 @@ export interface Props {
     | StoreVerifyBuyerDetails;
   /** Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
   methodsSupported?: MethodsSupported;
-  // /** Invoked when visitors interact with the iframe elements. */
-  // inputEventReceived?: () => void;
-  // /** Invoked when payment form is fully loaded. */
-  // paymentFormLoaded?: () => void;
-  // /** Invoked when requestShippingAddress is true in PaymentRequest and the buyer selects a shipping address in the Apple Pay sheet or enters a new shipping address. */
-  // shippingContactChanged?: (
-  //   shippingContact: SqContact,
-  //   done: ({}) => {}
-  // ) => void;
-  // /** Invoked when the buyer selects a shipping option in the Apple Pay sheet. */
-  // shippingOptionChanged?: (
-  //   shippingOption: SqShippingOption,
-  //   done: ({}) => {}
-  // ) => void;
-  // /** Invoked when the payment form is hosted in an unsupported browser. */
-  // unsupportedBrowserDetected?: () => void;
-
-  // /** Postal code to be set on paymentFormLoaded. */
-  // postalCode?: () => string;
-  // /** Field to be focused on paymentFormLoaded (valid values are cardNumber, postalCode, expirationDate, cvv). */
-  // focusField?: () => string;
 }
 
 export const SquareForm = ({
