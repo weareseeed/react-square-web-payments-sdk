@@ -1,3 +1,4 @@
+export * from './AchPayButton';
 export * from './ApplePayButton';
 export * from './CreditCardInput';
 export * from './GooglePayButton';
