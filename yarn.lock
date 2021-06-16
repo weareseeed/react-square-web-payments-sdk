@@ -1765,10 +1765,12 @@
   resolved "https://registry.yarnpkg.com/@square/web-payments-sdk-types/-/web-payments-sdk-types-1.1.1.tgz#3bbba6f31bf057000f9cb0c9543b8b5b5bbc6f99"
   integrity sha512-D8n4Xm8H8jPvWk7pW1+Ongi1/paLwp9tVq30lm+lzxPI+Nm3SOHk3t559uYsuWgxuMbP+yxfegoElN6z1c8A8w==
 
-"@square/web-sdk@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@square/web-sdk/-/web-sdk-1.0.1.tgz#db764d3f91584c7f171001f6fcd725f2c0adc73a"
-  integrity sha512-LpSROBPmgsjMSGhAqaFzXIbfKjbd+rucLgJnNgZdGwnWbSx68ciN5wtGbdb2LxLJs3PvIn112azpDIiQlUBPNA==
+"@square/web-sdk@^1.0.0-beta.5":
+  version "1.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@square/web-sdk/-/web-sdk-1.0.0-beta.5.tgz#1805a18ff2f12543f1b448f66c8aabeb0638082d"
+  integrity sha512-gziit4BSACu+5+sT0wDUyf3ebWlCIrWmAKpd+0oOCxM6CVFVqCofPCpj+7bBwgyGx8/tupDDaz0ZB6whWMfIVA==
+  dependencies:
+    "@square/web-payments-sdk-types" "^1.1.1"
 
 "@storybook/addon-actions@6.3.0-rc.7":
   version "6.3.0-rc.7"
