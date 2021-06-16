@@ -4,6 +4,7 @@ import * as React from 'react';
 // Internals
 import FormProvider from '../contexts';
 import { MethodsSupported } from '../@types';
+import { PaymentRequestOptions } from '@square/web-payments-sdk-types';
 
 export interface Props {
   /**
@@ -35,8 +36,8 @@ export interface Props {
   //   shippingContact?: ShippingContact,
   //   shippingOption?: ShippingOption
   // ) => void;
-  // /** <b>Required for digital wallets</b><br/><br/>Invoked when a digital wallet payment button is clicked. */
-  // createPaymentRequest?: () => PaymentRequest;
+  /** <b>Required for digital wallets</b><br/><br/>Invoked when a digital wallet payment button is clicked. */
+  createPaymentRequest?: () => PaymentRequestOptions;
   // /** <b>Required for SCA</b><br/><br/> */
   // createVerificationDetails?: () => SqVerificationDetails;
   /* Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
@@ -78,28 +79,6 @@ export const SquareForm = ({
   // const [errorMessage, setErrorMessage] = React.useState('');
   // const [scriptLoaded, setScriptLoaded] = React.useState(false);
 
-  // /**
-  //  * Helper function to update the state of the form and retreive the available methods
-  //  *
-  //  * @param methods The methods that you want to support
-  //  */
-  // function methodsSupported(
-  //   methods: MethodsSupported = props.methodsSupported || { card: true }
-  // ): void {
-  //   const keys = Object.keys(methods);
-
-  //   const res = keys.reduce(
-  //     (acc, method) => ({
-  //       ...acc,
-  //       [method]: METHODS_KEY.includes(method) ? 'ready' : 'unavailable',
-  //     }),
-  //     {}
-  //   );
-
-  //   // @ts-ignore
-  //   dispatch({ type: 'CHANGE_STATE', payload: res });
-  // }
-
   // const handleAchPayment = async (e: Event, ach: any) => {
   //   e.preventDefault();
 
@@ -114,35 +93,11 @@ export const SquareForm = ({
   //   }
   // };
 
-  // const handleGooglePayPayment = async (e: Event, googlePay: any) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const result = await googlePay.tokenize();
-
-  //     console.log(result);
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
-
   // async function start() {
   //   methodsSupported();
 
   //   const payments: Payments = await Square.payments(applicationId, locationId);
-  //   const card = await payments.card();
   //   const ach = await payments.ach();
-  //   const paymentRequest = payments.paymentRequest({
-  //     countryCode: 'US',
-  //     currencyCode: 'USD',
-  //     total: {
-  //       amount: '1.00',
-  //       label: 'Total',
-  //     },
-  //   });
-  //   const googlePay = await payments.googlePay(paymentRequest);
-
-  //   await card.attach('#card');
 
   //   props.methodsSupported?.googlePay &&
   //     (await googlePay.attach('#google-pay-button'));
@@ -182,7 +137,12 @@ export const SquareForm = ({
   // }
 
   return (
-    <FormProvider applicationId={applicationId} locationId={locationId}>
+    <FormProvider
+      applicationId={applicationId}
+      locationId={locationId}
+      createPaymentRequest={props.createPaymentRequest}
+      methodsSupported={props.methodsSupported}
+    >
       <div id={formId}>{props.children}</div>
     </FormProvider>
   );
