@@ -23,13 +23,15 @@ export const AchPayButton = ({
   ...props
 }: Props): JSX.Element | null => {
   const [ach, setAch] = React.useState<ACH | undefined>(() => undefined);
-  const { ach: achState, payments } = useForm();
+  const { ach: achState, cardTokenizeResponseReceived, payments } = useForm();
 
   const handlePayment = async () => {
     try {
       const result = await ach?.tokenize(props);
 
-      console.log(result);
+      if (result) {
+        return cardTokenizeResponseReceived(result);
+      }
     } catch (ex) {
       console.error(ex);
     }

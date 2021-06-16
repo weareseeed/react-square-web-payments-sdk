@@ -19,14 +19,15 @@ export const CreditCardInput = ({
   ...props
 }: Props): JSX.Element | null => {
   const [card, setCard] = React.useState<Card | undefined>(() => undefined);
-  const { card: cardState, payments } = useForm();
+  const { cardTokenizeResponseReceived, card: cardState, payments } = useForm();
 
   const handlePayment = async () => {
     try {
       const result = await card?.tokenize();
 
-      console.log(result);
-      // TODO: use result.token as source_id in /v2/payments API call
+      if (result) {
+        return cardTokenizeResponseReceived(result);
+      }
     } catch (ex) {
       console.error(ex);
     }

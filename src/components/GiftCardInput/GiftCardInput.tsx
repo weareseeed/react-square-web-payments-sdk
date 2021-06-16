@@ -21,13 +21,15 @@ export const GiftCardInput = ({
   const [gCard, setGCard] = React.useState<GiftCard | undefined>(
     () => undefined
   );
-  const { giftCard, payments } = useForm();
+  const { cardTokenizeResponseReceived, giftCard, payments } = useForm();
 
   const handlePayment = async () => {
     try {
       const result = await gCard?.tokenize();
 
-      console.log(result);
+      if (result) {
+        return cardTokenizeResponseReceived(result);
+      }
     } catch (ex) {
       console.error(ex);
     }

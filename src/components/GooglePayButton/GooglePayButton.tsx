@@ -25,7 +25,12 @@ export const GooglePayButton = (
   const [gPay, setGPay] = React.useState<GooglePay | undefined>(
     () => undefined
   );
-  const { createPaymentRequest, googlePay, payments } = useForm();
+  const {
+    cardTokenizeResponseReceived,
+    createPaymentRequest,
+    googlePay,
+    payments,
+  } = useForm();
 
   if (!createPaymentRequest) {
     throw new Error(
@@ -39,7 +44,9 @@ export const GooglePayButton = (
     try {
       const result = await gPay?.tokenize();
 
-      console.log(result);
+      if (result) {
+        return cardTokenizeResponseReceived(result);
+      }
     } catch (e) {
       console.error(e);
     }

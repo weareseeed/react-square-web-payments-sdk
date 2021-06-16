@@ -5,6 +5,11 @@ import type { PaymentRequestOptions } from '@square/web-payments-sdk-types';
 // Internals
 import FormProvider from '../contexts';
 import { MethodsSupported } from '../@types';
+import type {
+  ChargeVerifyBuyerDetails,
+  StoreVerifyBuyerDetails,
+  TokenResult,
+} from '@square/web-sdk';
 
 export interface Props {
   /**
@@ -24,23 +29,21 @@ export interface Props {
   /** Square payment form components. */
   children?: React.ReactNode;
 
-  // /** <b>Required for all features</b><br/><br/>Invoked when payment form receives the result of a nonce generation request. The result will be a valid credit card or wallet nonce, or an error. */
-  // cardNonceResponseReceived: (
-  //   errors: [SqError] | null,
-  //   nonce: string,
-  //   cardData: SqCardData,
-  //   buyerVerificationToken?: string,
-  //   billingContact?: BillingContact,
-  //   shippingContact?: ShippingContact,
-  //   shippingOption?: ShippingOption
-  // ) => void;
+  /**
+   * **Required for all features**
+   *
+   * Invoked when payment form receives the result of a tokenize generation request. The result will be a valid credit card or wallet token, or an error.
+   */
+  cardTokenizeResponseReceived: (props: TokenResult) => void;
   /** **Required for digital wallets**
    *
    * Invoked when a digital wallet payment button is clicked.
    */
   createPaymentRequest?: () => PaymentRequestOptions;
-  // /** <b>Required for SCA</b><br/><br/> */
-  // createVerificationDetails?: () => SqVerificationDetails;
+  /** **<b>Required for SCA** */
+  createVerificationDetails?: () =>
+    | ChargeVerifyBuyerDetails
+    | StoreVerifyBuyerDetails;
   /** Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
   methodsSupported?: MethodsSupported;
   // /** Invoked when visitors interact with the iframe elements. */
@@ -78,6 +81,8 @@ export const SquareForm = ({
       locationId={locationId}
       createPaymentRequest={props.createPaymentRequest}
       methodsSupported={props.methodsSupported}
+      cardTokenizeResponseReceived={props.cardTokenizeResponseReceived}
+      createVerificationDetails={props.createVerificationDetails}
     >
       <div id={formId}>{props.children}</div>
     </FormProvider>

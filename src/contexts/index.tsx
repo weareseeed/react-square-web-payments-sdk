@@ -1,5 +1,10 @@
 // Vendor Modules
-import { payments } from '@square/web-sdk';
+import {
+  ChargeVerifyBuyerDetails,
+  payments,
+  StoreVerifyBuyerDetails,
+  TokenResult,
+} from '@square/web-sdk';
 import * as React from 'react';
 import type { Payments, PaymentRequestOptions } from '@square/web-sdk';
 
@@ -12,6 +17,7 @@ import {
 import { NoLocationIdOrAppId } from '../components';
 import { INITIAL_STATE_METHODS } from '../constants';
 import { methodsReducer } from '../reducers';
+import { useDynamicCallback } from '../hooks';
 
 /**
  * Internal helper that the `SquareForm` uses to manage internal state and expose access to the Web Payment SDK library.
@@ -29,6 +35,9 @@ export const FormContext = React.createContext<FormContextInterface>({
   formId: '',
   payments: (null as unknown) as Payments,
   dispatchMethods: (null as unknown) as React.Dispatch<ActionMethodReducer>,
+  cardTokenizeResponseReceived: (null as unknown) as (
+    props: TokenResult
+  ) => void,
   createPaymentRequest: (null as unknown) as PaymentRequestOptions,
 });
 
@@ -37,6 +46,10 @@ interface ProviderProps {
   locationId: string;
   createPaymentRequest?: () => PaymentRequestOptions;
   methodsSupported?: MethodsSupported;
+  cardTokenizeResponseReceived: (props: TokenResult) => void;
+  createVerificationDetails?: () =>
+    | ChargeVerifyBuyerDetails
+    | StoreVerifyBuyerDetails;
 }
 
 const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
@@ -49,6 +62,21 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
   const [methods, dispatch] = React.useReducer(
     methodsReducer,
     INITIAL_STATE_METHODS
+  );
+
+  const cardTokenizeResponseReceived = (rest: TokenResult): void => {
+    if (rest.errors || !props.createVerificationDetails) {
+      props.cardTokenizeResponseReceived(rest);
+      return;
+    }
+
+    pay?.verifyBuyer(String(rest.token), props.createVerificationDetails());
+  };
+
+  // Fixes stale closure issue with using React Hooks & SqPaymentForm callback functions
+  // https://github.com/facebook/react/issues/16956
+  const cardTokenizeResponseReceivedCallback = useDynamicCallback(
+    cardTokenizeResponseReceived
   );
 
   /**
@@ -118,6 +146,10 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
     formId: '',
     payments: pay,
     dispatchMethods: dispatch,
+    // @ts-ignore: Always true error
+    cardTokenizeResponseReceived: props.cardTokenizeResponseReceived
+      ? cardTokenizeResponseReceivedCallback
+      : null,
     createPaymentRequest,
   };
 

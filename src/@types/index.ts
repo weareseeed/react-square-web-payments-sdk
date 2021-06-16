@@ -3,6 +3,7 @@ import type {
   MethodType,
   Payments,
   PaymentRequestOptions,
+  TokenResult,
 } from '@square/web-sdk';
 
 type ValueOf<T> = T[keyof T];
@@ -40,6 +41,12 @@ export interface FormContextInterface extends InitialStateMethods {
   payments: Payments;
   /* Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
   dispatchMethods: React.Dispatch<ActionMethodReducer>;
+  /**
+   * **Required for all features**
+   *
+   * Invoked when payment form receives the result of a tokenize generation request. The result will be a valid credit card or wallet token, or an error.
+   */
+  cardTokenizeResponseReceived: (props: TokenResult) => void;
   /**
    * **Required for digital wallets**
    *

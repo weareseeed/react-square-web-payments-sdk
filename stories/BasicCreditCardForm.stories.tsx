@@ -3,7 +3,12 @@ import { Meta, Story } from '@storybook/react';
 import { CreditCardInput, SquareForm, Props } from '../src/components';
 
 export const Default: Story<Props> = (args) => (
-  <SquareForm {...args}>
+  <SquareForm
+    {...args}
+    cardTokenizeResponseReceived={(props) => {
+      console.log(props);
+    }}
+  >
     <CreditCardInput />
   </SquareForm>
 );

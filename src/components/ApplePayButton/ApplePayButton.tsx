@@ -14,7 +14,12 @@ import { renderWithoutSupportPaymentMethod } from '../../utils';
 export const ApplePayButton = (): JSX.Element | null => {
   const [aPay, setAPay] = React.useState<ApplePay | undefined>(() => undefined);
   const [error, setError] = React.useState('');
-  const { applePay, createPaymentRequest, payments } = useForm();
+  const {
+    applePay,
+    cardTokenizeResponseReceived,
+    createPaymentRequest,
+    payments,
+  } = useForm();
 
   if (!createPaymentRequest) {
     throw new Error(
@@ -28,7 +33,9 @@ export const ApplePayButton = (): JSX.Element | null => {
     try {
       const result = await aPay?.tokenize();
 
-      console.log(result);
+      if (result) {
+        return cardTokenizeResponseReceived(result);
+      }
     } catch (e) {
       console.error(e);
     }
