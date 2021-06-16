@@ -10,7 +10,7 @@ import { useForm } from '@/hooks';
 import { renderWithoutSupportPaymentMethod } from '@/utils';
 import { PayButton, SvgIcon } from './styles';
 
-interface Props extends AchTokenOptions {
+export interface AchPayProps extends AchTokenOptions {
   /**
    * The children of the button to override icon and text,
    * you can put any component inside the button
@@ -71,7 +71,7 @@ export const AchPayButton = ({
   overrideSvgStyles,
   overrideStyles,
   ...props
-}: Props): JSX.Element | null => {
+}: AchPayProps): JSX.Element | null => {
   const [ach, setAch] = React.useState<ACH | undefined>(() => undefined);
   const { ach: achState, cardTokenizeResponseReceived, payments } = useForm();
 
