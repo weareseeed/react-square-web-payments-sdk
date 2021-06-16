@@ -1,3 +1,11 @@
+### 0.6.0 (2021-06-16)
+
+##### New Features
+
+* **method:**
+  *  adding apple pay method ([e525f384](https://github.com/weareseeed/react-square-web-payments-sdk/commit/e525f384edc019d1b96f70d851f5bab216824964))
+  *  add new apple pay method ([04166239](https://github.com/weareseeed/react-square-web-payments-sdk/commit/041662391ee9f1af1683bdb543db8c69649502fb))
+
 ### 0.5.0 (2021-06-16)
 
 ##### New Features
