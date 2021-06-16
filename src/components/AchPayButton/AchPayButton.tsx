@@ -11,11 +11,61 @@ import { renderWithoutSupportPaymentMethod } from '@/utils';
 import { PayButton, SvgIcon } from './styles';
 
 interface Props extends AchTokenOptions {
+  /**
+   * The children of the button to override icon and text,
+   * you can put any component inside the button
+   *
+   * @example
+   * ```tsx
+   * <AchPayButton>
+   *  <MyCustomIcon />
+   *  <span>Pay with ACH</span>
+   * </AchPayButton>
+   * ```
+   */
   children?: React.ReactNode;
+  /**
+   * Sets the style for the SVG Icon using a CSS object
+   *
+   * @example
+   * ```js
+   * const overrideStyles = {
+   *  width: 34,
+   *  "&:hover": {
+   *    width: 44
+   *  }
+   * }
+   * ```
+   */
   overrideSvgStyles?: CSSObject | undefined;
+  /**
+   * Sets the style for the Payment Button using a CSS object
+   *
+   * @example
+   * ```js
+   * const overrideStyles = {
+   *  background: "white",
+   *  "&:hover": {
+   *    background: "rgba(1, 208, 158, 0.1)"
+   *  }
+   * }
+   * ```
+   */
   overrideStyles?: CSSObject | undefined;
 }
 
+/**
+ * Renders a Credit Card Input to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
+ *
+ * **_But with the option to override styles_**
+ *
+ * @example
+ * ```tsx
+ * <SquareForm {...props}>
+ *  <AchPayButton />
+ * </SquareForm>
+ * ```
+ */
 export const AchPayButton = ({
   children,
   overrideSvgStyles,
