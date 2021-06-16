@@ -75,12 +75,6 @@ export const AchPayButton = ({
   const [ach, setAch] = React.useState<ACH | undefined>(() => undefined);
   const { ach: achState, cardTokenizeResponseReceived, payments } = useForm();
 
-  /**
-   * Handle the on click of the ACH button click
-   *
-   * @param e An event which takes place in the DOM.
-   * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
-   */
   const handlePayment = async () => {
     try {
       const result = await ach?.tokenize(props);
@@ -93,9 +87,6 @@ export const AchPayButton = ({
     }
   };
 
-  /**
-   * Initialize the ACH instance to be used in the component
-   */
   const start = async () => {
     await payments.ach().then((res) => {
       setAch(res);
