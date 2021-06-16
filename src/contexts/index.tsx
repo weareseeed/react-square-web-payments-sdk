@@ -10,7 +10,7 @@ import {
   MethodsSupported,
 } from '../@types';
 import { NoLocationIdOrAppId } from '../components';
-import { INITIAL_STATE_METHODS, METHODS_KEY } from '../constants';
+import { INITIAL_STATE_METHODS } from '../constants';
 import { methodsReducer } from '../reducers';
 
 /**
@@ -61,20 +61,27 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
       card: true,
     }
   ): void => {
-    const keys = Object.keys(methods);
+    let result = { ...INITIAL_STATE_METHODS };
 
-    const res = keys.reduce(
-      (acc, method) => ({
-        ...acc,
-        [method]: METHODS_KEY.includes(method) ? 'ready' : 'unavailable',
-      }),
-      {}
-    );
+    for (const [method, enabled] of Object.entries(methods)) {
+      if (enabled) {
+        Object.keys(INITIAL_STATE_METHODS).map((initialMethod) => {
+          if (method === initialMethod) {
+            result = {
+              ...result,
+              [initialMethod]: 'ready',
+            };
+
+            return;
+          }
+        });
+      }
+    }
 
     dispatch({
       type: 'CHANGE_STATE',
       // @ts-ignore
-      payload: res,
+      payload: result,
     });
   };
 

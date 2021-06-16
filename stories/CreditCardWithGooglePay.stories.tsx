@@ -110,11 +110,7 @@ export const Default: Story<Props & GooglePayButtonOptions> = ({
   buttonColor,
   ...args
 }) => (
-  <SquareForm
-    {...args}
-    createPaymentRequest={createPaymentRequestFunction}
-    methodsSupported={{ card: true, googlePay: true }}
-  >
+  <SquareForm {...args} createPaymentRequest={createPaymentRequestFunction}>
     <GooglePayButton buttonColor={buttonColor} />
 
     <Separator />
