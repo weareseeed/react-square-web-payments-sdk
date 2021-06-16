@@ -18,7 +18,7 @@ export const Default: Story<SquarePaymentsFormProps> = (args) => (
 );
 
 export default {
-  title: 'Basic Credit Card Form',
+  title: 'Credit Card',
   component: SquarePaymentsForm,
   argTypes: {
     children: {
