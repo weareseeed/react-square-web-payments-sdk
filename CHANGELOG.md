@@ -1,3 +1,9 @@
+### 1.4.0 (2021-06-17)
+
+##### Bug Fixes
+
+* **import:**  import all components ([73819ed9](https://github.com/weareseeed/react-square-web-payments-sdk/commit/73819ed9ec0a28a12b8c9ea4dfe63f22da0d3e75))
+
 ### 1.3.0 (2021-06-17)
 
 ##### Bug Fixes
