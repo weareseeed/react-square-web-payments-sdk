@@ -4,8 +4,8 @@ import { useEvent } from 'react-use';
 import type { ApplePay } from '@square/web-sdk';
 
 // Internals
-import { useForm } from '@/hooks';
-import { renderWithoutSupportPaymentMethod } from '@/utils';
+import { useForm } from '../../hooks';
+import { renderWithoutSupportPaymentMethod } from '../../utils';
 import { ApplePayContainer, ErrorContainer } from './styles';
 
 /**

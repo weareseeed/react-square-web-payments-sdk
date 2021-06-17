@@ -11,12 +11,6 @@
     "sourceMap": true,
     // match output dir to input dir. e.g. dist/index instead of dist/src/index
     "rootDir": "./src",
-    // base directory to resolve non-relative module names.
-    "baseUrl": ".",
-    // set of entries that re-map imports to additional lookup locations.
-    "paths": {
-      "@/*": ["src/*"]
-    },
     // stricter type-checking for stronger correctness. Recommended by TS
     "strict": true,
     // linter checks for common issues

@@ -1,5 +1,5 @@
 // Internals
-import { InitialStateMethods } from '@/@types';
+import { InitialStateMethods } from '../@types';
 
 export const INITIAL_STATE_METHODS: InitialStateMethods = {
   ach: 'loading',

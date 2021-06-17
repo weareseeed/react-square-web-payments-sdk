@@ -8,8 +8,8 @@ import type {
 } from '@square/web-sdk';
 
 // Internals
-import { MethodsSupported } from '@/@types';
-import FormProvider from '@/contexts';
+import { MethodsSupported } from '../@types';
+import FormProvider from '../contexts';
 
 export interface SquarePaymentsFormProps {
   /**
