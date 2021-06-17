@@ -1,3 +1,9 @@
+#### 1.2.2 (2021-06-17)
+
+##### New Features
+
+* **docs:**  adding badges in readme ([93bb7a63](https://github.com/weareseeed/react-square-web-payments-sdk/commit/93bb7a63c14c91f877c22da96c1741a47735c17d))
+
 #### 1.2.1 (2021-06-16)
 
 ##### New Features
