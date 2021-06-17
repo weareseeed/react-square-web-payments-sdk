@@ -1,5 +1,11 @@
 # react-square-web-payments-sdk
 
+<div style="text-align: center;">
+  <a href="https://github.com/weareseeed/react-square-web-payments-sdk/actions"><img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/weareseeed/react-square-web-payments-sdk/main?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/react-square-web-payments-sdk"><img alt="npm" src="https://img.shields.io/npm/dm/react-square-web-payments-sdk?style=flat-square"></a>
+  <a href="https://github.com/weareseeed/react-square-web-payments-sdk/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/weareseeed/react-square-web-payments-sdk?style=flat-square"></a>
+</div>
+
 React Wrapper for the Web Payments SDK of Square, lets you easily create PCI-compliant inputs to accept payments online with the Square Payments API. It supports the following payment methods: credit and debit cards, ACH bank transfers, Apple Pay, Google Pay, and Gift Cards.
 
 ## Installation
