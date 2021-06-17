@@ -1,3 +1,13 @@
+#### 1.4.3 (2021-06-17)
+
+##### Bug Fixes
+
+* **paths:**  using absolute paths instead of relative from tsconfig ([608ab368](https://github.com/weareseeed/react-square-web-payments-sdk/commit/608ab36842ef4ef0b07ade59f0a77bb0e309e50e))
+
+##### Other Changes
+
+* **pkg:**  changing package version ([cdb2723b](https://github.com/weareseeed/react-square-web-payments-sdk/commit/cdb2723b311826101579bc5e25a18703125b0373))
+
 #### 1.4.1 (2021-06-17)
 
 ##### Bug Fixes
