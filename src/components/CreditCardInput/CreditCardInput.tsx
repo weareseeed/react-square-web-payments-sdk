@@ -6,7 +6,7 @@ import { useEvent } from 'react-use';
 import type { Card, CardFieldNamesValues, CardOptions } from '@square/web-sdk';
 
 // Internals
-import { useForm } from '../../hooks';
+import { useForm } from '../../contexts';
 import { renderWithoutSupportPaymentMethod } from '../../utils';
 import { LoadingCard, PayButton } from './styles';
 

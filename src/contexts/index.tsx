@@ -9,7 +9,7 @@ import * as React from 'react';
 import type { Payments, PaymentRequestOptions } from '@square/web-sdk';
 
 // Internals
-import { NoLocationIdOrAppId } from '../components';
+import NoLocationIdOrAppId from '../components/NoLocationIdOrAppId/NoLocationIdOrAppId';
 import { INITIAL_STATE_METHODS } from '../constants';
 import { useDynamicCallback } from '../hooks';
 import { methodsReducer } from '../reducers';
@@ -18,6 +18,19 @@ import type {
   FormContextInterface,
   MethodsSupported,
 } from '../@types';
+
+/**
+ * Export the hook here so we avoid circular dependency
+ */
+export const useForm = (): FormContextInterface => {
+  const context = React.useContext(FormContext);
+
+  if (context === undefined) {
+    throw new Error('useForm must be used within a FormProvider');
+  }
+
+  return context;
+};
 
 /**
  * Internal helper that the `SquareForm` uses to manage internal state and expose access to the Web Payment SDK library.

@@ -6,7 +6,7 @@ import { useEvent } from 'react-use';
 import type { ACH, AchTokenOptions } from '@square/web-sdk';
 
 // Internals
-import { useForm } from '../../hooks';
+import { useForm } from '../../contexts';
 import { renderWithoutSupportPaymentMethod } from '../../utils';
 import { PayButton, SvgIcon } from './styles';
 

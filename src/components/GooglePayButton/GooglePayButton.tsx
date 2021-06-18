@@ -7,7 +7,7 @@ import type {
 } from '@square/web-payments-sdk-types';
 
 // Internals
-import { useForm } from '../../hooks';
+import { useForm } from '../../contexts';
 import { renderWithoutSupportPaymentMethod } from '../../utils';
 
 const defaultProps: GooglePayButtonOptions = {
