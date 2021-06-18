@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0...v1.5.1) (2021-06-18)
+
+
+### Features
+
+* **docs:** updating changelog ([b2ce0bd](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b2ce0bdf9b56eb25651fa6494c3cebbc5d62b7be))
+
 ## [1.5.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0-beta.5...v1.5.0) (2021-06-18)
 
 ### Features
