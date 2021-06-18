@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0-beta.3](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0-beta.2...v1.5.0-beta.3) (2021-06-18)
+
 ## [1.5.0-beta.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0-beta.1...v1.5.0-beta.2) (2021-06-18)
 
 
