@@ -9,9 +9,9 @@ import {
   GooglePayButton,
   Separator,
   SquarePaymentsForm,
-} from '../src/components';
+} from '../src';
 import { createPaymentRequestFunction } from '../src/utils/storybook';
-import type { SquarePaymentsFormProps } from '../src/components';
+import type { SquarePaymentsFormProps } from '../src';
 
 const buttonColorTypeDetails = `
   /** The background color of the Google Pay button */

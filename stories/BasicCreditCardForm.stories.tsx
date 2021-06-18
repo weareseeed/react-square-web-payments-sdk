@@ -3,8 +3,8 @@ import { Meta, Story } from '@storybook/react';
 import * as React from 'react';
 
 // Internals
-import { CreditCardInput, SquarePaymentsForm } from '../src/components';
-import type { SquarePaymentsFormProps } from '../src/components';
+import { CreditCardInput, SquarePaymentsForm } from '../src';
+import type { SquarePaymentsFormProps } from '../src';
 
 export const Default: Story<SquarePaymentsFormProps> = (args) => (
   <SquarePaymentsForm

@@ -8,8 +8,8 @@ import {
   GiftCardInput,
   Separator,
   SquarePaymentsForm,
-} from '../src/components';
-import type { SquarePaymentsFormProps } from '../src/components';
+} from '../src';
+import type { SquarePaymentsFormProps } from '../src';
 
 export const Default: Story<SquarePaymentsFormProps> = (args) => (
   <SquarePaymentsForm {...args}>
