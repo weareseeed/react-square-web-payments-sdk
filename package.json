@@ -1,5 +1,5 @@
 {
-  "version": "1.4.3",
+  "version": "1.4.4-beta.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -20,9 +20,7 @@
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o docs-build",
-    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
-    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
-    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags"
+    "release": "standard-version"
   },
   "peerDependencies": {
     "react": ">=17"
@@ -75,12 +73,12 @@
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
     "babel-loader": "^8.2.2",
-    "generate-changelog": "^1.8.0",
     "husky": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
     "size-limit": "^4.12.0",
+    "standard-version": "^9.3.0",
     "tsconfig-paths-webpack-plugin": "^3.5.1",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.0",

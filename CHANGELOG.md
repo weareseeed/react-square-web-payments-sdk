@@ -1,3 +1,16 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.4.4-beta.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.4.3...v1.4.4-beta.0) (2021-06-18)
+
+
+### Bug Fixes
+
+* **components:** removing export in components ([7a1ca83](https://github.com/weareseeed/react-square-web-payments-sdk/commit/7a1ca8309bc9065d44ab49e72023e937cb709484))
+* **imports:** access to index in storybook ([8ccd679](https://github.com/weareseeed/react-square-web-payments-sdk/commit/8ccd679feb4e1a7c46d2729c84166e25d4a9a213))
+* **imports:** removing circular dependencies ([3f32eaf](https://github.com/weareseeed/react-square-web-payments-sdk/commit/3f32eaf5b65961cf4913b55ba28684110ec7f268))
+
 #### 1.4.3 (2021-06-17)
 
 ##### Bug Fixes
@@ -215,4 +228,3 @@
 ##### Other Changes
 
 * **chore:**  adding browser monads ([a2091bab](https://github.com/weareseeed/react-square-web-payments-sdk/commit/a2091bab94f07b56b3a4df4a07c7fa5cbc7dc4f4))
-
