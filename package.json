@@ -12,10 +12,10 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "tsdx build --format esm",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
+    "prepare": "tsdx build  --format esm",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
@@ -50,6 +50,7 @@
     "url": "git@github.com:weareseeed/react-square-web-payments-sdk.git"
   },
   "homepage": "https://weareseeed.github.io/react-square-web-payments-sdk/",
+  "type": "module",
   "module": "dist/react-square-web-payments-sdk.esm.js",
   "size-limit": [
     {
