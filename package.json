@@ -4,18 +4,17 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build --format esm",
+    "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
-    "prepare": "tsdx build  --format esm",
+    "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
@@ -50,7 +49,6 @@
     "url": "git@github.com:weareseeed/react-square-web-payments-sdk.git"
   },
   "homepage": "https://weareseeed.github.io/react-square-web-payments-sdk/",
-  "type": "module",
   "module": "dist/react-square-web-payments-sdk.esm.js",
   "size-limit": [
     {

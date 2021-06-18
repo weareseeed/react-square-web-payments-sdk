@@ -3,7 +3,6 @@ const replace = require('@rollup/plugin-replace');
 
 module.exports = {
   // This function will run for each entry/format/env combination
-  format: 'esm',
   rollup(config, opts) {
     config.plugins = config.plugins.map((p) =>
       p.name === 'replace'
