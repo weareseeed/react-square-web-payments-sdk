@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0-beta.5](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0-beta.4...v1.5.0-beta.5) (2021-06-18)
+
+
+### Bug Fixes
+
+* **size:** only export esm for bundle size ([7e0469d](https://github.com/weareseeed/react-square-web-payments-sdk/commit/7e0469d7b2383214d91c2def6c1909108c2a04da))
+
 ## [1.5.0-beta.4](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0-beta.3...v1.5.0-beta.4) (2021-06-18)
 
 
