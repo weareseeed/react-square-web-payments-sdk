@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0-beta.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0-beta.0...v1.5.0-beta.1) (2021-06-18)
+
+
+### Features
+
+* **type:** putting type module ([fc6af6a](https://github.com/weareseeed/react-square-web-payments-sdk/commit/fc6af6a12775328d45553d3077c39cabdbbcbf45))
+
 ## [1.5.0-beta.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.4.4-beta.0...v1.5.0-beta.0) (2021-06-18)
 
 
