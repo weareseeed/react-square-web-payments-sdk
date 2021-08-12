@@ -1,7 +1,7 @@
 // Vendor Modules
+import * as React from 'react';
 import { CSSObject } from '@emotion/styled';
 import { document } from 'browser-monads-ts';
-import * as React from 'react';
 import { useEvent } from 'react-use';
 import type { Card, CardFieldNamesValues, CardOptions } from '@square/web-sdk';
 
@@ -11,10 +11,14 @@ import { renderWithoutSupportPaymentMethod } from '../../utils';
 import { LoadingCard, PayButton } from './styles';
 
 export interface CreditCardInputProps extends CardOptions {
-  /** Sets text  in Button. If children is/are given then not applied */
-  text?: string
-  /** Make it possible to put any component inside. If children is/are given then text is not applied */
-  children?: React.ReactNode
+  /**
+   * Sets text in Button. If children is/are given then not applied
+   */
+  text?: string;
+  /**
+   * Make it possible to put any component inside. If children is/are given then text is not applied
+   */
+  children?: React.ReactNode;
   /**
    * Sets the style for the Payment Button using a CSS object
    *
