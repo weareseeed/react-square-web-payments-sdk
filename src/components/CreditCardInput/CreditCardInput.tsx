@@ -11,7 +11,7 @@ import { renderWithoutSupportPaymentMethod } from '../../utils';
 import { LoadingCard, PayButton } from './styles';
 
 export interface CreditCardInputProps extends CardOptions {
-  /** Sets the children in Button */
+  /** Sets text  in Button */
   text?: string
   /**
    * Sets the style for the Payment Button using a CSS object
