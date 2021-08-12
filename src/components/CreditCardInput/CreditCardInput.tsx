@@ -11,6 +11,10 @@ import { renderWithoutSupportPaymentMethod } from '../../utils';
 import { LoadingCard, PayButton } from './styles';
 
 export interface CreditCardInputProps extends CardOptions {
+  /** Sets text  in Button. If children is/are given then not applied */
+  text?: string
+  /** Make it possible to put any component inside. If children is/are given then text is not applied */
+  children?: React.ReactNode
   /**
    * Sets the style for the Payment Button using a CSS object
    *
@@ -49,6 +53,7 @@ export interface CreditCardInputProps extends CardOptions {
 export const CreditCardInput = ({
   overrideStyles,
   focus = 'cardNumber',
+  text = 'Pay',
   ...props
 }: CreditCardInputProps): JSX.Element | null => {
   const [card, setCard] = React.useState<Card | undefined>(() => undefined);
@@ -109,7 +114,7 @@ export const CreditCardInput = ({
         type="button"
         overrideStyles={overrideStyles}
       >
-        Pay
+        {props.children || text}
       </PayButton>
     </>
   );
