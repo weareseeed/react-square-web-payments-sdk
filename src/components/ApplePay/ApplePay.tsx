@@ -1,7 +1,7 @@
 // Vendor Modules
 import * as React from 'react';
 import { useEvent } from 'react-use';
-import type { ApplePay } from '@square/web-sdk';
+import type { ApplePay as ApplePayInterface } from '@square/web-sdk';
 
 // Internals
 import { useForm } from '../../contexts';
@@ -16,12 +16,14 @@ import { ApplePayContainer } from './styles';
  * @example
  * ```tsx
  * <SquareForm {...props}>
- *  <ApplePayButton />
+ *  <ApplePay />
  * </SquareForm>
  * ```
  */
-export const ApplePayButton = (): JSX.Element | null => {
-  const [aPay, setAPay] = React.useState<ApplePay | undefined>(() => undefined);
+export const ApplePay = (): JSX.Element | null => {
+  const [aPay, setAPay] = React.useState<ApplePayInterface | undefined>(
+    () => undefined
+  );
   const [error, setError] = React.useState('');
   const {
     cardTokenizeResponseReceived,
@@ -95,4 +97,4 @@ export const ApplePayButton = (): JSX.Element | null => {
   return <ApplePayContainer id="apple-pay-button"></ApplePayContainer>;
 };
 
-export default ApplePayButton;
+export default ApplePay;

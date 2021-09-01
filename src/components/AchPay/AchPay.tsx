@@ -16,10 +16,10 @@ export interface AchPayProps extends AchTokenOptions {
    *
    * @example
    * ```tsx
-   * <AchPayButton>
+   * <AchPay>
    *  <MyCustomIcon />
    *  <span>Pay with ACH</span>
-   * </AchPayButton>
+   * </AchPay>
    * ```
    */
   children?: React.ReactNode;
@@ -61,11 +61,11 @@ export interface AchPayProps extends AchTokenOptions {
  * @example
  * ```tsx
  * <SquareForm {...props}>
- *  <AchPayButton />
+ *  <AchPay />
  * </SquareForm>
  * ```
  */
-export const AchPayButton = ({
+export const AchPay = ({
   children,
   overrideSvgStyles,
   overrideStyles,
@@ -168,4 +168,4 @@ export const AchPayButton = ({
   );
 };
 
-export default AchPayButton;
+export default AchPay;

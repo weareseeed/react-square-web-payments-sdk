@@ -3,19 +3,14 @@ import { Meta, Story } from '@storybook/react';
 import * as React from 'react';
 
 // Internals
-import {
-  AchPayButton,
-  CreditCardInput,
-  Separator,
-  SquarePaymentsForm,
-} from '../src';
+import { AchPay, CreditCardInput, Separator, SquarePaymentsForm } from '../src';
 import type { SquarePaymentsFormProps } from '../src';
 
 export const Default: Story<
   SquarePaymentsFormProps & { accountHolderName: string }
 > = ({ accountHolderName, ...args }) => (
   <SquarePaymentsForm {...args}>
-    <AchPayButton accountHolderName={accountHolderName} />
+    <AchPay accountHolderName={accountHolderName} />
 
     <Separator />
 

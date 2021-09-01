@@ -6,7 +6,7 @@ import type { GooglePayButtonOptions } from '@square/web-sdk';
 // Internals
 import {
   CreditCardInput,
-  GooglePayButton,
+  GooglePay,
   Separator,
   SquarePaymentsForm,
 } from '../src';
@@ -27,7 +27,7 @@ const buttonColorTypeDetails = `
   /**
    * Union of [GooglePayButtonColor](https://developer.squareup.com/reference/sdks/web/payments/enums/GooglePayButtonColor) values.
    */
-  declare type GooglePayButtonColorValues = \`\${GooglePayButtonColor}\`\;
+  declare type GooglePayButtonColorValues = \`\${GooglePayButtonColor}\`;
 `;
 const buttonTypeDetails = `
   /**
@@ -42,7 +42,7 @@ const buttonTypeDetails = `
   /**
    * Union of [GooglePayButtonType](https://developer.squareup.com/reference/sdks/web/payments/enums/GooglePayButtonType) values.
    */
-  declare type GooglePayButtonTypeValues = \`\${GooglePayButtonType}\`\;
+  declare type GooglePayButtonTypeValues = \`\${GooglePayButtonType}\`;
 `;
 const buttonSizeModeTypeDetails = `
   /**
@@ -59,7 +59,7 @@ const buttonSizeModeTypeDetails = `
   /**
    * Union of [GooglePayButtonSizeMode](https://developer.squareup.com/reference/sdks/web/payments/enums/GooglePayButtonSizeMode) values.
    */
-  declare type GooglePayButtonSizeModeValues = \`\${GooglePayButtonSizeMode}\`\;
+  declare type GooglePayButtonSizeModeValues = \`\${GooglePayButtonSizeMode}\`;
 `;
 const createPaymentRequestTypeDetails = `
  The payments.paymentRequest method argument
@@ -113,7 +113,7 @@ export const Default: Story<
     {...args}
     createPaymentRequest={createPaymentRequestFunction}
   >
-    <GooglePayButton buttonColor={buttonColor} />
+    <GooglePay buttonColor={buttonColor} />
 
     <Separator />
 

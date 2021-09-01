@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { useEvent } from 'react-use';
 import type {
-  GooglePay,
+  GooglePay as GooglePayInterface,
   GooglePayButtonOptions,
 } from '@square/web-payments-sdk-types';
 
@@ -24,14 +24,14 @@ const defaultProps: GooglePayButtonOptions = {
  * @example
  * ```tsx
  * <SquareForm {...props}>
- *  <GooglePayButton buttonColor="white" />
+ *  <GooglePay buttonColor="white" />
  * </SquareForm>
  * ```
  */
-export const GooglePayButton = (
+export const GooglePay = (
   props: GooglePayButtonOptions
 ): JSX.Element | null => {
-  const [gPay, setGPay] = React.useState<GooglePay | undefined>(
+  const [gPay, setGPay] = React.useState<GooglePayInterface | undefined>(
     () => undefined
   );
   const {
@@ -100,4 +100,4 @@ export const GooglePayButton = (
   return <div id="google-pay-button" style={{ height: 40 }}></div>;
 };
 
-export default GooglePayButton;
+export default GooglePay;

@@ -4,7 +4,7 @@ import * as React from 'react';
 
 // Internals
 import {
-  ApplePayButton,
+  ApplePay,
   CreditCardInput,
   Separator,
   SquarePaymentsForm,
@@ -62,7 +62,7 @@ export const Default: Story<SquarePaymentsFormProps> = (args) => (
     {...args}
     createPaymentRequest={createPaymentRequestFunction}
   >
-    <ApplePayButton />
+    <ApplePay />
 
     <Separator />
 
