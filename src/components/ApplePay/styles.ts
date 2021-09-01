@@ -1,7 +1,7 @@
 // Dependencies
-import styled from '@emotion/styled';
+import { styled } from '@stitches/react';
 
-export const ApplePayContainer = styled.div({
+export const ApplePayContainer = styled('div', {
   ApplePayButtonStyle: 'black',
   ApplePayButtonType: 'plain',
   WebkitAppearance: '-apple-pay-button',

@@ -1,13 +1,13 @@
 // Dependencies
-import styled from '@emotion/styled';
+import { styled } from '@stitches/react';
 
-export const Container = styled.div({
+export const Container = styled('div', {
   background: '#FEF2F2',
   borderRadius: '0.375rem',
   padding: '1rem',
 });
 
-export const Svg = styled.svg({
+export const Svg = styled('svg', {
   color: 'rgb(248,113,113)',
   display: 'block',
   height: 48,
@@ -15,7 +15,7 @@ export const Svg = styled.svg({
   width: 48,
 });
 
-export const Text = styled.p({
+export const Text = styled('p', {
   fontFamily: 'sans-serif, system-ui',
   color: 'rgb(153,27,27)',
   textAlign: 'center',

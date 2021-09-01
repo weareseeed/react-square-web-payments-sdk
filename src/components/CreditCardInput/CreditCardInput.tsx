@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { document } from 'browser-monads-ts';
 import useEvent from 'react-use/lib/useEvent';
-import type { CSSObject } from '@emotion/styled';
 import type {
   Card,
   CardFieldNamesValues,
@@ -10,6 +9,7 @@ import type {
   CardOptions,
   SqEvent,
 } from '@square/web-sdk';
+import type { CSS } from '@stitches/react';
 
 // Internals
 import { useForm } from '../../contexts';
@@ -69,7 +69,7 @@ export interface CreditCardInputProps extends CardOptions {
    * }
    * ```
    */
-  overrideStyles?: CSSObject | undefined;
+  overrideStyles?: CSS | undefined;
   /**
    * Callback function that is called when the current value of the postal code form field changed.
    */
@@ -231,10 +231,9 @@ export const CreditCardInput = ({
 
       <PayButton
         aria-disabled={!card || isSubmitting}
+        css={overrideStyles}
         disabled={!card || isSubmitting}
         id={submitButtonId}
-        isSubmitting={isSubmitting}
-        overrideStyles={overrideStyles}
         type="button"
       >
         {children || text}

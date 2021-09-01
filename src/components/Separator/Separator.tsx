@@ -1,13 +1,13 @@
 // Dependencies
 import * as React from 'react';
-import type { CSSObject } from '@emotion/styled';
+import type { CSS } from '@stitches/react';
 
 // Internals
 import { Line, SpanText } from './styles';
 
 interface Props {
-  overrideLineStyles?: CSSObject;
-  overrideSpanStyles?: CSSObject;
+  overrideLineStyles?: CSS;
+  overrideSpanStyles?: CSS;
   text?: string;
 }
 
@@ -17,8 +17,8 @@ export const Separator = ({
   text = 'or',
 }: Props): JSX.Element => {
   return (
-    <Line overrideStyles={overrideLineStyles}>
-      <SpanText overrideStyles={overrideSpanStyles}>{text}</SpanText>
+    <Line css={overrideLineStyles}>
+      <SpanText css={overrideSpanStyles}>{text}</SpanText>
     </Line>
   );
 };

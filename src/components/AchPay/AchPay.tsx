@@ -2,8 +2,8 @@
 import * as React from 'react';
 import { document } from 'browser-monads-ts';
 import useEvent from 'react-use/lib/useEvent';
-import type { CSSObject } from '@emotion/styled';
 import type { ACH, AchTokenOptions } from '@square/web-sdk';
+import type { CSS } from '@stitches/react';
 
 // Internals
 import { useForm } from '../../contexts';
@@ -36,7 +36,7 @@ export interface AchPayProps extends AchTokenOptions {
    * }
    * ```
    */
-  overrideSvgStyles?: CSSObject | undefined;
+  overrideSvgStyles?: CSS | undefined;
   /**
    * Sets the style for the Payment Button using a CSS object
    *
@@ -50,7 +50,7 @@ export interface AchPayProps extends AchTokenOptions {
    * }
    * ```
    */
-  overrideStyles?: CSSObject | undefined;
+  overrideStyles?: CSS | undefined;
 }
 
 /**
@@ -108,22 +108,18 @@ export const AchPay = ({
 
   if (children) {
     return (
-      <PayButton
-        id="pay-with-ach"
-        overrideStyles={overrideStyles}
-        type="button"
-      >
+      <PayButton css={overrideStyles} id="pay-with-ach" type="button">
         {children}
       </PayButton>
     );
   }
 
   return (
-    <PayButton id="pay-with-ach" overrideStyles={overrideStyles} type="button">
+    <PayButton css={overrideStyles} id="pay-with-ach" type="button">
       <SvgIcon
+        css={overrideSvgStyles}
         fill="none"
         height="1em"
-        overrideStyles={overrideSvgStyles}
         viewBox="0 0 36 24"
         width="1em"
         xmlns="http://www.w3.org/2000/svg"

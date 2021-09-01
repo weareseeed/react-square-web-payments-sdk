@@ -2,8 +2,8 @@
 import { document } from 'browser-monads-ts';
 import * as React from 'react';
 import useEvent from 'react-use/lib/useEvent';
-import type { CSSObject } from '@emotion/styled';
 import type { GiftCard, GiftCardOptions } from '@square/web-sdk';
+import type { CSS } from '@stitches/react';
 
 // Internals
 import { useForm } from '../../contexts';
@@ -23,7 +23,7 @@ export interface GiftCardInputProps extends GiftCardOptions {
    * }
    * ```
    */
-  overrideStyles?: CSSObject | undefined;
+  overrideStyles?: CSS | undefined;
 }
 
 export const GiftCardInput = ({
@@ -84,11 +84,7 @@ export const GiftCardInput = ({
         {!giftCard && <LoadingCard />}
       </div>
 
-      <PayButton
-        id="pay-with-gift-card"
-        overrideStyles={overrideStyles}
-        type="button"
-      >
+      <PayButton css={overrideStyles} id="pay-with-gift-card" type="button">
         Pay with Gift Card
       </PayButton>
     </>

@@ -1,7 +1,7 @@
 // Dependencies
-import styled, { CSSObject } from '@emotion/styled';
+import { styled } from '@stitches/react';
 
-const defaultStyles: CSSObject = {
+export const PayButton = styled('button', {
   alignItems: 'center',
   background: 'white',
   borderRadius: 6,
@@ -17,23 +17,11 @@ const defaultStyles: CSSObject = {
   '&:hover': {
     background: 'rgba(1, 208, 158, 0.1)',
   },
-};
+});
 
-const defaultSvgStyles: CSSObject = {
+export const SvgIcon = styled('svg', {
   display: 'inline-flex',
   height: 24,
   marginRight: 14,
   width: 36,
-};
-
-export const PayButton = styled.button<{
-  overrideStyles?: CSSObject;
-}>((props) => ({
-  ...defaultStyles,
-  ...props.overrideStyles,
-}));
-
-export const SvgIcon = styled.svg<{ overrideStyles?: CSSObject }>((props) => ({
-  ...defaultSvgStyles,
-  ...props.overrideStyles,
-}));
+});
