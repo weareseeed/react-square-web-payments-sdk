@@ -66,6 +66,8 @@ export const GooglePay = (
     }
   };
 
+  // Avoid re-rendering the component when the google pay is not ready
+  const googlePayProps = Object.keys(props).length > 1 ? props : undefined;
   React.useEffect(() => {
     /**
      * Initialize the Google Pay instance to be used in the component
@@ -78,12 +80,12 @@ export const GooglePay = (
         return res;
       });
 
-      const options = { ...defaultProps, ...props };
+      const options = { ...defaultProps, ...googlePayProps };
       await googlePay?.attach('#google-pay-button', options);
     };
 
     start();
-  }, [createPaymentRequest, payments, props]);
+  }, [createPaymentRequest, payments, googlePayProps]);
 
   useEvent(
     'click',

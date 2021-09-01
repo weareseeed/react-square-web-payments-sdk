@@ -143,6 +143,7 @@ export const CreditCardInput = ({
     }
   };
 
+  // Avoid re-rendering the component when the card is not ready
   const cardProps = Object.keys(props).length > 1 ? props : undefined;
   React.useEffect(() => {
     /**

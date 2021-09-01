@@ -53,12 +53,14 @@ export const GiftCardInput = ({
     }
   };
 
+  // Avoid re-rendering the component when the gift card is not ready
+  const giftCardProps = Object.keys(props).length > 1 ? props : undefined;
   React.useEffect(() => {
     /**
      * Initialize the Gift Card instance to be used in the component
      */
     const start = async () => {
-      const gCard = await payments.giftCard(props).then((res) => {
+      const gCard = await payments.giftCard(giftCardProps).then((res) => {
         setGCard(res);
 
         return res;
@@ -68,7 +70,7 @@ export const GiftCardInput = ({
     };
 
     start();
-  }, [payments, props]);
+  }, [payments, giftCardProps]);
 
   useEvent(
     'click',
