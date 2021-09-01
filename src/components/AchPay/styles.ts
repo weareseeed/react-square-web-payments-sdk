@@ -1,4 +1,4 @@
-// Vendor Modules
+// Dependencies
 import styled, { CSSObject } from '@emotion/styled';
 
 const defaultStyles: CSSObject = {
