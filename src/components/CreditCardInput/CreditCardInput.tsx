@@ -142,6 +142,7 @@ export const CreditCardInput = ({
   ...props
 }: CreditCardInputProps): JSX.Element | null => {
   const [card, setCard] = React.useState<Card | undefined>(() => undefined);
+  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { cardTokenizeResponseReceived, payments } = useForm();
 
   /**
@@ -151,13 +152,19 @@ export const CreditCardInput = ({
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async () => {
+    setIsSubmitting(true);
+
     try {
       const result = await card?.tokenize();
 
       if (result) {
+        setIsSubmitting(false);
+
         return cardTokenizeResponseReceived(result);
       }
     } catch (ex) {
+      setIsSubmitting(false);
+
       console.error(ex);
     }
   };
@@ -223,7 +230,10 @@ export const CreditCardInput = ({
       </div>
 
       <PayButton
+        aria-disabled={!card || isSubmitting}
+        disabled={!card || isSubmitting}
         id={submitButtonId}
+        isSubmitting={isSubmitting}
         overrideStyles={overrideStyles}
         type="button"
       >

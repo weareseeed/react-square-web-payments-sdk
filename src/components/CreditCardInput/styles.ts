@@ -22,6 +22,7 @@ export const LoadingCard = styled.div({
 });
 
 export const PayButton = styled.button<{
+  isSubmitting: boolean;
   overrideStyles?: CSSObject;
 }>((props) => ({
   background: 'rgba(0, 106, 255, 1)',
@@ -38,4 +39,9 @@ export const PayButton = styled.button<{
   },
   ...props.overrideStyles,
   cursor: 'pointer',
+  '&[disabled]': {
+    cursor: 'not-allowed',
+    pointerEvents: 'none',
+    opacity: 0.5,
+  },
 }));
