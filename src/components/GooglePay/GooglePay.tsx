@@ -37,8 +37,6 @@ export const GooglePay = (
   const {
     cardTokenizeResponseReceived,
     createPaymentRequest,
-    enableMethod,
-    methods,
     payments,
   } = useForm();
 
@@ -92,10 +90,6 @@ export const GooglePay = (
     handlePayment,
     document.getElementById('google-pay-button')
   );
-
-  if (methods.googlePay !== 'ready') {
-    enableMethod('googlePay');
-  }
 
   return <div id="google-pay-button" style={{ height: 40 }}></div>;
 };

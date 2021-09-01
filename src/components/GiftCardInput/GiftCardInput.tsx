@@ -33,12 +33,7 @@ export const GiftCardInput = ({
   const [gCard, setGCard] = React.useState<GiftCard | undefined>(
     () => undefined
   );
-  const {
-    cardTokenizeResponseReceived,
-    enableMethod,
-    methods,
-    payments,
-  } = useForm();
+  const { cardTokenizeResponseReceived, payments } = useForm();
 
   /**
    * Handle the on click of the Gift Card button click
@@ -80,12 +75,6 @@ export const GiftCardInput = ({
     handlePayment,
     document.getElementById('pay-with-gift-card')
   );
-
-  if (methods.giftCard !== 'ready') {
-    enableMethod('giftCard');
-
-    return null;
-  }
 
   return (
     <>

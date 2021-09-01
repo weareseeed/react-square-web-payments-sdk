@@ -1,12 +1,13 @@
 // Dependencies
-import {
+import { payments } from '@square/web-sdk';
+import * as React from 'react';
+import type {
   ChargeVerifyBuyerDetails,
-  payments,
+  Payments,
+  PaymentRequestOptions,
   StoreVerifyBuyerDetails,
   TokenResult,
 } from '@square/web-sdk';
-import * as React from 'react';
-import type { Payments, PaymentRequestOptions } from '@square/web-sdk';
 
 // Internals
 import NoLocationIdOrAppId from '../components/NoLocationIdOrAppId/NoLocationIdOrAppId';
@@ -46,7 +47,6 @@ export const FormContext = React.createContext<FormContextInterface>({
   ) => void,
   createPaymentRequest: (null as unknown) as PaymentRequestOptions,
   dispatchMethods: (null as unknown) as React.Dispatch<ActionMethodReducer>,
-  enableMethod: (null as unknown) as (method: string) => void,
   formId: '',
   methods: INITIAL_STATE_METHODS,
   payments: (null as unknown) as Payments,
@@ -74,7 +74,9 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
     INITIAL_STATE_METHODS
   );
 
-  const cardTokenizeResponseReceived = (rest: TokenResult): void => {
+  const cardTokenizeResponseReceived = async (
+    rest: TokenResult
+  ): Promise<void> => {
     if (rest.errors || !props.createVerificationDetails) {
       props.cardTokenizeResponseReceived(rest);
       return;
@@ -88,22 +90,6 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
   const cardTokenizeResponseReceivedCallback = useDynamicCallback(
     cardTokenizeResponseReceived
   );
-
-  /**
-   * Helper function to update the state of the form and retreive the available methods
-   *
-   * @param method The method that you want to update
-   */
-  const enableMethod = (method: string): void => {
-    dispatch({
-      type: 'CHANGE_STATE',
-      // @ts-ignore
-      payload: {
-        ...methods,
-        [method]: 'ready',
-      },
-    });
-  };
 
   React.useEffect(() => {
     async function loadPayment(): Promise<void> {
@@ -137,7 +123,6 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
       : null,
     createPaymentRequest,
     dispatchMethods: dispatch,
-    enableMethod,
     formId: '',
     methods,
     payments: pay,

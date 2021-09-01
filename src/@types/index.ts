@@ -53,10 +53,6 @@ export interface FormContextInterface extends InitialStateMethods {
    */
   dispatchMethods: React.Dispatch<ActionMethodReducer>;
   /**
-   * Handle the state of the payment methods.
-   */
-  enableMethod: (method: string) => void;
-  /**
    * Unique form ID
    */
   formId?: string;

@@ -28,8 +28,6 @@ export const ApplePay = (): JSX.Element | null => {
   const {
     cardTokenizeResponseReceived,
     createPaymentRequest,
-    enableMethod,
-    methods,
     payments,
   } = useForm();
 
@@ -85,10 +83,6 @@ export const ApplePay = (): JSX.Element | null => {
   }, [createPaymentRequest, payments]);
 
   useEvent('click', handlePayment, document.getElementById('apple-pay-button'));
-
-  if (methods.applePay !== 'ready') {
-    enableMethod('applePay');
-  }
 
   if (error) {
     return null;

@@ -72,12 +72,7 @@ export const AchPay = ({
   ...props
 }: AchPayProps): JSX.Element | null => {
   const [ach, setAch] = React.useState<ACH | undefined>(() => undefined);
-  const {
-    cardTokenizeResponseReceived,
-    enableMethod,
-    methods,
-    payments,
-  } = useForm();
+  const { cardTokenizeResponseReceived, payments } = useForm();
 
   /**
    * Handle the on click of the ACH button click
@@ -110,10 +105,6 @@ export const AchPay = ({
   }, [payments]);
 
   useEvent('click', handlePayment, document.getElementById('pay-with-ach'));
-
-  if (methods.ach !== 'ready') {
-    enableMethod('ach');
-  }
 
   if (children) {
     return (
