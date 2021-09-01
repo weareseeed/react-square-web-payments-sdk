@@ -1,4 +1,4 @@
-// Dependencies
+// Vendor Modules
 import { Meta, Story } from '@storybook/react';
 import * as React from 'react';
 

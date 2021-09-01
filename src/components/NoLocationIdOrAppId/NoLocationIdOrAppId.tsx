@@ -1,4 +1,4 @@
-// Dependencies
+// Vendor Modules
 import * as React from 'react';
 
 // Internals

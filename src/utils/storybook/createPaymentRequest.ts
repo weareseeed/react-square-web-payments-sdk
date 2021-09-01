@@ -1,4 +1,4 @@
-// Dependencies
+// Vendor Modules
 import { PaymentRequestOptions } from '@square/web-payments-sdk-types';
 
 export function createPaymentRequestFunction(): PaymentRequestOptions {

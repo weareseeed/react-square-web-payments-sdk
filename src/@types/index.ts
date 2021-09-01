@@ -1,4 +1,4 @@
-// Dependencies
+// Vendor Modules
 import type {
   MethodType,
   Payments,

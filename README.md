@@ -23,7 +23,7 @@ yarn add react-square-web-payments-sdk
 ## Usage
 
 ```tsx
-// Dependencies
+// Vendor Modules
 import * as React from 'react';
 import {
   SquarePaymentsForm,

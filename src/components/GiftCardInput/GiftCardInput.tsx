@@ -1,4 +1,4 @@
-// Dependencies
+// Vendor Modules
 import { CSSObject } from '@emotion/styled';
 import { document } from 'browser-monads-ts';
 import * as React from 'react';

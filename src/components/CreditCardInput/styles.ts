@@ -1,4 +1,4 @@
-// Dependencies
+// Vendor Modules
 import { keyframes } from '@emotion/react';
 import styled, { CSSObject } from '@emotion/styled';
 

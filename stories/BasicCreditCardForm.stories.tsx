@@ -3,26 +3,22 @@ import { Meta, Story } from '@storybook/react';
 import * as React from 'react';
 
 // Internals
-import {
-  CreditCardInput,
-  GiftCardInput,
-  Separator,
-  SquarePaymentsForm,
-} from '../src';
+import { CreditCardInput, SquarePaymentsForm } from '../src';
 import type { SquarePaymentsFormProps } from '../src';
 
 export const Default: Story<SquarePaymentsFormProps> = (args) => (
-  <SquarePaymentsForm {...args}>
-    <GiftCardInput />
-
-    <Separator />
-
+  <SquarePaymentsForm
+    {...args}
+    cardTokenizeResponseReceived={(props) => {
+      console.log(props);
+    }}
+  >
     <CreditCardInput />
   </SquarePaymentsForm>
 );
 
 export default {
-  title: 'Credit Card with Gift Card',
+  title: 'Credit Card',
   component: SquarePaymentsForm,
   argTypes: {
     children: {

@@ -1,4 +1,4 @@
-// Dependencies
+// Vendor Modules
 import * as React from 'react';
 import { useEvent } from 'react-use';
 import type { ApplePay as ApplePayInterface } from '@square/web-sdk';

@@ -1,4 +1,4 @@
-// Dependencies
+// Vendor Modules
 import styled, { CSSObject } from '@emotion/styled';
 
 const defaultLineStyles: CSSObject = {

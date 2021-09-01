@@ -1,4 +1,4 @@
-// Dependencies
+// Vendor Modules
 import {
   ChargeVerifyBuyerDetails,
   payments,
@@ -95,16 +95,14 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
    * @param method The method that you want to update
    */
   const enableMethod = (method: string): void => {
-    if (pay) {
-      dispatch({
-        type: 'CHANGE_STATE',
-        // @ts-ignore
-        payload: {
-          ...methods,
-          [method]: 'ready',
-        },
-      });
-    }
+    dispatch({
+      type: 'CHANGE_STATE',
+      // @ts-ignore
+      payload: {
+        ...methods,
+        [method]: 'ready',
+      },
+    });
   };
 
   React.useEffect(() => {
@@ -120,9 +118,7 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
       });
     }
 
-    if (applicationId && locationId) {
-      loadPayment();
-    }
+    loadPayment();
   }, [applicationId, locationId]);
 
   if (!applicationId || !locationId) {

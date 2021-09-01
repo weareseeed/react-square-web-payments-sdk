@@ -1,4 +1,4 @@
-// Dependencies
+// Vendor Modules
 import { CSSObject } from '@emotion/styled';
 import * as React from 'react';
 
