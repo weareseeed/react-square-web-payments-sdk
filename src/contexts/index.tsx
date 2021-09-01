@@ -1,5 +1,5 @@
 // Dependencies
-import { payments } from '@square/web-sdk';
+import { payments, VerifyBuyerResponseDetails } from '@square/web-sdk';
 import * as React from 'react';
 import type {
   ChargeVerifyBuyerDetails,
@@ -56,7 +56,10 @@ interface ProviderProps {
   applicationId: string;
   locationId: string;
   createPaymentRequest?: () => PaymentRequestOptions;
-  cardTokenizeResponseReceived: (props: TokenResult) => void;
+  cardTokenizeResponseReceived: (
+    props: TokenResult,
+    verifiedBuyer?: VerifyBuyerResponseDetails | null
+  ) => void;
   createVerificationDetails?: () =>
     | ChargeVerifyBuyerDetails
     | StoreVerifyBuyerDetails;
@@ -82,7 +85,12 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
       return;
     }
 
-    pay?.verifyBuyer(String(rest.token), props.createVerificationDetails());
+    const verifyBuyerResults = await pay?.verifyBuyer(
+      String(rest.token),
+      props.createVerificationDetails()
+    );
+
+    props.cardTokenizeResponseReceived(rest, verifyBuyerResults);
   };
 
   // Fixes stale closure issue with using React Hooks & SqPaymentForm callback functions

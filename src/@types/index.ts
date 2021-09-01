@@ -4,6 +4,7 @@ import type {
   Payments,
   PaymentRequestOptions,
   TokenResult,
+  VerifyBuyerResponseDetails,
 } from '@square/web-sdk';
 
 type ValueOf<T> = T[keyof T];
@@ -40,7 +41,10 @@ export interface FormContextInterface extends InitialStateMethods {
    *
    * Invoked when payment form receives the result of a tokenize generation request. The result will be a valid credit card or wallet token, or an error.
    */
-  cardTokenizeResponseReceived: (props: TokenResult) => void;
+  cardTokenizeResponseReceived: (
+    token: TokenResult,
+    verify?: VerifyBuyerResponseDetails | null
+  ) => void;
   /**
    * **Required for digital wallets**
    *

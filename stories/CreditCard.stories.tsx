@@ -8,6 +8,7 @@ import {
   CreditCardInputProps,
   SquarePaymentsForm,
 } from '../src';
+import { verificationDetails } from '../src/utils/storybook';
 
 export default {
   title: 'Credit Card',
@@ -31,9 +32,10 @@ export default {
 const Template: Story<CreditCardInputProps> = (args) => (
   <SquarePaymentsForm
     applicationId="sandbox-sq0idb-7KE3zXHZLG_X5EmLLptTYw"
-    cardTokenizeResponseReceived={(props) => {
-      console.info(props);
+    cardTokenizeResponseReceived={(token, buyer) => {
+      console.info({ token, buyer });
     }}
+    createVerificationDetails={verificationDetails}
     locationId="4P550BZQ0TQZA"
   >
     <CreditCardInput {...args} />

@@ -5,6 +5,7 @@ import type {
   PaymentRequestOptions,
   StoreVerifyBuyerDetails,
   TokenResult,
+  VerifyBuyerResponseDetails,
 } from '@square/web-sdk';
 
 // Internals
@@ -33,7 +34,10 @@ export interface SquarePaymentsFormProps {
    *
    * Invoked when payment form receives the result of a tokenize generation request. The result will be a valid credit card or wallet token, or an error.
    */
-  cardTokenizeResponseReceived: (props: TokenResult) => void;
+  cardTokenizeResponseReceived: (
+    props: TokenResult,
+    verifiedBuyer?: VerifyBuyerResponseDetails | null
+  ) => void;
   /** **Required for digital wallets**
    *
    * Invoked when a digital wallet payment button is clicked.
