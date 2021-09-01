@@ -1,4 +1,4 @@
-// Vendor Modules
+// Dependencies
 import { Meta, Story } from '@storybook/react';
 import * as React from 'react';
 import type { GooglePayButtonOptions } from '@square/web-sdk';
