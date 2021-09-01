@@ -1,7 +1,7 @@
 // Dependencies
 import * as React from 'react';
 import { document } from 'browser-monads-ts';
-import { useEvent } from 'react-use';
+import useEvent from 'react-use/lib/useEvent';
 import type { CSSObject } from '@emotion/styled';
 import type {
   Card,

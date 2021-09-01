@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react';
-import { useEvent } from 'react-use';
+import useEvent from 'react-use/lib/useEvent';
 import type {
   GooglePay as GooglePayInterface,
   GooglePayButtonOptions,

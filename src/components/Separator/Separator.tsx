@@ -1,6 +1,6 @@
 // Dependencies
-import { CSSObject } from '@emotion/styled';
 import * as React from 'react';
+import type { CSSObject } from '@emotion/styled';
 
 // Internals
 import { Line, SpanText } from './styles';

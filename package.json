@@ -54,11 +54,11 @@
   "size-limit": [
     {
       "path": "dist/react-square-web-payments-sdk.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "20 KB"
     },
     {
       "path": "dist/react-square-web-payments-sdk.esm.js",
-      "limit": "10 KB"
+      "limit": "20 KB"
     }
   ],
   "devDependencies": {

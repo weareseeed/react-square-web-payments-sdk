@@ -1,8 +1,8 @@
 // Dependencies
-import { CSSObject } from '@emotion/styled';
-import { document } from 'browser-monads-ts';
 import * as React from 'react';
-import { useEvent } from 'react-use';
+import { document } from 'browser-monads-ts';
+import useEvent from 'react-use/lib/useEvent';
+import type { CSSObject } from '@emotion/styled';
 import type { ACH, AchTokenOptions } from '@square/web-sdk';
 
 // Internals
