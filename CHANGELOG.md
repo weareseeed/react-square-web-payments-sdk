@@ -4,24 +4,22 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [2.0.0-canary.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.3-canary.0...v2.0.0-canary.1) (2021-09-01)
 
-
 ### Features
 
-* **docs:** updating version of canary ([b9739ef](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b9739ef415e2acefceeb694eecf0ce8a265378be))
+- remove methods support prop #11 [203b8cf](https://github.com/weareseeed/react-square-web-payments-sdk/commit/203b8cf444fa6d2521c1dcf84a892b68c49cca76)
+- **docs:** updating version of canary ([b9739ef](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b9739ef415e2acefceeb694eecf0ce8a265378be))
 
 ### [1.5.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.1...v1.5.2) (2021-08-12)
 
-
 ### Bug Fixes
 
-* **workflows:** workflows for main branch ([5bb884a](https://github.com/weareseeed/react-square-web-payments-sdk/commit/5bb884aac14577925808171b84fa5083fddfc4d3))
+- **workflows:** workflows for main branch ([5bb884a](https://github.com/weareseeed/react-square-web-payments-sdk/commit/5bb884aac14577925808171b84fa5083fddfc4d3))
 
 ### [1.5.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0...v1.5.1) (2021-06-18)
 
-
 ### Features
 
-* **docs:** updating changelog ([b2ce0bd](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b2ce0bdf9b56eb25651fa6494c3cebbc5d62b7be))
+- **docs:** updating changelog ([b2ce0bd](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b2ce0bdf9b56eb25651fa6494c3cebbc5d62b7be))
 
 ## [1.5.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0-beta.5...v1.5.0) (2021-06-18)
 
