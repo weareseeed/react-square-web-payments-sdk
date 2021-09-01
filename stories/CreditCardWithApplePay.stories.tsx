@@ -61,7 +61,6 @@ export const Default: Story<SquarePaymentsFormProps> = (args) => (
   <SquarePaymentsForm
     {...args}
     createPaymentRequest={createPaymentRequestFunction}
-    methodsSupported={{ applePay: true, card: true }}
   >
     <ApplePayButton />
 
@@ -88,19 +87,6 @@ export default {
       type: {
         summary: '(() => PaymentRequestOptions)',
         detail: createPaymentRequestTypeDetails,
-      },
-    },
-    methodsSupported: {
-      control: {
-        type: 'object',
-        required: false,
-      },
-      defaultValue: {
-        applePay: true,
-        card: true,
-      },
-      type: {
-        summary: 'MethodsSupported',
       },
     },
   },

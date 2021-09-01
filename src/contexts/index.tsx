@@ -13,11 +13,7 @@ import NoLocationIdOrAppId from '../components/NoLocationIdOrAppId/NoLocationIdO
 import { INITIAL_STATE_METHODS } from '../constants';
 import { useDynamicCallback } from '../hooks';
 import { methodsReducer } from '../reducers';
-import type {
-  ActionMethodReducer,
-  FormContextInterface,
-  MethodsSupported,
-} from '../@types';
+import type { ActionMethodReducer, FormContextInterface } from '../@types';
 
 /**
  * Export the hook here so we avoid circular dependency
@@ -45,20 +41,21 @@ export const FormContext = React.createContext<FormContextInterface>({
   cashApp: 'loading',
   googlePay: 'loading',
   giftCard: 'loading',
-  formId: '',
-  payments: (null as unknown) as Payments,
-  dispatchMethods: (null as unknown) as React.Dispatch<ActionMethodReducer>,
   cardTokenizeResponseReceived: (null as unknown) as (
     props: TokenResult
   ) => void,
   createPaymentRequest: (null as unknown) as PaymentRequestOptions,
+  dispatchMethods: (null as unknown) as React.Dispatch<ActionMethodReducer>,
+  enableMethod: (null as unknown) as (method: string) => void,
+  formId: '',
+  methods: INITIAL_STATE_METHODS,
+  payments: (null as unknown) as Payments,
 });
 
 interface ProviderProps {
   applicationId: string;
   locationId: string;
   createPaymentRequest?: () => PaymentRequestOptions;
-  methodsSupported?: MethodsSupported;
   cardTokenizeResponseReceived: (props: TokenResult) => void;
   createVerificationDetails?: () =>
     | ChargeVerifyBuyerDetails
@@ -95,55 +92,33 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
   /**
    * Helper function to update the state of the form and retreive the available methods
    *
-   * @param methods The methods that you want to support
+   * @param method The method that you want to update
    */
-  const methodsSupported = (
-    methods: MethodsSupported = props.methodsSupported || {
-      card: true,
-    }
-  ): void => {
-    let result = { ...INITIAL_STATE_METHODS };
-
-    for (const [method, enabled] of Object.entries(methods)) {
-      if (enabled) {
-        Object.keys(INITIAL_STATE_METHODS).map((initialMethod) => {
-          if (method === initialMethod) {
-            result = {
-              ...result,
-              [initialMethod]: 'ready',
-            };
-
-            return;
-          }
-        });
-      }
-    }
-
+  const enableMethod = (method: string): void => {
     dispatch({
       type: 'CHANGE_STATE',
       // @ts-ignore
-      payload: result,
+      payload: {
+        ...methods,
+        [method]: 'ready',
+      },
     });
   };
 
-  async function loadPayment(): Promise<void> {
-    methodsSupported();
-
-    await payments(applicationId, locationId).then((res) => {
-      if (res === null) {
-        throw new Error('Square Web Payments SDK failed to load');
-      }
-
-      setPay(res);
-
-      return res;
-    });
-  }
-
   React.useEffect(() => {
-    if (applicationId && locationId) {
-      loadPayment();
+    async function loadPayment(): Promise<void> {
+      await payments(applicationId, locationId).then((res) => {
+        if (res === null) {
+          throw new Error('Square Web Payments SDK failed to load');
+        }
+
+        setPay(res);
+
+        return res;
+      });
     }
+
+    loadPayment();
   }, [applicationId, locationId]);
 
   if (!applicationId || !locationId) {
@@ -156,14 +131,16 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
 
   const context = {
     ...methods,
-    formId: '',
-    payments: pay,
-    dispatchMethods: dispatch,
     // @ts-ignore: Always true error
     cardTokenizeResponseReceived: props.cardTokenizeResponseReceived
       ? cardTokenizeResponseReceivedCallback
       : null,
     createPaymentRequest,
+    dispatchMethods: dispatch,
+    enableMethod,
+    formId: '',
+    methods,
+    payments: pay,
   };
 
   return (

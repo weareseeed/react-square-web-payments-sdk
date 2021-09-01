@@ -199,19 +199,6 @@ export default {
         detail: createPaymentRequestTypeDetails,
       },
     },
-    methodsSupported: {
-      control: {
-        type: 'object',
-        required: false,
-      },
-      defaultValue: {
-        card: true,
-        googlePay: true,
-      },
-      type: {
-        summary: 'MethodsSupported',
-      },
-    },
   },
   parameters: {
     controls: { expanded: true },

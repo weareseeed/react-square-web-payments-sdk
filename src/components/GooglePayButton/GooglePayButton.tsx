@@ -8,7 +8,6 @@ import type {
 
 // Internals
 import { useForm } from '../../contexts';
-import { renderWithoutSupportPaymentMethod } from '../../utils';
 
 const defaultProps: GooglePayButtonOptions = {
   buttonColor: 'black',
@@ -38,7 +37,8 @@ export const GooglePayButton = (
   const {
     cardTokenizeResponseReceived,
     createPaymentRequest,
-    googlePay,
+    enableMethod,
+    methods,
     payments,
   } = useForm();
 
@@ -68,24 +68,24 @@ export const GooglePayButton = (
     }
   };
 
-  /**
-   * Initialize the Google Pay instance to be used in the component
-   */
-  const start = async () => {
-    const paymentRequest = payments.paymentRequest(createPaymentRequest);
-    const googlePay = await payments.googlePay(paymentRequest).then((res) => {
-      setGPay(res);
-
-      return res;
-    });
-
-    const options = { ...defaultProps, ...props };
-    await googlePay?.attach('#google-pay-button', options);
-  };
-
   React.useEffect(() => {
+    /**
+     * Initialize the Google Pay instance to be used in the component
+     */
+    const start = async () => {
+      const paymentRequest = payments.paymentRequest(createPaymentRequest);
+      const googlePay = await payments.googlePay(paymentRequest).then((res) => {
+        setGPay(res);
+
+        return res;
+      });
+
+      const options = { ...defaultProps, ...props };
+      await googlePay?.attach('#google-pay-button', options);
+    };
+
     start();
-  }, [payments]);
+  }, [createPaymentRequest, payments, props]);
 
   useEvent(
     'click',
@@ -93,10 +93,8 @@ export const GooglePayButton = (
     document.getElementById('google-pay-button')
   );
 
-  if (googlePay !== 'ready') {
-    renderWithoutSupportPaymentMethod('Google Pay');
-
-    return null;
+  if (methods.googlePay !== 'ready') {
+    enableMethod('googlePay');
   }
 
   return <div id="google-pay-button" style={{ height: 40 }}></div>;

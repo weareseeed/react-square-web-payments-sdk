@@ -7,7 +7,6 @@ import type { GiftCard, GiftCardOptions } from '@square/web-sdk';
 
 // Internals
 import { useForm } from '../../contexts';
-import { renderWithoutSupportPaymentMethod } from '../../utils';
 import { LoadingCard, PayButton } from './styles';
 
 export interface GiftCardInputProps extends GiftCardOptions {
@@ -34,7 +33,12 @@ export const GiftCardInput = ({
   const [gCard, setGCard] = React.useState<GiftCard | undefined>(
     () => undefined
   );
-  const { cardTokenizeResponseReceived, giftCard, payments } = useForm();
+  const {
+    cardTokenizeResponseReceived,
+    enableMethod,
+    methods,
+    payments,
+  } = useForm();
 
   /**
    * Handle the on click of the Gift Card button click
@@ -54,22 +58,22 @@ export const GiftCardInput = ({
     }
   };
 
-  /**
-   * Initialize the Gift Card instance to be used in the component
-   */
-  const start = async () => {
-    const gCard = await payments.giftCard(props).then((res) => {
-      setGCard(res);
-
-      return res;
-    });
-
-    await gCard?.attach('#gift-card-container');
-  };
-
   React.useEffect(() => {
+    /**
+     * Initialize the Gift Card instance to be used in the component
+     */
+    const start = async () => {
+      const gCard = await payments.giftCard(props).then((res) => {
+        setGCard(res);
+
+        return res;
+      });
+
+      await gCard?.attach('#gift-card-container');
+    };
+
     start();
-  }, [payments]);
+  }, [payments, props]);
 
   useEvent(
     'click',
@@ -77,8 +81,8 @@ export const GiftCardInput = ({
     document.getElementById('pay-with-gift-card')
   );
 
-  if (giftCard !== 'ready') {
-    renderWithoutSupportPaymentMethod('Gift Card');
+  if (methods.giftCard !== 'ready') {
+    enableMethod('giftCard');
 
     return null;
   }
@@ -91,8 +95,8 @@ export const GiftCardInput = ({
 
       <PayButton
         id="pay-with-gift-card"
-        type="button"
         overrideStyles={overrideStyles}
+        type="button"
       >
         Pay with Gift Card
       </PayButton>

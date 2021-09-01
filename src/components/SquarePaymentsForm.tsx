@@ -8,7 +8,6 @@ import type {
 } from '@square/web-sdk';
 
 // Internals
-import { MethodsSupported } from '../@types';
 import FormProvider from '../contexts';
 
 export interface SquarePaymentsFormProps {
@@ -44,8 +43,6 @@ export interface SquarePaymentsFormProps {
   createVerificationDetails?: () =>
     | ChargeVerifyBuyerDetails
     | StoreVerifyBuyerDetails;
-  /** Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
-  methodsSupported?: MethodsSupported;
 }
 
 export const SquarePaymentsForm = ({
@@ -57,11 +54,10 @@ export const SquarePaymentsForm = ({
   return (
     <FormProvider
       applicationId={applicationId}
-      locationId={locationId}
-      createPaymentRequest={props.createPaymentRequest}
-      methodsSupported={props.methodsSupported}
       cardTokenizeResponseReceived={props.cardTokenizeResponseReceived}
+      createPaymentRequest={props.createPaymentRequest}
       createVerificationDetails={props.createVerificationDetails}
+      locationId={locationId}
     >
       <div id={formId}>{props.children}</div>
     </FormProvider>

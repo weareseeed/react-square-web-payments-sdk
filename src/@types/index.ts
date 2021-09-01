@@ -9,9 +9,15 @@ import type {
 type ValueOf<T> = T[keyof T];
 export type Methods = ValueOf<MethodType>;
 
+export enum PaymentMethodState {
+  LOADING = 'loading',
+  READY = 'ready',
+  UNAVAILABLE = 'unavailable',
+}
+
 export type ActionMethodReducer = {
   type: 'CHANGE_STATE' | Methods;
-  payload: Record<MethodType, 'loading' | 'ready' | 'unavailable'>[];
+  payload: Record<MethodType, PaymentMethodState>[];
 };
 
 export type MethodsSupported = {
@@ -29,18 +35,6 @@ export type InitialStateMethods = Record<
 >;
 
 export interface FormContextInterface extends InitialStateMethods {
-  /** Unique form ID */
-  formId?: string;
-  /**
-   * Returned by `Square.payments(appId, locationId)`.
-   *
-   * Use this object to instantiate Payment methods.
-   * @example
-   * const payments = Square.payments(appId, locationId);
-   */
-  payments: Payments;
-  /* Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
-  dispatchMethods: React.Dispatch<ActionMethodReducer>;
   /**
    * **Required for all features**
    *
@@ -53,4 +47,29 @@ export interface FormContextInterface extends InitialStateMethods {
    * Invoked when a digital wallet payment button is clicked.
    */
   createPaymentRequest?: PaymentRequestOptions;
+  /*
+   * Triggered when the page renders to decide which, if any,
+   * digital wallet button should be rendered in the payment form.
+   */
+  dispatchMethods: React.Dispatch<ActionMethodReducer>;
+  /**
+   * Handle the state of the payment methods.
+   */
+  enableMethod: (method: string) => void;
+  /**
+   * Unique form ID
+   */
+  formId?: string;
+  /**
+   * The state of the payment methods.
+   */
+  methods: InitialStateMethods;
+  /**
+   * Returned by `Square.payments(appId, locationId)`.
+   *
+   * Use this object to instantiate Payment methods.
+   * @example
+   * const payments = Square.payments(appId, locationId);
+   */
+  payments: Payments;
 }

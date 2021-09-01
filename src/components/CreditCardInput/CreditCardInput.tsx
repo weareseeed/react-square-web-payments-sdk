@@ -7,7 +7,6 @@ import type { Card, CardFieldNamesValues, CardOptions } from '@square/web-sdk';
 
 // Internals
 import { useForm } from '../../contexts';
-import { renderWithoutSupportPaymentMethod } from '../../utils';
 import { LoadingCard, PayButton } from './styles';
 
 export interface CreditCardInputProps extends CardOptions {
@@ -61,7 +60,12 @@ export const CreditCardInput = ({
   ...props
 }: CreditCardInputProps): JSX.Element | null => {
   const [card, setCard] = React.useState<Card | undefined>(() => undefined);
-  const { cardTokenizeResponseReceived, card: cardState, payments } = useForm();
+  const {
+    cardTokenizeResponseReceived,
+    enableMethod,
+    methods,
+    payments,
+  } = useForm();
 
   /**
    * Handle the on click of the Credit Card button click
@@ -81,30 +85,28 @@ export const CreditCardInput = ({
     }
   };
 
-  /**
-   * Initialize the Card instance to be used in the component
-   */
-  const start = async () => {
-    const card = await payments.card(props).then((res) => {
-      setCard(res);
-
-      return res;
-    });
-
-    await card?.attach('#card-container');
-    await card?.focus(focus);
-  };
-
   React.useEffect(() => {
+    /**
+     * Initialize the Card instance to be used in the component
+     */
+    const start = async () => {
+      const card = await payments.card(props).then((res) => {
+        setCard(res);
+
+        return res;
+      });
+
+      await card?.attach('#card-container');
+      await card?.focus(focus);
+    };
+
     start();
-  }, [payments]);
+  }, [focus, payments, props]);
 
   useEvent('click', handlePayment, document.getElementById('pay-with-card'));
 
-  if (cardState !== 'ready') {
-    renderWithoutSupportPaymentMethod('Card');
-
-    return null;
+  if (methods.card !== 'ready') {
+    enableMethod('card');
   }
 
   return (
@@ -115,8 +117,8 @@ export const CreditCardInput = ({
 
       <PayButton
         id="pay-with-card"
-        type="button"
         overrideStyles={overrideStyles}
+        type="button"
       >
         {props.children || text}
       </PayButton>

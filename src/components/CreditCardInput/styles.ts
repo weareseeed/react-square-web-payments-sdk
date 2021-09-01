@@ -23,7 +23,7 @@ export const LoadingCard = styled.div({
 
 export const PayButton = styled.button<{
   overrideStyles?: CSSObject;
-}>(props => ({
+}>((props) => ({
   background: 'rgba(0, 106, 255, 1)',
   width: '100%',
   fontSize: 16,

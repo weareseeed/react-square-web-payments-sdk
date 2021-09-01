@@ -26,18 +26,6 @@ export default {
         disable: true,
       },
     },
-    methodsSupported: {
-      control: {
-        type: 'object',
-        required: false,
-      },
-      defaultValue: {
-        card: true,
-      },
-      type: {
-        summary: 'MethodsSupported',
-      },
-    },
   },
   parameters: {
     controls: { expanded: true },
