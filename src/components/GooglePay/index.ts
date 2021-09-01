@@ -1,1 +1,1 @@
-export * from './GooglePayButton';
+export * from './GooglePay';
