@@ -5,7 +5,7 @@ export * from './components/ApplePay';
 export * from './components/CreditCardInput';
 export * from './components/GiftCardInput';
 export * from './components/GooglePay';
-export * from './components/NoLocationIdOrAppId';
+export * from './components/ErrorScreen';
 export * from './components/Separator';
 export * from './components/SquarePaymentsForm';
 

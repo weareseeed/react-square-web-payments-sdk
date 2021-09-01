@@ -13,14 +13,14 @@ import { verificationDetails } from '../src/utils/storybook';
 export default {
   title: 'Credit Card',
   component: CreditCardInput,
+  args: {
+    focus: 'cardNumber',
+  },
   argTypes: {
     children: {
       table: {
         disable: true,
       },
-    },
-    focus: {
-      defaultValue: 'cardNumber',
     },
   },
   parameters: {
@@ -54,10 +54,10 @@ withCardBrandChanged.args = {
   cardContainerId: 'card-container-cardBrandChanged',
   submitButtonId: 'pay-with-card-cardBrandChanged',
 } as CreditCardInputProps;
-withCardBrandChanged.story = {
-  parameters: {
-    docs: {
-      storyDescription:
+withCardBrandChanged.parameters = {
+  docs: {
+    description: {
+      story:
         'Callback function that is called when the payment form detected a new likely credit card brand based on the card number. <br /> **You need to open the console to see the result**',
     },
   },
@@ -72,10 +72,10 @@ withErrorClassAdded.args = {
   cardContainerId: 'card-container-errorClassAdded',
   submitButtonId: 'pay-with-card-errorClassAdded',
 } as CreditCardInputProps;
-withErrorClassAdded.story = {
-  parameters: {
-    docs: {
-      storyDescription:
+withErrorClassAdded.parameters = {
+  docs: {
+    description: {
+      story:
         'Callback function that is called when a form field has an invalid value, and the corresponding error CSS class was added to the element. <br /> **You need to open the console to see the result**',
     },
   },
@@ -90,10 +90,10 @@ withErrorClassRemoved.args = {
   cardContainerId: 'card-container-errorClassRemoved',
   submitButtonId: 'pay-with-card-errorClassRemoved',
 } as CreditCardInputProps;
-withErrorClassRemoved.story = {
-  parameters: {
-    docs: {
-      storyDescription:
+withErrorClassRemoved.parameters = {
+  docs: {
+    description: {
+      story:
         'Callback function that is called when an invalid value on a form field was corrected, and the corresponding error CSS class was removed from the element <br /> **You need to open the console to see the result**',
     },
   },
@@ -108,10 +108,10 @@ withFocusClassAdded.args = {
   cardContainerId: 'card-container-focusClassAdded',
   submitButtonId: 'pay-with-card-focusClassAdded',
 } as CreditCardInputProps;
-withFocusClassAdded.story = {
-  parameters: {
-    docs: {
-      storyDescription:
+withFocusClassAdded.parameters = {
+  docs: {
+    description: {
+      story:
         'Callback function that is called when a form field gained focus, and the corresponding focus CSS class was added to the element. <br /> **You need to open the console to see the result**',
     },
   },
@@ -126,10 +126,10 @@ withFocusClassRemoved.args = {
   cardContainerId: 'card-container-focusClassRemoved',
   submitButtonId: 'pay-with-card-focusClassRemoved',
 } as CreditCardInputProps;
-withFocusClassRemoved.story = {
-  parameters: {
-    docs: {
-      storyDescription:
+withFocusClassRemoved.parameters = {
+  docs: {
+    description: {
+      story:
         'Callback function that is called when a form field lost focus, and the corresponding focus CSS class was removed from the element. <br /> **You need to open the console to see the result**',
     },
   },
@@ -144,10 +144,10 @@ withPostalCodeChanged.args = {
   cardContainerId: 'card-container-postalCodeChanged',
   submitButtonId: 'pay-with-card-postalCodeChanged',
 } as CreditCardInputProps;
-withPostalCodeChanged.story = {
-  parameters: {
-    docs: {
-      storyDescription:
+withPostalCodeChanged.parameters = {
+  docs: {
+    description: {
+      story:
         'Callback function that is called when the current value of the postal code form field changed. <br /> **You need to open the console to see the result**',
     },
   },
@@ -162,10 +162,10 @@ withScape.args = {
   cardContainerId: 'card-container-scape',
   submitButtonId: 'pay-with-card-scape',
 } as CreditCardInputProps;
-withScape.story = {
-  parameters: {
-    docs: {
-      storyDescription:
+withScape.parameters = {
+  docs: {
+    description: {
+      story:
         'Callback function that is called when the user pressed the "Escape" key while editing a field. <br /> **You need to open the console to see the result**',
     },
   },
@@ -180,10 +180,10 @@ withSubmit.args = {
   cardContainerId: 'card-container-submit',
   submitButtonId: 'pay-with-card-submit',
 } as CreditCardInputProps;
-withSubmit.story = {
-  parameters: {
-    docs: {
-      storyDescription:
+withSubmit.parameters = {
+  docs: {
+    description: {
+      story:
         'Callback function that is called when the user has triggered submission of the form by pressing "Enter" while editing a field. <br /> **You need to open the console to see the result**',
     },
   },

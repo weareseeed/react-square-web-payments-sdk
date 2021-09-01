@@ -1,18 +1,19 @@
 // Dependencies
-import { payments, VerifyBuyerResponseDetails } from '@square/web-sdk';
 import * as React from 'react';
+import { payments } from '@square/web-sdk';
 import type {
   ChargeVerifyBuyerDetails,
   Payments,
   PaymentRequestOptions,
   StoreVerifyBuyerDetails,
   TokenResult,
+  VerifyBuyerResponseDetails,
 } from '@square/web-sdk';
 
 // Internals
-import NoLocationIdOrAppId from '../components/NoLocationIdOrAppId/NoLocationIdOrAppId';
+import { ErrorScreen } from '..';
 import { useDynamicCallback } from '../hooks';
-import type { FormContextInterface } from '../@types';
+import type { FormContextInterface } from '../types';
 
 /**
  * Export the hook here so we avoid circular dependency
@@ -100,11 +101,13 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
       });
     }
 
-    loadPayment();
+    if (applicationId && locationId) {
+      loadPayment();
+    }
   }, [applicationId, locationId]);
 
   if (!applicationId || !locationId) {
-    return <NoLocationIdOrAppId />;
+    return <ErrorScreen />;
   }
 
   if (!pay) {

@@ -133,13 +133,13 @@ export default {
     buttonColor: {
       control: {
         type: 'select',
-        options: ['default', 'black', 'white'],
         required: false,
       },
-      defaultValue: { summary: 'default' },
+
       description:
         'Set the button background color to black or white. <br /> <br /> For more details about the available options, see [GooglePayButtonColor](https://developer.squareup.com/reference/sdks/web/payments/enums/GooglePayButtonColor)',
       name: 'buttonColor',
+      options: ['default', 'black', 'white'],
       table: {
         category: 'Google Pay Button Args',
       },
@@ -151,13 +151,12 @@ export default {
     buttonSizeMode: {
       control: {
         type: 'select',
-        options: ['static', 'fill'],
         required: false,
       },
-      defaultValue: { summary: 'fill' },
       description:
         'Set fitting mode to dynamically size button or fixed size. <br /> <br /> For more details about the available options, see [GooglePayButtonSizeMode](https://developer.squareup.com/reference/sdks/web/payments/enums/GooglePayButtonSizeMode)',
       name: 'buttonSizeMode',
+      options: ['static', 'fill'],
       table: {
         category: 'Google Pay Button Args',
       },
@@ -169,13 +168,12 @@ export default {
     buttonType: {
       control: {
         type: 'select',
-        options: ['long', 'short'],
         required: false,
       },
-      defaultValue: { summary: 'long' },
       description:
         'Render a long or short button. <br /> <br /> For more details about the available options, see [GooglePayButtonType](https://developer.squareup.com/reference/sdks/web/payments/enums/GooglePayButtonType)',
       name: 'buttonType',
+      options: ['long', 'short'],
       table: {
         category: 'Google Pay Button Args',
       },
@@ -190,9 +188,11 @@ export default {
       },
     },
     createPaymentRequest: {
-      defaultValue: {
-        summary: `undefined | (() => PaymentRequestOptions)`,
-        detail: createPaymentRequestTypeDetails,
+      table: {
+        defaultValue: {
+          summary: 'undefined | (() => PaymentRequestOptions)',
+          detail: createPaymentRequestTypeDetails,
+        },
       },
       type: {
         summary: '(() => PaymentRequestOptions)',

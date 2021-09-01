@@ -30,9 +30,6 @@ export default {
         required: true,
         type: 'text',
       },
-      defaultValue: {
-        summary: '',
-      },
       description:
         '<b>Required for ACH</b> <br /><br />Given name and surname of the bank account holder',
       type: {

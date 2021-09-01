@@ -5,7 +5,8 @@ import type {
   TokenResult,
   VerifyBuyerResponseDetails,
 } from '@square/web-sdk';
-export interface FormContextInterface {
+
+export type FormContextInterface = {
   /**
    * **Required for all features**
    *
@@ -33,4 +34,4 @@ export interface FormContextInterface {
    * const payments = Square.payments(appId, locationId);
    */
   payments: Payments;
-}
+};

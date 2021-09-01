@@ -80,9 +80,11 @@ export default {
       },
     },
     createPaymentRequest: {
-      defaultValue: {
-        summary: `undefined | (() => PaymentRequestOptions)`,
-        detail: createPaymentRequestTypeDetails,
+      table: {
+        defaultValue: {
+          summary: `undefined | (() => PaymentRequestOptions)`,
+          detail: createPaymentRequestTypeDetails,
+        },
       },
       type: {
         summary: '(() => PaymentRequestOptions)',
