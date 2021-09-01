@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-canary.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.1...v2.0.0-canary.2) (2021-09-01)
+
+
+### Features
+
+* add event listeners to credit card ([e015e49](https://github.com/weareseeed/react-square-web-payments-sdk/commit/e015e49ff29c8c9791082ab8ff4340aebdad0706))
+* add event listeners to credit card [#14](https://github.com/weareseeed/react-square-web-payments-sdk/issues/14) ([a41cf9d](https://github.com/weareseeed/react-square-web-payments-sdk/commit/a41cf9d1fafc867ac4478017f0909d343d09ae71))
+* removing button suffix from digital wallets [#13](https://github.com/weareseeed/react-square-web-payments-sdk/issues/13) ([535e358](https://github.com/weareseeed/react-square-web-payments-sdk/commit/535e358cd3a9d2b553ed16f5ce0c8bfea07a1df7))
+
+
+### Bug Fixes
+
+* **docs:** correct description for changelog ([683b305](https://github.com/weareseeed/react-square-web-payments-sdk/commit/683b3057c9c4fbc6c0f3860268691191d00a1530))
+* **lint:** correct export for google pay [#13](https://github.com/weareseeed/react-square-web-payments-sdk/issues/13) ([96cbe5a](https://github.com/weareseeed/react-square-web-payments-sdk/commit/96cbe5a840eedf52e8c30706b55a517b02868894))
+
 ## [2.0.0-canary.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.3-canary.0...v2.0.0-canary.1) (2021-09-01)
 
 ### Features
