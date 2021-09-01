@@ -75,6 +75,24 @@ export interface CreditCardInputProps extends CardOptions {
    */
   postalCodeChanged?(event: SqEvent<CardInputEvent>): void;
   /**
+   * Recalculates the size of the card form.
+   *
+   * The Card component normally automatically resizes based on the size of the buyer's browser,
+   * however if the Card component is contained with an element that has a computed style property
+   * of "display: none", then the Card component will no longer have a defined width and therefore
+   * will not properly resize between mobile and desktop configurations. Upon being displayed again,
+   * the Card component will not automatically update its size to match the browser window.
+   *
+   * This method recalculateSize() can be used to handle this edge case by forcing the Card
+   * component to recalculate its size and display appropriately for mobile or desktop.
+   *
+   * @example
+   * card.recalculateSize()
+   *
+   * @throws {PaymentMethodNotAttachedError} `Card` is has not been attached to a DOM element
+   */
+  recalculateSize?: Card['recalculateSize'];
+  /**
    * Callback function that is called when the user pressed the "Escape" key while editing a field.
    */
   scape?(event: SqEvent<CardInputEvent>): void;
@@ -116,6 +134,7 @@ export const CreditCardInput = ({
   focusClassRemoved,
   overrideStyles,
   postalCodeChanged,
+  recalculateSize,
   scape,
   submit,
   submitButtonId = 'pay-with-card',
@@ -189,6 +208,9 @@ export const CreditCardInput = ({
   }
   if (postalCodeChanged) {
     card?.addEventListener('postalCodeChanged', postalCodeChanged);
+  }
+  if (recalculateSize) {
+    card?.recalculateSize();
   }
   if (submit) {
     card?.addEventListener('submit', submit);
