@@ -30,7 +30,7 @@ export const GiftCardInput = ({
   overrideStyles,
   ...props
 }: GiftCardInputProps): JSX.Element | null => {
-  const [gCard, setGCard] = React.useState<GiftCard | undefined>(
+  const [giftCard, setGiftCard] = React.useState<GiftCard | undefined>(
     () => undefined
   );
   const { cardTokenizeResponseReceived, payments } = useForm();
@@ -43,7 +43,7 @@ export const GiftCardInput = ({
    */
   const handlePayment = async () => {
     try {
-      const result = await gCard?.tokenize();
+      const result = await giftCard?.tokenize();
 
       if (result) {
         return cardTokenizeResponseReceived(result);
@@ -61,7 +61,7 @@ export const GiftCardInput = ({
      */
     const start = async () => {
       const gCard = await payments.giftCard(giftCardProps).then((res) => {
-        setGCard(res);
+        setGiftCard(res);
 
         return res;
       });
@@ -81,7 +81,7 @@ export const GiftCardInput = ({
   return (
     <>
       <div id="gift-card-container" style={{ minHeight: 89 }}>
-        {!gCard && <LoadingCard />}
+        {!giftCard && <LoadingCard />}
       </div>
 
       <PayButton

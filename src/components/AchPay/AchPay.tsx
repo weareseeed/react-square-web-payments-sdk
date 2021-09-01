@@ -71,7 +71,7 @@ export const AchPay = ({
   overrideStyles,
   ...props
 }: AchPayProps): JSX.Element | null => {
-  const [ach, setAch] = React.useState<ACH | undefined>(() => undefined);
+  const [achPay, setAchPay] = React.useState<ACH | undefined>(() => undefined);
   const { cardTokenizeResponseReceived, payments } = useForm();
 
   /**
@@ -82,7 +82,7 @@ export const AchPay = ({
    */
   const handlePayment = async () => {
     try {
-      const result = await ach?.tokenize(props);
+      const result = await achPay?.tokenize(props);
 
       if (result) {
         return cardTokenizeResponseReceived(result);
@@ -95,7 +95,7 @@ export const AchPay = ({
   React.useEffect(() => {
     const start = async () => {
       await payments.ach().then((res) => {
-        setAch(res);
+        setAchPay(res);
 
         return res;
       });

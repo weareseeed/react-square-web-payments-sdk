@@ -1,41 +1,11 @@
 // Dependencies
 import type {
-  MethodType,
   Payments,
   PaymentRequestOptions,
   TokenResult,
   VerifyBuyerResponseDetails,
 } from '@square/web-sdk';
-
-type ValueOf<T> = T[keyof T];
-export type Methods = ValueOf<MethodType>;
-
-export enum PaymentMethodState {
-  LOADING = 'loading',
-  READY = 'ready',
-  UNAVAILABLE = 'unavailable',
-}
-
-export type ActionMethodReducer = {
-  type: 'CHANGE_STATE' | Methods;
-  payload: Record<MethodType, PaymentMethodState>[];
-};
-
-export type MethodsSupported = {
-  ach?: boolean;
-  applePay?: boolean;
-  card?: boolean;
-  cashApp?: boolean;
-  googlePay?: boolean;
-  giftCard?: boolean;
-};
-
-export type InitialStateMethods = Record<
-  'ach' | 'applePay' | 'card' | 'cashApp' | 'googlePay' | 'giftCard',
-  'loading' | 'ready' | 'unavailable'
->;
-
-export interface FormContextInterface extends InitialStateMethods {
+export interface FormContextInterface {
   /**
    * **Required for all features**
    *
@@ -43,7 +13,7 @@ export interface FormContextInterface extends InitialStateMethods {
    */
   cardTokenizeResponseReceived: (
     token: TokenResult,
-    verify?: VerifyBuyerResponseDetails | null
+    verifiedBuyer?: VerifyBuyerResponseDetails | null
   ) => void;
   /**
    * **Required for digital wallets**
@@ -51,19 +21,10 @@ export interface FormContextInterface extends InitialStateMethods {
    * Invoked when a digital wallet payment button is clicked.
    */
   createPaymentRequest?: PaymentRequestOptions;
-  /*
-   * Triggered when the page renders to decide which, if any,
-   * digital wallet button should be rendered in the payment form.
-   */
-  dispatchMethods: React.Dispatch<ActionMethodReducer>;
   /**
    * Unique form ID
    */
   formId?: string;
-  /**
-   * The state of the payment methods.
-   */
-  methods: InitialStateMethods;
   /**
    * Returned by `Square.payments(appId, locationId)`.
    *

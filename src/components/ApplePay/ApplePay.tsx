@@ -21,10 +21,9 @@ import { ApplePayContainer } from './styles';
  * ```
  */
 export const ApplePay = (): JSX.Element | null => {
-  const [aPay, setAPay] = React.useState<ApplePayInterface | undefined>(
+  const [applePay, setApplePay] = React.useState<ApplePayInterface | undefined>(
     () => undefined
   );
-  const [error, setError] = React.useState('');
   const {
     cardTokenizeResponseReceived,
     createPaymentRequest,
@@ -47,7 +46,7 @@ export const ApplePay = (): JSX.Element | null => {
     e.preventDefault();
 
     try {
-      const result = await aPay?.tokenize();
+      const result = await applePay?.tokenize();
 
       if (result) {
         return cardTokenizeResponseReceived(result);
@@ -66,16 +65,12 @@ export const ApplePay = (): JSX.Element | null => {
 
       try {
         await payments?.applePay(paymentRequest).then((res) => {
-          setAPay(res);
+          setApplePay(res);
 
           return res;
         });
       } catch (error) {
         console.error(error);
-
-        if (error.name === 'PaymentMethodUnsupportedError') {
-          setError('Apple Pay is not supported in this browser');
-        }
       }
     };
 
@@ -84,7 +79,7 @@ export const ApplePay = (): JSX.Element | null => {
 
   useEvent('click', handlePayment, document.getElementById('apple-pay-button'));
 
-  if (error) {
+  if (!applePay) {
     return null;
   }
 

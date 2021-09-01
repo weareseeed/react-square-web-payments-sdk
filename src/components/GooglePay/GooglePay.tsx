@@ -31,9 +31,9 @@ const defaultProps: GooglePayButtonOptions = {
 export const GooglePay = (
   props: GooglePayButtonOptions
 ): JSX.Element | null => {
-  const [gPay, setGPay] = React.useState<GooglePayInterface | undefined>(
-    () => undefined
-  );
+  const [googlePay, setGooglePay] = React.useState<
+    GooglePayInterface | undefined
+  >(() => undefined);
   const {
     cardTokenizeResponseReceived,
     createPaymentRequest,
@@ -56,7 +56,7 @@ export const GooglePay = (
     e.preventDefault();
 
     try {
-      const result = await gPay?.tokenize();
+      const result = await googlePay?.tokenize();
 
       if (result) {
         return cardTokenizeResponseReceived(result);
@@ -75,7 +75,7 @@ export const GooglePay = (
     const start = async () => {
       const paymentRequest = payments.paymentRequest(createPaymentRequest);
       const googlePay = await payments.googlePay(paymentRequest).then((res) => {
-        setGPay(res);
+        setGooglePay(res);
 
         return res;
       });

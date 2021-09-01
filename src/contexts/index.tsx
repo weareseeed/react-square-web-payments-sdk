@@ -11,10 +11,8 @@ import type {
 
 // Internals
 import NoLocationIdOrAppId from '../components/NoLocationIdOrAppId/NoLocationIdOrAppId';
-import { INITIAL_STATE_METHODS } from '../constants';
 import { useDynamicCallback } from '../hooks';
-import { methodsReducer } from '../reducers';
-import type { ActionMethodReducer, FormContextInterface } from '../@types';
+import type { FormContextInterface } from '../@types';
 
 /**
  * Export the hook here so we avoid circular dependency
@@ -36,19 +34,12 @@ export const useForm = (): FormContextInterface => {
  * [customization](customization.md) page for usage details.
  */
 export const FormContext = React.createContext<FormContextInterface>({
-  ach: 'loading',
-  applePay: 'loading',
-  card: 'loading',
-  cashApp: 'loading',
-  googlePay: 'loading',
-  giftCard: 'loading',
   cardTokenizeResponseReceived: (null as unknown) as (
-    props: TokenResult
+    token: TokenResult,
+    verifiedBuyer?: VerifyBuyerResponseDetails | null
   ) => void,
   createPaymentRequest: (null as unknown) as PaymentRequestOptions,
-  dispatchMethods: (null as unknown) as React.Dispatch<ActionMethodReducer>,
   formId: '',
-  methods: INITIAL_STATE_METHODS,
   payments: (null as unknown) as Payments,
 });
 
@@ -57,7 +48,7 @@ interface ProviderProps {
   locationId: string;
   createPaymentRequest?: () => PaymentRequestOptions;
   cardTokenizeResponseReceived: (
-    props: TokenResult,
+    token: TokenResult,
     verifiedBuyer?: VerifyBuyerResponseDetails | null
   ) => void;
   createVerificationDetails?: () =>
@@ -72,10 +63,6 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
   const [createPaymentRequest] = React.useState<
     undefined | PaymentRequestOptions
   >(() => props.createPaymentRequest?.());
-  const [methods, dispatch] = React.useReducer(
-    methodsReducer,
-    INITIAL_STATE_METHODS
-  );
 
   const cardTokenizeResponseReceived = async (
     rest: TokenResult
@@ -91,6 +78,7 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
     );
 
     props.cardTokenizeResponseReceived(rest, verifyBuyerResults);
+    return;
   };
 
   // Fixes stale closure issue with using React Hooks & SqPaymentForm callback functions
@@ -124,15 +112,12 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
   }
 
   const context = {
-    ...methods,
-    // @ts-ignore: Always true error
-    cardTokenizeResponseReceived: props.cardTokenizeResponseReceived
-      ? cardTokenizeResponseReceivedCallback
-      : null,
+    cardTokenizeResponseReceived:
+      // @ts-ignore: Always true error
+      props.cardTokenizeResponseReceived &&
+      cardTokenizeResponseReceivedCallback,
     createPaymentRequest,
-    dispatchMethods: dispatch,
     formId: '',
-    methods,
     payments: pay,
   };
 
