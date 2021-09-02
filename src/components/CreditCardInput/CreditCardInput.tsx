@@ -225,7 +225,11 @@ export const CreditCardInput = ({
 
   return (
     <>
-      <div id={cardContainerId} style={{ minHeight: 89 }}>
+      <div
+        data-testid="rswps-card-container"
+        id={cardContainerId}
+        style={{ minHeight: 89 }}
+      >
         {!card && <LoadingCard />}
       </div>
 

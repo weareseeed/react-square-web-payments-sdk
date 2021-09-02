@@ -63,7 +63,9 @@ export const SquarePaymentsForm = ({
       createVerificationDetails={props.createVerificationDetails}
       locationId={locationId}
     >
-      <div id={formId}>{props.children}</div>
+      <div data-testid="rswps-form" id={formId}>
+        {props.children}
+      </div>
     </FormProvider>
   );
 };

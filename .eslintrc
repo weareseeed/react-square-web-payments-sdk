@@ -1,11 +1,28 @@
 {
-  "plugins": ["prettier"],
+  "plugins": ["react-hooks", "jest-dom", "testing-library", "prettier"],
   "extends": ["react-app", "prettier"],
   "settings": {
     "react": {
       "version": "detect"
     }
   },
+  "overrides": [
+    {
+      "env": {
+        "node": true,
+        "commonjs": true,
+        "browser": true,
+        "jest": true
+      },
+      // 3) Now we enable eslint-plugin-testing-library rules or preset only for matching files!
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ],
+
   "rules": {
     "react/display-name": 0,
     "react/jsx-sort-props": 2,
