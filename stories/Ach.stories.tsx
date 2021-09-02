@@ -4,7 +4,7 @@ import { Meta, Story } from '@storybook/react';
 
 // Internals
 import { AchPay, SquarePaymentsForm } from '../src';
-import { verificationDetails } from '../src/utils/storybook';
+import { verificationDetails } from './utils';
 import type { AchPayProps } from '../src';
 
 export const Default: Story<AchPayProps> = ({ ...args }) => (

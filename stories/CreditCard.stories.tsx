@@ -8,7 +8,7 @@ import {
   CreditCardInputProps,
   SquarePaymentsForm,
 } from '../src';
-import { verificationDetails } from '../src/utils/storybook';
+import { verificationDetails } from './utils';
 
 export default {
   title: 'Credit Card',

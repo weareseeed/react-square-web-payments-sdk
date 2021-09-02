@@ -11,7 +11,7 @@ import type {
 } from '@square/web-sdk';
 
 // Internals
-import { ErrorScreen } from '..';
+import { ErrorScreen } from '../components/ErrorScreen';
 import { useDynamicCallback } from '../hooks';
 import type { FormContextInterface } from '../types';
 

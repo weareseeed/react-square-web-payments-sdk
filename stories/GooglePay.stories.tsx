@@ -4,10 +4,7 @@ import { Meta, Story } from '@storybook/react';
 
 // Internals
 import { GooglePay, SquarePaymentsForm } from '../src';
-import {
-  createPaymentRequestFunction,
-  verificationDetails,
-} from '../src/utils/storybook';
+import { createPaymentRequestFunction, verificationDetails } from './utils';
 import type { GooglePayProps } from '../src';
 
 export const Default: Story<GooglePayProps> = (args) => (

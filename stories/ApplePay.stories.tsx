@@ -4,10 +4,7 @@ import { Meta, Story } from '@storybook/react';
 
 // Internals
 import { ApplePay, SquarePaymentsForm } from '../src';
-import {
-  createPaymentRequestFunction,
-  verificationDetails,
-} from '../src/utils/storybook';
+import { createPaymentRequestFunction, verificationDetails } from './utils';
 
 export const Default: Story = () => (
   <SquarePaymentsForm
