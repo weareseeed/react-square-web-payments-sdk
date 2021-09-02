@@ -54,7 +54,7 @@ export interface AchPayProps extends AchTokenOptions {
 }
 
 /**
- * Renders a Credit Card Input to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
+ * Renders a ACH button to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
  *
  * **_But with the option to override styles_**
  *
@@ -72,6 +72,7 @@ export const AchPay = ({
   ...props
 }: AchPayProps): JSX.Element | null => {
   const [achPay, setAchPay] = React.useState<ACH | undefined>(() => undefined);
+  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { cardTokenizeResponseReceived, payments } = useForm();
 
   /**
@@ -81,13 +82,19 @@ export const AchPay = ({
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async () => {
+    setIsSubmitting(true);
+
     try {
       const result = await achPay?.tokenize(props);
 
       if (result) {
+        setIsSubmitting(false);
+
         return cardTokenizeResponseReceived(result);
       }
     } catch (ex) {
+      setIsSubmitting(false);
+
       console.error(ex);
     }
   };
@@ -115,7 +122,13 @@ export const AchPay = ({
   }
 
   return (
-    <PayButton css={overrideStyles} id="pay-with-ach" type="button">
+    <PayButton
+      aria-disabled={!achPay || isSubmitting}
+      css={overrideStyles}
+      disabled={!achPay || isSubmitting}
+      id="pay-with-ach"
+      type="button"
+    >
       <SvgIcon
         css={overrideSvgStyles}
         fill="none"
@@ -150,7 +163,7 @@ export const AchPay = ({
           </linearGradient>
         </defs>
       </SvgIcon>
-      Pay with Direct debit (ACH)
+      <span>Pay with Direct debit (ACH)</span>
     </PayButton>
   );
 };

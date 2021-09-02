@@ -15,6 +15,8 @@ const defaultProps: GooglePayButtonOptions = {
   buttonType: 'long',
 };
 
+export interface GooglePayProps extends GooglePayButtonOptions {}
+
 /**
  * Renders a Google Pay button to use in the Square Web Payment SDK, pre-styled to meet Google's branding guidelines.
  *
@@ -28,9 +30,7 @@ const defaultProps: GooglePayButtonOptions = {
  * </SquareForm>
  * ```
  */
-export const GooglePay = (
-  props: GooglePayButtonOptions
-): JSX.Element | null => {
+export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
   const [googlePay, setGooglePay] = React.useState<
     GooglePayInterface | undefined
   >(() => undefined);

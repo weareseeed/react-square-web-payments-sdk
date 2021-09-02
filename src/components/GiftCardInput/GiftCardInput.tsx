@@ -1,6 +1,6 @@
 // Dependencies
-import { document } from 'browser-monads-ts';
 import * as React from 'react';
+import { document } from 'browser-monads-ts';
 import useEvent from 'react-use/lib/useEvent';
 import type { GiftCard, GiftCardOptions } from '@square/web-sdk';
 import type { CSS } from '@stitches/react';
@@ -33,6 +33,7 @@ export const GiftCardInput = ({
   const [giftCard, setGiftCard] = React.useState<GiftCard | undefined>(
     () => undefined
   );
+  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { cardTokenizeResponseReceived, payments } = useForm();
 
   /**
@@ -42,13 +43,19 @@ export const GiftCardInput = ({
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async () => {
+    setIsSubmitting(true);
+
     try {
       const result = await giftCard?.tokenize();
 
       if (result) {
+        setIsSubmitting(false);
+
         return cardTokenizeResponseReceived(result);
       }
     } catch (ex) {
+      setIsSubmitting(false);
+
       console.error(ex);
     }
   };
@@ -84,7 +91,13 @@ export const GiftCardInput = ({
         {!giftCard && <LoadingCard />}
       </div>
 
-      <PayButton css={overrideStyles} id="pay-with-gift-card" type="button">
+      <PayButton
+        aria-disabled={!giftCard || isSubmitting}
+        css={overrideStyles}
+        disabled={!giftCard || isSubmitting}
+        id="pay-with-gift-card"
+        type="button"
+      >
         Pay with Gift Card
       </PayButton>
     </>

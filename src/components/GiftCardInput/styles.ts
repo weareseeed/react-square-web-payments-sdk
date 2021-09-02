@@ -20,17 +20,25 @@ export const LoadingCard = styled('div', {
 });
 
 export const PayButton = styled('button', {
-  background: 'rgba(0, 0, 0, 1)',
-  borderRadius: 6,
-  border: 'none',
-  color: 'white',
+  backgroundColor: '#006aff',
+  borderRadius: 5,
+  boxShadow: 1,
+  color: '#fff',
   cursor: 'pointer',
-  display: 'block',
+  borderStyle: 'none',
   fontSize: 16,
-  lineHeight: `18px`,
-  padding: 16,
+  fontWeight: 500,
+  lineHeight: '24px',
+  outline: 'none',
+  padding: 12,
+  userSelect: 'none',
   width: '100%',
-  '&:hover': {
-    background: 'rgba(0, 0, 0, 0.85)',
+  '&:active': {
+    backgroundColor: 'rgb(0, 85, 204)',
+  },
+  '&:disabled': {
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    color: 'rgba(0, 0, 0, 0.3)',
+    cursor: 'not-allowed',
   },
 });
