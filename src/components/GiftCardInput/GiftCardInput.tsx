@@ -26,6 +26,18 @@ export interface GiftCardInputProps extends GiftCardOptions {
   overrideStyles?: CSS | undefined;
 }
 
+/**
+ * Renders a Gift Card Input to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
+ *
+ * **_But with the option to override styles_**
+ *
+ * @example
+ * ```tsx
+ * <SquareForm {...props}>
+ *  <GiftCardInput />
+ * </SquareForm>
+ * ```
+ */
 export const GiftCardInput = ({
   overrideStyles,
   ...props
