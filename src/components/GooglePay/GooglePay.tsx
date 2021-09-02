@@ -73,12 +73,15 @@ export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
      * Initialize the Google Pay instance to be used in the component
      */
     const start = async () => {
-      const paymentRequest = payments.paymentRequest(createPaymentRequest);
-      const googlePay = await payments.googlePay(paymentRequest).then((res) => {
-        setGooglePay(res);
+      const paymentRequest = payments?.paymentRequest(createPaymentRequest);
+      const googlePay = await payments
+        // @ts-ignore - PaymentRequest is defined in the types
+        ?.googlePay(paymentRequest)
+        .then((res) => {
+          setGooglePay(res);
 
-        return res;
-      });
+          return res;
+        });
 
       const options = { ...defaultProps, ...googlePayProps };
       await googlePay?.attach('#google-pay-button', options);

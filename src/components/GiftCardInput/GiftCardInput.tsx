@@ -79,7 +79,7 @@ export const GiftCardInput = ({
      * Initialize the Gift Card instance to be used in the component
      */
     const start = async () => {
-      const gCard = await payments.giftCard(giftCardProps).then((res) => {
+      const gCard = await payments?.giftCard(giftCardProps).then((res) => {
         setGiftCard(res);
 
         return res;

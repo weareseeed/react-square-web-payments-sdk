@@ -101,7 +101,7 @@ export const AchPay = ({
 
   React.useEffect(() => {
     const start = async () => {
-      await payments.ach().then((res) => {
+      await payments?.ach().then((res) => {
         setAchPay(res);
 
         return res;

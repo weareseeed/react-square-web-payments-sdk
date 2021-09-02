@@ -61,9 +61,10 @@ export const ApplePay = (): JSX.Element | null => {
      * Initialize the Apple Pay instance to be used in the component
      */
     const start = async () => {
-      const paymentRequest = payments.paymentRequest(createPaymentRequest);
+      const paymentRequest = payments?.paymentRequest(createPaymentRequest);
 
       try {
+        // @ts-ignore - PaymentRequest is defined in the types
         await payments?.applePay(paymentRequest).then((res) => {
           setApplePay(res);
 
