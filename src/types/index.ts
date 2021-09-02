@@ -33,5 +33,5 @@ export type FormContextInterface = {
    * @example
    * const payments = Square.payments(appId, locationId);
    */
-  payments: Payments;
+  payments: Payments | null;
 };

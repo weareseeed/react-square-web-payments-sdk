@@ -1,8 +1,10 @@
 // Dependencies
 import * as React from 'react';
+import { payments } from '@square/web-sdk';
 import type {
   ChargeVerifyBuyerDetails,
   PaymentRequestOptions,
+  Payments,
   StoreVerifyBuyerDetails,
   TokenResult,
   VerifyBuyerResponseDetails,
@@ -10,6 +12,7 @@ import type {
 
 // Internals
 import FormProvider from '../contexts';
+import { ErrorScreen } from '..';
 
 export interface SquarePaymentsFormProps {
   /**
@@ -54,14 +57,41 @@ export const SquarePaymentsForm = ({
   locationId,
   formId = 'web-payment-sdk-form',
   ...props
-}: SquarePaymentsFormProps): JSX.Element => {
+}: SquarePaymentsFormProps): JSX.Element | null => {
+  const [paymentsSdk, setPaymentsSdk] = React.useState<Payments>();
+
+  React.useEffect(() => {
+    async function loadPayment(): Promise<void> {
+      await payments(applicationId, locationId).then((res) => {
+        if (res === null) {
+          throw new Error('Square Web Payments SDK failed to load');
+        }
+
+        setPaymentsSdk(res);
+
+        return res;
+      });
+    }
+
+    if (applicationId && locationId) {
+      loadPayment();
+    }
+  }, [applicationId, locationId]);
+
+  if (!applicationId || !locationId) {
+    return <ErrorScreen />;
+  }
+
+  if (!paymentsSdk) {
+    return null;
+  }
+
   return (
     <FormProvider
-      applicationId={applicationId}
       cardTokenizeResponseReceived={props.cardTokenizeResponseReceived}
       createPaymentRequest={props.createPaymentRequest}
       createVerificationDetails={props.createVerificationDetails}
-      locationId={locationId}
+      payments={paymentsSdk}
     >
       <div data-testid="rswps-form" id={formId}>
         {props.children}

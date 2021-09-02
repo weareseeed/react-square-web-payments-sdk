@@ -1,6 +1,5 @@
 // Dependencies
 import * as React from 'react';
-import { payments } from '@square/web-sdk';
 import type {
   ChargeVerifyBuyerDetails,
   Payments,
@@ -11,7 +10,6 @@ import type {
 } from '@square/web-sdk';
 
 // Internals
-import { ErrorScreen } from '../components/ErrorScreen';
 import { useDynamicCallback } from '../hooks';
 import type { FormContextInterface } from '../types';
 
@@ -44,9 +42,7 @@ export const FormContext = React.createContext<FormContextInterface>({
   payments: (null as unknown) as Payments,
 });
 
-interface ProviderProps {
-  applicationId: string;
-  locationId: string;
+export interface ProviderProps {
   createPaymentRequest?: () => PaymentRequestOptions;
   cardTokenizeResponseReceived: (
     token: TokenResult,
@@ -55,12 +51,14 @@ interface ProviderProps {
   createVerificationDetails?: () =>
     | ChargeVerifyBuyerDetails
     | StoreVerifyBuyerDetails;
+  payments: Payments | null;
 }
 
-const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
-  const [applicationId] = React.useState(() => props.applicationId);
-  const [locationId] = React.useState(() => props.locationId);
-  const [pay, setPay] = React.useState<Payments>();
+const FormProvider: React.FC<ProviderProps> = ({
+  children,
+  payments,
+  ...props
+}) => {
   const [createPaymentRequest] = React.useState<
     undefined | PaymentRequestOptions
   >(() => props.createPaymentRequest?.());
@@ -73,7 +71,7 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
       return;
     }
 
-    const verifyBuyerResults = await pay?.verifyBuyer(
+    const verifyBuyerResults = await payments?.verifyBuyer(
       String(rest.token),
       props.createVerificationDetails()
     );
@@ -88,31 +86,7 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
     cardTokenizeResponseReceived
   );
 
-  React.useEffect(() => {
-    async function loadPayment(): Promise<void> {
-      await payments(applicationId, locationId).then((res) => {
-        if (res === null) {
-          throw new Error('Square Web Payments SDK failed to load');
-        }
-
-        setPay(res);
-
-        return res;
-      });
-    }
-
-    if (applicationId && locationId) {
-      loadPayment();
-    }
-  }, [applicationId, locationId]);
-
-  if (!applicationId || !locationId) {
-    return <ErrorScreen />;
-  }
-
-  if (!pay) {
-    return null;
-  }
+  if (!payments) return null;
 
   const context = {
     cardTokenizeResponseReceived:
@@ -121,7 +95,7 @@ const FormProvider: React.FC<ProviderProps> = ({ children, ...props }) => {
       cardTokenizeResponseReceivedCallback,
     createPaymentRequest,
     formId: '',
-    payments: pay,
+    payments,
   };
 
   return (
