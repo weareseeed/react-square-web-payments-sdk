@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-canary.3](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.2...v2.0.0-canary.3) (2021-09-02)
+
+
+### Features
+
+* add resize prop to credit card ([#14](https://github.com/weareseeed/react-square-web-payments-sdk/issues/14)) ([b514e4b](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b514e4bdab8a09b61b78f6c5ba727338482cd227))
+* disabled credit card button on submit ([#3](https://github.com/weareseeed/react-square-web-payments-sdk/issues/3)) ([22b05f7](https://github.com/weareseeed/react-square-web-payments-sdk/commit/22b05f7075f3acef3b1203813bf779479cbd841a))
+* **docs:** naming components and square styleguides ([2524dac](https://github.com/weareseeed/react-square-web-payments-sdk/commit/2524daccb1ec8b25041a37024e1b998c4bbfd969))
+* **docs:** putting correct comment inside Gift Card ([f4abd66](https://github.com/weareseeed/react-square-web-payments-sdk/commit/f4abd66cde1f574c7a82377fe564f80c98812a41))
+* reducing bundle size of app ([ad4316e](https://github.com/weareseeed/react-square-web-payments-sdk/commit/ad4316e330766bfd9405538dd09093a316811b59))
+* removing initialize methods supported [#11](https://github.com/weareseeed/react-square-web-payments-sdk/issues/11) ([7b18bee](https://github.com/weareseeed/react-square-web-payments-sdk/commit/7b18bee2302dfa5fa1ed5a8c86d440479ca0d1c7))
+* removing unused code for wrapper ([0384743](https://github.com/weareseeed/react-square-web-payments-sdk/commit/03847436b193dfe8d9fa6a96327adf3677307475))
+* using stitches instead of emotion ([c7f25cf](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c7f25cff4164b7a6b03c9048d0408453dbff1c15))
+
+
+### Bug Fixes
+
+* **docs:** some warnings from storybook ([303f8c8](https://github.com/weareseeed/react-square-web-payments-sdk/commit/303f8c8759fc86abc85abecbac33aa3db17762fa))
+* sending verification details for SCA ([#15](https://github.com/weareseeed/react-square-web-payments-sdk/issues/15)) ([9f82760](https://github.com/weareseeed/react-square-web-payments-sdk/commit/9f827609c5c9b8f6541ef7bfd66e25f487ae0fce))
+* sync commits for add event listener [#14](https://github.com/weareseeed/react-square-web-payments-sdk/issues/14) ([eb213d4](https://github.com/weareseeed/react-square-web-payments-sdk/commit/eb213d4012aca8eceb8a1188b505ac322dce9ba4))
+
 ## [2.0.0-canary.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.1...v2.0.0-canary.2) (2021-09-01)
 
 
