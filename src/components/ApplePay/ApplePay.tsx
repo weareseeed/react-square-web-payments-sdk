@@ -71,10 +71,10 @@ export const ApplePay = (): JSX.Element | null => {
 
           return res;
         });
-      } catch (error: any) {
+      } catch (error) {
         console.error(error);
 
-        throw new Error(error);
+        throw new Error(error as any);
       }
     };
 
