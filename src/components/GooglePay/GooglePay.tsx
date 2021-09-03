@@ -1,6 +1,7 @@
 // Dependencies
 import * as React from 'react';
-import useEvent from 'react-use/lib/useEvent';
+import { useEventListener } from '@react-hookz/web/esm/useEventListener/useEventListener';
+import { document } from 'browser-monads-ts';
 import type {
   GooglePay as GooglePayInterface,
   GooglePayButtonOptions,
@@ -90,10 +91,10 @@ export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
     start();
   }, [createPaymentRequest, payments, googlePayProps]);
 
-  useEvent(
+  useEventListener(
+    document.getElementById('google-pay-button'),
     'click',
-    handlePayment,
-    document.getElementById('google-pay-button')
+    handlePayment
   );
 
   return <div id="google-pay-button" style={{ height: 40 }}></div>;

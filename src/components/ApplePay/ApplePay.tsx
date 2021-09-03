@@ -1,6 +1,7 @@
 // Dependencies
 import * as React from 'react';
-import useEvent from 'react-use/lib/useEvent';
+import { useEventListener } from '@react-hookz/web/esm/useEventListener/useEventListener';
+import { document } from 'browser-monads-ts';
 import type { ApplePay as ApplePayInterface } from '@square/web-sdk';
 
 // Internals
@@ -70,19 +71,21 @@ export const ApplePay = (): JSX.Element | null => {
 
           return res;
         });
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
+
+        throw new Error(error);
       }
     };
 
     start();
   }, [createPaymentRequest, payments]);
 
-  useEvent('click', handlePayment, document.getElementById('apple-pay-button'));
-
-  if (!applePay) {
-    return null;
-  }
+  useEventListener(
+    document.getElementById('apple-pay-button'),
+    'click',
+    handlePayment
+  );
 
   return <ApplePayContainer id="apple-pay-button"></ApplePayContainer>;
 };

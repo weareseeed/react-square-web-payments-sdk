@@ -1,7 +1,7 @@
 // Dependencies
 import * as React from 'react';
+import { useEventListener } from '@react-hookz/web/esm/useEventListener/useEventListener';
 import { document } from 'browser-monads-ts';
-import useEvent from 'react-use/lib/useEvent';
 import type { GiftCard, GiftCardOptions } from '@square/web-sdk';
 import type { CSS } from '@stitches/react';
 
@@ -91,10 +91,10 @@ export const GiftCardInput = ({
     start();
   }, [payments, giftCardProps]);
 
-  useEvent(
+  useEventListener(
+    document.getElementById('pay-with-gift-card'),
     'click',
-    handlePayment,
-    document.getElementById('pay-with-gift-card')
+    handlePayment
   );
 
   return (

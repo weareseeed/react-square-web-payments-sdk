@@ -1,7 +1,7 @@
 // Dependencies
 import * as React from 'react';
+import { useEventListener } from '@react-hookz/web/esm/useEventListener/useEventListener';
 import { document } from 'browser-monads-ts';
-import useEvent from 'react-use/lib/useEvent';
 import type {
   Card,
   CardFieldNamesValues,
@@ -193,7 +193,11 @@ export const CreditCardInput = ({
     }
   }, [focus, payments, cardProps, card, cardContainerId]);
 
-  useEvent('click', handlePayment, document.getElementById(submitButtonId));
+  useEventListener(
+    document.getElementById(submitButtonId),
+    'click',
+    handlePayment
+  );
 
   if (cardBrandChanged) {
     card?.addEventListener('cardBrandChanged', cardBrandChanged);
