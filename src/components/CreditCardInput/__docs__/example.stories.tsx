@@ -2,9 +2,8 @@
 import * as React from 'react';
 
 // Internals
-import { CreditCardInput } from '../CreditCardInput';
-import SquarePaymentsForm from '../../SquarePaymentsForm';
-import type { CreditCardInputProps } from '../CreditCardInput';
+import { CreditCardInput, SquarePaymentsForm } from '@/components';
+import type { CreditCardInputProps } from '@/components';
 
 export const Example: React.FC<CreditCardInputProps> = ({ ...props }) => {
   return (

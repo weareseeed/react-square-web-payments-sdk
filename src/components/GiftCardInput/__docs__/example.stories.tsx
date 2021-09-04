@@ -2,9 +2,8 @@
 import * as React from 'react';
 
 // Internals
-import { GiftCardInput } from '../GiftCardInput';
-import SquarePaymentsForm from '../../SquarePaymentsForm';
-import type { GiftCardInputProps } from '../GiftCardInput';
+import { GiftCardInput, SquarePaymentsForm } from '@/components';
+import type { GiftCardInputProps } from '@/components';
 
 export const Example: React.FC<GiftCardInputProps> = ({ ...props }) => {
   return (

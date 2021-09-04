@@ -1,12 +1,12 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from '@react-hookz/web/esm/useEventListener/useEventListener';
 import { document } from 'browser-monads-ts';
 import type { ACH, AchTokenOptions } from '@square/web-sdk';
 import type { CSS } from '@stitches/react';
 
 // Internals
-import { useForm } from '../../contexts';
+import { useForm } from '@/contexts';
+import { useEventListener } from '@/hooks';
 import { PayButton, SvgIcon } from './styles';
 
 export interface AchPayProps extends AchTokenOptions {
@@ -111,11 +111,14 @@ export const AchPay = ({
     start();
   }, [payments]);
 
-  useEventListener(
-    document.getElementById('pay-with-ach'),
-    'click',
-    handlePayment
-  );
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: document.getElementById('pay-with-ach'),
+    options: {
+      passive: true,
+    },
+  });
 
   if (children) {
     return (

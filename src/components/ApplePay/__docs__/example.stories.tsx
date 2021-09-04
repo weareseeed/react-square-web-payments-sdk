@@ -2,8 +2,7 @@
 import * as React from 'react';
 
 // Internals
-import ApplePay from '../ApplePay';
-import SquarePaymentsForm from '../../SquarePaymentsForm';
+import { ApplePay, SquarePaymentsForm } from '@/components';
 
 export const Example = () => {
   return (

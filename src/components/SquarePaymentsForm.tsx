@@ -11,8 +11,8 @@ import type {
 } from '@square/web-sdk';
 
 // Internals
-import ErrorScreen from '../components/ErrorScreen/ErrorScreen';
-import FormProvider from '../contexts';
+import { ErrorScreen } from '@/components/ErrorScreen';
+import FormProvider from '@/contexts';
 
 export interface SquarePaymentsFormProps {
   /**

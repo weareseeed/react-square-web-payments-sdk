@@ -1,11 +1,11 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from '@react-hookz/web/esm/useEventListener/useEventListener';
 import { document } from 'browser-monads-ts';
 import type { ApplePay as ApplePayInterface } from '@square/web-sdk';
 
 // Internals
-import { useForm } from '../../contexts';
+import { useForm } from '@/contexts';
+import { useEventListener } from '@/hooks';
 import { ApplePayContainer } from './styles';
 
 /**
@@ -81,11 +81,14 @@ export const ApplePay = (): JSX.Element | null => {
     start();
   }, [createPaymentRequest, payments]);
 
-  useEventListener(
-    document.getElementById('apple-pay-button'),
-    'click',
-    handlePayment
-  );
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: document.getElementById('apple-pay-button'),
+    options: {
+      passive: true,
+    },
+  });
 
   return <ApplePayContainer id="apple-pay-button"></ApplePayContainer>;
 };

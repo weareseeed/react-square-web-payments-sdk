@@ -2,9 +2,8 @@
 import * as React from 'react';
 
 // Internals
-import AchPay from '../AchPay';
-import SquarePaymentsForm from '../../SquarePaymentsForm';
-import type { AchPayProps } from '../AchPay';
+import { AchPay, SquarePaymentsForm } from '@/components';
+import type { AchPayProps } from '@/components';
 
 export const Example: React.FC<AchPayProps> = ({
   accountHolderName = 'John Doe',

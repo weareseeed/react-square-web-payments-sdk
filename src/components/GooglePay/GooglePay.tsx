@@ -1,6 +1,5 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from '@react-hookz/web/esm/useEventListener/useEventListener';
 import { document } from 'browser-monads-ts';
 import type {
   GooglePay as GooglePayInterface,
@@ -8,7 +7,8 @@ import type {
 } from '@square/web-payments-sdk-types';
 
 // Internals
-import { useForm } from '../../contexts';
+import { useForm } from '@/contexts';
+import { useEventListener } from '@/hooks';
 
 const defaultProps: GooglePayButtonOptions = {
   buttonColor: 'black',
@@ -91,11 +91,14 @@ export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
     start();
   }, [createPaymentRequest, payments, googlePayProps]);
 
-  useEventListener(
-    document.getElementById('google-pay-button'),
-    'click',
-    handlePayment
-  );
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: document.getElementById('google-pay-button'),
+    options: {
+      passive: true,
+    },
+  });
 
   return <div id="google-pay-button" style={{ height: 40 }}></div>;
 };

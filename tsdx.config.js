@@ -1,3 +1,4 @@
+const alias = require('@rollup/plugin-alias');
 const replace = require('@rollup/plugin-replace');
 
 module.exports = {
@@ -12,6 +13,19 @@ module.exports = {
         : p
     );
 
-    return config; // always return a config.
+    // Replace "@/" with "src/" as the root directory
+    config.plugins.push({
+      plugins: [
+        alias({
+          entries: [{ find: /@\//, replacement: /src\// }],
+        }),
+      ],
+    });
+
+    // Do not treat absolute paths as external modules
+    return {
+      ...config,
+      external: (id) => !id.startsWith('@/') && config.external(id),
+    };
   },
 };

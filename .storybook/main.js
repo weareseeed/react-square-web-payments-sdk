@@ -1,3 +1,6 @@
+// Dependencies
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
+
 /**
  * @type {import('@storybook/react/types').StorybookConfig}
  */
@@ -17,5 +20,12 @@ module.exports = {
   },
   typescript: {
     check: true,
+  },
+  webpackFinal: async (config) => {
+    [].push.apply(config.resolve.plugins, [
+      new TsconfigPathsPlugin({ extensions: config.resolve.extensions }),
+    ]);
+
+    return config;
   },
 };

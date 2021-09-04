@@ -1,12 +1,12 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from '@react-hookz/web/esm/useEventListener/useEventListener';
 import { document } from 'browser-monads-ts';
 import type { GiftCard, GiftCardOptions } from '@square/web-sdk';
 import type { CSS } from '@stitches/react';
 
 // Internals
-import { useForm } from '../../contexts';
+import { useForm } from '@/contexts';
+import { useEventListener } from '@/hooks';
 import { LoadingCard, PayButton } from './styles';
 
 export interface GiftCardInputProps extends GiftCardOptions {
@@ -91,11 +91,14 @@ export const GiftCardInput = ({
     start();
   }, [payments, giftCardProps]);
 
-  useEventListener(
-    document.getElementById('pay-with-gift-card'),
-    'click',
-    handlePayment
-  );
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: document.getElementById('pay-with-gift-card'),
+    options: {
+      passive: true,
+    },
+  });
 
   return (
     <>

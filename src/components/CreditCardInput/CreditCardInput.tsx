@@ -1,6 +1,5 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from '@react-hookz/web/esm/useEventListener/useEventListener';
 import { document } from 'browser-monads-ts';
 import type {
   Card,
@@ -12,7 +11,8 @@ import type {
 import type { CSS } from '@stitches/react';
 
 // Internals
-import { useForm } from '../../contexts';
+import { useForm } from '@/contexts';
+import { useEventListener } from '@/hooks';
 import { LoadingCard, PayButton } from './styles';
 
 export interface CreditCardInputProps extends CardOptions {
@@ -193,11 +193,14 @@ export const CreditCardInput = ({
     }
   }, [focus, payments, cardProps, card, cardContainerId]);
 
-  useEventListener(
-    document.getElementById(submitButtonId),
-    'click',
-    handlePayment
-  );
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: document.getElementById(submitButtonId),
+    options: {
+      passive: true,
+    },
+  });
 
   if (cardBrandChanged) {
     card?.addEventListener('cardBrandChanged', cardBrandChanged);

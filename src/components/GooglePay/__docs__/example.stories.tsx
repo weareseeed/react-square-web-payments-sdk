@@ -2,9 +2,8 @@
 import * as React from 'react';
 
 // Internals
-import GooglePay from '../GooglePay';
-import SquarePaymentsForm from '../../SquarePaymentsForm';
-import type { GooglePayProps } from '../GooglePay';
+import { GooglePay, SquarePaymentsForm } from '@/components';
+import type { GooglePayProps } from '@/components';
 
 export const Example: React.FC<GooglePayProps> = (props) => {
   return (
