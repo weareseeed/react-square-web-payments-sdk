@@ -91,7 +91,7 @@ export interface CreditCardInputProps extends CardOptions {
    *
    * @throws {PaymentMethodNotAttachedError} `Card` is has not been attached to a DOM element
    */
-  recalculateSize?: Card['recalculateSize'];
+  recalculateSize?(callback: Card['recalculateSize'] | undefined): void;
   /**
    * Callback function that is called when the user pressed the "Escape" key while editing a field.
    */
@@ -221,7 +221,7 @@ export const CreditCardInput = ({
     card?.addEventListener('postalCodeChanged', postalCodeChanged);
   }
   if (recalculateSize) {
-    card?.recalculateSize();
+    recalculateSize(card?.recalculateSize);
   }
   if (submit) {
     card?.addEventListener('submit', submit);

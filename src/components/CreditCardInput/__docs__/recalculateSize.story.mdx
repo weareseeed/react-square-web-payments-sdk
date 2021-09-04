@@ -1,0 +1,61 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Example } from './example.stories';
+import {
+  Container,
+  Svg,
+  SvgContainer,
+  TextContainer,
+  Title,
+  Text,
+} from '../../ErrorScreen/styles';
+
+<Meta
+  args={{
+    focus: 'cardNumber',
+  }}
+  argTypes={{
+    focus: {
+      table: {
+        defaultValue: {
+          summary: 'cardNumber',
+        },
+      },
+    },
+  }}
+  component={Example}
+  title="Card Payments/recalculateSize()"
+/>
+
+# recalculateSize()
+
+Recalculates the size of the card form.
+
+The Card component normally automatically resizes based on the size of the buyer's browser,
+however if the Card component is contained with an element that has a computed style property
+of "display: none", then the Card component will no longer have a defined width and therefore
+will not properly resize between mobile and desktop configurations. Upon being displayed again,
+the Card component will not automatically update its size to match the browser `window`.
+
+This method `recalculateSize()` can be used to handle this edge case by forcing the Card
+component to recalculate its size and display appropriately for mobile or desktop.
+
+<Canvas>
+  <Story name="BasicExample" story={Example} />
+</Canvas>
+
+```tsx
+// Props is just and example of how to pass in props, you will need to pass in your own props
+<SquarePaymentsForm {...props}>
+  <CreditCardInput
+    recalculateSize={(callResize) => {
+      // We can call the `callResize` function to force the Card component to recalculate its size
+      callResize();
+
+      // Also we can called conditionally
+      if (window.innerWidth > 768) {
+        callResize();
+      }
+    }}
+  />
+</SquarePaymentsForm>
+```

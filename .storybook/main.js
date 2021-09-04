@@ -1,12 +1,21 @@
+/**
+ * @type {import('@storybook/react/types').StorybookConfig}
+ */
 module.exports = {
-  stories: ['../stories/**/*.stories.@(ts|tsx|js|jsx)'],
+  stories: ['../src/**/__docs__/**/*.mdx', '../src/**/__docs__/**/*.tsx'],
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    'storybook-dark-mode',
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        backgrounds: false,
+      },
+    },
   ],
-  // https://storybook.js.org/docs/react/configure/typescript#mainjs-configuration
+  reactOptions: {
+    fastRefresh: true,
+  },
   typescript: {
-    check: true, // type-check stories during Storybook build
+    check: true,
   },
 };

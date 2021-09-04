@@ -1,12 +1,60 @@
-body {
-  background: #ffffff;
+@font-face {
+  font-family: 'Square Market';
+  font-display: block;
+  src: url('https://d1g145x70srn7h.cloudfront.net/fonts/sqmarket/sqmarket-regular.woff2')
+    format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Square Market';
+  font-display: block;
+  src: url('https://d1g145x70srn7h.cloudfront.net/fonts/sqmarket/sqmarket-medium.woff2')
+    format('woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Square Market';
+  font-display: block;
+  src: url('https://d1g145x70srn7h.cloudfront.net/fonts/sqmarket/sqmarket-bold.woff2')
+    format('woff2');
+  font-weight: 700;
 }
 
-.sbdocs-wrapper > .sbdocs-content {
-  max-width: 1920px;
+body * {
+  font-family: 'Square Market', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji' !important;
 }
 
-.sb-show-main.sb-main-centered #root {
+body .prismjs * {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+}
+
+body .prismjs * span {
+  font-family: 'Operator Mono', 'Fira Code Retina', 'Fira Code',
+    'FiraCode-Retina', 'Andale Mono', 'Lucida Console', Consolas, Monaco,
+    monospace !important;
+}
+
+body .prismjs pre * {
+  font-family: 'Operator Mono', 'Fira Code Retina', 'Fira Code',
+    'FiraCode-Retina', 'Andale Mono', 'Lucida Console', Consolas, Monaco,
+    monospace !important;
+}
+
+.innerZoomElementWrapper {
+  margin: 0 auto;
   max-width: 640px;
   width: 100%;
+}
+
+a {
+  color: #006be6 !important;
+}
+
+a:hover {
+  text-decoration: underline;
 }

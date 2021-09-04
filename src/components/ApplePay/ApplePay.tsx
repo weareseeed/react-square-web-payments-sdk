@@ -74,7 +74,7 @@ export const ApplePay = (): JSX.Element | null => {
       } catch (error) {
         console.error(error);
 
-        throw new Error(error as any);
+        new Error(error as any);
       }
     };
 
