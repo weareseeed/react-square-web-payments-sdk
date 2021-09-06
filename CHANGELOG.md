@@ -2,19 +2,109 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.5.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.1...v1.5.2) (2021-08-12)
+## [2.0.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.6...v2.0.0) (2021-09-06)
 
-
-### Bug Fixes
-
-* **workflows:** workflows for main branch ([5bb884a](https://github.com/weareseeed/react-square-web-payments-sdk/commit/5bb884aac14577925808171b84fa5083fddfc4d3))
-
-### [1.5.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0...v1.5.1) (2021-06-18)
+## [2.0.0-canary.6](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.5...v2.0.0-canary.6) (2021-09-06)
 
 
 ### Features
 
-* **docs:** updating changelog ([b2ce0bd](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b2ce0bdf9b56eb25651fa6494c3cebbc5d62b7be))
+* **docs:** adding migration guide ([550c4e2](https://github.com/weareseeed/react-square-web-payments-sdk/commit/550c4e26f147d44ce64778dc88b7b3ce37df91ae))
+* **docs:** new build for docs site ([f3b7a9f](https://github.com/weareseeed/react-square-web-payments-sdk/commit/f3b7a9f85b11a3f7704db3b7c891b0cfd38a4a39))
+
+## [2.0.0-canary.5](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.4...v2.0.0-canary.5) (2021-09-04)
+
+
+### Features
+
+* path alias and only output dist ([fc6691d](https://github.com/weareseeed/react-square-web-payments-sdk/commit/fc6691d33f482bdacb4e06b2da3ecd9de615053c))
+
+## [2.0.0-canary.4](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.3...v2.0.0-canary.4) (2021-09-04)
+
+
+### Features
+
+* adding correct ignores for root ([71afdbf](https://github.com/weareseeed/react-square-web-payments-sdk/commit/71afdbfa963dabec10ec67ea4e1b908420014c25))
+* adding gitignore for example folder ([e1f1787](https://github.com/weareseeed/react-square-web-payments-sdk/commit/e1f1787c85e8b247a8dae96e4a9333b028ff9a36))
+* building the newer build of docs ([df4ada9](https://github.com/weareseeed/react-square-web-payments-sdk/commit/df4ada9fc00f8a15cc100c6b4539c1d9a2c34bfb))
+* **docs:** compiling the files for docs ([484aca2](https://github.com/weareseeed/react-square-web-payments-sdk/commit/484aca216076566f415e52ba7bac761e9876351f))
+* **docs:** deleting worflow not needed for docs ([53f304c](https://github.com/weareseeed/react-square-web-payments-sdk/commit/53f304c8e2905801dc8e83a40590b6831875015a))
+* **docs:** generating the storybook builds ([c81bc6b](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c81bc6b7d3de2d59e7d15f73149e197d8d324a38))
+* **docs:** new docs using MDX ([6db4349](https://github.com/weareseeed/react-square-web-payments-sdk/commit/6db4349124ae4dc0a045486d79f0215ec2007480))
+* **docs:** serving well-known on github ([a7e1ace](https://github.com/weareseeed/react-square-web-payments-sdk/commit/a7e1ace49529c35487d68fd6d3c09a08a8eba0d9))
+* **docs:** uploading well-known on storybook ([34db21b](https://github.com/weareseeed/react-square-web-payments-sdk/commit/34db21b4b540240606663fcf49644b798dce943f))
+* init unit testing in components ([931f162](https://github.com/weareseeed/react-square-web-payments-sdk/commit/931f1622e8fa68ba6f72ef73a3175fab786ff82b))
+* **lint:** types for null on payment request ([fdcb480](https://github.com/weareseeed/react-square-web-payments-sdk/commit/fdcb480a17d98da6220a79ef161347b05915e56c))
+* new files for docs ([a0cc391](https://github.com/weareseeed/react-square-web-payments-sdk/commit/a0cc391d15006b626058a0c6cbe5987459fd291d))
+* **seo:** adding image width and height ([99800e3](https://github.com/weareseeed/react-square-web-payments-sdk/commit/99800e3d02238146161123e6d4ad62f47f9f0c78))
+* **test:** first integration test for form ([0552d26](https://github.com/weareseeed/react-square-web-payments-sdk/commit/0552d26db77177b7c1a47ca9e557ac0983850cce))
+
+
+### Bug Fixes
+
+* **ci:** passing correct name for actions ([d8c719a](https://github.com/weareseeed/react-square-web-payments-sdk/commit/d8c719a437fe10070bfdb7e0d2505e02dc9c79b1))
+* circular dependency on form ([07deaa8](https://github.com/weareseeed/react-square-web-payments-sdk/commit/07deaa8a91fa97ebbb115ee38789b82bc0ad4eeb))
+* **docs:** including images inside gh-pages ([dbd33f7](https://github.com/weareseeed/react-square-web-payments-sdk/commit/dbd33f7169c3ce5743e40b943b8e53e72f12b3dc))
+* don't upload utils folder to npm ([6caa6af](https://github.com/weareseeed/react-square-web-payments-sdk/commit/6caa6af05755cb8be8470c1a92b72093903a5596))
+* **lint:** put annotation inside error ([c704781](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c70478164f026066aa848f0d42e560053213fde9))
+* **pay:** render for apple pay and new hooks ([ebbc234](https://github.com/weareseeed/react-square-web-payments-sdk/commit/ebbc234b087f64ceb95bec47b8118402e517bb94))
+* removing static files for storybook ([7c7c305](https://github.com/weareseeed/react-square-web-payments-sdk/commit/7c7c30516015b55b63abe544ad95774d62705026))
+* removing unnecessary files for tests ([1af614c](https://github.com/weareseeed/react-square-web-payments-sdk/commit/1af614cb3d21e26a8f63903cc96999522d2db27a))
+
+## [2.0.0-canary.3](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.2...v2.0.0-canary.3) (2021-09-02)
+
+
+### Features
+
+* add resize prop to credit card ([#14](https://github.com/weareseeed/react-square-web-payments-sdk/issues/14)) ([b514e4b](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b514e4bdab8a09b61b78f6c5ba727338482cd227))
+* disabled credit card button on submit ([#3](https://github.com/weareseeed/react-square-web-payments-sdk/issues/3)) ([22b05f7](https://github.com/weareseeed/react-square-web-payments-sdk/commit/22b05f7075f3acef3b1203813bf779479cbd841a))
+* **docs:** naming components and square styleguides ([2524dac](https://github.com/weareseeed/react-square-web-payments-sdk/commit/2524daccb1ec8b25041a37024e1b998c4bbfd969))
+* **docs:** putting correct comment inside Gift Card ([f4abd66](https://github.com/weareseeed/react-square-web-payments-sdk/commit/f4abd66cde1f574c7a82377fe564f80c98812a41))
+* reducing bundle size of app ([ad4316e](https://github.com/weareseeed/react-square-web-payments-sdk/commit/ad4316e330766bfd9405538dd09093a316811b59))
+* removing initialize methods supported [#11](https://github.com/weareseeed/react-square-web-payments-sdk/issues/11) ([7b18bee](https://github.com/weareseeed/react-square-web-payments-sdk/commit/7b18bee2302dfa5fa1ed5a8c86d440479ca0d1c7))
+* removing unused code for wrapper ([0384743](https://github.com/weareseeed/react-square-web-payments-sdk/commit/03847436b193dfe8d9fa6a96327adf3677307475))
+* using stitches instead of emotion ([c7f25cf](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c7f25cff4164b7a6b03c9048d0408453dbff1c15))
+
+
+### Bug Fixes
+
+* **docs:** some warnings from storybook ([303f8c8](https://github.com/weareseeed/react-square-web-payments-sdk/commit/303f8c8759fc86abc85abecbac33aa3db17762fa))
+* sending verification details for SCA ([#15](https://github.com/weareseeed/react-square-web-payments-sdk/issues/15)) ([9f82760](https://github.com/weareseeed/react-square-web-payments-sdk/commit/9f827609c5c9b8f6541ef7bfd66e25f487ae0fce))
+* sync commits for add event listener [#14](https://github.com/weareseeed/react-square-web-payments-sdk/issues/14) ([eb213d4](https://github.com/weareseeed/react-square-web-payments-sdk/commit/eb213d4012aca8eceb8a1188b505ac322dce9ba4))
+
+## [2.0.0-canary.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.1...v2.0.0-canary.2) (2021-09-01)
+
+
+### Features
+
+* add event listeners to credit card ([e015e49](https://github.com/weareseeed/react-square-web-payments-sdk/commit/e015e49ff29c8c9791082ab8ff4340aebdad0706))
+* add event listeners to credit card [#14](https://github.com/weareseeed/react-square-web-payments-sdk/issues/14) ([a41cf9d](https://github.com/weareseeed/react-square-web-payments-sdk/commit/a41cf9d1fafc867ac4478017f0909d343d09ae71))
+* removing button suffix from digital wallets [#13](https://github.com/weareseeed/react-square-web-payments-sdk/issues/13) ([535e358](https://github.com/weareseeed/react-square-web-payments-sdk/commit/535e358cd3a9d2b553ed16f5ce0c8bfea07a1df7))
+
+
+### Bug Fixes
+
+* **docs:** correct description for changelog ([683b305](https://github.com/weareseeed/react-square-web-payments-sdk/commit/683b3057c9c4fbc6c0f3860268691191d00a1530))
+* **lint:** correct export for google pay [#13](https://github.com/weareseeed/react-square-web-payments-sdk/issues/13) ([96cbe5a](https://github.com/weareseeed/react-square-web-payments-sdk/commit/96cbe5a840eedf52e8c30706b55a517b02868894))
+
+## [2.0.0-canary.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.3-canary.0...v2.0.0-canary.1) (2021-09-01)
+
+### Features
+
+- remove methods support prop #11 [203b8cf](https://github.com/weareseeed/react-square-web-payments-sdk/commit/203b8cf444fa6d2521c1dcf84a892b68c49cca76)
+- **docs:** updating version of canary ([b9739ef](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b9739ef415e2acefceeb694eecf0ce8a265378be))
+
+### [1.5.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.1...v1.5.2) (2021-08-12)
+
+### Bug Fixes
+
+- **workflows:** workflows for main branch ([5bb884a](https://github.com/weareseeed/react-square-web-payments-sdk/commit/5bb884aac14577925808171b84fa5083fddfc4d3))
+
+### [1.5.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0...v1.5.1) (2021-06-18)
+
+### Features
+
+- **docs:** updating changelog ([b2ce0bd](https://github.com/weareseeed/react-square-web-payments-sdk/commit/b2ce0bdf9b56eb25651fa6494c3cebbc5d62b7be))
 
 ## [1.5.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v1.5.0-beta.5...v1.5.0) (2021-06-18)
 

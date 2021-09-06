@@ -1,7 +1,7 @@
-// Vendor Modules
-import styled, { CSSObject } from '@emotion/styled';
+// Dependencies
+import { styled } from '@stitches/react';
 
-const defaultLineStyles: CSSObject = {
+export const Line = styled('div', {
   background: 'rgba(0, 0, 0, 0.1)',
   color: 'rgba(0, 0, 0, 0.55)',
   fontSize: 12,
@@ -11,27 +11,13 @@ const defaultLineStyles: CSSObject = {
   position: 'relative',
   textTransform: 'uppercase',
   width: '100%',
-};
+});
 
-const defaultSpanTextStyles: CSSObject = {
+export const SpanText = styled('span', {
   background: '#FAFAFA',
   fontFamily: 'sans-serif, system-ui',
   left: 'calc(50% - 1em - 5px)',
   padding: '0 10px',
   position: 'absolute',
   top: -10,
-};
-
-export const Line = styled.div<{
-  overrideStyles?: CSSObject;
-}>(({ overrideStyles }) => ({
-  ...defaultLineStyles,
-  ...overrideStyles,
-}));
-
-export const SpanText = styled.span<{
-  overrideStyles?: CSSObject;
-}>(({ overrideStyles }) => ({
-  ...defaultSpanTextStyles,
-  ...overrideStyles,
-}));
+});

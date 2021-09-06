@@ -1,1 +1,2 @@
-export * from './RenderWithoutSupportPaymentMethod';
+export * from './getRefElement';
+export * from './isSSR';

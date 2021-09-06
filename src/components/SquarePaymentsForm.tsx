@@ -1,15 +1,18 @@
-// Vendor Modules
+// Dependencies
 import * as React from 'react';
+import { payments } from '@square/web-sdk';
 import type {
   ChargeVerifyBuyerDetails,
   PaymentRequestOptions,
+  Payments,
   StoreVerifyBuyerDetails,
   TokenResult,
+  VerifyBuyerResponseDetails,
 } from '@square/web-sdk';
 
 // Internals
-import { MethodsSupported } from '../@types';
-import FormProvider from '../contexts';
+import { ErrorScreen } from '@/components/ErrorScreen';
+import FormProvider from '@/contexts';
 
 export interface SquarePaymentsFormProps {
   /**
@@ -34,7 +37,10 @@ export interface SquarePaymentsFormProps {
    *
    * Invoked when payment form receives the result of a tokenize generation request. The result will be a valid credit card or wallet token, or an error.
    */
-  cardTokenizeResponseReceived: (props: TokenResult) => void;
+  cardTokenizeResponseReceived: (
+    props: TokenResult,
+    verifiedBuyer?: VerifyBuyerResponseDetails | null
+  ) => void;
   /** **Required for digital wallets**
    *
    * Invoked when a digital wallet payment button is clicked.
@@ -44,8 +50,6 @@ export interface SquarePaymentsFormProps {
   createVerificationDetails?: () =>
     | ChargeVerifyBuyerDetails
     | StoreVerifyBuyerDetails;
-  /** Triggered when the page renders to decide which, if any, digital wallet button should be rendered in the payment form. */
-  methodsSupported?: MethodsSupported;
 }
 
 export const SquarePaymentsForm = ({
@@ -53,17 +57,45 @@ export const SquarePaymentsForm = ({
   locationId,
   formId = 'web-payment-sdk-form',
   ...props
-}: SquarePaymentsFormProps): JSX.Element => {
+}: SquarePaymentsFormProps): JSX.Element | null => {
+  const [paymentsSdk, setPaymentsSdk] = React.useState<Payments>();
+
+  React.useEffect(() => {
+    async function loadPayment(): Promise<void> {
+      await payments(applicationId, locationId).then((res) => {
+        if (res === null) {
+          throw new Error('Square Web Payments SDK failed to load');
+        }
+
+        setPaymentsSdk(res);
+
+        return res;
+      });
+    }
+
+    if (applicationId && locationId) {
+      loadPayment();
+    }
+  }, [applicationId, locationId]);
+
+  if (!applicationId || !locationId) {
+    return <ErrorScreen />;
+  }
+
+  if (!paymentsSdk) {
+    return null;
+  }
+
   return (
     <FormProvider
-      applicationId={applicationId}
-      locationId={locationId}
-      createPaymentRequest={props.createPaymentRequest}
-      methodsSupported={props.methodsSupported}
       cardTokenizeResponseReceived={props.cardTokenizeResponseReceived}
+      createPaymentRequest={props.createPaymentRequest}
       createVerificationDetails={props.createVerificationDetails}
+      payments={paymentsSdk}
     >
-      <div id={formId}>{props.children}</div>
+      <div data-testid="rswps-form" id={formId}>
+        {props.children}
+      </div>
     </FormProvider>
   );
 };

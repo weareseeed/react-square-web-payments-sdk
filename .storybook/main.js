@@ -1,8 +1,31 @@
+// Dependencies
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
+
+/**
+ * @type {import('@storybook/react/types').StorybookConfig}
+ */
 module.exports = {
-  stories: ['../stories/**/*.stories.@(ts|tsx|js|jsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
-  // https://storybook.js.org/docs/react/configure/typescript#mainjs-configuration
+  stories: ['../src/**/__docs__/**/*.mdx', '../src/**/__docs__/**/*.tsx'],
+  addons: [
+    '@storybook/addon-links',
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        backgrounds: false,
+      },
+    },
+  ],
+  reactOptions: {
+    fastRefresh: true,
+  },
   typescript: {
-    check: true, // type-check stories during Storybook build
+    check: true,
+  },
+  webpackFinal: async (config) => {
+    [].push.apply(config.resolve.plugins, [
+      new TsconfigPathsPlugin({ extensions: config.resolve.extensions }),
+    ]);
+
+    return config;
   },
 };

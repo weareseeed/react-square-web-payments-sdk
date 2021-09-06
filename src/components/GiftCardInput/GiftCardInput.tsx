@@ -1,13 +1,12 @@
-// Vendor Modules
-import { CSSObject } from '@emotion/styled';
-import { document } from 'browser-monads-ts';
+// Dependencies
 import * as React from 'react';
-import { useEvent } from 'react-use';
+import { document } from 'browser-monads-ts';
 import type { GiftCard, GiftCardOptions } from '@square/web-sdk';
+import type { CSS } from '@stitches/react';
 
 // Internals
-import { useForm } from '../../contexts';
-import { renderWithoutSupportPaymentMethod } from '../../utils';
+import { useForm } from '@/contexts';
+import { useEventListener } from '@/hooks';
 import { LoadingCard, PayButton } from './styles';
 
 export interface GiftCardInputProps extends GiftCardOptions {
@@ -24,17 +23,30 @@ export interface GiftCardInputProps extends GiftCardOptions {
    * }
    * ```
    */
-  overrideStyles?: CSSObject | undefined;
+  overrideStyles?: CSS | undefined;
 }
 
+/**
+ * Renders a Gift Card Input to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
+ *
+ * **_But with the option to override styles_**
+ *
+ * @example
+ * ```tsx
+ * <SquareForm {...props}>
+ *  <GiftCardInput />
+ * </SquareForm>
+ * ```
+ */
 export const GiftCardInput = ({
   overrideStyles,
   ...props
 }: GiftCardInputProps): JSX.Element | null => {
-  const [gCard, setGCard] = React.useState<GiftCard | undefined>(
+  const [giftCard, setGiftCard] = React.useState<GiftCard | undefined>(
     () => undefined
   );
-  const { cardTokenizeResponseReceived, giftCard, payments } = useForm();
+  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
+  const { cardTokenizeResponseReceived, payments } = useForm();
 
   /**
    * Handle the on click of the Gift Card button click
@@ -43,56 +55,63 @@ export const GiftCardInput = ({
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async () => {
+    setIsSubmitting(true);
+
     try {
-      const result = await gCard?.tokenize();
+      const result = await giftCard?.tokenize();
 
       if (result) {
+        setIsSubmitting(false);
+
         return cardTokenizeResponseReceived(result);
       }
     } catch (ex) {
+      setIsSubmitting(false);
+
       console.error(ex);
     }
   };
 
-  /**
-   * Initialize the Gift Card instance to be used in the component
-   */
-  const start = async () => {
-    const gCard = await payments.giftCard(props).then((res) => {
-      setGCard(res);
-
-      return res;
-    });
-
-    await gCard?.attach('#gift-card-container');
-  };
-
+  // Avoid re-rendering the component when the gift card is not ready
+  const giftCardProps = Object.keys(props).length > 1 ? props : undefined;
   React.useEffect(() => {
+    /**
+     * Initialize the Gift Card instance to be used in the component
+     */
+    const start = async () => {
+      const gCard = await payments?.giftCard(giftCardProps).then((res) => {
+        setGiftCard(res);
+
+        return res;
+      });
+
+      await gCard?.attach('#gift-card-container');
+    };
+
     start();
-  }, [payments]);
+  }, [payments, giftCardProps]);
 
-  useEvent(
-    'click',
-    handlePayment,
-    document.getElementById('pay-with-gift-card')
-  );
-
-  if (giftCard !== 'ready') {
-    renderWithoutSupportPaymentMethod('Gift Card');
-
-    return null;
-  }
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: document.getElementById('pay-with-gift-card'),
+    options: {
+      passive: true,
+    },
+  });
 
   return (
     <>
       <div id="gift-card-container" style={{ minHeight: 89 }}>
-        {!gCard && <LoadingCard />}
+        {!giftCard && <LoadingCard />}
       </div>
 
       <PayButton
+        aria-disabled={!giftCard || isSubmitting}
+        css={overrideStyles}
+        disabled={!giftCard || isSubmitting}
         id="pay-with-gift-card"
         type="button"
-        overrideStyles={overrideStyles}
       >
         Pay with Gift Card
       </PayButton>

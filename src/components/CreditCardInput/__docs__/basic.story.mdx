@@ -1,0 +1,93 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Example } from './example.stories';
+import {
+  Container,
+  Svg,
+  SvgContainer,
+  TextContainer,
+  Title,
+  Text,
+} from '@/components/ErrorScreen/styles';
+
+<Meta
+  args={{
+    focus: 'cardNumber',
+    overrideStyles: {},
+  }}
+  argTypes={{
+    focus: {
+      table: {
+        defaultValue: {
+          summary: 'cardNumber',
+        },
+      },
+    },
+    overrideStyles: {
+      description:
+        'Sets the style for the Payment Button using a CSS object, for a reference see [Overriding Styles](https://stitches.dev/docs/overriding-styles) form Stitches',
+    },
+  }}
+  component={Example}
+  title="Card Payments/Basic Setup"
+/>
+
+# Card Payments
+
+The Square card element makes it easy to accept payments and collect card data on your site. With minimal lines of code you can generate a secure card form that once submitted, generates a one-time-use token that can be used to create a Payment with the CreatePayment API.
+
+You can use the following cards numbers to test the card element:
+
+| Brand               | Number              | CVV  | Verification Code |
+| ------------------- | ------------------- | ---- | ----------------- |
+| Visa                | 4111 1111 1111 1111 | 111  | N/A               |
+| Visa EU             | 4310 0000 0020 1019 | 111  | 123456            |
+| MasterCard          | 5105 1051 0510 5100 | 111  | N/A               |
+| MasterCard EU       | 5500 0000 0020 1016 | 111  | 123456            |
+| Discover            | 6011 0000 0000 0004 | 111  | N/A               |
+| Discover EU         | 6011 0000 0020 1016 | 111  | 123456            |
+| Diners Club         | 3000 000000 0004    | 111  | N/A               |
+| JCB                 | 3569 9900 1009 5841 | 111  | N/A               |
+| American Express    | 3400 000000 00009   | 1111 | N/A               |
+| American Express EU | 3700 000002 01014   | 1111 | 123456            |
+| China UnionPay      | 6222 9888 1234 0000 | 123  | N/A               |
+
+If you want to test the Strong Customer Authentication (SCA) flow, you can use the following card numbers:
+
+| Brand               | Number              | CVV  | Challenge type                             | Verification Code                                                                                 | Works for        |
+| ------------------- | ------------------- | ---- | ------------------------------------------ | ------------------------------------------------------------------------------------------------- | ---------------- |
+| Mastercard          | 5248 4800 0021 0026 | 111  | Modal with Verification Code               | 123456                                                                                            | All Accounts     |
+| Visa EU             | 4310 0000 0020 1019 | 111  | Modal with Verification Code               | 123456                                                                                            | UK Accounts Only |
+| Visa                | 4800 0000 0000 0004 | 111  | Frictionless                               | N/A                                                                                               | All Accounts     |
+| Visa                | 4811 1100 0000 0008 | 111  | Failed Verification                        | N/A                                                                                               | All Accounts     |
+| Mastercard EU       | 5500 0000 0020 1016 | 111  | Modal with Verification Code               | 123456                                                                                            | UK Accounts Only |
+| Mastercard          | 5222 2200 0000 0005 | 111  | Frictionless                               | N/A                                                                                               | All Accounts     |
+| Mastercard          | 5333 3300 0000 0008 | 111  | Modal with Multiple Verification Questions | Challenge 1: Thomason <br /> Challenge 2: Select both St Louis & Dallas <br /> Challenge 3: Smith | All Accounts     |
+| American Express EU | 3700 000002 01014   | 1111 | Modal with Verification Code               | 123456                                                                                            | UK Accounts Only |
+
+<Container css={{ borderLeftColor: '#ffdd32', marginLeft: '0', marginRight: 'auto' }}>
+  <SvgContainer>
+    <Svg height={17} viewBox="0 0 20 17" width={20}>
+      <path
+        d="M10.874.573l8.3 14.941A1 1 0 0118.3 17H1.7a1 1 0 01-.875-1.486l8.3-14.94a1 1 0 011.75 0zM9 12v2h2v-2H9zm2-1V7H9v4h2z"
+        fill="#ffdd32"
+        fillRule="evenodd"
+      />
+    </Svg>
+  </SvgContainer>
+
+  <TextContainer>
+    <Title css={{ fontWeight: 600 }}>You will not be charged for using this payment method</Title>
+    <Text>
+      We use sandbox credentials that you can find on Square Developer Dashboard
+      of your application
+    </Text>
+  </TextContainer>
+</Container>
+
+#### Basic Example
+
+<Canvas>
+  <Story name="BasicExample" story={Example} />
+</Canvas>
+
+<ArgsTable story="BasicExample" />

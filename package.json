@@ -1,25 +1,24 @@
 {
-  "version": "1.5.2",
+  "version": "2.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build --format esm",
+    "build": "tsdx build --tsconfig ./tsconfig.build.json",
     "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build --format esm",
+    "lint": "tsdx lint src",
+    "prepare": "tsdx build --tsconfig ./tsconfig.build.json",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o docs-build",
+    "storybook:watch": "start-storybook -p 6006 --docs -s public --no-manager-cache",
+    "storybook:build": "build-storybook --docs -o docs -s public",
     "release": "standard-version"
   },
   "peerDependencies": {
@@ -54,38 +53,48 @@
   "size-limit": [
     {
       "path": "dist/react-square-web-payments-sdk.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "15 KB"
     },
     {
       "path": "dist/react-square-web-payments-sdk.esm.js",
-      "limit": "10 KB"
+      "limit": "15 KB"
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^5.0.2",
-    "@storybook/addon-essentials": "^6.3.7",
-    "@storybook/addon-info": "^6.0.0-alpha.2",
-    "@storybook/addon-links": "^6.3.7",
-    "@storybook/addons": "^6.3.7",
-    "@storybook/react": "^6.3.7",
-    "@storybook/theming": "6.3.7",
-    "@types/react": "^17.0.17",
+    "@babel/preset-env": "^7.15.4",
+    "@rollup/plugin-alias": "^3.1.5",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@size-limit/preset-small-lib": "^5.0.3",
+    "@storybook/addon-docs": "^6.3.8",
+    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.3.8",
+    "@storybook/addons": "^6.3.8",
+    "@storybook/react": "^6.3.8",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
-    "husky": "^7.0.1",
+    "@types/testing-library__jest-dom": "^5.14.1",
+    "eslint-plugin-jest-dom": "^3.9.0",
+    "eslint-plugin-prettier": "3.4.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-testing-library": "^4.12.1",
+    "husky": "^7.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "size-limit": "^5.0.2",
+    "size-limit": "^5.0.3",
     "standard-version": "^9.3.1",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.2"
   },
   "dependencies": {
-    "@emotion/react": "^11.4.1",
-    "@emotion/styled": "^11.3.0",
     "@square/web-sdk": "^2.0.0",
-    "browser-monads-ts": "^1.2.2",
-    "react-use": "^17.2.4"
+    "@stitches/react": "^1.0.0",
+    "browser-monads-ts": "^1.2.2"
   }
 }
