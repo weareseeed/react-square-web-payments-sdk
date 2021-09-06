@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0...v2.1.0) (2021-09-06)
+
+
+### Bug Fixes
+
+* **test:** deleting path to custom tsconfig on tests ([4c80f37](https://github.com/weareseeed/react-square-web-payments-sdk/commit/4c80f370949632cb4f4355b9d3b66cd7f0406ab5))
+
 ## [2.0.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.6...v2.0.0) (2021-09-06)
 
 ## [2.0.0-canary.6](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.5...v2.0.0-canary.6) (2021-09-06)
