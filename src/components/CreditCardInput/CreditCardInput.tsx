@@ -15,6 +15,17 @@ import { useForm } from '@/contexts';
 import { useEventListener } from '@/hooks';
 import { LoadingCard, PayButton } from './styles';
 
+export type PayButtonProps = Omit<
+  React.ComponentPropsWithoutRef<'button'>,
+  'aria-disabled' | 'disabled' | 'id' | 'type'
+> & {
+  css?: CSS;
+};
+
+export type ChildrenProps = {
+  Button: (props?: PayButtonProps) => JSX.Element;
+};
+
 export interface CreditCardInputProps extends CardOptions {
   /**
    * Callback function that is called when the payment form detected a new likely credit card brand
@@ -28,7 +39,7 @@ export interface CreditCardInputProps extends CardOptions {
   /**
    * Make it possible to put any component inside. If children is/are given then text is not applied
    */
-  children?: React.ReactNode;
+  children?: (props: ChildrenProps) => JSX.Element | React.ReactNode;
   /**
    * Callback function that is called when a form field has an invalid value,
    * and the corresponding error CSS class was added to the element.
@@ -230,6 +241,19 @@ export const CreditCardInput = ({
     card?.addEventListener('submit', submit);
   }
 
+  const Button = (props?: PayButtonProps): JSX.Element => (
+    <PayButton
+      {...props}
+      aria-disabled={!card || isSubmitting}
+      css={props?.css || overrideStyles}
+      disabled={!card || isSubmitting}
+      id={submitButtonId}
+      type="button"
+    >
+      {props?.children || text}
+    </PayButton>
+  );
+
   return (
     <>
       <div
@@ -240,15 +264,15 @@ export const CreditCardInput = ({
         {!card && <LoadingCard />}
       </div>
 
-      <PayButton
-        aria-disabled={!card || isSubmitting}
-        css={overrideStyles}
-        disabled={!card || isSubmitting}
-        id={submitButtonId}
-        type="button"
-      >
-        {children || text}
-      </PayButton>
+      {!children ? (
+        <Button />
+      ) : typeof children === 'function' ? (
+        children({
+          Button,
+        })
+      ) : (
+        <Button>{children}</Button>
+      )}
     </>
   );
 };
