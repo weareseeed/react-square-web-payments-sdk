@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.2.0-canary.0...v2.2.0) (2021-09-08)
+
+
+### Features
+
+* apple pay as an independent variable ([bf513dd](https://github.com/weareseeed/react-square-web-payments-sdk/commit/bf513dd155957e5c40f9102cedd843e63df19135))
+* deleting unused monads dependency ([d0e505b](https://github.com/weareseeed/react-square-web-payments-sdk/commit/d0e505bfcde56cf5400b4a28323b4205aec14e22))
+* updating docs with components updates ([0980b47](https://github.com/weareseeed/react-square-web-payments-sdk/commit/0980b478ae177affe907f024f4e0a958747352fc))
+* using ref instead of document on credit card ([92b19ec](https://github.com/weareseeed/react-square-web-payments-sdk/commit/92b19ecb9903335fdb8b29e336f14a33b754dbd7))
+* using refs instead of ids ([34b7c5d](https://github.com/weareseeed/react-square-web-payments-sdk/commit/34b7c5dadf6f8c5a2d7065895ea659f059f91335))
+
+
+### Bug Fixes
+
+* **docs:** typo for link on apple pay ([05d7406](https://github.com/weareseeed/react-square-web-payments-sdk/commit/05d7406d42546d82400d44fb81e136c9ee250f93))
+
 ## [2.2.0-canary.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.1.1...v2.2.0-canary.0) (2021-09-08)
 
 
