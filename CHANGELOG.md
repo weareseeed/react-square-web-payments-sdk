@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0-canary.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.1.1...v2.2.0-canary.0) (2021-09-08)
+
+
+### Features
+
+* adding render props for credit card button ([cce95a5](https://github.com/weareseeed/react-square-web-payments-sdk/commit/cce95a5afb1766e58d82108346853f7c76733191))
+
+### [2.1.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.1.0...v2.1.1) (2021-09-06)
+
+
+### Features
+
+* **docs:** adding migration guides ([90177f6](https://github.com/weareseeed/react-square-web-payments-sdk/commit/90177f6c9a41c4589aa36efd88f636cd0282d4ad))
+
+## [2.1.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0...v2.1.0) (2021-09-06)
+
+
+### Bug Fixes
+
+* **test:** deleting path to custom tsconfig on tests ([4c80f37](https://github.com/weareseeed/react-square-web-payments-sdk/commit/4c80f370949632cb4f4355b9d3b66cd7f0406ab5))
+
 ## [2.0.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.6...v2.0.0) (2021-09-06)
 
 ## [2.0.0-canary.6](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.0.0-canary.5...v2.0.0-canary.6) (2021-09-06)
