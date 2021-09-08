@@ -22,7 +22,7 @@
     "release": "standard-version"
   },
   "peerDependencies": {
-    "react": ">=17"
+    "react": ">=16"
   },
   "husky": {
     "hooks": {
