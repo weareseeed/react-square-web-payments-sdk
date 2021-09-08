@@ -87,11 +87,17 @@ export const ApplePay = (): JSX.Element | null => {
     element: divRef,
   });
 
-  if (!applePay) return null;
-
-  return (
+  /**
+   * We need to declare the button as a variable to be able to use it in the return statement
+   * in that way the `useEventListener` going to work
+   */
+  const ButtonPay = (
     <ApplePayContainer id="apple-pay-button" ref={divRef}></ApplePayContainer>
   );
+
+  if (!applePay) return null;
+
+  return ButtonPay;
 };
 
 export default ApplePay;
