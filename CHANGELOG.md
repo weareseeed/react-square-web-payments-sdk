@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.2.1...v2.2.2) (2021-09-08)
+
+
+### Features
+
+* be possible to use react@16 ([3296c51](https://github.com/weareseeed/react-square-web-payments-sdk/commit/3296c5168b079232d565ae824aee42b7df160c41))
+
 ### [2.2.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.2.0...v2.2.1) (2021-09-08)
 
 
