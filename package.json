@@ -94,7 +94,6 @@
   },
   "dependencies": {
     "@square/web-sdk": "^2.0.0",
-    "@stitches/react": "^1.0.0",
-    "browser-monads-ts": "^1.2.2"
+    "@stitches/react": "^1.0.0"
   }
 }
