@@ -1,6 +1,5 @@
 // Dependencies
 import * as React from 'react';
-import { document } from 'browser-monads-ts';
 import type { GiftCard, GiftCardOptions } from '@square/web-sdk';
 import type { CSS } from '@stitches/react';
 
@@ -47,6 +46,7 @@ export const GiftCardInput = ({
   );
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { cardTokenizeResponseReceived, payments } = useForm();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   /**
    * Handle the on click of the Gift Card button click
@@ -94,10 +94,7 @@ export const GiftCardInput = ({
   useEventListener({
     listener: handlePayment,
     type: 'click',
-    element: document.getElementById('pay-with-gift-card'),
-    options: {
-      passive: true,
-    },
+    element: buttonRef,
   });
 
   return (
@@ -111,6 +108,7 @@ export const GiftCardInput = ({
         css={overrideStyles}
         disabled={!giftCard || isSubmitting}
         id="pay-with-gift-card"
+        ref={buttonRef}
         type="button"
       >
         Pay with Gift Card

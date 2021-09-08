@@ -1,6 +1,5 @@
 // Dependencies
 import * as React from 'react';
-import { document } from 'browser-monads-ts';
 import type { ACH, AchTokenOptions } from '@square/web-sdk';
 import type { CSS } from '@stitches/react';
 
@@ -74,6 +73,7 @@ export const AchPay = ({
   const [achPay, setAchPay] = React.useState<ACH | undefined>(() => undefined);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { cardTokenizeResponseReceived, payments } = useForm();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   /**
    * Handle the on click of the ACH button click
@@ -114,15 +114,17 @@ export const AchPay = ({
   useEventListener({
     listener: handlePayment,
     type: 'click',
-    element: document.getElementById('pay-with-ach'),
-    options: {
-      passive: true,
-    },
+    element: buttonRef,
   });
 
   if (children) {
     return (
-      <PayButton css={overrideStyles} id="pay-with-ach" type="button">
+      <PayButton
+        css={overrideStyles}
+        id="pay-with-ach"
+        ref={buttonRef}
+        type="button"
+      >
         {children}
       </PayButton>
     );
@@ -134,6 +136,7 @@ export const AchPay = ({
       css={overrideStyles}
       disabled={!achPay || isSubmitting}
       id="pay-with-ach"
+      ref={buttonRef}
       type="button"
     >
       <SvgIcon

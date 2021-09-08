@@ -1,6 +1,5 @@
 // Dependencies
 import * as React from 'react';
-import { document } from 'browser-monads-ts';
 import type {
   GooglePay as GooglePayInterface,
   GooglePayButtonOptions,
@@ -40,6 +39,7 @@ export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
     createPaymentRequest,
     payments,
   } = useForm();
+  const divRef = React.useRef<HTMLDivElement>(null);
 
   if (!createPaymentRequest) {
     throw new Error(
@@ -94,13 +94,10 @@ export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
   useEventListener({
     listener: handlePayment,
     type: 'click',
-    element: document.getElementById('google-pay-button'),
-    options: {
-      passive: true,
-    },
+    element: divRef,
   });
 
-  return <div id="google-pay-button" style={{ height: 40 }}></div>;
+  return <div id="google-pay-button" ref={divRef} style={{ height: 40 }}></div>;
 };
 
 export default GooglePay;
