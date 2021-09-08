@@ -1,6 +1,5 @@
 // Dependencies
 import * as React from 'react';
-import { document } from 'browser-monads-ts';
 import type {
   Card,
   CardFieldNamesValues,
@@ -155,6 +154,7 @@ export const CreditCardInput = ({
   const [card, setCard] = React.useState<Card | undefined>(() => undefined);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { cardTokenizeResponseReceived, payments } = useForm();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   /**
    * Handle the on click of the Credit Card button click
@@ -207,7 +207,7 @@ export const CreditCardInput = ({
   useEventListener({
     listener: handlePayment,
     type: 'click',
-    element: document.getElementById(submitButtonId),
+    element: buttonRef,
     options: {
       passive: true,
     },
@@ -248,6 +248,7 @@ export const CreditCardInput = ({
       css={props?.css || overrideStyles}
       disabled={!card || isSubmitting}
       id={submitButtonId}
+      ref={buttonRef}
       type="button"
     >
       {props?.children || text}
