@@ -4642,13 +4642,6 @@ brorand@^1.0.1, brorand@^1.1.0:
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
 
-browser-monads-ts@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/browser-monads-ts/-/browser-monads-ts-1.2.2.tgz#98fa4c4928fc69ff66ec06b21c2b09e3d2a7eee4"
-  integrity sha512-8Y5OUXCSxDSkVpqEYZOc6BSsC6IlAhsAdgh/5JHohqllTSVT/gpmbwrqWl+q/jReKKPa8W3tn+urZ3F126of0g==
-  dependencies:
-    nothing-mock "^1.0.4"
-
 browser-process-hrtime@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/browser-process-hrtime/-/browser-process-hrtime-1.0.0.tgz#3c9b4b7d782c8121e56f10106d84c0d0ffc94626"
@@ -10424,11 +10417,6 @@ normalize-url@^6.0.1:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-6.1.0.tgz#40d0885b535deffe3f3147bec877d05fe4c5668a"
   integrity sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==
-
-nothing-mock@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/nothing-mock/-/nothing-mock-1.0.4.tgz#470b6bd7f7e0dd900b101ed77178683db5141298"
-  integrity sha512-wl5hpQruSQHt5M15oY/akWd7hFPyec0uTCUHYQa3WhBeTxonsFnMKmixaCDvb4U7MN9UjS2UvXw3s4KxjrNjKg==
 
 npm-run-path@^2.0.0:
   version "2.0.2"

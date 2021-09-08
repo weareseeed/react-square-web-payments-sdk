@@ -1,5 +1,5 @@
 {
-  "version": "2.1.1",
+  "version": "2.2.0-canary.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -94,7 +94,6 @@
   },
   "dependencies": {
     "@square/web-sdk": "^2.0.0",
-    "@stitches/react": "^1.0.0",
-    "browser-monads-ts": "^1.2.2"
+    "@stitches/react": "^1.0.0"
   }
 }

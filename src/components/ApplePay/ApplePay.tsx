@@ -1,6 +1,5 @@
 // Dependencies
 import * as React from 'react';
-import { document } from 'browser-monads-ts';
 import type { ApplePay as ApplePayInterface } from '@square/web-sdk';
 
 // Internals
@@ -30,6 +29,7 @@ export const ApplePay = (): JSX.Element | null => {
     createPaymentRequest,
     payments,
   } = useForm();
+  const divRef = React.useRef<HTMLDivElement>(null);
 
   if (!createPaymentRequest) {
     throw new Error(
@@ -84,13 +84,20 @@ export const ApplePay = (): JSX.Element | null => {
   useEventListener({
     listener: handlePayment,
     type: 'click',
-    element: document.getElementById('apple-pay-button'),
-    options: {
-      passive: true,
-    },
+    element: divRef,
   });
 
-  return <ApplePayContainer id="apple-pay-button"></ApplePayContainer>;
+  /**
+   * We need to declare the button as a variable to be able to use it in the return statement
+   * in that way the `useEventListener` going to work
+   */
+  const ButtonPay = (
+    <ApplePayContainer id="apple-pay-button" ref={divRef}></ApplePayContainer>
+  );
+
+  if (!applePay) return null;
+
+  return ButtonPay;
 };
 
 export default ApplePay;
