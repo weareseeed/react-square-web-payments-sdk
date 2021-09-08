@@ -95,6 +95,9 @@ export const GiftCardInput = ({
     listener: handlePayment,
     type: 'click',
     element: buttonRef,
+    options: {
+      passive: true,
+    },
   });
 
   return (

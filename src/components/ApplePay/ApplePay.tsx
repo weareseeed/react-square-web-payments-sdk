@@ -85,6 +85,9 @@ export const ApplePay = (): JSX.Element | null => {
     listener: handlePayment,
     type: 'click',
     element: divRef,
+    options: {
+      passive: true,
+    },
   });
 
   return (
