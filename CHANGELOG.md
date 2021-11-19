@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0-canary.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.1...v2.3.0-canary.2) (2021-11-19)
+
+
+### Features
+
+* adding more metadata for GitHub ([aa35fd2](https://github.com/weareseeed/react-square-web-payments-sdk/commit/aa35fd26540216782633570adda78acb8aacd83b))
+* **ci:** adding more node versions and lint fix ([7efc7f8](https://github.com/weareseeed/react-square-web-payments-sdk/commit/7efc7f8adc78aebd5548f229412f8b7425f3b67e))
+* using husky hooks on folder and format ([390aee5](https://github.com/weareseeed/react-square-web-payments-sdk/commit/390aee545c133c81553774a6493353ad7f6be4bd))
+* using husky hooks on folder and format ([cdbdcff](https://github.com/weareseeed/react-square-web-payments-sdk/commit/cdbdcff690312efaf6f328c41fe2319f8cc87c9f))
+* using husky hooks on folder and format ([61254a4](https://github.com/weareseeed/react-square-web-payments-sdk/commit/61254a4d17e13b1591451ac9844ec02a0c162f1e))
+
 ## [2.3.0-canary.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.0...v2.3.0-canary.1) (2021-11-19)
 
 
