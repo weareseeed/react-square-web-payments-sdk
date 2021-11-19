@@ -208,6 +208,9 @@ export const CreditCardInput = ({
     listener: handlePayment,
     type: 'click',
     element: buttonRef,
+    options: {
+      passive: true,
+    },
   });
 
   if (cardBrandChanged) {

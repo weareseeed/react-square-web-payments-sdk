@@ -115,6 +115,9 @@ export const AchPay = ({
     listener: handlePayment,
     type: 'click',
     element: buttonRef,
+    options: {
+      passive: true,
+    },
   });
 
   if (children) {

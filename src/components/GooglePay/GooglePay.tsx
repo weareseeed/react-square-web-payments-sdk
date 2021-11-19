@@ -95,6 +95,9 @@ export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
     listener: handlePayment,
     type: 'click',
     element: divRef,
+    options: {
+      passive: true,
+    },
   });
 
   return <div id="google-pay-button" ref={divRef} style={{ height: 40 }}></div>;
