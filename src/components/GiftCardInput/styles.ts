@@ -1,5 +1,5 @@
-// Dependencies
-import { keyframes, styled } from '@stitches/react';
+// Internals
+import { keyframes, styled } from '@/stitches.config';
 
 const pulse = keyframes({
   '0%, 100%': {
