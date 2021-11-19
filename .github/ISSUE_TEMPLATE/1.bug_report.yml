@@ -1,6 +1,6 @@
 name: Bug Report
 description: Create a bug report for react-square-web-payments-sdk
-labels: 'template: bug'
+labels: ['template: bug']
 body:
   - type: markdown
     attributes:
