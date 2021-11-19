@@ -7,12 +7,5 @@
     "src/**/__docs__/**/*.tsx",
     "src/**/__tests__/**/*.ts",
     "src/**/__tests__/**/*.tsx"
-  ],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "stitches.config": ["stitches.config.ts"]
-    }
-  }
+  ]
 }

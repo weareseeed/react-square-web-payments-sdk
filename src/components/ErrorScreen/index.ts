@@ -1,1 +1,1 @@
-export * from './ErrorScreen';
+export { default } from './ErrorScreen';

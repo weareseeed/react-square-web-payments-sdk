@@ -10,11 +10,11 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "dts watch",
+    "start": "dts watch --tsconfig ./tsconfig.build.json",
     "build": "dts build --tsconfig ./tsconfig.build.json",
     "test": "dts test --passWithNoTests",
     "lint": "dts lint src",
-    "prepare": "dts build --tsconfig ./tsconfig.build.json",
+    "prepare": "yarn build",
     "size": "size-limit",
     "storybook:watch": "start-storybook -p 6006 --docs -s public --no-manager-cache",
     "storybook:build": "build-storybook --docs -o docs -s public",
@@ -47,7 +47,7 @@
     "url": "git@github.com:weareseeed/react-square-web-payments-sdk.git"
   },
   "homepage": "https://weareseeed.github.io/react-square-web-payments-sdk/",
-  "module": "dist/react-square-web-payments-sdk.esm.js",
+  "module": "dist/index.esm.js",
   "size-limit": [
     {
       "path": "dist/react-square-web-payments-sdk.cjs.production.min.js",
@@ -59,7 +59,6 @@
     }
   ],
   "devDependencies": {
-    "@rollup/plugin-alias": "^3.1.8",
     "@rollup/plugin-replace": "^3.0.0",
     "@size-limit/preset-small-lib": "^7.0.3",
     "@storybook/addon-docs": "^6.3.12",
@@ -87,7 +86,6 @@
     "react-is": "^17.0.2",
     "size-limit": "^7.0.3",
     "standard-version": "^9.3.2",
-    "tsconfig-paths-webpack-plugin": "^3.5.2",
     "tslib": "^2.3.1",
     "typescript": "^4.5.2"
   },

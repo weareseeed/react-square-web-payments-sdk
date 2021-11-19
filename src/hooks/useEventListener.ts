@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 // Internals
-import { getRefElement, isSSR } from '@/utils';
+import { getRefElement, isSSR } from '../utils';
 
 interface UseEventListener {
   type: keyof WindowEventMap;

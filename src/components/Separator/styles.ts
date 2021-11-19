@@ -1,5 +1,5 @@
 // Internals
-import { styled } from '@/stitches.config';
+import { styled } from '../../stitches.config';
 
 export const Line = styled('div', {
   background: 'rgba(0, 0, 0, 0.1)',

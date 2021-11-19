@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { SquarePaymentsForm, CreditCardInput } from '../.';
+import { SquarePaymentsForm, CreditCardInput } from '../dist';
 
 const App = () => {
   return (

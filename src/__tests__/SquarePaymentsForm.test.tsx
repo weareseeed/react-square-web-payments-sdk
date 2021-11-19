@@ -3,9 +3,9 @@ import * as React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 
 // Internals
-import FormProvider from '@/contexts';
 import { paymentsSdk } from './__mocks__/paymentsSdk';
-import type { ProviderProps } from '@/contexts';
+import FormProvider from '../contexts';
+import type { ProviderProps } from '../contexts';
 
 describe('SquarePaymentsForm', () => {
   const renderForm = async (
