@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0-canary.3](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.2...v2.3.0-canary.3) (2021-11-20)
+
+
+### Features
+
+* adding emojis for every step of main workflow ([afbb17d](https://github.com/weareseeed/react-square-web-payments-sdk/commit/afbb17dec070b730b28a2f6105fb9eed5a8480a6))
+* rewrite all bundler to parcel native ([d27a939](https://github.com/weareseeed/react-square-web-payments-sdk/commit/d27a939b0094c93274dbc37c91002259a3ad275b))
+* using new tree of folders ([f6b0be0](https://github.com/weareseeed/react-square-web-payments-sdk/commit/f6b0be01804b31a8bf17de25ed91702c48426743))
+
 ## [2.3.0-canary.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.1...v2.3.0-canary.2) (2021-11-19)
 
 
