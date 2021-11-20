@@ -1,21 +1,21 @@
 // Dependencies
-import * as React from 'react';
+import * as React from 'react'
 import type {
   GooglePay as GooglePayInterface,
-  GooglePayButtonOptions,
-} from '@square/web-payments-sdk-types';
+  GooglePayButtonOptions as GooglePayProps,
+} from '@square/web-payments-sdk-types'
 
 // Internals
-import { useForm } from '../../contexts';
-import { useEventListener } from '../../hooks';
+import { useForm } from '../../contexts/FormContext'
+import { useEventListener } from '../../hooks/useEventListener'
 
-const defaultProps: GooglePayButtonOptions = {
+const defaultProps: GooglePayProps = {
   buttonColor: 'black',
   buttonSizeMode: 'fill',
   buttonType: 'long',
-};
+}
 
-export interface GooglePayProps extends GooglePayButtonOptions {}
+export { GooglePayProps }
 
 /**
  * Renders a Google Pay button to use in the Square Web Payment SDK, pre-styled to meet Google's branding guidelines.
@@ -33,18 +33,15 @@ export interface GooglePayProps extends GooglePayButtonOptions {}
 export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
   const [googlePay, setGooglePay] = React.useState<
     GooglePayInterface | undefined
-  >(() => undefined);
-  const {
-    cardTokenizeResponseReceived,
-    createPaymentRequest,
-    payments,
-  } = useForm();
-  const divRef = React.useRef<HTMLDivElement>(null);
+  >(() => undefined)
+  const { cardTokenizeResponseReceived, createPaymentRequest, payments } =
+    useForm()
+  const divRef = React.useRef<HTMLDivElement>(null)
 
   if (!createPaymentRequest) {
     throw new Error(
       '`createPaymentRequest()` is required when using digital wallets'
-    );
+    )
   }
 
   /**
@@ -54,42 +51,42 @@ export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async (e: Event) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      const result = await googlePay?.tokenize();
+      const result = await googlePay?.tokenize()
 
       if (result) {
-        return cardTokenizeResponseReceived(result);
+        return cardTokenizeResponseReceived(result)
       }
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  };
+  }
 
   // Avoid re-rendering the component when the google pay is not ready
-  const googlePayProps = Object.keys(props).length > 1 ? props : undefined;
+  const googlePayProps = Object.keys(props).length > 1 ? props : undefined
   React.useEffect(() => {
     /**
      * Initialize the Google Pay instance to be used in the component
      */
     const start = async () => {
-      const paymentRequest = payments?.paymentRequest(createPaymentRequest);
+      const paymentRequest = payments?.paymentRequest(createPaymentRequest)
       const googlePay = await payments
         // @ts-ignore - PaymentRequest is defined in the types
         ?.googlePay(paymentRequest)
         .then((res) => {
-          setGooglePay(res);
+          setGooglePay(res)
 
-          return res;
-        });
+          return res
+        })
 
-      const options = { ...defaultProps, ...googlePayProps };
-      await googlePay?.attach('#google-pay-button', options);
-    };
+      const options = { ...defaultProps, ...googlePayProps }
+      await googlePay?.attach('#google-pay-button', options)
+    }
 
-    start();
-  }, [createPaymentRequest, payments, googlePayProps]);
+    start()
+  }, [createPaymentRequest, payments, googlePayProps])
 
   useEventListener({
     listener: handlePayment,
@@ -98,9 +95,9 @@ export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
     options: {
       passive: true,
     },
-  });
+  })
 
-  return <div id="google-pay-button" ref={divRef} style={{ height: 40 }}></div>;
-};
+  return <div id="google-pay-button" ref={divRef} style={{ height: 40 }}></div>
+}
 
-export default GooglePay;
+export default GooglePay

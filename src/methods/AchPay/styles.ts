@@ -1,5 +1,5 @@
 // Internals
-import { styled } from '../../stitches.config';
+import { styled } from '../../../stitches.config'
 
 export const PayButton = styled('button', {
   backgroundColor: '#006aff',
@@ -27,7 +27,7 @@ export const PayButton = styled('button', {
     lineHeight: 1,
     verticalAlign: 'middle',
   },
-});
+})
 
 export const SvgIcon = styled('svg', {
   display: 'inline-flex',
@@ -35,4 +35,4 @@ export const SvgIcon = styled('svg', {
   marginRight: 14,
   verticalAlign: 'middle',
   width: 36,
-});
+})

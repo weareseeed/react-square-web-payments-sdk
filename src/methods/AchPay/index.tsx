@@ -1,12 +1,12 @@
 // Dependencies
-import * as React from 'react';
-import type { ACH, AchTokenOptions } from '@square/web-sdk';
-import type { CSS } from '@stitches/react';
+import * as React from 'react'
+import type { ACH, AchTokenOptions } from '@square/web-sdk'
+import type * as Stitches from '@stitches/react'
 
 // Internals
-import { PayButton, SvgIcon } from './styles';
-import { useForm } from '../../contexts';
-import { useEventListener } from '../../hooks';
+import { PayButton, SvgIcon } from './styles'
+import { useForm } from '../../contexts/FormContext'
+import { useEventListener } from '../../hooks/useEventListener'
 
 export interface AchPayProps extends AchTokenOptions {
   /**
@@ -21,7 +21,7 @@ export interface AchPayProps extends AchTokenOptions {
    * </AchPay>
    * ```
    */
-  children?: React.ReactNode;
+  children?: React.ReactNode
   /**
    * Sets the style for the SVG Icon using a CSS object
    *
@@ -35,7 +35,7 @@ export interface AchPayProps extends AchTokenOptions {
    * }
    * ```
    */
-  overrideSvgStyles?: CSS | undefined;
+  overrideSvgStyles?: Stitches.ComponentProps<typeof SvgIcon>['css']
   /**
    * Sets the style for the Payment Button using a CSS object
    *
@@ -49,7 +49,7 @@ export interface AchPayProps extends AchTokenOptions {
    * }
    * ```
    */
-  overrideStyles?: CSS | undefined;
+  overrideStyles?: Stitches.ComponentProps<typeof PayButton>['css']
 }
 
 /**
@@ -70,10 +70,10 @@ export const AchPay = ({
   overrideStyles,
   ...props
 }: AchPayProps): JSX.Element | null => {
-  const [achPay, setAchPay] = React.useState<ACH | undefined>(() => undefined);
-  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
-  const { cardTokenizeResponseReceived, payments } = useForm();
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const [achPay, setAchPay] = React.useState<ACH | undefined>(() => undefined)
+  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false)
+  const { cardTokenizeResponseReceived, payments } = useForm()
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   /**
    * Handle the on click of the ACH button click
@@ -82,34 +82,34 @@ export const AchPay = ({
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async () => {
-    setIsSubmitting(true);
+    setIsSubmitting(true)
 
     try {
-      const result = await achPay?.tokenize(props);
+      const result = await achPay?.tokenize(props)
 
       if (result) {
-        setIsSubmitting(false);
+        setIsSubmitting(false)
 
-        return cardTokenizeResponseReceived(result);
+        return cardTokenizeResponseReceived(result)
       }
     } catch (ex) {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
 
-      console.error(ex);
+      console.error(ex)
     }
-  };
+  }
 
   React.useEffect(() => {
     const start = async () => {
       await payments?.ach().then((res) => {
-        setAchPay(res);
+        setAchPay(res)
 
-        return res;
-      });
-    };
+        return res
+      })
+    }
 
-    start();
-  }, [payments]);
+    start()
+  }, [payments])
 
   useEventListener({
     listener: handlePayment,
@@ -118,11 +118,12 @@ export const AchPay = ({
     options: {
       passive: true,
     },
-  });
+  })
 
   if (children) {
     return (
       <PayButton
+        // @ts-ignore - This is a workaround for a bug in TypeScript
         css={overrideStyles}
         id="pay-with-ach"
         ref={buttonRef}
@@ -130,12 +131,13 @@ export const AchPay = ({
       >
         {children}
       </PayButton>
-    );
+    )
   }
 
   return (
     <PayButton
       aria-disabled={!achPay || isSubmitting}
+      // @ts-ignore - This is a workaround for a bug in TypeScript
       css={overrideStyles}
       disabled={!achPay || isSubmitting}
       id="pay-with-ach"
@@ -143,6 +145,7 @@ export const AchPay = ({
       type="button"
     >
       <SvgIcon
+        // @ts-ignore - This is a workaround for a bug in TypeScript
         css={overrideSvgStyles}
         fill="none"
         height="1em"
@@ -178,7 +181,7 @@ export const AchPay = ({
       </SvgIcon>
       <span>Pay with Direct debit (ACH)</span>
     </PayButton>
-  );
-};
+  )
+}
 
-export default AchPay;
+export default AchPay

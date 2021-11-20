@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from 'react';
+import * as React from 'react'
 import type {
   ChargeVerifyBuyerDetails,
   Payments,
@@ -7,24 +7,24 @@ import type {
   StoreVerifyBuyerDetails,
   TokenResult,
   VerifyBuyerResponseDetails,
-} from '@square/web-sdk';
+} from '@square/web-sdk'
 
 // Internals
-import { useDynamicCallback } from '../hooks';
-import type { FormContextInterface } from '../types';
+import { useDynamicCallback } from '../hooks/useDynamicCallback'
+import type { FormContextInterface } from '../types/FormContext'
 
 /**
  * Export the hook here so we avoid circular dependency
  */
 export const useForm = (): FormContextInterface => {
-  const context = React.useContext(FormContext);
+  const context = React.useContext(FormContext)
 
   if (context === undefined) {
-    throw new Error('useForm must be used within a FormProvider');
+    throw new Error('useForm must be used within a FormProvider')
   }
 
-  return context;
-};
+  return context
+}
 
 /**
  * Internal helper that the `SquareForm` uses to manage internal state and expose access to the Web Payment SDK library.
@@ -33,25 +33,25 @@ export const useForm = (): FormContextInterface => {
  * [customization](customization.md) page for usage details.
  */
 export const FormContext = React.createContext<FormContextInterface>({
-  cardTokenizeResponseReceived: (null as unknown) as (
+  cardTokenizeResponseReceived: null as unknown as (
     token: TokenResult,
     verifiedBuyer?: VerifyBuyerResponseDetails | null
   ) => void,
-  createPaymentRequest: (null as unknown) as PaymentRequestOptions,
+  createPaymentRequest: null as unknown as PaymentRequestOptions,
   formId: '',
-  payments: (null as unknown) as Payments,
-});
+  payments: null as unknown as Payments,
+})
 
 export interface ProviderProps {
-  createPaymentRequest?: () => PaymentRequestOptions;
+  createPaymentRequest?: () => PaymentRequestOptions
   cardTokenizeResponseReceived: (
     token: TokenResult,
     verifiedBuyer?: VerifyBuyerResponseDetails | null
-  ) => void;
+  ) => void
   createVerificationDetails?: () =>
     | ChargeVerifyBuyerDetails
-    | StoreVerifyBuyerDetails;
-  payments: Payments | null;
+    | StoreVerifyBuyerDetails
+  payments: Payments | null
 }
 
 const FormProvider: React.FC<ProviderProps> = ({
@@ -61,32 +61,31 @@ const FormProvider: React.FC<ProviderProps> = ({
 }) => {
   const [createPaymentRequest] = React.useState<
     undefined | PaymentRequestOptions
-  >(() => props.createPaymentRequest?.());
+  >(() => props.createPaymentRequest?.())
 
   const cardTokenizeResponseReceived = async (
     rest: TokenResult
   ): Promise<void> => {
     if (rest.errors || !props.createVerificationDetails) {
-      props.cardTokenizeResponseReceived(rest);
-      return;
+      props.cardTokenizeResponseReceived(rest)
+      return
     }
 
     const verifyBuyerResults = await payments?.verifyBuyer(
       String(rest.token),
       props.createVerificationDetails()
-    );
+    )
 
-    props.cardTokenizeResponseReceived(rest, verifyBuyerResults);
-    return;
-  };
+    props.cardTokenizeResponseReceived(rest, verifyBuyerResults)
+  }
 
   // Fixes stale closure issue with using React Hooks & SqPaymentForm callback functions
   // https://github.com/facebook/react/issues/16956
   const cardTokenizeResponseReceivedCallback = useDynamicCallback(
     cardTokenizeResponseReceived
-  );
+  )
 
-  if (!payments) return null;
+  if (!payments) return null
 
   const context = {
     cardTokenizeResponseReceived:
@@ -96,11 +95,9 @@ const FormProvider: React.FC<ProviderProps> = ({
     createPaymentRequest,
     formId: '',
     payments,
-  };
+  }
 
-  return (
-    <FormContext.Provider value={context}>{children}</FormContext.Provider>
-  );
-};
+  return <FormContext.Provider value={context}>{children}</FormContext.Provider>
+}
 
-export default FormProvider;
+export default FormProvider

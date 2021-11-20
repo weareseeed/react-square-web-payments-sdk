@@ -18,4 +18,4 @@ module.exports = {
   typescript: {
     check: true,
   },
-};
+}

@@ -1,5 +1,5 @@
 // Dependencies
-import * as React from 'react';
+import * as React from 'react'
 
 // Internals
 import {
@@ -9,23 +9,23 @@ import {
   Text,
   TextContainer,
   Title,
-} from './styles';
+} from './styles'
 
 export type ErrorScreenProps = {
-  development?: boolean;
-};
+  development?: boolean
+}
 
 export const ErrorScreen = ({
   development = true,
-}: ErrorScreenProps): JSX.Element => {
+}: ErrorScreenProps): React.ReactElement => {
   // See if we're in development mode or props.development is set
-  const isDevelopment = process.env.NODE_ENV === 'development' || development;
+  const isDevelopment = process.env.NODE_ENV === 'development' || development
 
   if (process.env.NODE_ENV !== 'development') {
     // Show a generic error on production
     console.error(
       'Please contact your developer to provide the required parameters to use the Web Payments SDK.'
-    );
+    )
   }
 
   return (
@@ -66,7 +66,7 @@ export const ErrorScreen = ({
         </Text>
       </TextContainer>
     </Container>
-  );
-};
+  )
+}
 
-export default ErrorScreen;
+export default ErrorScreen

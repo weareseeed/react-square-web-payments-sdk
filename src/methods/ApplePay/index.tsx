@@ -1,11 +1,11 @@
 // Dependencies
-import * as React from 'react';
-import type { ApplePay as ApplePayInterface } from '@square/web-sdk';
+import * as React from 'react'
+import type { ApplePay as ApplePayInterface } from '@square/web-sdk'
 
 // Internals
-import { ApplePayContainer } from './styles';
-import { useForm } from '../../contexts';
-import { useEventListener } from '../../hooks';
+import { ApplePayContainer } from './styles'
+import { useForm } from '../../contexts/FormContext'
+import { useEventListener } from '../../hooks/useEventListener'
 
 /**
  * Renders a Apple Pay button to use in the Square Web Payment SDK, pre-styled to meet Apple Pay's branding guidelines.
@@ -23,18 +23,15 @@ import { useEventListener } from '../../hooks';
 export const ApplePay = (): JSX.Element | null => {
   const [applePay, setApplePay] = React.useState<ApplePayInterface | undefined>(
     () => undefined
-  );
-  const {
-    cardTokenizeResponseReceived,
-    createPaymentRequest,
-    payments,
-  } = useForm();
-  const divRef = React.useRef<HTMLDivElement>(null);
+  )
+  const { cardTokenizeResponseReceived, createPaymentRequest, payments } =
+    useForm()
+  const divRef = React.useRef<HTMLDivElement>(null)
 
   if (!createPaymentRequest) {
     throw new Error(
       '`createPaymentRequest()` is required when using digital wallets'
-    );
+    )
   }
 
   /**
@@ -44,42 +41,42 @@ export const ApplePay = (): JSX.Element | null => {
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async (e: Event) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      const result = await applePay?.tokenize();
+      const result = await applePay?.tokenize()
 
       if (result) {
-        return cardTokenizeResponseReceived(result);
+        return cardTokenizeResponseReceived(result)
       }
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  };
+  }
 
   React.useEffect(() => {
     /**
      * Initialize the Apple Pay instance to be used in the component
      */
     const start = async () => {
-      const paymentRequest = payments?.paymentRequest(createPaymentRequest);
+      const paymentRequest = payments?.paymentRequest(createPaymentRequest)
 
       try {
         // @ts-ignore - PaymentRequest is defined in the types
         await payments?.applePay(paymentRequest).then((res) => {
-          setApplePay(res);
+          setApplePay(res)
 
-          return res;
-        });
+          return res
+        })
       } catch (error) {
-        console.error(error);
+        console.error(error)
 
-        new Error(error as any);
+        throw new Error(error as any)
       }
-    };
+    }
 
-    start();
-  }, [createPaymentRequest, payments]);
+    start()
+  }, [createPaymentRequest, payments])
 
   useEventListener({
     listener: handlePayment,
@@ -88,21 +85,21 @@ export const ApplePay = (): JSX.Element | null => {
     options: {
       passive: true,
     },
-  });
+  })
 
   return (
     <ApplePayContainer
       // We need to make this styles to be able to use event listener
       css={{
-        display: !applePay ? 'none' : 'block',
-        opacity: !applePay ? 0.5 : 1,
-        pointerEvents: !applePay ? 'none' : 'auto',
-        visibility: !applePay ? 'hidden' : 'visible',
+        display: applePay ? 'block' : 'none',
+        opacity: applePay ? 1 : 0.5,
+        pointerEvents: applePay ? 'auto' : 'none',
+        visibility: applePay ? 'visible' : 'hidden',
       }}
       id="apple-pay-button"
       ref={divRef}
     ></ApplePayContainer>
-  );
-};
+  )
+}
 
-export default ApplePay;
+export default ApplePay

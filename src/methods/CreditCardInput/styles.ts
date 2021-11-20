@@ -1,5 +1,5 @@
 // Internals
-import { keyframes, styled } from '../../stitches.config';
+import { keyframes, styled } from '../../../stitches.config'
 
 const pulse = keyframes({
   '0%, 100%': {
@@ -8,7 +8,7 @@ const pulse = keyframes({
   '50%': {
     opacity: 0.5,
   },
-});
+})
 
 export const LoadingCard = styled('div', {
   animation: `${pulse()} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite`,
@@ -17,7 +17,7 @@ export const LoadingCard = styled('div', {
   height: 50,
   marginBottom: 39,
   position: 'relative',
-});
+})
 
 export const PayButton = styled('button', {
   backgroundColor: '#006aff',
@@ -41,4 +41,4 @@ export const PayButton = styled('button', {
     color: 'rgba(0, 0, 0, 0.3)',
     cursor: 'not-allowed',
   },
-});
+})

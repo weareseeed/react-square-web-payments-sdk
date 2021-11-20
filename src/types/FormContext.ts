@@ -4,7 +4,7 @@ import type {
   PaymentRequestOptions,
   TokenResult,
   VerifyBuyerResponseDetails,
-} from '@square/web-sdk';
+} from "@square/web-sdk";
 
 export type FormContextInterface = {
   /**

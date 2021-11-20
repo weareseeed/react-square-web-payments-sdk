@@ -1,12 +1,12 @@
 // Dependencies
-import * as React from 'react';
-import type { GiftCard, GiftCardOptions } from '@square/web-sdk';
-import type { CSS } from '@stitches/react';
+import * as React from 'react'
+import type { GiftCard, GiftCardOptions } from '@square/web-sdk'
+import type * as Stitches from '@stitches/react'
 
 // Internals
-import { LoadingCard, PayButton } from './styles';
-import { useForm } from '../../contexts';
-import { useEventListener } from '../../hooks';
+import { LoadingCard, PayButton } from './styles'
+import { useForm } from '../../contexts/FormContext'
+import { useEventListener } from '../../hooks/useEventListener'
 
 export interface GiftCardInputProps extends GiftCardOptions {
   /**
@@ -22,7 +22,7 @@ export interface GiftCardInputProps extends GiftCardOptions {
    * }
    * ```
    */
-  overrideStyles?: CSS | undefined;
+  overrideStyles?: Stitches.ComponentProps<typeof PayButton>['css']
 }
 
 /**
@@ -43,10 +43,10 @@ export const GiftCardInput = ({
 }: GiftCardInputProps): JSX.Element | null => {
   const [giftCard, setGiftCard] = React.useState<GiftCard | undefined>(
     () => undefined
-  );
-  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
-  const { cardTokenizeResponseReceived, payments } = useForm();
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  )
+  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false)
+  const { cardTokenizeResponseReceived, payments } = useForm()
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   /**
    * Handle the on click of the Gift Card button click
@@ -55,41 +55,41 @@ export const GiftCardInput = ({
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async () => {
-    setIsSubmitting(true);
+    setIsSubmitting(true)
 
     try {
-      const result = await giftCard?.tokenize();
+      const result = await giftCard?.tokenize()
 
       if (result) {
-        setIsSubmitting(false);
+        setIsSubmitting(false)
 
-        return cardTokenizeResponseReceived(result);
+        return cardTokenizeResponseReceived(result)
       }
     } catch (ex) {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
 
-      console.error(ex);
+      console.error(ex)
     }
-  };
+  }
 
   // Avoid re-rendering the component when the gift card is not ready
-  const giftCardProps = Object.keys(props).length > 1 ? props : undefined;
+  const giftCardProps = Object.keys(props).length > 1 ? props : undefined
   React.useEffect(() => {
     /**
      * Initialize the Gift Card instance to be used in the component
      */
     const start = async () => {
       const gCard = await payments?.giftCard(giftCardProps).then((res) => {
-        setGiftCard(res);
+        setGiftCard(res)
 
-        return res;
-      });
+        return res
+      })
 
-      await gCard?.attach('#gift-card-container');
-    };
+      await gCard?.attach('#gift-card-container')
+    }
 
-    start();
-  }, [payments, giftCardProps]);
+    start()
+  }, [payments, giftCardProps])
 
   useEventListener({
     listener: handlePayment,
@@ -98,7 +98,7 @@ export const GiftCardInput = ({
     options: {
       passive: true,
     },
-  });
+  })
 
   return (
     <>
@@ -108,6 +108,7 @@ export const GiftCardInput = ({
 
       <PayButton
         aria-disabled={!giftCard || isSubmitting}
+        // @ts-ignore - This is a workaround for a bug in TypeScript
         css={overrideStyles}
         disabled={!giftCard || isSubmitting}
         id="pay-with-gift-card"
@@ -117,7 +118,7 @@ export const GiftCardInput = ({
         Pay with Gift Card
       </PayButton>
     </>
-  );
-};
+  )
+}
 
-export default GiftCardInput;
+export default GiftCardInput

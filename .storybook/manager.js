@@ -1,6 +1,6 @@
 // Dependencies
-import { addons } from '@storybook/addons';
-import { themes } from '@storybook/theming';
+import { addons } from '@storybook/addons'
+import { themes } from '@storybook/theming'
 
 addons.setConfig({
   theme: {
@@ -10,4 +10,4 @@ addons.setConfig({
     fontBase:
       '"Square Market", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
   },
-});
+})
