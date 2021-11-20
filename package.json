@@ -31,6 +31,11 @@
       "url": "https://danestves.com/en"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:weareseeed/react-square-web-payments-sdk.git"
+  },
+  "homepage": "https://weareseeed.github.io/react-square-web-payments-sdk/",
   "module": "dist/rswps.esm.js",
   "size-limit": [
     {
@@ -42,7 +47,6 @@
       "limit": "15 KB"
     }
   ],
-  "private": true,
   "source": "src/index.ts",
   "devDependencies": {
     "@babel/core": "^7.16.0",
