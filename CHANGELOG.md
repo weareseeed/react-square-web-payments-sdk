@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0-canary.4](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.3...v2.3.0-canary.4) (2021-12-02)
+
+
+### Features
+
+* adding no jekyll file ([6441b89](https://github.com/weareseeed/react-square-web-payments-sdk/commit/6441b89440bf447ba85beee363895830cdc0f717))
+* compile docs and metadata for package ([82fb342](https://github.com/weareseeed/react-square-web-payments-sdk/commit/82fb342c274d5283fa5031dd36bc9e12a329f064))
+* **docs:** update docs with absolute imports ([bf13b7a](https://github.com/weareseeed/react-square-web-payments-sdk/commit/bf13b7aa12a04e678e9113900323f2bd7f33dcce))
+
+
+### Bug Fixes
+
+* **docs:** correct URL for logo ([8c1f182](https://github.com/weareseeed/react-square-web-payments-sdk/commit/8c1f18287fbaaa69a445726d4582cd721336e1f1))
+
 ## [2.3.0-canary.3](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.2...v2.3.0-canary.3) (2021-11-20)
 
 
