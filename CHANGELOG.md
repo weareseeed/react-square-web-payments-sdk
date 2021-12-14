@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0-canary.6](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.5...v2.3.0-canary.6) (2021-12-14)
+
+
+### Bug Fixes
+
+* default imports and some types ([ad75860](https://github.com/weareseeed/react-square-web-payments-sdk/commit/ad7586055c6c9b9d73ab240211e14d2aae998221))
+
 ## [2.3.0-canary.5](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.4...v2.3.0-canary.5) (2021-12-14)
 
 
