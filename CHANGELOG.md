@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0-canary.9](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.8...v2.3.0-canary.9) (2021-12-14)
+
+
+### Bug Fixes
+
+* initialize card and later configure options ([4c74c53](https://github.com/weareseeed/react-square-web-payments-sdk/commit/4c74c53bbaa40383405222cba72398b76ca5bdda))
+
 ## [2.3.0-canary.8](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.7...v2.3.0-canary.8) (2021-12-14)
 
 
