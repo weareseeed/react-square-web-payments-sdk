@@ -102,4 +102,4 @@ const ApplePay = (): JSX.Element | null => {
   )
 }
 
-export { ApplePay }
+export default ApplePay

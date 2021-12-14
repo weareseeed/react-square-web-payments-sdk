@@ -97,5 +97,5 @@ const GooglePay = (props: GooglePayProps): JSX.Element | null => {
   return <div id="google-pay-button" ref={divRef} style={{ height: 40 }}></div>
 }
 
-export { GooglePay }
+export default GooglePay
 export type { GooglePayProps }

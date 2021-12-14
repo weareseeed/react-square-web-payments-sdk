@@ -9,7 +9,7 @@ import type { FormContextInterface } from '../types/FormContext'
 /**
  * Export the hook here so we avoid circular dependency
  */
-export const useForm = (): FormContextInterface => {
+const useForm = (): FormContextInterface => {
   const context = React.useContext(FormContext)
 
   if (context === undefined) {
@@ -25,17 +25,17 @@ export const useForm = (): FormContextInterface => {
  * This is available for developers who require more customization over their payment form implementation. Please refer to the
  * [customization](customization.md) page for usage details.
  */
-export const FormContext = React.createContext<FormContextInterface>({
-  cardTokenizeResponseReceived: (null as unknown) as (
+const FormContext = React.createContext<FormContextInterface>({
+  cardTokenizeResponseReceived: null as unknown as (
     token: Square.TokenResult,
     verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
   ) => void,
-  createPaymentRequest: (null as unknown) as Square.PaymentRequestOptions,
+  createPaymentRequest: null as unknown as Square.PaymentRequestOptions,
   formId: '',
-  payments: (null as unknown) as Square.Payments,
+  payments: null as unknown as Square.Payments,
 })
 
-export interface ProviderProps {
+interface ProviderProps {
   createPaymentRequest?: () => Square.PaymentRequestOptions
   cardTokenizeResponseReceived: (
     token: Square.TokenResult,
@@ -93,4 +93,5 @@ const FormProvider: React.FC<ProviderProps> = ({
   return <FormContext.Provider value={context}>{children}</FormContext.Provider>
 }
 
-export default FormProvider
+export { FormContext, FormProvider, useForm }
+export type { ProviderProps }

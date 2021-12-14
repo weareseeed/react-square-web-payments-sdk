@@ -11,7 +11,7 @@ interface UseEventListener {
   options?: AddEventListenerOptions
 }
 
-export const useEventListener = ({
+const useEventListener = ({
   type,
   listener,
   element = isSSR ? undefined : window,
@@ -35,3 +35,6 @@ export const useEventListener = ({
     return () => target?.removeEventListener(type, handleEventListener)
   }, [type, element, options, handleEventListener])
 }
+
+export { useEventListener }
+export type { UseEventListener }

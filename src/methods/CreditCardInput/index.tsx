@@ -285,5 +285,5 @@ const CreditCardInput = ({
   )
 }
 
-export { CreditCardInput }
+export default CreditCardInput
 export type { CreditCardInputChildren, CreditCardInputProps, PayButtonProps }

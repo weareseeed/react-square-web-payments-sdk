@@ -11,7 +11,7 @@ import {
   Title,
 } from './styles'
 
-export type ErrorScreenProps = {
+type ErrorScreenProps = {
   development?: boolean
 }
 
@@ -69,4 +69,5 @@ const ErrorScreen = ({
   )
 }
 
-export { ErrorScreen }
+export default ErrorScreen
+export type { ErrorScreenProps }

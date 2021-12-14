@@ -4,8 +4,8 @@ import { payments } from '@square/web-sdk'
 import type * as Square from '@square/web-sdk'
 
 // Internals
-import FormProvider from './contexts/FormContext'
-import { ErrorScreen } from './components/ErrorScreen'
+import { FormProvider } from './contexts/FormContext'
+import ErrorScreen from './components/ErrorScreen'
 
 interface SquarePaymentsFormProps {
   /**
@@ -93,5 +93,5 @@ const SquarePaymentsForm = ({
   )
 }
 
-export { SquarePaymentsForm }
+export default SquarePaymentsForm
 export type { SquarePaymentsFormProps }

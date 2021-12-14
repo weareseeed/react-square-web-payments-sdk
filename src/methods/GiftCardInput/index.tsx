@@ -121,5 +121,5 @@ const GiftCardInput = ({
   )
 }
 
-export { GiftCardInput }
+export default GiftCardInput
 export type { GiftCardInputProps }

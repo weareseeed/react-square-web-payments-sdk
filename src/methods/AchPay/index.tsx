@@ -186,5 +186,5 @@ const AchPay = ({
   )
 }
 
-export { AchPay }
+export default AchPay
 export type { AchPayProps }

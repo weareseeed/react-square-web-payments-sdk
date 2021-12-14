@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "parcel watch src/index.ts",
-    "build": "parcel build src/index.ts",
+    "build": "parcel build src/index.ts --no-cache",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "test": "jest --passWithNoTests",
     "size": "size-limit",

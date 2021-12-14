@@ -9,7 +9,7 @@ import * as React from 'react'
 const useIsomorphicLayoutEffect =
   typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect
 
-export const useDynamicCallback = (callback: any) => {
+const useDynamicCallback = (callback: any) => {
   const ref = React.useRef(callback)
 
   useIsomorphicLayoutEffect(() => {
@@ -19,4 +19,4 @@ export const useDynamicCallback = (callback: any) => {
   return React.useCallback((...args) => ref.current(...args), [])
 }
 
-export default useDynamicCallback
+export { useDynamicCallback }
