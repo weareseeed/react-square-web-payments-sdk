@@ -179,17 +179,22 @@ const CreditCardInput = ({
   }
 
   // Avoid re-rendering the component when the card is not ready
-  const cardProps = Object.keys(props).length > 1 ? props : undefined
   React.useEffect(() => {
     /**
      * Initialize the Card instance to be used in the component
      */
     const start = async () => {
-      const card = await payments?.card(cardProps).then((res) => {
-        setCard(res)
+      const card = await payments
+        ?.card({
+          includeInputLabels: props.includeInputLabels,
+          postalCode: props.postalCode,
+          style: props.style,
+        })
+        .then((res) => {
+          setCard(res)
 
-        return res
-      })
+          return res
+        })
 
       await card?.attach(`#${cardContainerId}`)
       await card?.focus(focus)
@@ -200,7 +205,7 @@ const CreditCardInput = ({
     } else {
       start()
     }
-  }, [focus, payments, cardProps, card, cardContainerId])
+  }, [focus, payments, card, cardContainerId, props])
 
   useEventListener({
     listener: handlePayment,
