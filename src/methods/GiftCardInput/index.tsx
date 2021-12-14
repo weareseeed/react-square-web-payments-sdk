@@ -8,7 +8,7 @@ import { LoadingCard, PayButton } from './styles'
 import { useForm } from '../../contexts/FormContext'
 import { useEventListener } from '../../hooks/useEventListener'
 
-export interface GiftCardInputProps extends Square.GiftCardOptions {
+interface GiftCardInputProps extends Square.GiftCardOptions {
   /**
    * Sets the style for the Gift Card Button using a CSS object
    *
@@ -37,7 +37,7 @@ export interface GiftCardInputProps extends Square.GiftCardOptions {
  * </SquareForm>
  * ```
  */
-export const GiftCardInput = ({
+const GiftCardInput = ({
   overrideStyles,
   ...props
 }: GiftCardInputProps): JSX.Element | null => {
@@ -121,4 +121,5 @@ export const GiftCardInput = ({
   )
 }
 
-export default GiftCardInput
+export { GiftCardInput }
+export type { GiftCardInputProps }

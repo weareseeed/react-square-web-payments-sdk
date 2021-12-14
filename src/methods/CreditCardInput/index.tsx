@@ -8,18 +8,18 @@ import { LoadingCard, PayButton } from './styles'
 import { useForm } from '../../contexts/FormContext'
 import { useEventListener } from '../../hooks/useEventListener'
 
-export type PayButtonProps = Omit<
+type PayButtonProps = Omit<
   React.ComponentPropsWithoutRef<'button'>,
   'aria-disabled' | 'disabled' | 'id' | 'type'
 > & {
   css?: Stitches.ComponentProps<typeof PayButton>['css']
 }
 
-export type ChildrenProps = {
+type CreditCardInputChildren = {
   Button: (props?: PayButtonProps) => React.ReactElement
 }
 
-export interface CreditCardInputProps extends Square.CardOptions {
+interface CreditCardInputProps extends Square.CardOptions {
   /**
    * Callback function that is called when the payment form detected a new likely credit card brand
    * based on the card number.
@@ -32,7 +32,9 @@ export interface CreditCardInputProps extends Square.CardOptions {
   /**
    * Make it possible to put any component inside. If children is/are given then text is not applied
    */
-  children?: (props: ChildrenProps) => React.ReactElement | React.ReactNode
+  children?: (
+    props: CreditCardInputChildren
+  ) => React.ReactElement | React.ReactNode
   /**
    * Callback function that is called when a form field has an invalid value,
    * and the corresponding error CSS class was added to the element.
@@ -127,7 +129,7 @@ export interface CreditCardInputProps extends Square.CardOptions {
  * </SquareForm>
  * ```
  */
-export const CreditCardInput = ({
+const CreditCardInput = ({
   cardBrandChanged,
   cardContainerId = 'card-container',
   children,
@@ -283,4 +285,5 @@ export const CreditCardInput = ({
   )
 }
 
-export default CreditCardInput
+export { CreditCardInput }
+export type { CreditCardInputChildren, CreditCardInputProps, PayButtonProps }

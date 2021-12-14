@@ -15,7 +15,7 @@ export type ErrorScreenProps = {
   development?: boolean
 }
 
-export const ErrorScreen = ({
+const ErrorScreen = ({
   development = true,
 }: ErrorScreenProps): React.ReactElement => {
   // See if we're in development mode or props.development is set
@@ -69,4 +69,4 @@ export const ErrorScreen = ({
   )
 }
 
-export default ErrorScreen
+export { ErrorScreen }

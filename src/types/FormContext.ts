@@ -1,10 +1,5 @@
 // Dependencies
-import type {
-  Payments,
-  PaymentRequestOptions,
-  TokenResult,
-  VerifyBuyerResponseDetails,
-} from "@square/web-sdk";
+import type * as Square from '@square/web-sdk'
 
 export type FormContextInterface = {
   /**
@@ -13,19 +8,19 @@ export type FormContextInterface = {
    * Invoked when payment form receives the result of a tokenize generation request. The result will be a valid credit card or wallet token, or an error.
    */
   cardTokenizeResponseReceived: (
-    token: TokenResult,
-    verifiedBuyer?: VerifyBuyerResponseDetails | null
-  ) => void;
+    token: Square.TokenResult,
+    verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
+  ) => void
   /**
    * **Required for digital wallets**
    *
    * Invoked when a digital wallet payment button is clicked.
    */
-  createPaymentRequest?: PaymentRequestOptions;
+  createPaymentRequest?: Square.PaymentRequestOptions
   /**
    * Unique form ID
    */
-  formId?: string;
+  formId?: string
   /**
    * Returned by `Square.payments(appId, locationId)`.
    *
@@ -33,5 +28,5 @@ export type FormContextInterface = {
    * @example
    * const payments = Square.payments(appId, locationId);
    */
-  payments: Payments | null;
-};
+  payments: Square.Payments | null
+}

@@ -5,9 +5,9 @@ import type * as Square from '@square/web-sdk'
 
 // Internals
 import FormProvider from './contexts/FormContext'
-import ErrorScreen from './components/ErrorScreen'
+import { ErrorScreen } from './components/ErrorScreen'
 
-export interface SquarePaymentsFormProps {
+interface SquarePaymentsFormProps {
   /**
    * **Required for all features**
    *
@@ -45,7 +45,7 @@ export interface SquarePaymentsFormProps {
     | Square.StoreVerifyBuyerDetails
 }
 
-export const SquarePaymentsForm = ({
+const SquarePaymentsForm = ({
   applicationId,
   locationId,
   formId = 'web-payment-sdk-form',
@@ -93,4 +93,5 @@ export const SquarePaymentsForm = ({
   )
 }
 
-export default SquarePaymentsForm
+export { SquarePaymentsForm }
+export type { SquarePaymentsFormProps }

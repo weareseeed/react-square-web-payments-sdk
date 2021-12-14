@@ -11,7 +11,7 @@ interface Props {
   text?: string
 }
 
-export const Separator = ({
+const Separator = ({
   overrideLineStyles = undefined,
   overrideSpanStyles = undefined,
   text = 'or',
@@ -29,4 +29,4 @@ export const Separator = ({
   </Line>
 )
 
-export default Separator
+export { Separator }

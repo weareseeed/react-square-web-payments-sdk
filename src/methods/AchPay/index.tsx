@@ -8,7 +8,7 @@ import { PayButton, SvgIcon } from './styles'
 import { useForm } from '../../contexts/FormContext'
 import { useEventListener } from '../../hooks/useEventListener'
 
-export interface AchPayProps extends Square.AchTokenOptions {
+interface AchPayProps extends Square.AchTokenOptions {
   /**
    * The children of the button to override icon and text,
    * you can put any component inside the button
@@ -64,7 +64,7 @@ export interface AchPayProps extends Square.AchTokenOptions {
  * </SquareForm>
  * ```
  */
-export const AchPay = ({
+const AchPay = ({
   children,
   overrideSvgStyles,
   overrideStyles,
@@ -186,4 +186,5 @@ export const AchPay = ({
   )
 }
 
-export default AchPay
+export { AchPay }
+export type { AchPayProps }

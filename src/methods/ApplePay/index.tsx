@@ -20,15 +20,12 @@ import { useEventListener } from '../../hooks/useEventListener'
  * </SquareForm>
  * ```
  */
-export const ApplePay = (): JSX.Element | null => {
+const ApplePay = (): JSX.Element | null => {
   const [applePay, setApplePay] = React.useState<Square.ApplePay | undefined>(
     () => undefined
   )
-  const {
-    cardTokenizeResponseReceived,
-    createPaymentRequest,
-    payments,
-  } = useForm()
+  const { cardTokenizeResponseReceived, createPaymentRequest, payments } =
+    useForm()
   const divRef = React.useRef<HTMLDivElement>(null)
 
   if (!createPaymentRequest) {
@@ -105,4 +102,4 @@ export const ApplePay = (): JSX.Element | null => {
   )
 }
 
-export default ApplePay
+export { ApplePay }
