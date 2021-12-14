@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0-canary.7](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.6...v2.3.0-canary.7) (2021-12-14)
+
+
+### Bug Fixes
+
+* delete the old parcel bundler and better exports ([54375fe](https://github.com/weareseeed/react-square-web-payments-sdk/commit/54375fe8b3dea4df96e5b75d1f42776b78b8365f))
+
 ## [2.3.0-canary.6](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.5...v2.3.0-canary.6) (2021-12-14)
 
 

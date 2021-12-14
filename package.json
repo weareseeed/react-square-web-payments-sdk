@@ -1,5 +1,5 @@
 {
-  "version": "2.3.0-canary.6",
+  "version": "2.3.0-canary.7",
   "license": "MIT",
   "main": "dist/rswps.cjs.js",
   "types": "dist/types.d.ts",
