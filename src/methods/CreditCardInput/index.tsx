@@ -138,14 +138,16 @@ const CreditCardInput = ({
   focus = 'cardNumber',
   focusClassAdded,
   focusClassRemoved,
+  includeInputLabels = false,
   overrideStyles,
+  postalCode = '',
   postalCodeChanged,
   recalculateSize,
   scape,
+  style,
   submit,
   submitButtonId = 'pay-with-card',
   text = 'Pay',
-  ...props
 }: CreditCardInputProps): React.ReactElement | null => {
   const [card, setCard] = React.useState<Square.Card | undefined>(
     () => undefined
@@ -184,18 +186,17 @@ const CreditCardInput = ({
      * Initialize the Card instance to be used in the component
      */
     const start = async () => {
-      const card = await payments
-        ?.card({
-          includeInputLabels: props.includeInputLabels,
-          postalCode: props.postalCode,
-          style: props.style,
-        })
-        .then((res) => {
-          setCard(res)
+      const card = await payments?.card().then((res) => {
+        setCard(res)
 
-          return res
-        })
+        return res
+      })
 
+      await card?.configure({
+        includeInputLabels,
+        postalCode,
+        style,
+      })
       await card?.attach(`#${cardContainerId}`)
       await card?.focus(focus)
     }
@@ -205,7 +206,15 @@ const CreditCardInput = ({
     } else {
       start()
     }
-  }, [focus, payments, card, cardContainerId, props])
+  }, [
+    focus,
+    payments,
+    card,
+    cardContainerId,
+    includeInputLabels,
+    postalCode,
+    style,
+  ])
 
   useEventListener({
     listener: handlePayment,
