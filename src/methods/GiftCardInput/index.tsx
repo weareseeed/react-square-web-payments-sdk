@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react'
-import type { GiftCard, GiftCardOptions } from '@square/web-sdk'
+import type * as Square from '@square/web-sdk'
 import type * as Stitches from '@stitches/react'
 
 // Internals
@@ -8,7 +8,7 @@ import { LoadingCard, PayButton } from './styles'
 import { useForm } from '../../contexts/FormContext'
 import { useEventListener } from '../../hooks/useEventListener'
 
-export interface GiftCardInputProps extends GiftCardOptions {
+export interface GiftCardInputProps extends Square.GiftCardOptions {
   /**
    * Sets the style for the Gift Card Button using a CSS object
    *
@@ -41,7 +41,7 @@ export const GiftCardInput = ({
   overrideStyles,
   ...props
 }: GiftCardInputProps): JSX.Element | null => {
-  const [giftCard, setGiftCard] = React.useState<GiftCard | undefined>(
+  const [giftCard, setGiftCard] = React.useState<Square.GiftCard | undefined>(
     () => undefined
   )
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false)

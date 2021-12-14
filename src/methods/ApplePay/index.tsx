@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react'
-import type { ApplePay as ApplePayInterface } from '@square/web-sdk'
+import type * as Square from '@square/web-sdk'
 
 // Internals
 import { ApplePayContainer } from './styles'
@@ -21,11 +21,14 @@ import { useEventListener } from '../../hooks/useEventListener'
  * ```
  */
 export const ApplePay = (): JSX.Element | null => {
-  const [applePay, setApplePay] = React.useState<ApplePayInterface | undefined>(
+  const [applePay, setApplePay] = React.useState<Square.ApplePay | undefined>(
     () => undefined
   )
-  const { cardTokenizeResponseReceived, createPaymentRequest, payments } =
-    useForm()
+  const {
+    cardTokenizeResponseReceived,
+    createPaymentRequest,
+    payments,
+  } = useForm()
   const divRef = React.useRef<HTMLDivElement>(null)
 
   if (!createPaymentRequest) {

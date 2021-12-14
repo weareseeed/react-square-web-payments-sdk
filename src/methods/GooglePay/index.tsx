@@ -1,19 +1,18 @@
 // Dependencies
 import * as React from 'react'
-import type {
-  GooglePay as GooglePayInterface,
-  GooglePayButtonOptions as GooglePayProps,
-} from '@square/web-payments-sdk-types'
+import type * as Square from '@square/web-sdk'
 
 // Internals
 import { useForm } from '../../contexts/FormContext'
 import { useEventListener } from '../../hooks/useEventListener'
 
-const defaultProps: GooglePayProps = {
+const defaultProps: Square.GooglePayButtonOptions = {
   buttonColor: 'black',
   buttonSizeMode: 'fill',
   buttonType: 'long',
 }
+
+interface GooglePayProps extends Square.GooglePayButtonOptions {}
 
 export { GooglePayProps }
 
@@ -32,10 +31,13 @@ export { GooglePayProps }
  */
 export const GooglePay = (props: GooglePayProps): JSX.Element | null => {
   const [googlePay, setGooglePay] = React.useState<
-    GooglePayInterface | undefined
+    Square.GooglePay | undefined
   >(() => undefined)
-  const { cardTokenizeResponseReceived, createPaymentRequest, payments } =
-    useForm()
+  const {
+    cardTokenizeResponseReceived,
+    createPaymentRequest,
+    payments,
+  } = useForm()
   const divRef = React.useRef<HTMLDivElement>(null)
 
   if (!createPaymentRequest) {

@@ -23,7 +23,8 @@
     "removeComments": true,
     "paths": {
       "stitches": ["./stitches.config.ts"]
-    }
+    },
+    "types": ["node"]
   },
   "exclude": [
     "node_modules",

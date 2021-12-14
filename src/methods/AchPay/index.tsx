@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react'
-import type { ACH, AchTokenOptions } from '@square/web-sdk'
+import type * as Square from '@square/web-sdk'
 import type * as Stitches from '@stitches/react'
 
 // Internals
@@ -8,7 +8,7 @@ import { PayButton, SvgIcon } from './styles'
 import { useForm } from '../../contexts/FormContext'
 import { useEventListener } from '../../hooks/useEventListener'
 
-export interface AchPayProps extends AchTokenOptions {
+export interface AchPayProps extends Square.AchTokenOptions {
   /**
    * The children of the button to override icon and text,
    * you can put any component inside the button
@@ -70,7 +70,9 @@ export const AchPay = ({
   overrideStyles,
   ...props
 }: AchPayProps): JSX.Element | null => {
-  const [achPay, setAchPay] = React.useState<ACH | undefined>(() => undefined)
+  const [achPay, setAchPay] = React.useState<Square.ACH | undefined>(
+    () => undefined
+  )
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false)
   const { cardTokenizeResponseReceived, payments } = useForm()
   const buttonRef = React.useRef<HTMLButtonElement>(null)

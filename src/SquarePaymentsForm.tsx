@@ -1,14 +1,7 @@
 // Dependencies
 import * as React from 'react'
 import { payments } from '@square/web-sdk'
-import type {
-  ChargeVerifyBuyerDetails,
-  PaymentRequestOptions,
-  Payments,
-  StoreVerifyBuyerDetails,
-  TokenResult,
-  VerifyBuyerResponseDetails,
-} from '@square/web-sdk'
+import type * as Square from '@square/web-sdk'
 
 // Internals
 import FormProvider from './contexts/FormContext'
@@ -38,18 +31,18 @@ export interface SquarePaymentsFormProps {
    * Invoked when payment form receives the result of a tokenize generation request. The result will be a valid credit card or wallet token, or an error.
    */
   cardTokenizeResponseReceived: (
-    props: TokenResult,
-    verifiedBuyer?: VerifyBuyerResponseDetails | null
+    props: Square.TokenResult,
+    verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
   ) => void
   /** **Required for digital wallets**
    *
    * Invoked when a digital wallet payment button is clicked.
    */
-  createPaymentRequest?: () => PaymentRequestOptions
+  createPaymentRequest?: () => Square.PaymentRequestOptions
   /** **Required for SCA** */
   createVerificationDetails?: () =>
-    | ChargeVerifyBuyerDetails
-    | StoreVerifyBuyerDetails
+    | Square.ChargeVerifyBuyerDetails
+    | Square.StoreVerifyBuyerDetails
 }
 
 export const SquarePaymentsForm = ({
@@ -58,7 +51,7 @@ export const SquarePaymentsForm = ({
   formId = 'web-payment-sdk-form',
   ...props
 }: SquarePaymentsFormProps): React.ReactElement | null => {
-  const [paymentsSdk, setPaymentsSdk] = React.useState<Payments>()
+  const [paymentsSdk, setPaymentsSdk] = React.useState<Square.Payments>()
 
   React.useEffect(() => {
     async function loadPayment(): Promise<void> {

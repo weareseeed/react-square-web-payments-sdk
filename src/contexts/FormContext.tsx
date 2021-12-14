@@ -1,13 +1,6 @@
 // Dependencies
 import * as React from 'react'
-import type {
-  ChargeVerifyBuyerDetails,
-  Payments,
-  PaymentRequestOptions,
-  StoreVerifyBuyerDetails,
-  TokenResult,
-  VerifyBuyerResponseDetails,
-} from '@square/web-sdk'
+import type * as Square from '@square/web-sdk'
 
 // Internals
 import { useDynamicCallback } from '../hooks/useDynamicCallback'
@@ -33,25 +26,25 @@ export const useForm = (): FormContextInterface => {
  * [customization](customization.md) page for usage details.
  */
 export const FormContext = React.createContext<FormContextInterface>({
-  cardTokenizeResponseReceived: null as unknown as (
-    token: TokenResult,
-    verifiedBuyer?: VerifyBuyerResponseDetails | null
+  cardTokenizeResponseReceived: (null as unknown) as (
+    token: Square.TokenResult,
+    verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
   ) => void,
-  createPaymentRequest: null as unknown as PaymentRequestOptions,
+  createPaymentRequest: (null as unknown) as Square.PaymentRequestOptions,
   formId: '',
-  payments: null as unknown as Payments,
+  payments: (null as unknown) as Square.Payments,
 })
 
 export interface ProviderProps {
-  createPaymentRequest?: () => PaymentRequestOptions
+  createPaymentRequest?: () => Square.PaymentRequestOptions
   cardTokenizeResponseReceived: (
-    token: TokenResult,
-    verifiedBuyer?: VerifyBuyerResponseDetails | null
+    token: Square.TokenResult,
+    verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
   ) => void
   createVerificationDetails?: () =>
-    | ChargeVerifyBuyerDetails
-    | StoreVerifyBuyerDetails
-  payments: Payments | null
+    | Square.ChargeVerifyBuyerDetails
+    | Square.StoreVerifyBuyerDetails
+  payments: Square.Payments | null
 }
 
 const FormProvider: React.FC<ProviderProps> = ({
@@ -60,11 +53,11 @@ const FormProvider: React.FC<ProviderProps> = ({
   ...props
 }) => {
   const [createPaymentRequest] = React.useState<
-    undefined | PaymentRequestOptions
+    undefined | Square.PaymentRequestOptions
   >(() => props.createPaymentRequest?.())
 
   const cardTokenizeResponseReceived = async (
-    rest: TokenResult
+    rest: Square.TokenResult
   ): Promise<void> => {
     if (rest.errors || !props.createVerificationDetails) {
       props.cardTokenizeResponseReceived(rest)
