@@ -38,7 +38,14 @@ export const Example: React.FC<CreditCardInputProps> = ({ ...props }) => {
        */
       locationId="4P550BZQ0TQZA"
     >
-      <CreditCardInput {...props} />
+      <CreditCardInput
+        style={{
+          input: {
+            fontSize: '10px',
+          },
+        }}
+        {...props}
+      />
     </SquarePaymentsForm>
   )
 }
