@@ -1,10 +1,10 @@
 // Dependencies
-import * as React from 'react';
+import * as React from 'react'
 
 // Internals
-import { GiftCardInput } from '../';
-import SquarePaymentsForm from '../../../SquarePaymentsForm';
-import type { GiftCardInputProps } from '../';
+import GiftCardInput from '../'
+import SquarePaymentsForm from '../../../SquarePaymentsForm'
+import type { GiftCardInputProps } from '../'
 
 export const Example: React.FC<GiftCardInputProps> = ({ ...props }) => {
   return (
@@ -16,7 +16,7 @@ export const Example: React.FC<GiftCardInputProps> = ({ ...props }) => {
        */
       applicationId="sandbox-sq0idb-7KE3zXHZLG_X5EmLLptTYw"
       cardTokenizeResponseReceived={(token, buyer) => {
-        console.info({ token, buyer });
+        console.info({ token, buyer })
       }}
       createVerificationDetails={() => ({
         amount: '1.00',
@@ -40,5 +40,5 @@ export const Example: React.FC<GiftCardInputProps> = ({ ...props }) => {
     >
       <GiftCardInput {...props} />
     </SquarePaymentsForm>
-  );
-};
+  )
+}

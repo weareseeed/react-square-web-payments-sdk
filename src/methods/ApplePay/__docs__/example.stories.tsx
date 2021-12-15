@@ -1,9 +1,9 @@
 // Dependencies
-import * as React from 'react';
+import * as React from 'react'
 
 // Internals
-import { ApplePay } from '../';
-import SquarePaymentsForm from '../../../SquarePaymentsForm';
+import ApplePay from '../'
+import SquarePaymentsForm from '../../../SquarePaymentsForm'
 
 export const Example = () => {
   return (
@@ -15,7 +15,7 @@ export const Example = () => {
        */
       applicationId="sandbox-sq0idb-7KE3zXHZLG_X5EmLLptTYw"
       cardTokenizeResponseReceived={(token, buyer) => {
-        console.info({ token, buyer });
+        console.info({ token, buyer })
       }}
       createPaymentRequest={() => ({
         countryCode: 'US',
@@ -44,5 +44,5 @@ export const Example = () => {
     >
       <ApplePay />
     </SquarePaymentsForm>
-  );
-};
+  )
+}

@@ -1,10 +1,10 @@
 // Dependencies
-import * as React from 'react';
+import * as React from 'react'
 
 // Internals
-import { AchPay } from '../';
-import SquarePaymentsForm from '../../../SquarePaymentsForm';
-import type { AchPayProps } from '../';
+import AchPay from '../'
+import SquarePaymentsForm from '../../../SquarePaymentsForm'
+import type { AchPayProps } from '../'
 
 export const Example: React.FC<AchPayProps> = ({
   accountHolderName = 'John Doe',
@@ -19,7 +19,7 @@ export const Example: React.FC<AchPayProps> = ({
        */
       applicationId="sandbox-sq0idb-7KE3zXHZLG_X5EmLLptTYw"
       cardTokenizeResponseReceived={(token, buyer) => {
-        console.info({ token, buyer });
+        console.info({ token, buyer })
       }}
       createVerificationDetails={() => ({
         amount: '1.00',
@@ -43,5 +43,5 @@ export const Example: React.FC<AchPayProps> = ({
     >
       <AchPay accountHolderName={accountHolderName} {...props} />
     </SquarePaymentsForm>
-  );
-};
+  )
+}

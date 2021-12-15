@@ -62,7 +62,7 @@ const GooglePay = (props: GooglePayProps): JSX.Element | null => {
   }
 
   // Avoid re-rendering the component when the google pay is not ready
-  const googlePayProps = Object.keys(props).length > 1 ? props : undefined
+  const googlePayProps = Object.keys(props).length > 0 ? props : undefined
   React.useEffect(() => {
     /**
      * Initialize the Google Pay instance to be used in the component

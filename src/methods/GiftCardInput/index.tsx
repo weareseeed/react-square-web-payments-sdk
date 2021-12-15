@@ -73,7 +73,7 @@ const GiftCardInput = ({
   }
 
   // Avoid re-rendering the component when the gift card is not ready
-  const giftCardProps = Object.keys(props).length > 1 ? props : undefined
+  const giftCardProps = Object.keys(props).length > 0 ? props : undefined
   React.useEffect(() => {
     /**
      * Initialize the Gift Card instance to be used in the component

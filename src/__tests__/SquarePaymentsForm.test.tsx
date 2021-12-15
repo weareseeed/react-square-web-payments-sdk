@@ -4,7 +4,7 @@ import { cleanup, render, screen } from '@testing-library/react'
 
 // Internals
 import { paymentsSdk } from './__mocks__/paymentsSdk'
-import FormProvider from '../contexts/FormContext'
+import { FormProvider } from '../contexts/FormContext'
 import type { ProviderProps } from '../contexts/FormContext'
 
 describe('SquarePaymentsForm', () => {

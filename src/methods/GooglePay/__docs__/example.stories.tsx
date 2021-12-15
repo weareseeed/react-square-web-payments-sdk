@@ -1,10 +1,10 @@
 // Dependencies
-import * as React from 'react';
+import * as React from 'react'
 
 // Internals
-import { GooglePay } from '../';
-import { SquarePaymentsForm } from '../../../SquarePaymentsForm';
-import type { GooglePayProps } from '../';
+import GooglePay from '../'
+import SquarePaymentsForm from '../../../SquarePaymentsForm'
+import type { GooglePayProps } from '../'
 
 export const Example: React.FC<GooglePayProps> = (props) => {
   return (
@@ -16,7 +16,7 @@ export const Example: React.FC<GooglePayProps> = (props) => {
        */
       applicationId="sandbox-sq0idb-7KE3zXHZLG_X5EmLLptTYw"
       cardTokenizeResponseReceived={(token, buyer) => {
-        console.info({ token, buyer });
+        console.info({ token, buyer })
       }}
       createPaymentRequest={() => ({
         countryCode: 'US',
@@ -45,5 +45,5 @@ export const Example: React.FC<GooglePayProps> = (props) => {
     >
       <GooglePay {...props} />
     </SquarePaymentsForm>
-  );
-};
+  )
+}

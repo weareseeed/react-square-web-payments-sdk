@@ -17,7 +17,8 @@
     "size": "size-limit",
     "storybook:watch": "start-storybook -p 6006 --docs -s public --no-manager-cache",
     "storybook:build": "build-storybook --docs -o docs -s public",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prepublish": "yarn build"
   },
   "peerDependencies": {
     "react": ">=16"
