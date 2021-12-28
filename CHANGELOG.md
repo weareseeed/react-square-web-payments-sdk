@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0-canary.13](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.12...v2.3.0-canary.13) (2021-12-28)
+
+
+### Bug Fixes
+
+* ensure that the props are passing to render gift card ([cf17f9f](https://github.com/weareseeed/react-square-web-payments-sdk/commit/cf17f9f3436a7e7e1cdeb6ee57d64491930a9c31))
+
 ## [2.3.0-canary.12](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.11...v2.3.0-canary.12) (2021-12-15)
 
 
