@@ -90,7 +90,7 @@ const GiftCardInput = ({
       await gCard?.attach('#gift-card-container')
     }
 
-    start()
+    if (!giftCard) start()
   }, [payments, props])
 
   useEventListener({
