@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Ask a question
-    url: https://github.com/weareseeed/react-square-web-payments-sdk/discussions
-    about: Ask questions and discuss with other community members
+  - name: Feature Request
+    url: https://github.com/weareseeed/react-square-web-payments-sdk/discussions/new?category=ideas
+    about: 'Use our discussion forums to share any suggestions you have.'
+  - name: Help
+    url: https://github.com/weareseeed/react-square-web-payments-sdk/discussions/new?category=help
+    about: 'Ask a question in the discussion forums if you have a question or need assistance.'

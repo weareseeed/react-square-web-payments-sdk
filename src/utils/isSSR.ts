@@ -1,3 +1,3 @@
-export const isSSR: boolean = !(
+export const isSSR = !(
   typeof window !== 'undefined' && window.document?.createElement
-);
+)

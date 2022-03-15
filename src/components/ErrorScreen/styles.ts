@@ -1,5 +1,5 @@
-// Dependencies
-import { styled } from '@stitches/react';
+// Internals
+import { styled } from '../../../stitches.config'
 
 export const Container = styled('div', {
   background: '#FFFFFF',
@@ -15,25 +15,25 @@ export const Container = styled('div', {
   maxWidth: 800,
   padding: '16px 24px 16px 16px',
   width: '100%',
-});
+})
 
 export const SvgContainer = styled('div', {
   alignItems: 'center',
   display: 'inline-flex',
   marginRight: 16,
   maxHeight: 24,
-});
+})
 
 export const Svg = styled('svg', {
   display: 'inline-block',
   verticalAlign: 'middle',
-});
+})
 
 export const TextContainer = styled('div', {
   flexGrow: 1,
   fontSize: 16,
   lineHeight: 28,
-});
+})
 
 export const Title = styled('h4', {
   color: '#373f4a',
@@ -46,7 +46,7 @@ export const Title = styled('h4', {
   letterSpacing: 0,
   lineHeight: '24px',
   textTransform: 'none',
-});
+})
 
 export const Text = styled('p', {
   color: '#373f4a',
@@ -65,4 +65,4 @@ export const Text = styled('p', {
       textDecoration: 'underline',
     },
   },
-});
+})

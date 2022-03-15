@@ -1,5 +1,5 @@
 // Internals
-import '../src/styles/storybook.css';
+import './styles.css'
 
 /**
  * @type {import('@storybook/addons').Parameters}
@@ -7,4 +7,4 @@ import '../src/styles/storybook.css';
 export const parameters = {
   layout: 'centered',
   viewMode: 'docs',
-};
+}

@@ -1,0 +1,57 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Example } from './example.stories';
+import {
+  Container,
+  Svg,
+  SvgContainer,
+  TextContainer,
+  Title,
+  Text,
+} from '../../../components/ErrorScreen/styles';
+
+<Meta
+  args={{
+    cardBrandChanged: ({ detail, type }) => {
+      console.info({ detail, type });
+    },
+    focus: 'cardNumber',
+  }}
+  argTypes={{
+    focus: {
+      table: {
+        defaultValue: {
+          summary: 'cardNumber',
+        },
+      },
+    },
+  }}
+  component={Example}
+  title="Card Payments/cardBrandChanged()"
+/>
+
+# cardBrandChanged()
+
+Callback function that is called when the payment form detected a new likely credit card brand based on the card number.
+
+<Canvas>
+  <Story name="BasicExample" story={Example} />
+</Canvas>
+
+<Container css={{ borderLeftColor: '#8594a7', marginLeft: '0', marginRight: 'auto' }}>
+  <SvgContainer>
+    <Svg height={18} viewBox="0 0 18 18" width={18}>
+      <path
+        d="M9,18 C4.02943725,18 0,13.9705627 0,9 C0,4.02943725 4.02943725,0 9,0 C13.9705627,0 18,4.02943725 18,9 C18,13.9705627 13.9705627,18 9,18 Z M10,13 L10,8 L8,8 L8,13 L10,13 Z M8,5 L8,7 L10,7 L10,5 L8,5 Z"
+        fill="#8594a7"
+        fillRule="nonzero"
+      />
+    </Svg>
+  </SvgContainer>
+
+  <TextContainer>
+    <Title css={{ fontWeight: 600 }}>Note</Title>
+    <Text>
+      For view the values, open the Developer Tools and click on the "Console" tab.
+    </Text>
+  </TextContainer>
+</Container>

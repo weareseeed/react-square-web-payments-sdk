@@ -1,6 +1,12 @@
+# react-square-web-payments-sdk
+
+`react-square-web-payments-sdk` lets you easily create PCI-compliant inputs to accept payments online with the Square Payments API. It supports the following payment methods: credit and debit cards, ACH bank transfers, Apple Pay, Google Pay, and Gift Cards.
+
 <div style={{ textAlign: 'center' }}>
 
-# ![react-square-web-payments-sdk](.github/logo.png)
+![react-square-web-payments-sdk](.github/logo.png)
+
+A react wrapper for [Square&apos;s Web Payments SDK](https://developer.squareup.com/docs/web-payments/overview)
 
 [![NPM Version](https://flat.badgen.net/npm/v/react-square-web-payments-sdk)](https://www.npmjs.com/package/react-square-web-payments-sdk)
 [![NPM Downloads](https://flat.badgen.net/npm/dm/react-square-web-payments-sdk)](https://www.npmjs.com/package/react-square-web-payments-sdk)
@@ -21,8 +27,6 @@
 
 </div>
 
-A react wrapper for [Square&apos;s Web Payments SDK](https://developer.squareup.com/docs/web-payments/overview)
-
 ## Install
 
 This one is pretty simple, everyone knows what to do:
@@ -39,16 +43,14 @@ npm install react-square-web-payments-sdk
 yarn add react-square-web-payments-sdk
 ```
 
-`react-square-web-payments-sdk` lets you easily create PCI-compliant inputs to accept payments online with the Square Payments API. It supports the following payment methods: credit and debit cards, ACH bank transfers, Apple Pay, Google Pay, and Gift Cards.
-
 ## Usage
 
 ```tsx
 // Dependencies
-import * as React from 'react';
+import * as React from 'react'
 import SquarePaymentsForm, {
   CreditCardInput,
-} from 'react-square-web-payments-sdk';
+} from 'react-square-web-payments-sdk'
 
 const MyPaymentForm = () => (
   <SquarePaymentsForm
@@ -62,7 +64,7 @@ const MyPaymentForm = () => (
      * The result will be a valid credit card or wallet token, or an error.
      */
     cardTokenizeResponseReceived={(token, buyer) => {
-      console.info({ token, buyer });
+      console.info({ token, buyer })
     }}
     /**
      * This function enable the Strong Customer Authentication (SCA) flow
@@ -91,9 +93,9 @@ const MyPaymentForm = () => (
   >
     <CreditCardInput />
   </SquarePaymentsForm>
-);
+)
 
-export default MyPaymentForm;
+export default MyPaymentForm
 ```
 
 ## Contributing

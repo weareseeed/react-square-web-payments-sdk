@@ -1,0 +1,5 @@
+**/__docs__/**
+**.stories.tsx
+build
+dist
+docs

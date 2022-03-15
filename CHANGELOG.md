@@ -2,6 +2,119 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0-canary.14](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.13...v2.3.0-canary.14) (2021-12-28)
+
+
+### Bug Fixes
+
+* avoid infinite render of giftcard ([c6f3d88](https://github.com/weareseeed/react-square-web-payments-sdk/commit/c6f3d88e5534fc5e0a9931ecbca87fe81ae06796))
+
+## [2.3.0-canary.13](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.12...v2.3.0-canary.13) (2021-12-28)
+
+
+### Bug Fixes
+
+* ensure that the props are passing to render gift card ([cf17f9f](https://github.com/weareseeed/react-square-web-payments-sdk/commit/cf17f9f3436a7e7e1cdeb6ee57d64491930a9c31))
+
+## [2.3.0-canary.12](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.11...v2.3.0-canary.12) (2021-12-15)
+
+
+### Bug Fixes
+
+* ensure that the props are passing to render the card ([5dbcdba](https://github.com/weareseeed/react-square-web-payments-sdk/commit/5dbcdbae4e84e27a8097ae4dae01a6d08463c155))
+
+## [2.3.0-canary.11](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.10...v2.3.0-canary.11) (2021-12-15)
+
+
+### Bug Fixes
+
+* ensure all the props are passed with length more than 0 ([a5a3604](https://github.com/weareseeed/react-square-web-payments-sdk/commit/a5a3604cece6ff2eb24175376ac3103750412238))
+
+## [2.3.0-canary.10](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.9...v2.3.0-canary.10) (2021-12-15)
+
+## [2.3.0-canary.9](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.8...v2.3.0-canary.9) (2021-12-14)
+
+
+### Bug Fixes
+
+* initialize card and later configure options ([4c74c53](https://github.com/weareseeed/react-square-web-payments-sdk/commit/4c74c53bbaa40383405222cba72398b76ca5bdda))
+
+## [2.3.0-canary.8](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.7...v2.3.0-canary.8) (2021-12-14)
+
+
+### Bug Fixes
+
+* passing all props to credit card to edit styles ([e0d7817](https://github.com/weareseeed/react-square-web-payments-sdk/commit/e0d781754e42883c0f3e1567160b0fd4a5568a86))
+
+## [2.3.0-canary.7](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.6...v2.3.0-canary.7) (2021-12-14)
+
+
+### Bug Fixes
+
+* delete the old parcel bundler and better exports ([54375fe](https://github.com/weareseeed/react-square-web-payments-sdk/commit/54375fe8b3dea4df96e5b75d1f42776b78b8365f))
+
+## [2.3.0-canary.6](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.5...v2.3.0-canary.6) (2021-12-14)
+
+
+### Bug Fixes
+
+* default imports and some types ([ad75860](https://github.com/weareseeed/react-square-web-payments-sdk/commit/ad7586055c6c9b9d73ab240211e14d2aae998221))
+
+## [2.3.0-canary.5](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.4...v2.3.0-canary.5) (2021-12-14)
+
+
+### Bug Fixes
+
+* import all types from square package ([2b05601](https://github.com/weareseeed/react-square-web-payments-sdk/commit/2b05601e9dc196c0ba4661fd4e2f7e4b00c601a0))
+
+## [2.3.0-canary.4](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.3...v2.3.0-canary.4) (2021-12-02)
+
+
+### Features
+
+* adding no jekyll file ([6441b89](https://github.com/weareseeed/react-square-web-payments-sdk/commit/6441b89440bf447ba85beee363895830cdc0f717))
+* compile docs and metadata for package ([82fb342](https://github.com/weareseeed/react-square-web-payments-sdk/commit/82fb342c274d5283fa5031dd36bc9e12a329f064))
+* **docs:** update docs with absolute imports ([bf13b7a](https://github.com/weareseeed/react-square-web-payments-sdk/commit/bf13b7aa12a04e678e9113900323f2bd7f33dcce))
+
+
+### Bug Fixes
+
+* **docs:** correct URL for logo ([8c1f182](https://github.com/weareseeed/react-square-web-payments-sdk/commit/8c1f18287fbaaa69a445726d4582cd721336e1f1))
+
+## [2.3.0-canary.3](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.2...v2.3.0-canary.3) (2021-11-20)
+
+
+### Features
+
+* adding emojis for every step of main workflow ([afbb17d](https://github.com/weareseeed/react-square-web-payments-sdk/commit/afbb17dec070b730b28a2f6105fb9eed5a8480a6))
+* rewrite all bundler to parcel native ([d27a939](https://github.com/weareseeed/react-square-web-payments-sdk/commit/d27a939b0094c93274dbc37c91002259a3ad275b))
+* using new tree of folders ([f6b0be0](https://github.com/weareseeed/react-square-web-payments-sdk/commit/f6b0be01804b31a8bf17de25ed91702c48426743))
+
+## [2.3.0-canary.2](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.1...v2.3.0-canary.2) (2021-11-19)
+
+
+### Features
+
+* adding more metadata for GitHub ([aa35fd2](https://github.com/weareseeed/react-square-web-payments-sdk/commit/aa35fd26540216782633570adda78acb8aacd83b))
+* **ci:** adding more node versions and lint fix ([7efc7f8](https://github.com/weareseeed/react-square-web-payments-sdk/commit/7efc7f8adc78aebd5548f229412f8b7425f3b67e))
+* using husky hooks on folder and format ([390aee5](https://github.com/weareseeed/react-square-web-payments-sdk/commit/390aee545c133c81553774a6493353ad7f6be4bd))
+* using husky hooks on folder and format ([cdbdcff](https://github.com/weareseeed/react-square-web-payments-sdk/commit/cdbdcff690312efaf6f328c41fe2319f8cc87c9f))
+* using husky hooks on folder and format ([61254a4](https://github.com/weareseeed/react-square-web-payments-sdk/commit/61254a4d17e13b1591451ac9844ec02a0c162f1e))
+
+## [2.3.0-canary.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0-canary.0...v2.3.0-canary.1) (2021-11-19)
+
+
+### Features
+
+* removing unused dependencies ([2d89885](https://github.com/weareseeed/react-square-web-payments-sdk/commit/2d898855899dca6b512ca40e380f3ccd624184f4))
+
+## [2.3.0-canary.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.2.3...v2.3.0-canary.0) (2021-11-19)
+
+
+### Features
+
+* using dts for better package support ([2cdbe02](https://github.com/weareseeed/react-square-web-payments-sdk/commit/2cdbe029ec53c1dd5f1fad7105adfab0caa58c79))
+
 ### [2.2.3](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.2.2...v2.2.3) (2021-09-08)
 
 

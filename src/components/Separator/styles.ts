@@ -1,5 +1,5 @@
-// Dependencies
-import { styled } from '@stitches/react';
+// Internals
+import { styled } from '../../../stitches.config'
 
 export const Line = styled('div', {
   background: 'rgba(0, 0, 0, 0.1)',
@@ -11,7 +11,7 @@ export const Line = styled('div', {
   position: 'relative',
   textTransform: 'uppercase',
   width: '100%',
-});
+})
 
 export const SpanText = styled('span', {
   background: '#FAFAFA',
@@ -20,4 +20,4 @@ export const SpanText = styled('span', {
   padding: '0 10px',
   position: 'absolute',
   top: -10,
-});
+})

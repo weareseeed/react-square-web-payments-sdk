@@ -1,6 +1,6 @@
 name: Feature Request
 description: Create a feature request for react-square-web-payments-sdk
-labels: 'template: story'
+labels: ['template: story']
 body:
   - type: markdown
     attributes:

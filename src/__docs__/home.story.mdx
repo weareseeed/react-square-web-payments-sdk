@@ -1,10 +1,10 @@
-import { Meta } from '@storybook/addon-docs';
+import { Meta } from '@storybook/addon-docs'
 
 <Meta title="Home" />
 
 <div style={{ textAlign: 'center' }}>
 
-# ![react-square-web-payments-sdk](./logo.png)
+# ![react-square-web-payments-sdk](https://github.com/weareseeed/react-square-web-payments-sdk/blob/main/.github/logo.png?raw=true)
 
 [![NPM Version](https://flat.badgen.net/npm/v/react-square-web-payments-sdk)](https://www.npmjs.com/package/react-square-web-payments-sdk)
 [![NPM Downloads](https://flat.badgen.net/npm/dm/react-square-web-payments-sdk)](https://www.npmjs.com/package/react-square-web-payments-sdk)
@@ -49,10 +49,10 @@ yarn add react-square-web-payments-sdk
 
 ```tsx
 // Dependencies
-import * as React from 'react';
+import * as React from 'react'
 import SquarePaymentsForm, {
   CreditCardInput,
-} from 'react-square-web-payments-sdk';
+} from 'react-square-web-payments-sdk'
 
 const MyPaymentForm = () => (
   <SquarePaymentsForm
@@ -66,7 +66,7 @@ const MyPaymentForm = () => (
      * The result will be a valid credit card or wallet token, or an error.
      */
     cardTokenizeResponseReceived={(token, buyer) => {
-      console.info({ token, buyer });
+      console.info({ token, buyer })
     }}
     /**
      * This function enable the Strong Customer Authentication (SCA) flow
@@ -95,9 +95,9 @@ const MyPaymentForm = () => (
   >
     <CreditCardInput />
   </SquarePaymentsForm>
-);
+)
 
-export default MyPaymentForm;
+export default MyPaymentForm
 ```
 
 ## Contributing
