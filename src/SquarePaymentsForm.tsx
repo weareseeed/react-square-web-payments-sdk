@@ -43,19 +43,30 @@ interface SquarePaymentsFormProps {
   createVerificationDetails?: () =>
     | Square.ChargeVerifyBuyerDetails
     | Square.StoreVerifyBuyerDetails
+  /**
+   * Override the default payment form configuration.
+   *
+   * Supported overrides:
+   *
+   * - **`scriptSrc`**: The URL of the Square payment form script.
+   */
+  overrides?: {
+    scriptSrc?: string
+  }
 }
 
 const SquarePaymentsForm = ({
   applicationId,
   locationId,
   formId = 'web-payment-sdk-form',
+  overrides,
   ...props
 }: SquarePaymentsFormProps): React.ReactElement | null => {
   const [paymentsSdk, setPaymentsSdk] = React.useState<Square.Payments>()
 
   React.useEffect(() => {
     async function loadPayment(): Promise<void> {
-      await payments(applicationId, locationId).then((res) => {
+      await payments(applicationId, locationId, overrides).then((res) => {
         if (res === null) {
           throw new Error('Square Web Payments SDK failed to load')
         }
