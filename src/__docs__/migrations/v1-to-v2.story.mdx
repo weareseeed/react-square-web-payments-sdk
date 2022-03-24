@@ -1,8 +1,8 @@
-import { Meta } from '@storybook/addon-docs';
+import { Meta } from '@storybook/addon-docs'
 
-<Meta title="Migration Guides/Migrating from v1 to v3" />
+<Meta title="Migration Guides/Migrating from v1 to v2" />
 
-# Migrating from v1 to v3
+# Migrating from v1 to v2
 
 To be honest with all of you, the migration process will be easy. The new version introduces a lot of breaking changes especially on the rendering of payment methods.
 
@@ -75,7 +75,7 @@ Before:
 <SquarePaymentsForm
   {...props}
   cardTokenizeResponseReceived={(token) => {
-    console.info(token);
+    console.info(token)
   }}
 >
   <ApplePayButton />
@@ -90,7 +90,7 @@ After:
   {...props}
   cardTokenizeResponseReceived={(token, verifiedBuyer) => {
     // The verifiedBuyer is the object that contains the verification token
-    console.info(token, verifiedBuyer);
+    console.info(token, verifiedBuyer)
   }}
 >
   <ApplePay />
