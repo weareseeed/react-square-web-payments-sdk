@@ -76,22 +76,36 @@ const GiftCardInput = ({
     /**
      * Initialize the Gift Card instance to be used in the component
      */
-    const start = async () => {
+    const abortController = new AbortController()
+    const { signal } = abortController
+    const start = async (signal: AbortSignal) => {
       const gCard = await payments
         ?.giftCard({
           ...props,
         })
         .then((res) => {
-          setGiftCard(res)
+          if (!signal.aborted) {
+            setGiftCard(res)
 
-          return res
+            return res
+          }
+
+          return null
         })
 
       await gCard?.attach('#gift-card-container')
     }
 
-    if (!giftCard) start()
-  }, [payments, props])
+    start(signal)
+
+    return () => {
+      abortController.abort()
+    }
+  }, [payments])
+
+  React.useEffect(() => {
+    giftCard?.configure(props)
+  }, [props])
 
   useEventListener({
     listener: handlePayment,
