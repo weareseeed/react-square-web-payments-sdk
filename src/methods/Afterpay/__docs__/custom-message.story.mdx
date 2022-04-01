@@ -107,6 +107,11 @@ Take a Afterpay payment
   })}
   locationId="<YOUT_LOCATION_ID>"
 >
-  <Afterpay />
+  {/**
+   * AfterpayProvider needs to be wrapping the AfterpayMessage for it to work
+   */}
+  <AfterpayProvider>
+    <AfterpayMessage CustomMessage="<REACT_COMPONENT>" />
+  </AfterpayProvider>
 </SquarePaymentsForm>
 ```
