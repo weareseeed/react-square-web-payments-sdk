@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0-canary.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.5.0-canary.0...v2.5.0-canary.1) (2022-03-30)
+
+
+### Features
+
+* **CreditCard:** Added abort controller and divided useEffects ([d7974ca](https://github.com/weareseeed/react-square-web-payments-sdk/commit/d7974ca90be425620f62298d90a895664b73f7ca))
+* **CreditCard:** Added abort controller and divided useEffects ([a40988f](https://github.com/weareseeed/react-square-web-payments-sdk/commit/a40988f94e24310d96fe17c3d424b29bf1088dca))
+
+## [2.5.0-canary.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.4.0...v2.5.0-canary.0) (2022-03-29)
+
+
+### Features
+
+* **SquarePaymentForm:** Added abort controller to async form attatchment ([49a9956](https://github.com/weareseeed/react-square-web-payments-sdk/commit/49a995677391930e5d66fd0faeba30cafae543df))
+
 ## [2.4.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.4.0-canary.0...v2.4.0) (2022-03-24)
 
 ## [2.4.0-canary.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.3.0...v2.4.0-canary.0) (2022-03-24)

@@ -182,29 +182,50 @@ const CreditCardInput = ({
     /**
      * Initialize the Card instance to be used in the component
      */
-    const start = async () => {
+    const abortController = new AbortController()
+    const { signal } = abortController
+    const start = async (signal: AbortSignal) => {
       const card = await payments
         ?.card({
           ...props,
         })
         .then((res) => {
-          setCard(res)
+          if (!signal.aborted) {
+            setCard(res)
+            return res
+          }
 
-          return res
+          return null
         })
 
       await card?.attach(`#${cardContainerId}`)
-      await card?.focus(focus)
+      if (focus) {
+        await card?.focus(focus)
+      }
+
+      if (signal.aborted) {
+        card?.destroy()
+      }
     }
 
-    if (!card) start()
-  }, [focus, payments, props, card, cardContainerId])
+    start(signal)
+
+    return () => {
+      abortController.abort()
+    }
+  }, [payments, cardContainerId])
 
   React.useEffect(() => {
     if (card) {
+      card.configure(props)
+    }
+  }, [card, props])
+
+  React.useEffect(() => {
+    if (card && focus) {
       card?.focus(focus)
     }
-  }, [card])
+  }, [card, focus])
 
   useEventListener({
     listener: handlePayment,

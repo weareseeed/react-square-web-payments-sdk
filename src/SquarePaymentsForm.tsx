@@ -65,10 +65,16 @@ const SquarePaymentsForm = ({
   const [paymentsSdk, setPaymentsSdk] = React.useState<Square.Payments>()
 
   React.useEffect(() => {
-    async function loadPayment(): Promise<void> {
+    const abortController = new AbortController()
+    const { signal } = abortController
+    async function loadPayment(signal?: AbortSignal): Promise<void> {
       await payments(applicationId, locationId, overrides).then((res) => {
         if (res === null) {
           throw new Error('Square Web Payments SDK failed to load')
+        }
+
+        if (signal?.aborted) {
+          return
         }
 
         setPaymentsSdk(res)
@@ -78,7 +84,11 @@ const SquarePaymentsForm = ({
     }
 
     if (applicationId && locationId) {
-      loadPayment()
+      loadPayment(signal)
+    }
+
+    return () => {
+      abortController.abort()
     }
   }, [applicationId, locationId])
 
