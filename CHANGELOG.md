@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0-canary.1](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.6.0-canary.0...v2.6.0-canary.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* **Afterpay:** Afterpay not being exported ([2cf1833](https://github.com/weareseeed/react-square-web-payments-sdk/commit/2cf183374a8a3aa8e9503fc061fa7e974ba4f7ce))
+
 ## [2.6.0-canary.0](https://github.com/weareseeed/react-square-web-payments-sdk/compare/v2.5.0...v2.6.0-canary.0) (2022-04-06)
 
 
