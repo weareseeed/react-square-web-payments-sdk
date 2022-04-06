@@ -12,6 +12,9 @@ export * from './components/Separator'
 export { default as AchPay } from './methods/AchPay'
 export * from './methods/AchPay'
 
+export { default as Afterpay } from './methods/Afterpay'
+export * from './methods/Afterpay'
+
 export { default as ApplePay } from './methods/ApplePay'
 
 export { default as CreditCardInput } from './methods/CreditCardInput'
