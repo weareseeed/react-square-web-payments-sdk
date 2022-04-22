@@ -1,14 +1,38 @@
 [
   {
-    "name": "<PaymentForm /> *.cjs.js",
+    "name": "CreditCardInput *.cjs.js",
+    "path": "dist/rswps.cjs.js",
+    "import": "{ CreditCardInput }",
+    "webpack": false
+  },
+  {
+    "name": "CreditCardInput *.es.js",
+    "path": "dist/rswps.es.js",
+    "import": "{ CreditCardInput }",
+    "webpack": false
+  },
+  {
+    "name": "PaymentForm *.cjs.js",
     "path": "dist/rswps.cjs.js",
     "import": "{ PaymentForm }",
     "webpack": false
   },
   {
-    "name": "<PaymentForm /> *.es.js",
+    "name": "PaymentForm *.es.js",
     "path": "dist/rswps.es.js",
     "import": "{ PaymentForm }",
+    "webpack": false
+  },
+  {
+    "name": "CreditCardInput && PaymentForm *.cjs.js",
+    "path": "dist/rswps.cjs.js",
+    "import": "{ CreditCardInput, PaymentForm }",
+    "webpack": false
+  },
+  {
+    "name": "CreditCardInput && PaymentForm *.es.js",
+    "path": "dist/rswps.es.js",
+    "import": "{ CreditCardInput, PaymentForm }",
     "webpack": false
   }
 ]
