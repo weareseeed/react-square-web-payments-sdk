@@ -1,6 +1,6 @@
 export * from './components/ach';
 export * from './components/apple-pay';
-export * from './components/credit-card-input';
+export * from './components/credit-card';
 export * from './components/divider';
 export * from './components/gift-card';
 export * from './components/google-pay';

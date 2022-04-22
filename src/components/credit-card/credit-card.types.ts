@@ -3,17 +3,17 @@ import type * as Square from '@square/web-sdk';
 import type * as Stitches from '@stitches/react';
 
 // Internals
-import { PayButton } from './credit-card-input.styles';
+import { PayButton } from './credit-card.styles';
 
 export type PayButtonProps = Omit<React.ComponentPropsWithoutRef<'button'>, 'aria-disabled' | 'disabled' | 'type'> & {
   css?: Stitches.ComponentProps<typeof PayButton>['css'];
 };
 
-export type CreditCardInputFunctionChildrenProps = {
+export type CreditCardFunctionChildrenProps = {
   Button: (props?: PayButtonProps) => React.ReactElement;
 };
 
-export interface CreditCardInputBase
+export interface CreditCardBase
   extends Square.CardOptions,
     Omit<React.ComponentPropsWithRef<'div'>, 'style' | 'children'> {
   callbacks?: {
@@ -83,19 +83,19 @@ export interface CreditCardInputBase
   recalculateSize?(callback: Square.Card['recalculateSize'] | undefined): void;
 }
 
-export interface CreditCardInputChildren extends CreditCardInputBase {
+export interface CreditCardChildren extends CreditCardBase {
   buttonProps?: PayButtonProps;
   children?: React.ReactNode;
 }
 
-export interface CreditCardInputFunctionChildren extends CreditCardInputBase {
-  children?: (props: CreditCardInputFunctionChildrenProps) => React.ReactElement | React.ReactNode;
+export interface CreditCardFunctionChildren extends CreditCardBase {
+  children?: (props: CreditCardFunctionChildrenProps) => React.ReactElement | React.ReactNode;
 }
 
-export interface CreditCardInputProps extends CreditCardInputBase {
+export interface CreditCardProps extends CreditCardBase {
   buttonProps?: PayButtonProps;
   /**
    * Make it possible to put any component inside. If children is/are given then text is not applied
    */
-  children?: React.ReactNode | ((props: CreditCardInputFunctionChildrenProps) => React.ReactElement | React.ReactNode);
+  children?: React.ReactNode | ((props: CreditCardFunctionChildrenProps) => React.ReactElement | React.ReactNode);
 }

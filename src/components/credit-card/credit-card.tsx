@@ -5,14 +5,14 @@ import type * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
-import { LoadingCard, PayButton } from './credit-card-input.styles';
+import { LoadingCard, PayButton } from './credit-card.styles';
 import type {
-  CreditCardInputBase,
-  CreditCardInputChildren,
-  CreditCardInputFunctionChildren,
-  CreditCardInputProps,
+  CreditCardBase,
+  CreditCardChildren,
+  CreditCardFunctionChildren,
+  CreditCardProps,
   PayButtonProps,
-} from './credit-card-input.types';
+} from './credit-card.types';
 
 /**
  * Renders a Credit Card Input to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
@@ -22,14 +22,14 @@ import type {
  * @example
  * ```tsx
  * <SquareForm {...props}>
- *  <CreditCardInput focus="cardNumber" />
+ *  <CreditCard focus="cardNumber" />
  * </SquareForm>
  * ```
  */
-function CreditCardInput(props: CreditCardInputBase): JSX.Element;
-function CreditCardInput(props: CreditCardInputChildren): JSX.Element;
-function CreditCardInput(props: CreditCardInputFunctionChildren): JSX.Element;
-function CreditCardInput({
+function CreditCard(props: CreditCardBase): JSX.Element;
+function CreditCard(props: CreditCardChildren): JSX.Element;
+function CreditCard(props: CreditCardFunctionChildren): JSX.Element;
+function CreditCard({
   buttonProps,
   callbacks,
   children,
@@ -40,7 +40,7 @@ function CreditCardInput({
   recalculateSize,
   style,
   ...props
-}: CreditCardInputProps) {
+}: CreditCardProps) {
   const [card, setCard] = React.useState<Square.Card | undefined>(() => undefined);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
@@ -169,5 +169,5 @@ function CreditCardInput({
   );
 }
 
-export default CreditCardInput;
-export type { CreditCardInputChildren, CreditCardInputFunctionChildren, CreditCardInputProps, PayButtonProps };
+export default CreditCard;
+export type { CreditCardChildren, CreditCardFunctionChildren, CreditCardProps, PayButtonProps };
