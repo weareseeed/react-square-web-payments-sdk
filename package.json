@@ -62,7 +62,7 @@
     "usehooks-ts": "^2.5.1"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.8",
+    "@size-limit/preset-big-lib": "^7.0.8",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@types/node": "^17.0.25",
@@ -93,15 +93,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "size-limit": [
-    {
-      "path": "dist/rswps.cjs.js",
-      "limit": "15 KB"
-    },
-    {
-      "path": "dist/rswps.es.js",
-      "limit": "15 KB"
-    }
-  ]
+  }
 }

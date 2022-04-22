@@ -3,6 +3,11 @@ import type * as Square from '@square/web-sdk';
 
 export type FormProviderProps = {
   /**
+   * Identifies the calling form with a verified application ID generated
+   * from the Square Application Dashboard.
+   */
+  applicationId: string;
+  /**
    * Invoked when payment form receives the result of a tokenize generation request.
    * The result will be a valid credit card or wallet token, or an error.
    */
@@ -11,15 +16,10 @@ export type FormProviderProps = {
     verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
   ) => void;
   /**
-   * Returned by `Square.payments(appId, locationId)`.
-   *
-   * Use this object to instantiate Payment methods.
-   *
-   * @example
-   *
-   * const payments = Square.payments(appId, locationId);
+   * Identifies the location of the merchant that is taking the payment.
+   * Obtained from the Square Application Dashboard - Locations tab.
    */
-  payments: Square.Payments | null;
+  locationId: string;
   children?: React.ReactNode;
   /**
    * The payments.paymentRequest method argument
@@ -117,4 +117,14 @@ export type FormProviderProps = {
    * };
    */
   createVerificationDetails?: () => Square.ChargeVerifyBuyerDetails | Square.StoreVerifyBuyerDetails;
+  /**
+   * Override the default payment form configuration.
+   *
+   * Supported overrides:
+   *
+   * - **`scriptSrc`**: The URL of the Square payment form script.
+   */
+  overrides?: {
+    scriptSrc?: string;
+  };
 };

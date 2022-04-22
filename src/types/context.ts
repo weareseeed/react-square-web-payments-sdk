@@ -13,21 +13,19 @@ export type FormContextType = {
     verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
   ) => void;
   /**
+   * Returned by `Square.payments(appId, locationId)`.
+   *
+   * Use this object to instantiate Payment methods.
+   *
+   * @example
+   *
+   * const payments = Square.payments(appId, locationId);
+   */
+  payments: Square.Payments | null;
+  /**
    * **Required for digital wallets**
    *
    * Invoked when a digital wallet payment button is clicked.
    */
   createPaymentRequest?: Square.PaymentRequestOptions;
-  /**
-   * Unique form ID
-   */
-  formId?: string;
-  /**
-   * Returned by `Square.payments(appId, locationId)`.
-   *
-   * Use this object to instantiate Payment methods.
-   * @example
-   * const payments = Square.payments(appId, locationId);
-   */
-  payments: Square.Payments | null;
 };

@@ -1,0 +1,10 @@
+[
+  {
+    "path": "dist/rswps.cjs.js",
+    "import": "{ PaymentForm }"
+  },
+  {
+    "path": "dist/rswps.es.js",
+    "import": "{ PaymentForm }"
+  }
+]
