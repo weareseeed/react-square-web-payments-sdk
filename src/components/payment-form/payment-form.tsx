@@ -5,6 +5,7 @@ import type * as Square from '@square/web-sdk';
 
 // Internals
 import { FormProvider } from '@/contexts/form';
+import { ErrorScreen } from '../error-screen';
 import type { PaymentFormProps } from './payment-form.types';
 
 function RenderPaymentForm(
@@ -50,7 +51,7 @@ function RenderPaymentForm(
   }, [applicationId, locationId]);
 
   if (!applicationId || !locationId) {
-    return null;
+    return <ErrorScreen />;
   }
 
   if (!paymentsSdk) {

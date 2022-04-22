@@ -13,8 +13,7 @@ function RenderErrorScreen(
   ref: React.LegacyRef<HTMLDivElement>
 ) {
   if (process.env.NODE_ENV !== 'development') {
-    // Show a generic error on production
-    console.error('Please contact your developer to provide the required parameters to use the Web Payments SDK.');
+    throw new Error('Please contact your developer to provide the required parameters to use the Web Payments SDK.');
   }
 
   return (
