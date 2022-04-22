@@ -4,6 +4,9 @@
     "jest": true,
     "node": true
   },
+  "globals": {
+    "JSX": true
+  },
   "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -15,12 +18,16 @@
   },
   "plugins": ["react", "jsx-a11y", "@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/no-redeclare": ["error"],
+    "@typescript-eslint/no-unused-vars": ["error"],
     "jsx-a11y/alt-text": "warn",
     "jsx-a11y/aria-props": "warn",
     "jsx-a11y/aria-proptypes": "warn",
     "jsx-a11y/aria-unsupported-elements": "warn",
     "jsx-a11y/role-has-required-aria-props": "warn",
     "jsx-a11y/role-supports-aria-props": "warn",
+    "no-redeclare": "off",
+    "no-unused-vars": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-sort-props": 2,
     "react/prop-types": "off"

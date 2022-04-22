@@ -13,7 +13,7 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "outDir": "dist",
     "declaration": true,
     "declarationMap": true,
@@ -21,6 +21,9 @@
     "paths": {
       "@/*": ["src/*"]
     }
+  },
+  "globals": {
+    "JSX": true
   },
   "include": ["src", "__tests__"],
   "exclude": ["node_modules"],

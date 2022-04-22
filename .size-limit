@@ -1,5 +1,17 @@
 [
   {
+    "name": "Ach *.cjs.js",
+    "path": "dist/rswps.cjs.js",
+    "import": "{ Ach }",
+    "webpack": false
+  },
+  {
+    "name": "Ach *.es.js",
+    "path": "dist/rswps.es.js",
+    "import": "{ Ach }",
+    "webpack": false
+  },
+  {
     "name": "CreditCardInput *.cjs.js",
     "path": "dist/rswps.cjs.js",
     "import": "{ CreditCardInput }",
@@ -21,6 +33,18 @@
     "name": "PaymentForm *.es.js",
     "path": "dist/rswps.es.js",
     "import": "{ PaymentForm }",
+    "webpack": false
+  },
+  {
+    "name": "Ach && PaymentForm *.cjs.js",
+    "path": "dist/rswps.cjs.js",
+    "import": "{ Ach, PaymentForm }",
+    "webpack": false
+  },
+  {
+    "name": "Ach && PaymentForm *.es.js",
+    "path": "dist/rswps.es.js",
+    "import": "{ Ach, PaymentForm }",
     "webpack": false
   },
   {
