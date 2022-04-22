@@ -1,74 +1,10 @@
 [
   {
-    "name": "Ach *.cjs.js",
     "path": "dist/rswps.cjs.js",
-    "import": "{ Ach }",
     "webpack": false
   },
   {
-    "name": "Ach *.es.js",
     "path": "dist/rswps.es.js",
-    "import": "{ Ach }",
-    "webpack": false
-  },
-  {
-    "name": "ApplePay *.cjs.js",
-    "path": "dist/rswps.cjs.js",
-    "import": "{ ApplePay }",
-    "webpack": false
-  },
-  {
-    "name": "ApplePay *.es.js",
-    "path": "dist/rswps.es.js",
-    "import": "{ ApplePay }",
-    "webpack": false
-  },
-  {
-    "name": "CreditCardInput *.cjs.js",
-    "path": "dist/rswps.cjs.js",
-    "import": "{ CreditCardInput }",
-    "webpack": false
-  },
-  {
-    "name": "CreditCardInput *.es.js",
-    "path": "dist/rswps.es.js",
-    "import": "{ CreditCardInput }",
-    "webpack": false
-  },
-  {
-    "name": "PaymentForm *.cjs.js",
-    "path": "dist/rswps.cjs.js",
-    "import": "{ PaymentForm }",
-    "webpack": false
-  },
-  {
-    "name": "PaymentForm *.es.js",
-    "path": "dist/rswps.es.js",
-    "import": "{ PaymentForm }",
-    "webpack": false
-  },
-  {
-    "name": "Ach && PaymentForm *.cjs.js",
-    "path": "dist/rswps.cjs.js",
-    "import": "{ Ach, PaymentForm }",
-    "webpack": false
-  },
-  {
-    "name": "Ach && PaymentForm *.es.js",
-    "path": "dist/rswps.es.js",
-    "import": "{ Ach, PaymentForm }",
-    "webpack": false
-  },
-  {
-    "name": "CreditCardInput && PaymentForm *.cjs.js",
-    "path": "dist/rswps.cjs.js",
-    "import": "{ CreditCardInput, PaymentForm }",
-    "webpack": false
-  },
-  {
-    "name": "CreditCardInput && PaymentForm *.es.js",
-    "path": "dist/rswps.es.js",
-    "import": "{ CreditCardInput, PaymentForm }",
     "webpack": false
   }
 ]
