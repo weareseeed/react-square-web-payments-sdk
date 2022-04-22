@@ -1,10 +1,12 @@
 [
   {
+    "name": "<PaymentForm /> *.cjs.js",
     "path": "dist/rswps.cjs.js",
     "import": "{ PaymentForm }",
     "webpack": false
   },
   {
+    "name": "<PaymentForm /> *.es.js",
     "path": "dist/rswps.es.js",
     "import": "{ PaymentForm }",
     "webpack": false
