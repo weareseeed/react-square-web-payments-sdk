@@ -6,7 +6,13 @@ import type * as Square from '@square/web-sdk';
 // Internals
 import { useForm } from '~/contexts/form';
 import { LoadingCard, PayButton } from './credit-card-input.styles';
-import type { CreditCardInputChildren, CreditCardInputProps, PayButtonProps } from './credit-card-input.types';
+import type {
+  CreditCardInputBase,
+  CreditCardInputChildren,
+  CreditCardInputFunctionChildren,
+  CreditCardInputProps,
+  PayButtonProps,
+} from './credit-card-input.types';
 
 /**
  * Renders a Credit Card Input to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
@@ -20,31 +26,31 @@ import type { CreditCardInputChildren, CreditCardInputProps, PayButtonProps } fr
  * </SquareForm>
  * ```
  */
-function RenderCreditCardInput(
-  {
-    cardBrandChanged,
-    cardContainerId = 'rswps-card-container',
-    children,
-    errorClassAdded,
-    errorClassRemoved,
-    focus = 'cardNumber',
-    focusClassAdded,
-    focusClassRemoved,
-    overrideStyles,
-    postalCodeChanged,
-    recalculateSize,
-    scape,
-    submit,
-    submitButtonId = 'rswps-submit-button',
-    text = 'Pay',
-    ...props
-  }: CreditCardInputProps,
-  ref: React.LegacyRef<HTMLDivElement>
-) {
+function CreditCardInput(props: CreditCardInputBase): JSX.Element;
+function CreditCardInput(props: CreditCardInputChildren): JSX.Element;
+function CreditCardInput(props: CreditCardInputFunctionChildren): JSX.Element;
+function CreditCardInput({
+  buttonProps,
+  callbacks,
+  children,
+  focus = 'cardNumber',
+  id = 'rswps-card-container',
+  includeInputLabels,
+  postalCode,
+  recalculateSize,
+  style,
+  ...props
+}: CreditCardInputProps) {
   const [card, setCard] = React.useState<Square.Card | undefined>(() => undefined);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const { cardTokenizeResponseReceived, payments } = useForm();
+
+  const options: Square.CardOptions = {
+    includeInputLabels,
+    postalCode,
+    style,
+  };
 
   /**
    * Handle the on click of the Credit Card button click
@@ -70,27 +76,20 @@ function RenderCreditCardInput(
   };
 
   React.useEffect(() => {
-    /**
-     * Initialize the Card instance to be used in the component
-     */
     const abortController = new AbortController();
     const { signal } = abortController;
 
     const start = async (signal: AbortSignal) => {
-      const card = await payments
-        ?.card({
-          ...props,
-        })
-        .then((res) => {
-          if (!signal.aborted) {
-            setCard(res);
-            return res;
-          }
+      const card = await payments?.card(options).then((res) => {
+        if (!signal.aborted) {
+          setCard(res);
+          return res;
+        }
 
-          return null;
-        });
+        return null;
+      });
 
-      await card?.attach(`#${cardContainerId}`);
+      await card?.attach(`#${id}`);
       if (focus) {
         await card?.focus(focus);
       }
@@ -105,13 +104,13 @@ function RenderCreditCardInput(
     return () => {
       abortController.abort();
     };
-  }, [payments, cardContainerId]);
+  }, [payments, id]);
 
   React.useEffect(() => {
     if (card) {
-      card.configure(props);
+      card.configure(options);
     }
-  }, [card, props]);
+  }, [card, options]);
 
   React.useEffect(() => {
     if (card && focus) {
@@ -121,76 +120,54 @@ function RenderCreditCardInput(
 
   useEventListener('click', handlePayment, buttonRef);
 
-  if (cardBrandChanged) {
-    card?.addEventListener('cardBrandChanged', cardBrandChanged);
-  }
-
-  if (errorClassAdded) {
-    card?.addEventListener('errorClassAdded', errorClassAdded);
-  }
-
-  if (errorClassRemoved) {
-    card?.addEventListener('errorClassRemoved', errorClassRemoved);
-  }
-
-  if (scape) {
-    card?.addEventListener('escape', scape);
-  }
-
-  if (focusClassAdded) {
-    card?.addEventListener('focusClassAdded', focusClassAdded);
-  }
-
-  if (focusClassRemoved) {
-    card?.addEventListener('focusClassRemoved', focusClassRemoved);
-  }
-
-  if (postalCodeChanged) {
-    card?.addEventListener('postalCodeChanged', postalCodeChanged);
+  if (callbacks) {
+    for (const callback of Object.keys(callbacks)) {
+      card?.addEventListener(
+        callback as Square.CardInputEventTypes,
+        // @ts-ignore - we know this is a function
+        callbacks[callback]
+      );
+    }
   }
 
   if (recalculateSize) {
     recalculateSize(card?.recalculateSize);
   }
 
-  if (submit) {
-    card?.addEventListener('submit', submit);
-  }
+  const Button = (props?: PayButtonProps) => {
+    const id = 'rswp-card-button';
 
-  const Button = (props?: PayButtonProps): React.ReactElement => (
-    <PayButton
-      {...props}
-      aria-disabled={!card || isSubmitting}
-      css={props?.css || overrideStyles}
-      disabled={!card || isSubmitting}
-      id={submitButtonId}
-      ref={buttonRef}
-      type="button"
-    >
-      {props?.children || text}
-    </PayButton>
-  );
+    return (
+      <PayButton
+        {...props}
+        aria-disabled={!card || isSubmitting}
+        css={props?.css}
+        disabled={!card || isSubmitting}
+        id={id}
+        ref={buttonRef}
+        type="button"
+      >
+        {props?.children ?? 'Pay'}
+      </PayButton>
+    );
+  };
 
   return (
     <>
-      <div data-testid="rswps-card-container" id={cardContainerId} ref={ref} style={{ minHeight: 89 }}>
+      <div {...props} data-testid="rswps-card-container" id={id} style={{ minHeight: 89 }}>
         {!card && <LoadingCard />}
       </div>
 
-      {children && typeof children !== 'function' ? (
-        <Button>{children}</Button>
-      ) : typeof children === 'function' ? (
+      {typeof children === 'function' ? (
         children({
           Button,
         })
       ) : (
-        <Button />
+        <Button {...buttonProps}>{children ?? 'Pay'}</Button>
       )}
     </>
   );
 }
 
-const CreditCardInput = React.forwardRef<HTMLDivElement, CreditCardInputProps>(RenderCreditCardInput);
-
 export default CreditCardInput;
-export type { CreditCardInputChildren, CreditCardInputProps, PayButtonProps };
+export type { CreditCardInputChildren, CreditCardInputFunctionChildren, CreditCardInputProps, PayButtonProps };
