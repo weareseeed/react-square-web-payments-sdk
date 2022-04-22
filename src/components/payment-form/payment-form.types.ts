@@ -25,8 +25,7 @@ export type PaymentFormProps = {
   createPaymentRequest?: () => Square.PaymentRequestOptions;
   /** **Required for SCA** */
   createVerificationDetails?: () => Square.ChargeVerifyBuyerDetails | Square.StoreVerifyBuyerDetails;
-  /** Identifies the DOM form element. */
-  formId?: string;
+  formProps?: Omit<React.HTMLProps<HTMLDivElement>, 'role'>;
   /**
    * Identifies the location of the merchant that is taking the payment.
    * Obtained from the Square Application Dashboard - Locations tab.

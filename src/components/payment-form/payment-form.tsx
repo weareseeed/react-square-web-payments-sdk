@@ -14,7 +14,10 @@ function RenderPaymentForm(
     cardTokenizeResponseReceived,
     locationId,
     children,
-    formId = 'rswps-form',
+    formProps = {
+      'aria-label': 'Payment form',
+      id: 'rswps-form',
+    },
     overrides,
     ...props
   }: PaymentFormProps,
@@ -60,7 +63,7 @@ function RenderPaymentForm(
 
   return (
     <FormProvider {...props} cardTokenizeResponseReceived={cardTokenizeResponseReceived} payments={paymentsSdk}>
-      <div data-testid="rswps-form" id={formId} ref={ref}>
+      <div data-testid="rswps-form" {...formProps} ref={ref} role="form">
         {children}
       </div>
     </FormProvider>
