@@ -18,7 +18,7 @@ function RenderErrorScreen(
 
   return (
     <Container
-      // @ts-ignore
+      // @ts-ignore - the ref is a valid tyoe
       ref={ref}
     >
       <SvgContainer>

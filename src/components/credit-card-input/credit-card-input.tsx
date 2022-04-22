@@ -161,7 +161,6 @@ function RenderCreditCardInput(
     <PayButton
       {...props}
       aria-disabled={!card || isSubmitting}
-      // @ts-ignore - This is a workaround for a bug in TypeScript
       css={props?.css || overrideStyles}
       disabled={!card || isSubmitting}
       id={submitButtonId}
