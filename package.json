@@ -53,7 +53,8 @@
     "lint": "eslint 'src/**/*.{ts,tsx}' '__tests__/**/*.{ts,tsx}'",
     "preview": "vite preview",
     "prepublish": "yarn build",
-    "test": "vitest run"
+    "test": "vitest run",
+    "size": "size-limit"
   },
   "dependencies": {
     "@square/web-sdk": "^2.0.0",
