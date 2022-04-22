@@ -5,11 +5,10 @@ import type * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
-import { ApplePayContainer } from './apple-pay.styles';
-import type { ApplePayProps } from './apple-pay.types';
+import type { GooglePayProps } from './google-pay.types';
 
 /**
- * Renders a Apple Pay button to use in the Square Web Payment SDK, pre-styled to meet Apple Pay's branding guidelines.
+ * Renders a Google Pay button to use in the Square Web Payment SDK, pre-styled to meet Google's branding guidelines.
  *
  * **Remember** that you need to set `createPaymentRequest()` in `SquareForm`
  * if you going to use this Payment Method
@@ -17,34 +16,47 @@ import type { ApplePayProps } from './apple-pay.types';
  * @example
  * ```tsx
  * <SquareForm {...props}>
- *  <ApplePay />
+ *  <GooglePay buttonColor="white" />
  * </SquareForm>
  * ```
  */
-function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {
-  const [applePay, setApplePay] = React.useState<Square.ApplePay | undefined>(() => undefined);
+const GooglePay = ({
+  buttonColor,
+  buttonSizeMode,
+  buttonType,
+  id = 'rswps-google-pay-container',
+  ...props
+}: GooglePayProps): JSX.Element | null => {
+  const [googlePay, setGooglePay] = React.useState<Square.GooglePay | undefined>(() => undefined);
   const { cardTokenizeResponseReceived, createPaymentRequest, payments } = useForm();
   const containerRef = React.useRef<HTMLDivElement>(null);
 
+  const options = React.useMemo(
+    () => ({
+      buttonColor,
+      buttonSizeMode,
+      buttonType,
+    }),
+    [buttonColor, buttonSizeMode, buttonType]
+  );
+
   /**
-   * Handle the on click of the Apple Pay button click
+   * Handle the on click of the Google Pay button click
    *
    * @param e An event which takes place in the DOM.
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
-  const handlePayment = async (e: MouseEvent) => {
+  const handlePayment = async (e: Event) => {
     e.preventDefault();
 
     try {
-      const result = await applePay?.tokenize();
+      const result = await googlePay?.tokenize();
 
       if (result) {
         return cardTokenizeResponseReceived(result);
       }
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(error.message);
-      }
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -64,17 +76,19 @@ function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {
       }
 
       try {
-        await payments?.applePay(paymentRequest).then((res) => {
+        const gPay = await payments?.googlePay(paymentRequest).then((res) => {
           if (signal?.aborted) {
             return;
           }
 
-          setApplePay(res);
+          setGooglePay(res);
 
           return res;
         });
+
+        await gPay?.attach(`#${id}`, options);
       } catch (error) {
-        console.error('Initializing Apple Pay failed', error);
+        console.error('Initializing Google Pay failed', error);
       }
     };
 
@@ -83,24 +97,12 @@ function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {
     return () => {
       abortController.abort();
     };
-  }, [createPaymentRequest, payments]);
+  }, [createPaymentRequest, payments, options]);
 
   useEventListener('click', handlePayment, containerRef);
 
-  return (
-    <ApplePayContainer
-      {...props}
-      // We need to make this styles to be able to use event listener
-      css={{
-        display: applePay ? 'block' : 'none',
-        opacity: applePay ? 1 : 0.5,
-        pointerEvents: applePay ? 'auto' : 'none',
-        visibility: applePay ? 'visible' : 'hidden',
-      }}
-      id={id}
-      ref={containerRef}
-    ></ApplePayContainer>
-  );
-}
+  return <div style={{ height: 40 }} {...props} id={id} ref={containerRef} />;
+};
 
-export default ApplePay;
+export default GooglePay;
+export type { GooglePayProps };
