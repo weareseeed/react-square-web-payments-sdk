@@ -1,104 +1,93 @@
 {
-  "version": "2.6.0-canary.1",
-  "license": "MIT",
-  "main": "dist/rswps.cjs.js",
-  "types": "dist/types.d.ts",
-  "files": [
-    "dist"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "start": "parcel watch src/index.ts",
-    "build": "parcel build src/index.ts --no-cache",
-    "lint": "eslint . --ext ts --ext tsx --ext js",
-    "test": "jest --passWithNoTests",
-    "size": "size-limit",
-    "storybook:watch": "start-storybook -p 6006 --docs -s public --no-manager-cache",
-    "storybook:build": "build-storybook --docs -o docs -s public",
-    "release": "standard-version",
-    "prepublish": "yarn build"
-  },
-  "peerDependencies": {
-    "react": ">=16"
-  },
   "name": "react-square-web-payments-sdk",
-  "author": "Seeed LLC. <sales@seeed.us>",
-  "contributors": [
-    {
-      "email": "danestves@gmail.com",
-      "name": "Daniel Esteves",
-      "url": "https://danestves.com/en"
-    },
-    {
-      "email": "gabrieldeandradeleal@gmail.com",
-      "name": "Gabriel De Andrade"
-    }
-  ],
+  "version": "2.6.0-canary.1",
+  "homepage": "https://weareseeed.github.io/react-square-web-payments-sdk/",
+  "bugs": {
+    "url": "https://github.com/weareseeed/react-square-web-payments-sdk/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:weareseeed/react-square-web-payments-sdk.git"
   },
-  "homepage": "https://weareseeed.github.io/react-square-web-payments-sdk/",
-  "module": "dist/rswps.esm.js",
-  "size-limit": [
+  "license": "MIT",
+  "author": "Seeed LLC. <sales@seeed.us> (https://seeed.us)",
+  "contributors": [
     {
-      "path": "dist/rswps.cjs.js",
-      "limit": "15 KB"
+      "name": "Daniel Esteves",
+      "email": "me+github@danestves.com",
+      "url": "https://danestves.com"
     },
     {
-      "path": "dist/rswps.esm.js",
-      "limit": "15 KB"
+      "name": "Gabriel De Andrade",
+      "email": "gabrieldeandradeleal@gmail.com"
     }
   ],
-  "source": "src/index.ts",
-  "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@parcel/packager-ts": "^2.4.0",
-    "@parcel/transformer-typescript-tsc": "^2.4.0",
-    "@parcel/transformer-typescript-types": "^2.4.0",
-    "@size-limit/preset-small-lib": "^7.0.8",
-    "@storybook/addon-actions": "^6.4.19",
-    "@storybook/addon-essentials": "^6.4.19",
-    "@storybook/addon-info": "^5.3.21",
-    "@storybook/addon-links": "^6.4.19",
-    "@storybook/addons": "^6.4.19",
-    "@storybook/react": "^6.4.19",
-    "@testing-library/jest-dom": "^5.16.3",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/node": "^17.0.23",
-    "@types/react": "^17.0.42",
-    "@types/testing-library__jest-dom": "^5.14.3",
-    "@typescript-eslint/eslint-plugin": "^5.16.0",
-    "@typescript-eslint/parser": "^5.16.0",
-    "babel-jest": "^27.5.1",
-    "babel-loader": "^8.2.4",
-    "eslint": "^8.11.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-xo": "^0.40.0",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "jest": "^27.5.1",
-    "jest-watch-typeahead": "^1.0.0",
-    "parcel": "^2.4.0",
-    "prettier": "^2.6.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "size-limit": "^7.0.8",
-    "standard-version": "^9.3.2",
-    "ts-jest": "^27.1.3",
-    "typescript": "^4.6.2"
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/rswps.cjs.js",
+      "import": "./dist/rswps.es.js"
+    }
+  },
+  "main": "dist/rswps.cjs.js",
+  "module": "dist/rswps.es.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "LICENSE.md",
+    "README.md",
+    "dist",
+    "package.json"
+  ],
+  "scripts": {
+    "prebuild": "yarn clean",
+    "build": "run-p build:*",
+    "build:scripts": "vite build",
+    "build:types": "tsc --emitDeclarationOnly -p ./tsconfig.build.json && tsc-alias",
+    "clean": "rimraf dist",
+    "coverage": "vitest run --coverage",
+    "dev": "vite",
+    "format": "prettier --write 'src/**/*.{ts,tsx}' '__tests__/**/*.{ts,tsx}'",
+    "lint": "eslint 'src/**/*.{ts,tsx}' '__tests__/**/*.{ts,tsx}'",
+    "preview": "vite preview",
+    "prepublish": "yarn build",
+    "test": "vitest run"
   },
   "dependencies": {
     "@square/web-sdk": "^2.0.0",
     "@stitches/react": "^1.2.7"
   },
-  "alias": {
-    "stitches": "./stitches.config.ts"
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@types/node": "^17.0.25",
+    "@types/react": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "@vitejs/plugin-react": "^1.3.1",
+    "c8": "^7.11.2",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "jsdom": "^19.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "rimraf": "^3.0.2",
+    "tsc-alias": "^1.6.6",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.5",
+    "vite-tsconfig-paths": "^3.4.1",
+    "vitest": "^0.9.4"
+  },
+  "peerDependencies": {
+    "react": "^16 || ^17 || ^18"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
