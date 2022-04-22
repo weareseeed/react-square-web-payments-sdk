@@ -98,7 +98,7 @@
       "limit": "15 KB"
     },
     {
-      "path": "dist/rswps.esm.js",
+      "path": "dist/rswps.es.js",
       "limit": "15 KB"
     }
   ]
