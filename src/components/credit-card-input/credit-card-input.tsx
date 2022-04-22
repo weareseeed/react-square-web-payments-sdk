@@ -4,7 +4,7 @@ import { useEventListener } from 'usehooks-ts';
 import type * as Square from '@square/web-sdk';
 
 // Internals
-import { useForm } from '@/contexts/form';
+import { useForm } from '~/contexts/form';
 import { LoadingCard, PayButton } from './credit-card-input.styles';
 import type { CreditCardInputChildren, CreditCardInputProps, PayButtonProps } from './credit-card-input.types';
 

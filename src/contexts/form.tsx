@@ -4,9 +4,9 @@ import { payments } from '@square/web-sdk';
 import type * as Square from '@square/web-sdk';
 
 // Internals
-import { ErrorScreen } from '@/components/error-screen';
-import { useDynamicCallback } from '@/hooks/use-dynamic-callback';
-import type { FormContextType, FormProviderProps } from '@/types';
+import { ErrorScreen } from '~/components/error-screen';
+import { useDynamicCallback } from '~/hooks/use-dynamic-callback';
+import type { FormContextType, FormProviderProps } from '~/types';
 
 /**
  * Internal helper that the `SquareForm` uses to manage internal state and expose access to the Web Payment SDK library.

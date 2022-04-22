@@ -1,5 +1,5 @@
 // Internals
-import { keyframes, styled } from '@/stitches.config';
+import { keyframes, styled } from '~/stitches.config';
 
 const pulse = keyframes({
   '0%, 100%': {

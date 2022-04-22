@@ -1,13 +1,13 @@
 /// <reference types="vitest" />
 
 // Dependencies
-import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // Internals
-import { peerDependencies, dependencies } from './package.json'
+import { peerDependencies, dependencies } from './package.json';
 
 export default defineConfig({
   build: {
@@ -17,10 +17,7 @@ export default defineConfig({
       fileName: (ext) => `rswps.${ext}.js`,
     },
     rollupOptions: {
-      external: [
-        ...Object.keys(dependencies),
-        ...Object.keys(peerDependencies),
-      ],
+      external: [...Object.keys(dependencies), ...Object.keys(peerDependencies)],
     },
     target: 'esnext',
     sourcemap: true,
@@ -33,7 +30,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
+      '~': resolve(__dirname, 'src'),
     },
   },
   test: {
@@ -44,4 +41,4 @@ export default defineConfig({
     globals: true,
     setupFiles: './jest.setup.ts',
   },
-})
+});

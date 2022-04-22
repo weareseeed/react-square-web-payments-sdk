@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 // Internals
-import { FormProvider } from '@/contexts/form';
+import { FormProvider } from '~/contexts/form';
 import type { PaymentFormProps } from './payment-form.types';
 
 function RenderPaymentForm(

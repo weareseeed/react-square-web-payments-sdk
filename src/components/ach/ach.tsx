@@ -4,7 +4,7 @@ import { useEventListener } from 'usehooks-ts';
 import type * as Square from '@square/web-sdk';
 
 // Internals
-import { useForm } from '@/contexts/form';
+import { useForm } from '~/contexts/form';
 import { PayButton, SvgIcon } from './ach.styles';
 import type { AchProps, AchWithChildrenProps, AchWithoutChildrenProps } from './ach.types';
 

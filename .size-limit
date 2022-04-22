@@ -12,6 +12,18 @@
     "webpack": false
   },
   {
+    "name": "ApplePay *.cjs.js",
+    "path": "dist/rswps.cjs.js",
+    "import": "{ ApplePay }",
+    "webpack": false
+  },
+  {
+    "name": "ApplePay *.es.js",
+    "path": "dist/rswps.es.js",
+    "import": "{ ApplePay }",
+    "webpack": false
+  },
+  {
     "name": "CreditCardInput *.cjs.js",
     "path": "dist/rswps.cjs.js",
     "import": "{ CreditCardInput }",
