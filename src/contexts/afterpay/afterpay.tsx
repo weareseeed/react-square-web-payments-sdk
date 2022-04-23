@@ -1,0 +1,62 @@
+// Dependencies
+import * as React from 'react';
+import type * as Square from '@square/web-sdk';
+
+// Internals
+import { useForm } from '../form';
+
+export const AfterpayContext = React.createContext<Square.AfterpayClearpay | undefined>(undefined);
+
+function AfterpayProvider({ children }: { children: React.ReactNode }) {
+  const [afterpay, setAfterpay] = React.useState<Square.AfterpayClearpay>();
+  const { createPaymentRequest, payments } = useForm();
+
+  if (!createPaymentRequest) {
+    throw new Error('`createPaymentRequest()` is required when using digital wallets');
+  }
+
+  React.useEffect(() => {
+    const abortController = new AbortController();
+    const { signal } = abortController;
+
+    const start = async (signal: AbortSignal) => {
+      const paymentRequest = payments?.paymentRequest(createPaymentRequest);
+
+      if (!paymentRequest) {
+        throw new Error('`paymentRequest` is required when using digital wallets');
+      }
+
+      await payments?.afterpayClearpay(paymentRequest).then((res) => {
+        if (!signal.aborted) {
+          setAfterpay(res);
+
+          return res;
+        }
+
+        return null;
+      });
+    };
+
+    start(signal);
+
+    return () => {
+      if (afterpay) {
+        afterpay.destroy();
+      }
+    };
+  }, [createPaymentRequest, payments]);
+
+  return <AfterpayContext.Provider value={afterpay}>{children}</AfterpayContext.Provider>;
+}
+
+export function useAfterpay() {
+  const context = React.useContext(AfterpayContext);
+
+  if (context === undefined) {
+    throw new Error('`useAfterpay()` must be used within an `<AfterpayProvider>`');
+  }
+
+  return context;
+}
+
+export default AfterpayProvider;

@@ -1,4 +1,5 @@
 export * from './components/ach';
+export * from './components/afterpay';
 export * from './components/apple-pay';
 export * from './components/credit-card';
 export * from './components/divider';
