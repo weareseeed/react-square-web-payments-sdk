@@ -44,12 +44,12 @@ export type FormProviderProps = {
     token: Square.TokenResult,
     verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
   ) => void;
+  children: React.ReactNode;
   /**
    * Identifies the location of the merchant that is taking the payment.
    * Obtained from the Square Application Dashboard - Locations tab.
    */
   locationId: string;
-  children?: React.ReactNode;
   /**
    * The payments.paymentRequest method argument
    *

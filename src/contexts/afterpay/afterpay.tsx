@@ -4,10 +4,11 @@ import type * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '../form';
+import type { AfterpayProviderProps } from './afterpay.types';
 
 export const AfterpayContext = React.createContext<Square.AfterpayClearpay | undefined>(undefined);
 
-function AfterpayProvider({ children }: { children: React.ReactNode }) {
+function AfterpayProvider({ children, onShippingAddressChange, onShippingOptionChange }: AfterpayProviderProps) {
   const [afterpay, setAfterpay] = React.useState<Square.AfterpayClearpay>();
   const { createPaymentRequest, payments } = useForm();
 
@@ -24,6 +25,13 @@ function AfterpayProvider({ children }: { children: React.ReactNode }) {
 
       if (!paymentRequest) {
         throw new Error('`paymentRequest` is required when using digital wallets');
+      }
+
+      if (onShippingAddressChange) {
+        paymentRequest.addEventListener('afterpay_shippingaddresschanged', onShippingAddressChange);
+      }
+      if (onShippingOptionChange) {
+        paymentRequest.addEventListener('afterpay_shippingoptionchanged', onShippingOptionChange);
       }
 
       await payments?.afterpayClearpay(paymentRequest).then((res) => {
