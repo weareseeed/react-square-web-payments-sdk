@@ -70,6 +70,8 @@ function CreditCard({
    */
   const handlePayment = async () => {
     if (!card) {
+      console.info('CreditCard: No card to tokenize');
+
       return;
     }
 
@@ -120,25 +122,16 @@ function CreditCard({
   }, [payments, id]);
 
   React.useEffect(() => {
-    if (card && Object.keys(options).length > 0) {
-      card.configure(options);
-    }
-  }, [card, options]);
-
-  React.useEffect(() => {
     if (card && focus) {
       card.focus(focus);
     }
   }, [card, focus]);
 
-  useEventListener('click', handlePayment, buttonRef);
-
   if (callbacks) {
     for (const callback of Object.keys(callbacks)) {
       card?.addEventListener(
         callback as Square.CardInputEventTypes,
-        // @ts-ignore - we know this is a function
-        callbacks[callback]
+        (callbacks as Record<string, (event: Square.SqEvent<Square.CardInputEvent>) => void>)[callback]
       );
     }
   }
@@ -146,6 +139,8 @@ function CreditCard({
   if (recalculateSize) {
     recalculateSize(card?.recalculateSize);
   }
+
+  useEventListener('click', handlePayment, buttonRef);
 
   const Button = (props?: PayButtonProps) => {
     const id = 'rswp-card-button';
@@ -164,6 +159,8 @@ function CreditCard({
       </PayButton>
     );
   };
+
+  console.info('buttonRef', buttonRef);
 
   return (
     <>

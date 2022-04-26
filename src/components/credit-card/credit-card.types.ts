@@ -33,6 +33,10 @@ export interface CreditCardBase
      */
     errorClassRemoved?(event: Square.SqEvent<Square.CardInputEvent>): void;
     /**
+     * Callback function that is called when the user pressed the "Escape" key while editing a field.
+     */
+    escape?(event: Square.SqEvent<Square.CardInputEvent>): void;
+    /**
      * Callback function that is called when a form field gained focus,
      * and the corresponding focus CSS class was added to the element.
      */
@@ -46,10 +50,6 @@ export interface CreditCardBase
      * Callback function that is called when the current value of the postal code form field changed.
      */
     postalCodeChanged?(event: Square.SqEvent<Square.CardInputEvent>): void;
-    /**
-     * Callback function that is called when the user pressed the "Escape" key while editing a field.
-     */
-    scape?(event: Square.SqEvent<Square.CardInputEvent>): void;
     /**
      * Callback function that is called when the user has triggered submission of the form
      * by pressing "Enter" while editing a field.
