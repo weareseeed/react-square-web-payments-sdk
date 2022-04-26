@@ -52,7 +52,7 @@
     "format": "prettier --write 'src/**/*.{ts,tsx}'",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "preview": "vite preview",
-    "prepublish": "yarn build",
+    "prepublishOnly": "yarn build",
     "test": "vitest run",
     "size": "size-limit",
     "size:why": "size-limit --why"

@@ -69,16 +69,18 @@ function CreditCard({
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async () => {
+    if (!card) {
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const result = await card?.tokenize();
+      const result = await card.tokenize();
 
-      if (result) {
-        setIsSubmitting(false);
+      setIsSubmitting(false);
 
-        return cardTokenizeResponseReceived(result);
-      }
+      return cardTokenizeResponseReceived(result);
     } catch (ex) {
       setIsSubmitting(false);
 
