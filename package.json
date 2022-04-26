@@ -25,12 +25,12 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "require": "./dist/rswps.cjs.js",
-      "import": "./dist/rswps.es.js"
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.es.js"
     }
   },
-  "main": "dist/rswps.cjs.js",
-  "module": "dist/rswps.es.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "directories": {
     "src": "src"
@@ -54,7 +54,8 @@
     "preview": "vite preview",
     "prepublish": "yarn build",
     "test": "vitest run",
-    "size": "size-limit"
+    "size": "size-limit",
+    "size:why": "size-limit --why"
   },
   "dependencies": {
     "@square/web-sdk": "^2.0.0",
@@ -64,6 +65,7 @@
   },
   "devDependencies": {
     "@size-limit/preset-big-lib": "^7.0.8",
+    "@size-limit/webpack-why": "^7.0.8",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@types/node": "^17.0.25",

@@ -1,10 +1,92 @@
 [
   {
-    "path": "dist/rswps.cjs.js",
-    "webpack": false
+    "name": "Format: cjs | Import: { Ach, PaymentForm }",
+    "path": "dist/index.cjs.js",
+    "import": "{ Ach, PaymentForm }"
   },
   {
-    "path": "dist/rswps.es.js",
-    "webpack": false
+    "name": "Format: es | Import: { Ach, PaymentForm }",
+    "path": "dist/index.es.js",
+    "import": "{ Ach, PaymentForm }"
+  },
+  {
+    "name": "Format: cjs | Import: { Afterpay, AfterpayProvider, PaymentForm }",
+    "path": "dist/index.cjs.js",
+    "import": "{ Afterpay, AfterpayProvider, PaymentForm }"
+  },
+  {
+    "name": "Format: es | Import: { Afterpay, AfterpayProvider, PaymentForm }",
+    "path": "dist/index.es.js",
+    "import": "{ Afterpay, AfterpayProvider, PaymentForm }"
+  },
+  {
+    "name": "Format: cjs | Import: { Afterpay, AfterpayMessage, AfterpayProvider, PaymentForm }",
+    "path": "dist/index.cjs.js",
+    "import": "{ Afterpay, AfterpayMessage, AfterpayProvider, PaymentForm }"
+  },
+  {
+    "name": "Format: es | Import: { Afterpay, AfterpayMessage, AfterpayProvider, PaymentForm }",
+    "path": "dist/index.es.js",
+    "import": "{ Afterpay, AfterpayMessage, AfterpayProvider, PaymentForm }"
+  },
+  {
+    "name": "Format: cjs | Import: { Afterpay, AfterpayWidget, AfterpayProvider, PaymentForm }",
+    "path": "dist/index.cjs.js",
+    "import": "{ Afterpay, AfterpayWidget, AfterpayProvider, PaymentForm }"
+  },
+  {
+    "name": "Format: es | Import: { Afterpay, AfterpayWidget, AfterpayProvider, PaymentForm }",
+    "path": "dist/index.es.js",
+    "import": "{ Afterpay, AfterpayWidget, AfterpayProvider, PaymentForm }"
+  },
+  {
+    "name": "Format: cjs | Import: { ApplePay, PaymentForm }",
+    "path": "dist/index.cjs.js",
+    "import": "{ ApplePay, PaymentForm }"
+  },
+  {
+    "name": "Format: es | Import: { ApplePay, PaymentForm }",
+    "path": "dist/index.es.js",
+    "import": "{ ApplePay, PaymentForm }"
+  },
+  {
+    "name": "Format: cjs | Import: { CreditCard, PaymentForm }",
+    "path": "dist/index.cjs.js",
+    "import": "{ CreditCard, PaymentForm }"
+  },
+  {
+    "name": "Format: es | Import: { CreditCard, PaymentForm }",
+    "path": "dist/index.es.js",
+    "import": "{ CreditCard, PaymentForm }"
+  },
+  {
+    "name": "Format: cjs | Import: { GiftCard, PaymentForm }",
+    "path": "dist/index.cjs.js",
+    "import": "{ GiftCard, PaymentForm }"
+  },
+  {
+    "name": "Format: es | Import: { GiftCard, PaymentForm }",
+    "path": "dist/index.es.js",
+    "import": "{ GiftCard, PaymentForm }"
+  },
+  {
+    "name": "Format: cjs | Import: { GooglePay, PaymentForm }",
+    "path": "dist/index.cjs.js",
+    "import": "{ GooglePay, PaymentForm }"
+  },
+  {
+    "name": "Format: es | Import: { GooglePay, PaymentForm }",
+    "path": "dist/index.es.js",
+    "import": "{ GooglePay, PaymentForm }"
+  },
+  {
+    "name": "Format: cjs | Import: { Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, GiftCard, GooglePay, PaymentForm }",
+    "path": "dist/index.cjs.js",
+    "import": "{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, GiftCard, GooglePay, PaymentForm }"
+  },
+  {
+    "name": "Format: es | Import: { Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, GiftCard, GooglePay, PaymentForm }",
+    "path": "dist/index.es.js",
+    "import": "{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, GiftCard, GooglePay, PaymentForm }"
   }
 ]
