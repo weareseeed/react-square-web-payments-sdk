@@ -120,14 +120,14 @@ function CreditCard({
   }, [payments, id]);
 
   React.useEffect(() => {
-    if (card) {
+    if (card && Object.keys(options).length > 0) {
       card.configure(options);
     }
   }, [card, options]);
 
   React.useEffect(() => {
     if (card && focus) {
-      card?.focus(focus);
+      card.focus(focus);
     }
   }, [card, focus]);
 
