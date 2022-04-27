@@ -1,12 +1,13 @@
 // Dependencies
 import * as React from 'react';
 import { useEventListener } from 'usehooks-ts';
-import type * as Square from '@square/web-sdk';
+import * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
 import { PayButton, SvgIcon } from './ach.styles';
-import type { AchProps, AchWithChildrenProps, AchWithoutChildrenProps } from './ach.types';
+import { transformPlaidEventName } from './ach.utils';
+import type { AchProps, AchWithChildrenProps, AchWithoutChildrenProps, PlaidLinkOnEventMetadata } from './ach.types';
 
 /**
  * Renders a ACH button to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
@@ -22,8 +23,16 @@ import type { AchProps, AchWithChildrenProps, AchWithoutChildrenProps } from './
  */
 export function Ach(props: AchWithChildrenProps): React.ReactElement;
 export function Ach(props: AchWithoutChildrenProps): React.ReactElement;
-export function Ach({ buttonProps, children, overrideSvgStyles, ...props }: AchProps) {
-  const [achPay, setAchPay] = React.useState<Square.ACH | undefined>(() => undefined);
+export function Ach({
+  accountHolderName,
+  redirectURI,
+  transactionId,
+  callbacks,
+  buttonProps,
+  children,
+  svgProps,
+}: AchProps) {
+  const [ach, setAch] = React.useState<Square.ACH | undefined>(() => undefined);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { cardTokenizeResponseReceived, payments } = useForm();
   const buttonRef = React.useRef<HTMLButtonElement>(null);
@@ -34,20 +43,42 @@ export function Ach({ buttonProps, children, overrideSvgStyles, ...props }: AchP
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async () => {
+    if (!ach) {
+      console.warn('ACH button was clicked, but no ACH instance was found.');
+
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const result = await achPay?.tokenize(props);
+      const result = await ach.tokenize({
+        accountHolderName,
+      });
 
-      if (result) {
-        setIsSubmitting(false);
-
-        return cardTokenizeResponseReceived(result);
+      switch (result.status) {
+        case Square.TokenStatus.ABORT:
+          console.warn('ACH payment was aborted.');
+          break;
+        case Square.TokenStatus.CANCEL:
+          console.warn('ACH payment was canceled.');
+          break;
+        case Square.TokenStatus.ERROR:
+          console.error(result.errors);
+          break;
+        case Square.TokenStatus.INVALID:
+          console.warn('ACH payment was invalid.');
+          break;
+        case Square.TokenStatus.OK:
+          return cardTokenizeResponseReceived(result);
+        default:
+          console.warn('ACH payment was unknown.');
+          break;
       }
     } catch (ex) {
-      setIsSubmitting(false);
-
       console.error(ex);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -56,15 +87,20 @@ export function Ach({ buttonProps, children, overrideSvgStyles, ...props }: AchP
     const { signal } = abortController;
 
     const start = async (signal: AbortSignal) => {
-      await payments?.ach().then((res) => {
-        if (signal?.aborted) {
-          return;
-        }
+      await payments
+        ?.ach({
+          redirectURI,
+          transactionId,
+        })
+        .then((res) => {
+          if (signal?.aborted) {
+            return;
+          }
 
-        setAchPay(res);
+          setAch(res);
 
-        return res;
-      });
+          return res;
+        });
     };
 
     start(signal);
@@ -74,14 +110,23 @@ export function Ach({ buttonProps, children, overrideSvgStyles, ...props }: AchP
     };
   }, [payments]);
 
+  if (callbacks) {
+    for (const callback of Object.keys(callbacks)) {
+      ach?.addEventListener(
+        transformPlaidEventName(callback),
+        (callbacks as Record<string, (event: Square.SqEvent<PlaidLinkOnEventMetadata>) => void>)[callback]
+      );
+    }
+  }
+
   useEventListener('click', handlePayment, buttonRef);
 
   if (children) {
     return (
       <PayButton
         {...buttonProps}
-        aria-disabled={!achPay || isSubmitting}
-        disabled={!achPay || isSubmitting}
+        aria-disabled={!ach || isSubmitting}
+        disabled={!ach || isSubmitting}
         ref={buttonRef}
         type="button"
       >
@@ -93,18 +138,18 @@ export function Ach({ buttonProps, children, overrideSvgStyles, ...props }: AchP
   return (
     <PayButton
       {...buttonProps}
-      aria-disabled={!achPay || isSubmitting}
-      disabled={!achPay || isSubmitting}
+      aria-disabled={!ach || isSubmitting}
+      disabled={!ach || isSubmitting}
       ref={buttonRef}
       type="button"
     >
       <SvgIcon
-        css={overrideSvgStyles}
         fill="none"
         height="1em"
         viewBox="0 0 36 24"
         width="1em"
         xmlns="http://www.w3.org/2000/svg"
+        {...svgProps}
       >
         <rect fill="url(#prefix__paint0_linear)" height={24} rx={4} width={36} />
         <path
@@ -126,4 +171,4 @@ export function Ach({ buttonProps, children, overrideSvgStyles, ...props }: AchP
 }
 
 export default Ach;
-export type { AchProps };
+export * from './ach.types';
