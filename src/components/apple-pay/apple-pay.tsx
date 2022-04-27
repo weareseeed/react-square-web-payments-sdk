@@ -83,7 +83,7 @@ function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {
       }
 
       try {
-        await payments?.applePay(paymentRequest).then((res) => {
+        const applePay = await payments?.applePay(paymentRequest).then((res) => {
           if (signal?.aborted) {
             return;
           }
@@ -92,6 +92,10 @@ function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {
 
           return res;
         });
+
+        if (signal.aborted) {
+          await applePay?.destroy();
+        }
       } catch (error) {
         console.error('Initializing Apple Pay failed', error);
       }

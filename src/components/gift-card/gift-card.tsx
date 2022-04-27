@@ -129,7 +129,7 @@ function GiftCard({
       }
 
       if (signal.aborted) {
-        giftCard?.destroy();
+        await giftCard?.destroy();
       }
     };
 

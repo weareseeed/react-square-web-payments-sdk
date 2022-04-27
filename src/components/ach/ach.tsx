@@ -89,7 +89,7 @@ export function Ach({
     const { signal } = abortController;
 
     const start = async (signal: AbortSignal) => {
-      await payments
+      const ach = await payments
         ?.ach({
           redirectURI,
           transactionId,
@@ -103,6 +103,10 @@ export function Ach({
 
           return res;
         });
+
+      if (signal.aborted) {
+        await ach?.destroy();
+      }
     };
 
     start(signal);

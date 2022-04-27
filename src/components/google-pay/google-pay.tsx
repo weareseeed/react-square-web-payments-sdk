@@ -106,7 +106,7 @@ const GooglePay = ({
       }
 
       try {
-        const gPay = await payments?.googlePay(paymentRequest).then((res) => {
+        const googlePay = await payments?.googlePay(paymentRequest).then((res) => {
           if (signal?.aborted) {
             return;
           }
@@ -116,7 +116,11 @@ const GooglePay = ({
           return res;
         });
 
-        await gPay?.attach(`#${id}`, options);
+        await googlePay?.attach(`#${id}`, options);
+
+        if (signal.aborted) {
+          await googlePay?.destroy();
+        }
       } catch (error) {
         console.error('Initializing Google Pay failed', error);
       }

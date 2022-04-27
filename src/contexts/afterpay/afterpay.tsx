@@ -34,7 +34,7 @@ function AfterpayProvider({ children, onShippingAddressChange, onShippingOptionC
         paymentRequest.addEventListener('afterpay_shippingoptionchanged', onShippingOptionChange);
       }
 
-      await payments?.afterpayClearpay(paymentRequest).then((res) => {
+      const afterpay = await payments?.afterpayClearpay(paymentRequest).then((res) => {
         if (!signal.aborted) {
           setAfterpay(res);
 
@@ -43,14 +43,16 @@ function AfterpayProvider({ children, onShippingAddressChange, onShippingOptionC
 
         return null;
       });
+
+      if (signal.aborted) {
+        await afterpay?.destroy();
+      }
     };
 
     start(signal);
 
     return () => {
-      if (afterpay) {
-        afterpay.destroy();
-      }
+      abortController.abort();
     };
   }, [createPaymentRequest, payments]);
 

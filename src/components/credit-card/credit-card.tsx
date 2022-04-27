@@ -129,7 +129,7 @@ function CreditCard({
       }
 
       if (signal.aborted) {
-        card?.destroy();
+        await card?.destroy();
       }
     };
 
