@@ -7,7 +7,7 @@ import { useAfterpay } from '~/contexts/afterpay';
 import { useEventListener } from '~/hooks/use-event-listener';
 import { AfterpayContext, AfterpayProvider } from '~/contexts/afterpay';
 import { useForm } from '~/contexts/form';
-import { LoadingButton } from './afterpay.styles';
+import { ButtonLoader } from './afterpay.styles';
 import type {
   AfterpayButtonProps,
   AfterpayMessageBaseProps,
@@ -100,7 +100,7 @@ export function AfterpayButton({
 
   return (
     <div {...props} id={id} ref={containerRef as React.RefObject<HTMLDivElement>}>
-      {!afterpay ? <LoadingButton /> : null}
+      {!afterpay ? <ButtonLoader /> : null}
     </div>
   );
 }

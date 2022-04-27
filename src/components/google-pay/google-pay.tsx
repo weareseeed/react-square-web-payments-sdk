@@ -5,6 +5,7 @@ import * as Square from '@square/web-sdk';
 // Internals
 import { useForm } from '~/contexts/form';
 import { useEventListener } from '~/hooks/use-event-listener';
+import { ButtonLoader } from './google-pay.styles';
 import type { GooglePayProps } from './google-pay.types';
 
 /**
@@ -28,8 +29,8 @@ import type { GooglePayProps } from './google-pay.types';
  */
 const GooglePay = ({
   buttonColor,
-  buttonSizeMode,
-  buttonType,
+  buttonSizeMode = 'fill',
+  buttonType = 'long',
   id = 'rswps-google-pay-container',
   ...props
 }: GooglePayProps): JSX.Element | null => {
@@ -129,7 +130,11 @@ const GooglePay = ({
     },
   });
 
-  return <div style={{ height: 40 }} {...props} id={id} ref={containerRef} />;
+  return (
+    <div {...props} id={id} ref={containerRef}>
+      {!googlePay ? <ButtonLoader /> : null}
+    </div>
+  );
 };
 
 export default GooglePay;
