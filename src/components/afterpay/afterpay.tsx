@@ -144,11 +144,7 @@ export function AfterpayMessage({
     return <Message {...props} id={id} ref={messageRef} />;
   }
 
-  return (
-    <div {...props}>
-      <div id={id}></div>
-    </div>
-  );
+  return <div {...props} id={id} />;
 }
 
 export function AfterpayWidget({ includeBranding, id = 'rswps-afterpay-widget', ...props }: AfterpayWidgetProps) {
