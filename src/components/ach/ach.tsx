@@ -46,6 +46,7 @@ export function Ach({
   /**
    * Handle the on click of the ACH button click
    *
+   * @param e An event which takes place in the DOM.
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async (e: Event) => {

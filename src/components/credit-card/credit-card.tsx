@@ -73,6 +73,7 @@ function CreditCard({
   /**
    * Handle the on click of the Credit Card button click
    *
+   * @param e An event which takes place in the DOM.
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async (e: Event) => {

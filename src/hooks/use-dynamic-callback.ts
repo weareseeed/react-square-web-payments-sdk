@@ -1,6 +1,8 @@
 // Dependencies
 import * as React from 'react';
-import { useIsomorphicLayoutEffect } from 'usehooks-ts';
+
+// Internals
+import { useIsomorphicLayoutEffect } from './use-isomorphic-layout-effect';
 
 export function useDynamicCallback<T>(callback: T): T;
 export function useDynamicCallback(callback: (...args: Record<string, unknown>[]) => void) {

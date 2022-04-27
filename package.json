@@ -59,9 +59,7 @@
   },
   "dependencies": {
     "@square/web-sdk": "^2.0.0",
-    "@stitches/react": "^1.2.8",
-    "use-deep-compare": "^1.1.0",
-    "usehooks-ts": "^2.5.1"
+    "@stitches/react": "^1.2.8"
   },
   "devDependencies": {
     "@size-limit/preset-big-lib": "^7.0.8",

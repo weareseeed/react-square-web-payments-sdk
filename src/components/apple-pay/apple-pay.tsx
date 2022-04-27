@@ -1,10 +1,10 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from 'usehooks-ts';
 import type * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
+import { useEventListener } from '~/hooks/use-event-listener';
 import { ApplePayContainer } from './apple-pay.styles';
 import type { ApplePayProps } from './apple-pay.types';
 
@@ -38,7 +38,7 @@ function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {
    * @param e An event which takes place in the DOM.
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
-  const handlePayment = async (e: MouseEvent) => {
+  const handlePayment = async (e: Event) => {
     e.stopPropagation();
 
     if (!applePay) {
@@ -104,7 +104,14 @@ function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {
     };
   }, [createPaymentRequest, payments]);
 
-  useEventListener('click', handlePayment, containerRef);
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: containerRef,
+    options: {
+      passive: true,
+    },
+  });
 
   return (
     <ApplePayContainer
