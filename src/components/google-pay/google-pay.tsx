@@ -8,16 +8,22 @@ import { useForm } from '~/contexts/form';
 import type { GooglePayProps } from './google-pay.types';
 
 /**
- * Renders a Google Pay button to use in the Square Web Payment SDK, pre-styled to meet Google's branding guidelines.
+ * Renders a Google Pay button to use in the Square Web Payment SDK, pre-styled
+ * to meet Google's branding guidelines.
  *
- * **Remember** that you need to set `createPaymentRequest()` in `SquareForm`
- * if you going to use this Payment Method
+ * **Remember** that you need to set `createPaymentRequest()` in `SquareForm` if
+ * you going to use this Payment Method
  *
  * @example
+ *
  * ```tsx
- * <SquareForm {...props}>
- *  <GooglePay buttonColor="white" />
- * </SquareForm>
+ * function App() {
+ *   return (
+ *     <SquareForm {...props}>
+ *       <GooglePay />
+ *     </SquareForm>
+ *   );
+ * }
  * ```
  */
 const GooglePay = ({

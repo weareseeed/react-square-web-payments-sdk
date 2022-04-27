@@ -9,6 +9,8 @@ export type AfterpayProviderProps = {
    *
    * It is required for you to subscribe to this event if shipping if marked a required.
    *
+   * @example
+   *
    * ```js
    * (contact) => {
    *   return {
@@ -23,8 +25,8 @@ export type AfterpayProviderProps = {
    *             id: 'taxItem1',
    *             label: 'Taxes',
    *             amount: '2.50',
-   *           }
-   *         ]
+   *           },
+   *         ],
    *       },
    *       {
    *         id: 'shippingOption2',
@@ -36,11 +38,11 @@ export type AfterpayProviderProps = {
    *             id: 'taxItem1',
    *             label: 'Taxes',
    *             amount: '3.50',
-   *           }
-   *         ]
-   *       }
+   *           },
+   *         ],
+   *       },
    *     ],
-   *   }
+   *   };
    * };
    * ```
    */
@@ -48,13 +50,18 @@ export type AfterpayProviderProps = {
   /**
    * Occurs when a buyer chooses a shipping option in Afterpay/Clearpay.
    *
-   * Subscribe to this event if you want to be alerted of shipping options changes.
-   * This event if informational only, and does not update the payment request.
+   * Subscribe to this event if you want to be alerted of shipping options
+   * changes. This event if informational only, and does not update the payment request.
+   *
+   * @example
    *
    * ```js
-   * req.addEventListener('afterpay_shippingaoptionchanged', function (option) {
-   *   // used for informational purposes only
-   * });
+   * req.addEventListener(
+   *   'afterpay_shippingaoptionchanged',
+   *   function (option) {
+   *     // used for informational purposes only
+   *   }
+   * );
    * ```
    */
   onShippingOptionChange?: Square.AfterpayShippingOptionCallback;

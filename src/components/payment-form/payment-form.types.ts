@@ -4,13 +4,13 @@ import type * as Square from '@square/web-sdk';
 
 export type PaymentFormProps = {
   /**
-   * Identifies the calling form with a verified application ID generated
-   * from the Square Application Dashboard.
+   * Identifies the calling form with a verified application ID generated from
+   * the Square Application Dashboard.
    */
   applicationId: string;
   /**
-   * Invoked when payment form receives the result of a tokenize generation request.
-   * The result will be a valid credit card or wallet token, or an error.
+   * Invoked when payment form receives the result of a tokenize generation
+   * request. The result will be a valid credit card or wallet token, or an error.
    */
   cardTokenizeResponseReceived: (
     props: Square.TokenResult,
@@ -31,14 +31,9 @@ export type PaymentFormProps = {
    * Obtained from the Square Application Dashboard - Locations tab.
    */
   locationId: string;
-  /**
-   * Override the default payment form configuration.
-   *
-   * Supported overrides:
-   *
-   * - **`scriptSrc`**: The URL of the Square payment form script.
-   */
+  /** Override the default payment form configuration. */
   overrides?: {
+    /** The URL of the Square payment form script. */
     scriptSrc?: string;
   };
 };

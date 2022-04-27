@@ -9,15 +9,21 @@ import { LoadingCard, PayButton } from './gift-card.styles';
 import type { GiftCardBase, GiftCardProps, GiftCardWithChildren } from './gift-card.types';
 
 /**
- * Renders a Gift Card Input to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
+ * Renders a Gift Card Input to use in the Square Web Payment SDK, pre-styled to
+ * meet Square branding guidelines.
  *
  * **_But with the option to override styles_**
  *
  * @example
+ *
  * ```tsx
- * <SquareForm {...props}>
- *  <GiftCard />
- * </SquareForm>
+ * function App() {
+ *   return (
+ *     <SquareForm {...props}>
+ *       <GiftCard />
+ *     </SquareForm>
+ *   );
+ * }
  * ```
  */
 function GiftCard(props: GiftCardBase): JSX.Element;

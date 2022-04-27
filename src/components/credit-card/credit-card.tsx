@@ -15,15 +15,21 @@ import type {
 } from './credit-card.types';
 
 /**
- * Renders a Credit Card Input to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
+ * Renders a Credit Card Input to use in the Square Web Payment SDK, pre-styled
+ * to meet Square branding guidelines.
  *
  * **_But with the option to override styles_**
  *
  * @example
+ *
  * ```tsx
- * <SquareForm {...props}>
- *  <CreditCard focus="cardNumber" />
- * </SquareForm>
+ * function App() {
+ *   return (
+ *     <SquareForm {...props}>
+ *       <CreditCard />
+ *     </SquareForm>
+ *   );
+ * }
  * ```
  */
 function CreditCard(props: CreditCardBase): JSX.Element;

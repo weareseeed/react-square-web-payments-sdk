@@ -42,13 +42,15 @@ export type AchPayButtonProps = Omit<
    * Sets the style for the Payment Button using a CSS object
    *
    * @example
+   *
    * ```js
-   * const overrideStyles = {
-   *  background: "white",
-   *  "&:hover": {
-   *    background: "rgba(1, 208, 158, 0.1)"
-   *  }
-   * }
+   *   const overrideStyles = {
+   *    background: "white",
+   *    "&:hover": {
+   *      background: "rgba(1, 208, 158, 0.1)"
+   *    }
+   *   }
+   *   ```;
    * ```
    */
   css?: Stitches.ComponentProps<typeof PayButton>['css'];
@@ -59,13 +61,15 @@ export type SvgProps = React.ComponentPropsWithRef<'svg'> & {
    * Sets the style for the SVG using a CSS object
    *
    * @example
+   *
    * ```js
-   * const overrideStyles = {
-   *  background: "white",
-   *  "&:hover": {
-   *    background: "rgba(1, 208, 158, 0.1)"
-   *  }
-   * }
+   *   const overrideStyles = {
+   *    background: "white",
+   *    "&:hover": {
+   *      background: "rgba(1, 208, 158, 0.1)"
+   *    }
+   *   }
+   *   ```;
    * ```
    */
   css?: Stitches.ComponentProps<typeof SvgIcon>['css'];
@@ -73,94 +77,74 @@ export type SvgProps = React.ComponentPropsWithRef<'svg'> & {
 
 export interface AchBase extends Square.AchOptions, Square.AchTokenOptions {
   callbacks?: {
-    /**
-     * The user has completed the Assets and Bank Income Insights flow.
-     */
+    /** The user has completed the Assets and Bank Income Insights flow. */
     bankIncomeInsightsCompleted?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
     /**
-     * The user closed the third-party website or mobile app without completing the OAuth flow.
+     * The user closed the third-party website or mobile app without completing
+     * the OAuth flow.
      */
     closeOauth?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * A recoverable error occurred in the Link flow, see the `error_code` metadata.
-     */
+    /** A recoverable error occurred in the Link flow, see the `error_code` metadata. */
     error?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
     /**
      * The user has exited without completing the Link flow and the
      * [onExit](https://plaid.com/docs/link/web/#onexit) callback is fired.
      */
     exit?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * The user encountered an error while completing the third-party's OAuth login flow.
-     */
+    /** The user encountered an error while completing the third-party's OAuth login flow. */
     failOauth?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * The user has exited Link after successfully linking an Item.
-     */
+    /** The user has exited Link after successfully linking an Item. */
     handoff?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * The user selected an institution that was presented as a matched institution.
-     */
+    /** The user selected an institution that was presented as a matched institution. */
     matchedSelectInstitution?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * The user selected a verification method for a matched institution.
-     */
+    /** The user selected a verification method for a matched institution. */
     matchedSelectVerifyMethod?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * The user has opened Link.
-     */
+    /** The user has opened Link. */
     open?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
     /**
-     * The user has opened my.plaid.com. This event is only sent when Link is initialized
-     * with Assets as a product
+     * The user has opened my.plaid.com. This event is only sent when Link is
+     * initialized with Assets as a product
      */
     openMyPlaid?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
     /**
-     * The user has navigated to a third-party website or mobile app in order to complete
-     * the OAuth login flow.
+     * The user has navigated to a third-party website or mobile app in order to
+     * complete the OAuth login flow.
      */
     openOauth?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * The user has searched for an institution.
-     */
+    /** The user has searched for an institution. */
     searchInstitution?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
     /**
-     * The user selected a brand, e.g. Bank of America. The `SELECT_BRAND` event is only emitted
-     * for large financial institutions with multiple online banking portals.
+     * The user selected a brand, e.g. Bank of America. The `SELECT_BRAND` event
+     * is only emitted for large financial institutions with multiple online
+     * banking portals.
      */
     selectBrand?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
     /**
-     * The user selected an instititon with a `DEGRADED` health status and were shown
-     * a corresponding message.
+     * The user selected an instititon with a `DEGRADED` health status and were
+     * shown a corresponding message.
      */
     selectDegradedInstitution?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
     /**
-     * The user selected an instititon with a `DOWN` health status and were shown
-     * a corresponding message.
+     * The user selected an instititon with a `DOWN` health status and were
+     * shown a corresponding message.
      */
     selectDownInstitution?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * The user selected an institution.
-     */
+    /** The user selected an institution. */
     selectInstitution?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * The user has submitted credentials.
-     */
+    /** The user has submitted credentials. */
     submitCredentials?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * The user is being prompted to submit documents for an Income verification flow.
-     */
+    /** The user is being prompted to submit documents for an Income verification flow. */
     submitDocuments?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
     /**
-     * The user encountered an error when submitting documents for an Income verification flow.
+     * The user encountered an error when submitting documents for an Income
+     * verification flow.
      */
     submitDocumentsError?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
-    /**
-     * The user has submitted MFA.
-     */
+    /** The user has submitted MFA. */
     submitMfa?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
     /**
-     * The `TRANSITION_VIEW` event indicates that the user has moved from one view to the next.
+     * The `TRANSITION_VIEW` event indicates that the user has moved from one
+     * view to the next.
      */
     transitionView?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
   };
@@ -177,26 +161,29 @@ export interface AchWithoutChildrenProps extends AchBase {
 
 export interface AchProps extends AchBase {
   /**
-   * The children of the button to override icon and text,
-   * you can put any component inside the button
+   * The children of the button to override icon and text, you can put any
+   * component inside the button
    *
    * @example
+   *
    * ```tsx
-   * <Ach>
-   *  <MyCustomIcon />
-   *  <span>Pay with ACH</span>
-   * </Ach>
+   * function App() {
+   *   return (
+   *     <Ach>
+   *       <MyCustomIcon />
+   *       <span>Pay with ACH</span>
+   *     </Ach>
+   *   );
+   * }
    * ```
    */
   children?: React.ReactNode;
   /**
-   * Props to be passed to the `<button>` element.
-   * The following props are not supported: `aria-disabled`, `disabled`, `type`.
-   * Since we use that to control the disabled state of the button, we don't support it.
+   * Props to be passed to the `<button>` element. The following props are not
+   * supported: `aria-disabled`, `disabled`, `type`. Since we use that to
+   * control the disabled state of the button, we don't support it.
    */
   buttonProps?: AchPayButtonProps;
-  /**
-   * Props to be passed to the `<svg>` element.
-   */
+  /** Props to be passed to the `<svg>` element. */
   svgProps?: SvgProps;
 }

@@ -9,16 +9,22 @@ import { ApplePayContainer } from './apple-pay.styles';
 import type { ApplePayProps } from './apple-pay.types';
 
 /**
- * Renders a Apple Pay button to use in the Square Web Payment SDK, pre-styled to meet Apple Pay's branding guidelines.
+ * Renders a Apple Pay button to use in the Square Web Payment SDK, pre-styled
+ * to meet Apple Pay's branding guidelines.
  *
- * **Remember** that you need to set `createPaymentRequest()` in `SquareForm`
- * if you going to use this Payment Method
+ * **Remember** that you need to set `createPaymentRequest()` in `SquareForm` if
+ * you going to use this Payment Method
  *
  * @example
+ *
  * ```tsx
- * <SquareForm {...props}>
- *  <ApplePay />
- * </SquareForm>
+ * function App() {
+ *   return (
+ *     <SquareForm {...props}>
+ *       <ApplePay />
+ *     </SquareForm>
+ *   );
+ * }
  * ```
  */
 function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {

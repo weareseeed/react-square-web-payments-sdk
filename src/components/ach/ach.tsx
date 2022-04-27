@@ -10,15 +10,21 @@ import { transformPlaidEventName } from './ach.utils';
 import type { AchProps, AchWithChildrenProps, AchWithoutChildrenProps, PlaidLinkOnEventMetadata } from './ach.types';
 
 /**
- * Renders a ACH button to use in the Square Web Payment SDK, pre-styled to meet Square branding guidelines.
+ * Renders a ACH button to use in the Square Web Payment SDK, pre-styled to meet
+ * Square branding guidelines.
  *
  * **_But with the option to override styles or use a custom children_**
  *
  * @example
+ *
  * ```tsx
- * <SquareForm {...props}>
- *  <Ach />
- * </SquareForm>
+ * function App() {
+ *   return (
+ *     <SquareForm {...props}>
+ *       <Ach />
+ *     </SquareForm>
+ *   );
+ * }
  * ```
  */
 export function Ach(props: AchWithChildrenProps): React.ReactElement;

@@ -9,10 +9,8 @@ import { useDynamicCallback } from '~/hooks/use-dynamic-callback';
 import type { FormContextType, FormProviderProps } from './form.types';
 
 /**
- * Internal helper that the `SquareForm` uses to manage internal state and expose access to the Web Payment SDK library.
- *
- * This is available for developers who require more customization over their payment form implementation. Please refer to the
- * [customization](customization.md) page for usage details.
+ * Internal helper that the `PaymentForm` uses to manage internal state and
+ * expose access to the Web Payment SDK library.
  */
 const FormContext = React.createContext<FormContextType>({
   cardTokenizeResponseReceived: null as unknown as () => void,
