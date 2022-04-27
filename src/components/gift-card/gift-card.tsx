@@ -1,12 +1,18 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from 'usehooks-ts';
 import type * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
+import { useEventListener } from '~/hooks/use-event-listener';
 import { LoadingCard, PayButton } from './gift-card.styles';
-import type { GiftCardBase, GiftCardProps, GiftCardWithChildren } from './gift-card.types';
+import type {
+  GiftCardBase,
+  GiftCardFunctionChildren,
+  GiftCardPayButtonProps,
+  GiftCardProps,
+  GiftCardWithChildren,
+} from './gift-card.types';
 
 /**
  * Renders a Gift Card Input to use in the Square Web Payment SDK, pre-styled to
@@ -27,14 +33,18 @@ import type { GiftCardBase, GiftCardProps, GiftCardWithChildren } from './gift-c
  * ```
  */
 function GiftCard(props: GiftCardBase): JSX.Element;
+function GiftCard(props: GiftCardFunctionChildren): JSX.Element;
 function GiftCard(props: GiftCardWithChildren): JSX.Element;
 function GiftCard({
   buttonProps = {
     id: 'rswps-gift-card-button',
   },
+  callbacks,
   children,
+  focus,
   id = 'rswps-gift-card-container',
   includeInputLabels,
+  render,
   style,
   ...props
 }: GiftCardProps) {
@@ -65,7 +75,7 @@ function GiftCard({
    * @param e An event which takes place in the DOM.
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
-  const handlePayment = async (e: MouseEvent) => {
+  const handlePayment = async (e: Event) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -89,7 +99,7 @@ function GiftCard({
     const { signal } = abortController;
 
     const start = async (signal: AbortSignal) => {
-      const gCard = await payments?.giftCard(options).then((res) => {
+      const giftCard = await payments?.giftCard(options).then((res) => {
         if (!signal.aborted) {
           setGiftCard(res);
 
@@ -99,7 +109,14 @@ function GiftCard({
         return null;
       });
 
-      await gCard?.attach(`#${id}`);
+      await giftCard?.attach(`#${id}`);
+      if (focus) {
+        await giftCard?.focus(focus);
+      }
+
+      if (signal.aborted) {
+        giftCard?.destroy();
+      }
     };
 
     start(signal);
@@ -107,29 +124,55 @@ function GiftCard({
     return () => {
       abortController.abort();
     };
-  }, [payments]);
+  }, [payments, options]);
 
-  React.useEffect(() => {
-    giftCard?.configure(options);
-  }, [options]);
+  if (callbacks) {
+    for (const callback of Object.keys(callbacks)) {
+      giftCard?.addEventListener(
+        callback as Square.GiftCardInputEventTypes,
+        (callbacks as Record<string, (event: Square.SqEvent<Square.GiftCardInputEvent>) => void>)[callback]
+      );
+    }
+  }
 
-  useEventListener('click', handlePayment, buttonRef);
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: buttonRef,
+    options: {
+      passive: true,
+    },
+  });
 
-  return (
-    <>
-      <div {...props} id={id} style={{ minHeight: 89 }}>
-        {!giftCard && <LoadingCard />}
-      </div>
+  const Button = (props?: GiftCardPayButtonProps) => {
+    const id = 'rswp-gift-card-button';
 
+    return (
       <PayButton
-        {...buttonProps}
+        {...props}
         aria-disabled={!giftCard || isSubmitting}
+        css={props?.css}
         disabled={!giftCard || isSubmitting}
+        id={id}
         ref={buttonRef}
         type="button"
       >
-        {children ?? 'Pay with Gift Card'}
+        {props?.children ?? 'Pay with Gift Card'}
       </PayButton>
+    );
+  };
+
+  return (
+    <>
+      <div {...props} data-testid="rswps-gift-card-container" id={id} style={{ minHeight: 89 }}>
+        {!giftCard && <LoadingCard />}
+      </div>
+
+      {typeof render === 'function' ? (
+        render(Button)
+      ) : (
+        <Button {...buttonProps}>{children ?? 'Pay with Gift Card'}</Button>
+      )}
     </>
   );
 }
