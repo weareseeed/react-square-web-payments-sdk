@@ -53,10 +53,16 @@ const GooglePay = ({
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async (e: Event) => {
-    e.preventDefault();
+    e.stopPropagation();
+
+    if (!googlePay) {
+      console.warn('Google Pay button was clicked, but no Google Pay instance was found.');
+
+      return;
+    }
 
     try {
-      const result = await googlePay?.tokenize();
+      const result = await googlePay.tokenize();
 
       if (result) {
         return cardTokenizeResponseReceived(result);

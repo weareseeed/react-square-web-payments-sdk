@@ -45,9 +45,15 @@ export function AfterpayButton({
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async (e: Event) => {
-    e.preventDefault();
+    e.stopPropagation();
 
-    const result = await afterpay?.tokenize();
+    if (!afterpay) {
+      console.warn('Afterpay/Clearpay button was clicked, but no Afterpay/Clearpay instance was found.');
+
+      return;
+    }
+
+    const result = await afterpay.tokenize();
 
     if (result?.status === 'OK') {
       return cardTokenizeResponseReceived(result);
@@ -130,7 +136,7 @@ export function AfterpayMessage({
   }, [afterpay, component?.Message, options]);
 
   const onClick = async (e: Event) => {
-    e.preventDefault();
+    e.stopPropagation();
 
     afterpay?.displayInformationModal({ modalTheme });
   };

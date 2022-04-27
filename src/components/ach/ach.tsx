@@ -48,7 +48,9 @@ export function Ach({
    *
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
-  const handlePayment = async () => {
+  const handlePayment = async (e: Event) => {
+    e.stopPropagation();
+
     if (!ach) {
       console.warn('ACH button was clicked, but no ACH instance was found.');
 

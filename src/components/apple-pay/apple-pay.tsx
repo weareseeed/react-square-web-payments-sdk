@@ -39,10 +39,16 @@ function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async (e: MouseEvent) => {
-    e.preventDefault();
+    e.stopPropagation();
+
+    if (!applePay) {
+      console.warn('Apple Pay button was clicked, but no Apple Pay instance was found.');
+
+      return;
+    }
 
     try {
-      const result = await applePay?.tokenize();
+      const result = await applePay.tokenize();
 
       if (result) {
         return cardTokenizeResponseReceived(result);

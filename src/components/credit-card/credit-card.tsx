@@ -75,9 +75,11 @@ function CreditCard({
    *
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
-  const handlePayment = async () => {
+  const handlePayment = async (e: Event) => {
+    e.stopPropagation();
+
     if (!card) {
-      console.info('CreditCard: No card to tokenize');
+      console.warn('Credit Card button was clicked, but no Credit Card instance was found.');
 
       return;
     }

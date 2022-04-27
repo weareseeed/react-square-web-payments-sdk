@@ -76,7 +76,14 @@ function GiftCard({
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
   const handlePayment = async (e: Event) => {
-    e.preventDefault();
+    e.stopPropagation();
+
+    if (!giftCard) {
+      console.warn('Gift Card button was clicked, but no Gift Card instance was found.');
+
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
