@@ -1,10 +1,10 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from 'usehooks-ts';
 import * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
+import { useEventListener } from '~/hooks/use-event-listener';
 import { PayButton, SvgIcon } from './ach.styles';
 import { transformPlaidEventName } from './ach.utils';
 import type { AchProps, AchWithChildrenProps, AchWithoutChildrenProps, PlaidLinkOnEventMetadata } from './ach.types';
@@ -125,7 +125,14 @@ export function Ach({
     }
   }
 
-  useEventListener('click', handlePayment, buttonRef);
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: buttonRef,
+    options: {
+      passive: true,
+    },
+  });
 
   if (children) {
     return (

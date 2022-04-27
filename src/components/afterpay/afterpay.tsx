@@ -1,10 +1,10 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from 'usehooks-ts';
 import type * as Square from '@square/web-sdk';
 
 // Internals
 import { useAfterpay } from '~/contexts/afterpay';
+import { useEventListener } from '~/hooks/use-event-listener';
 import { AfterpayContext, AfterpayProvider } from '~/contexts/afterpay';
 import { useForm } from '~/contexts/form';
 import type {
@@ -43,7 +43,7 @@ export function AfterpayButton({
    * @param e An event which takes place in the DOM.
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
-  const handlePayment = async (e: MouseEvent) => {
+  const handlePayment = async (e: Event) => {
     e.preventDefault();
 
     const result = await afterpay?.tokenize();
@@ -55,9 +55,11 @@ export function AfterpayButton({
     let errorMessage = `Tokenization failed with status: ${result?.status}`;
     if (result?.errors) {
       errorMessage += ` and errors: ${JSON.stringify(result?.errors)}`;
+
+      throw new Error(errorMessage);
     }
 
-    throw new Error(errorMessage);
+    console.warn(errorMessage);
   };
 
   React.useEffect(() => {
@@ -72,7 +74,14 @@ export function AfterpayButton({
     };
   }, [afterpay]);
 
-  useEventListener('click', handlePayment, containerRef);
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: containerRef,
+    options: {
+      passive: true,
+    },
+  });
 
   if (Button) {
     return <Button {...props} id={id} ref={containerRef} />;
@@ -113,15 +122,22 @@ export function AfterpayMessage({
     if (afterpay && !component?.Message) {
       start();
     }
-  }, [component?.Message, options]);
+  }, [afterpay, component?.Message, options]);
 
-  const onClick = async (e: MouseEvent) => {
+  const onClick = async (e: Event) => {
     e.preventDefault();
 
     afterpay?.displayInformationModal({ modalTheme });
   };
 
-  useEventListener('click', onClick, messageRef);
+  useEventListener({
+    listener: onClick,
+    type: 'click',
+    element: messageRef,
+    options: {
+      passive: true,
+    },
+  });
 
   const Message = component?.Message;
   if (Message) {
