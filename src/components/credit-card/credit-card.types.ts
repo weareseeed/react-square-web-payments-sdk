@@ -96,11 +96,29 @@ export interface CreditCardBase
 }
 
 export interface CreditCardChildren extends CreditCardBase {
+  /**
+   * Props to be passed to the `<button>` element. The following props are not
+   * supported: `aria-disabled`, `disabled`, `type`. Since we use that to
+   * control the disabled state of the button, we don't support it.
+   *
+   * But in addition to this we offer a `isLoading` prop to control the loading
+   * state of the button a.k.a disabling the button.
+   */
   buttonProps?: CreditCardPayButtonProps;
+  /**
+   * Make it possible to put any component inside. If children is/are given then
+   * `render` is not applied.
+   */
   children?: React.ReactNode;
 }
 
 export interface CreditCardFunctionChildren extends CreditCardBase {
+  /**
+   * Make it possible to put any component inside. If render is/are given then
+   * `children` and `buttonProps` is not applied.
+   *
+   * @param Button - The button component
+   */
   render?(Button: (props: CreditCardPayButtonProps) => React.ReactElement): React.ReactNode;
 }
 
