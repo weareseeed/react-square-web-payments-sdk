@@ -38,14 +38,22 @@ const GooglePay = ({
   const { cardTokenizeResponseReceived, createPaymentRequest, payments } = useForm();
   const containerRef = React.useRef<HTMLDivElement>(null);
 
-  const options = React.useMemo(
-    () => ({
+  const options: Square.GooglePayButtonOptions = React.useMemo(() => {
+    const baseOptions = {
       buttonColor,
       buttonSizeMode,
       buttonType,
-    }),
-    [buttonColor, buttonSizeMode, buttonType]
-  );
+    };
+
+    // if a value from options is undefined delete it from the options object
+    return Object.keys(baseOptions).reduce((acc: Record<string, unknown>, key) => {
+      if (baseOptions[key as keyof typeof baseOptions] !== undefined) {
+        acc[key as string] = baseOptions[key as keyof typeof baseOptions];
+      }
+
+      return acc;
+    }, {});
+  }, [buttonColor, buttonSizeMode, buttonType]);
 
   /**
    * Handle the on click of the Google Pay button click
