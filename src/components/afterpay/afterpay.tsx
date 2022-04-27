@@ -70,7 +70,7 @@ export function AfterpayButton({
         afterpay?.destroy();
       }
     };
-  }, []);
+  }, [afterpay]);
 
   useEventListener('click', handlePayment, containerRef);
 
