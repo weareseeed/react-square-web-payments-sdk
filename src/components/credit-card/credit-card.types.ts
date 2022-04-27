@@ -1,6 +1,7 @@
 // Dependencies
 import type * as Square from '@square/web-sdk';
 import type * as Stitches from '@stitches/react';
+import type * as React from 'react';
 
 // Internals
 import { PayButton } from './credit-card.styles';
@@ -89,13 +90,26 @@ export interface CreditCardChildren extends CreditCardBase {
 }
 
 export interface CreditCardFunctionChildren extends CreditCardBase {
-  children?: (props: CreditCardFunctionChildrenProps) => React.ReactElement;
+  render?(Button: (props?: PayButtonProps) => React.ReactElement): React.ReactNode;
 }
 
 export interface CreditCardProps extends CreditCardBase {
+  /**
+   * Props to be passed to the `<button>` element.
+   * The following props are not supported: `aria-disabled`, `disabled`, `type`.
+   * Since we use that to control the disabled state of the button, we don't support it.
+   */
   buttonProps?: PayButtonProps;
   /**
-   * Make it possible to put any component inside. If children is/are given then text is not applied
+   * Make it possible to put any component inside.
+   * If children is/are given then `render` is not applied.
    */
-  children?: React.ReactNode | ((props: CreditCardFunctionChildrenProps) => React.ReactElement);
+  children?: React.ReactNode;
+  /**
+   * Make it possible to put any component inside.
+   * If render is/are given then `children` and `buttonProps` is not applied.
+   *
+   * @param Button - The button component
+   */
+  render?(Button: (props?: PayButtonProps) => React.ReactElement): React.ReactNode;
 }

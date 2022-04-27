@@ -38,6 +38,7 @@ function CreditCard({
   includeInputLabels,
   postalCode,
   recalculateSize,
+  render,
   style,
   ...props
 }: CreditCardProps) {
@@ -173,13 +174,7 @@ function CreditCard({
         {!card && <LoadingCard />}
       </div>
 
-      {typeof children === 'function' ? (
-        children({
-          Button,
-        })
-      ) : (
-        <Button {...buttonProps}>{children ?? 'Pay'}</Button>
-      )}
+      {typeof render === 'function' ? render(Button) : <Button {...buttonProps}>{children ?? 'Pay'}</Button>}
     </>
   );
 }
