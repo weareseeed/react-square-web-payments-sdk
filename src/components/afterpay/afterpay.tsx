@@ -107,7 +107,7 @@ export function AfterpayMessage({
 
   React.useEffect(() => {
     const start = async () => {
-      await afterpay.attachMessaging(`#${id}`, options);
+      await afterpay?.attachMessaging(`#${id}`, options);
     };
 
     if (afterpay && !component?.Message) {
@@ -118,7 +118,7 @@ export function AfterpayMessage({
   const onClick = async (e: MouseEvent) => {
     e.preventDefault();
 
-    afterpay.displayInformationModal({ modalTheme });
+    afterpay?.displayInformationModal({ modalTheme });
   };
 
   useEventListener('click', onClick, messageRef);

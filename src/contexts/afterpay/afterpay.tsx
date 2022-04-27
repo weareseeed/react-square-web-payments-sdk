@@ -6,10 +6,10 @@ import type * as Square from '@square/web-sdk';
 import { useForm } from '../form';
 import type { AfterpayProviderProps } from './afterpay.types';
 
-export const AfterpayContext = React.createContext<Square.AfterpayClearpay | undefined>(undefined);
+export const AfterpayContext = React.createContext<Square.AfterpayClearpay | null | undefined>(null);
 
 function AfterpayProvider({ children, onShippingAddressChange, onShippingOptionChange }: AfterpayProviderProps) {
-  const [afterpay, setAfterpay] = React.useState<Square.AfterpayClearpay>();
+  const [afterpay, setAfterpay] = React.useState<Square.AfterpayClearpay | null>(null);
   const { createPaymentRequest, payments } = useForm();
 
   if (!createPaymentRequest) {
