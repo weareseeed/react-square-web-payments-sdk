@@ -98,7 +98,7 @@ export function AfterpayMessage({
   id = 'rswps-afterpay-message',
   modalLinkStyle = 'circled-info-icon',
   modalTheme = 'mint',
-  size = 'lg',
+  size = 'md',
   ...props
 }: AfterpayMessageProps) {
   const messageRef = React.useRef<HTMLDivElement>(null);
