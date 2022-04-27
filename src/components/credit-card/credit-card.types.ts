@@ -89,7 +89,7 @@ export interface CreditCardChildren extends CreditCardBase {
 }
 
 export interface CreditCardFunctionChildren extends CreditCardBase {
-  children?: (props: CreditCardFunctionChildrenProps) => React.ReactElement | React.ReactNode;
+  children?: (props: CreditCardFunctionChildrenProps) => React.ReactElement;
 }
 
 export interface CreditCardProps extends CreditCardBase {
@@ -97,5 +97,5 @@ export interface CreditCardProps extends CreditCardBase {
   /**
    * Make it possible to put any component inside. If children is/are given then text is not applied
    */
-  children?: React.ReactNode | ((props: CreditCardFunctionChildrenProps) => React.ReactElement | React.ReactNode);
+  children?: React.ReactNode | ((props: CreditCardFunctionChildrenProps) => React.ReactElement);
 }
