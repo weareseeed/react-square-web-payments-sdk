@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react';
-import * as Square from '@square/web-sdk';
+import type * as Square from '@square/web-sdk';
 
 // Internals
 import { useAfterpay } from '~/contexts/afterpay';
@@ -56,7 +56,7 @@ export function AfterpayButton({
     try {
       const result = await afterpay.tokenize();
 
-      if (result.status === Square.TokenStatus.OK) {
+      if (result.status === 'OK') {
         return cardTokenizeResponseReceived(result);
       }
 

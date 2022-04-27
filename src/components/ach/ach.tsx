@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react';
-import * as Square from '@square/web-sdk';
+import type * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
@@ -64,7 +64,7 @@ export function Ach({
         accountHolderName,
       });
 
-      if (result.status === Square.TokenStatus.OK) {
+      if (result.status === 'OK') {
         return cardTokenizeResponseReceived(result);
       }
 

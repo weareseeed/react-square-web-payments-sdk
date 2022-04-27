@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react';
-import * as Square from '@square/web-sdk';
+import type * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
@@ -89,7 +89,7 @@ function CreditCard({
     try {
       const result = await card.tokenize();
 
-      if (result.status === Square.TokenStatus.OK) {
+      if (result.status === 'OK') {
         return cardTokenizeResponseReceived(result);
       }
 
