@@ -1,10 +1,10 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from 'usehooks-ts';
 import type * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
+import { useEventListener } from '~/hooks/use-event-listener';
 import { LoadingCard, PayButton } from './credit-card.styles';
 import type {
   CreditCardBase,
@@ -140,7 +140,14 @@ function CreditCard({
     recalculateSize(card?.recalculateSize);
   }
 
-  useEventListener('click', handlePayment, buttonRef);
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: buttonRef,
+    options: {
+      passive: true,
+    },
+  });
 
   const Button = (props?: PayButtonProps) => {
     const id = 'rswp-card-button';
@@ -159,8 +166,6 @@ function CreditCard({
       </PayButton>
     );
   };
-
-  console.info('buttonRef', buttonRef);
 
   return (
     <>
