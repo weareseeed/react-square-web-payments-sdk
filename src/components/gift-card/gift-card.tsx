@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react';
-import type * as Square from '@square/web-sdk';
+import * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
@@ -89,15 +89,22 @@ function GiftCard({
     try {
       const result = await giftCard?.tokenize();
 
-      if (result) {
-        setIsSubmitting(false);
-
+      if (result.status === Square.TokenStatus.OK) {
         return cardTokenizeResponseReceived(result);
       }
-    } catch (ex) {
-      setIsSubmitting(false);
 
-      console.error(ex);
+      let message = `Tokenization failed with status: ${result.status}`;
+      if (result?.errors) {
+        message += ` and errors: ${JSON.stringify(result?.errors)}`;
+
+        throw new Error(message);
+      }
+
+      console.warn(message);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 

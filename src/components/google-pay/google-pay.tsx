@@ -1,10 +1,10 @@
 // Dependencies
 import * as React from 'react';
-import { useEventListener } from 'usehooks-ts';
-import type * as Square from '@square/web-sdk';
+import * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
+import { useEventListener } from '~/hooks/use-event-listener';
 import type { GooglePayProps } from './google-pay.types';
 
 /**
@@ -64,11 +64,20 @@ const GooglePay = ({
     try {
       const result = await googlePay.tokenize();
 
-      if (result) {
+      if (result.status === Square.TokenStatus.OK) {
         return cardTokenizeResponseReceived(result);
       }
-    } catch (e) {
-      console.error(e);
+
+      let message = `Tokenization failed with status: ${result.status}`;
+      if (result?.errors) {
+        message += ` and errors: ${JSON.stringify(result?.errors)}`;
+
+        throw new Error(message);
+      }
+
+      console.warn(message);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -111,7 +120,14 @@ const GooglePay = ({
     };
   }, [createPaymentRequest, payments, options]);
 
-  useEventListener('click', handlePayment, containerRef);
+  useEventListener({
+    listener: handlePayment,
+    type: 'click',
+    element: containerRef,
+    options: {
+      passive: true,
+    },
+  });
 
   return <div style={{ height: 40 }} {...props} id={id} ref={containerRef} />;
 };

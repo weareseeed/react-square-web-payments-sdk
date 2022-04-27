@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react';
-import type * as Square from '@square/web-sdk';
+import * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
@@ -89,13 +89,22 @@ function CreditCard({
     try {
       const result = await card.tokenize();
 
-      setIsSubmitting(false);
+      if (result.status === Square.TokenStatus.OK) {
+        return cardTokenizeResponseReceived(result);
+      }
 
-      return cardTokenizeResponseReceived(result);
-    } catch (ex) {
-      setIsSubmitting(false);
+      let message = `Tokenization failed with status: ${result.status}`;
+      if (result?.errors) {
+        message += ` and errors: ${JSON.stringify(result?.errors)}`;
 
-      console.error(ex);
+        throw new Error(message);
+      }
+
+      console.warn(message);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 

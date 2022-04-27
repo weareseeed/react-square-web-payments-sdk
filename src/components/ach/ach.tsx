@@ -64,27 +64,20 @@ export function Ach({
         accountHolderName,
       });
 
-      switch (result.status) {
-        case Square.TokenStatus.ABORT:
-          console.warn('ACH payment was aborted.');
-          break;
-        case Square.TokenStatus.CANCEL:
-          console.warn('ACH payment was canceled.');
-          break;
-        case Square.TokenStatus.ERROR:
-          console.error(result.errors);
-          break;
-        case Square.TokenStatus.INVALID:
-          console.warn('ACH payment was invalid.');
-          break;
-        case Square.TokenStatus.OK:
-          return cardTokenizeResponseReceived(result);
-        default:
-          console.warn('ACH payment was unknown.');
-          break;
+      if (result.status === Square.TokenStatus.OK) {
+        return cardTokenizeResponseReceived(result);
       }
-    } catch (ex) {
-      console.error(ex);
+
+      let message = `Tokenization failed with status: ${result.status}`;
+      if (result?.errors) {
+        message += ` and errors: ${JSON.stringify(result?.errors)}`;
+
+        throw new Error(message);
+      }
+
+      console.warn(message);
+    } catch (error) {
+      console.error(error);
     } finally {
       setIsSubmitting(false);
     }

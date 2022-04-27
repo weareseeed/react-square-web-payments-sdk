@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react';
-import type * as Square from '@square/web-sdk';
+import * as Square from '@square/web-sdk';
 
 // Internals
 import { useAfterpay } from '~/contexts/afterpay';
@@ -53,20 +53,24 @@ export function AfterpayButton({
       return;
     }
 
-    const result = await afterpay.tokenize();
+    try {
+      const result = await afterpay.tokenize();
 
-    if (result?.status === 'OK') {
-      return cardTokenizeResponseReceived(result);
+      if (result.status === Square.TokenStatus.OK) {
+        return cardTokenizeResponseReceived(result);
+      }
+
+      let message = `Tokenization failed with status: ${result?.status}`;
+      if (result?.errors) {
+        message += ` and errors: ${JSON.stringify(result?.errors)}`;
+
+        throw new Error(message);
+      }
+
+      console.warn(message);
+    } catch (error) {
+      console.error(error);
     }
-
-    let errorMessage = `Tokenization failed with status: ${result?.status}`;
-    if (result?.errors) {
-      errorMessage += ` and errors: ${JSON.stringify(result?.errors)}`;
-
-      throw new Error(errorMessage);
-    }
-
-    console.warn(errorMessage);
   };
 
   React.useEffect(() => {

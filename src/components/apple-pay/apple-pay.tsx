@@ -1,7 +1,7 @@
 // Dependencies
 import * as React from 'react';
 import { useEventListener } from 'usehooks-ts';
-import type * as Square from '@square/web-sdk';
+import * as Square from '@square/web-sdk';
 
 // Internals
 import { useForm } from '~/contexts/form';
@@ -50,13 +50,20 @@ function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {
     try {
       const result = await applePay.tokenize();
 
-      if (result) {
+      if (result.status === Square.TokenStatus.OK) {
         return cardTokenizeResponseReceived(result);
       }
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(error.message);
+
+      let message = `Tokenization failed with status: ${result.status}`;
+      if (result?.errors) {
+        message += ` and errors: ${JSON.stringify(result?.errors)}`;
+
+        throw new Error(message);
       }
+
+      console.warn(message);
+    } catch (error) {
+      console.error(error);
     }
   };
 
