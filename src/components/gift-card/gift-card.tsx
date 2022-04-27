@@ -43,13 +43,21 @@ function GiftCard({
   const { cardTokenizeResponseReceived, payments } = useForm();
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
-  const options = React.useMemo(
-    () => ({
+  const options: Square.GiftCardOptions = React.useMemo(() => {
+    const baseOptions = {
       includeInputLabels,
       style,
-    }),
-    [includeInputLabels, style]
-  );
+    };
+
+    // if a value from options is undefined delete it from the options object
+    return Object.keys(baseOptions).reduce((acc: Record<string, unknown>, key) => {
+      if (baseOptions[key as keyof typeof baseOptions] !== undefined) {
+        acc[key as string] = baseOptions[key as keyof typeof baseOptions];
+      }
+
+      return acc;
+    }, {});
+  }, [includeInputLabels, style]);
 
   /**
    * Handle the on click of the Gift Card button click
