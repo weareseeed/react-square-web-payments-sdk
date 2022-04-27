@@ -5,14 +5,17 @@ import type * as Stitches from '@stitches/react';
 // Internals
 import { PayButton } from './gift-card.styles';
 
-export type PayButtonProps = Omit<React.ComponentPropsWithoutRef<'button'>, 'aria-disabled' | 'disabled' | 'type'> & {
+export type GiftCardPayButtonProps = Omit<
+  React.ComponentPropsWithoutRef<'button'>,
+  'aria-disabled' | 'disabled' | 'type'
+> & {
   css?: Stitches.ComponentProps<typeof PayButton>['css'];
 };
 
 export interface GiftCardBase
   extends Square.GiftCardOptions,
     Omit<React.ComponentPropsWithRef<'div'>, 'style' | 'children'> {
-  buttonProps?: PayButtonProps;
+  buttonProps?: GiftCardPayButtonProps;
 }
 
 export interface GiftCardWithChildren extends GiftCardBase {

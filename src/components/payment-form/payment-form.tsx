@@ -38,4 +38,4 @@ function RenderPaymentForm(
 const PaymentForm = React.forwardRef<HTMLDivElement, PaymentFormProps>(RenderPaymentForm);
 
 export default PaymentForm;
-export type { PaymentFormProps };
+export * from './payment-form.types';

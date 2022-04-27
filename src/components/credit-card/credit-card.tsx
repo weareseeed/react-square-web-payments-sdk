@@ -10,8 +10,8 @@ import type {
   CreditCardBase,
   CreditCardChildren,
   CreditCardFunctionChildren,
+  CreditCardPayButtonProps,
   CreditCardProps,
-  PayButtonProps,
 } from './credit-card.types';
 
 /**
@@ -156,7 +156,7 @@ function CreditCard({
     },
   });
 
-  const Button = (props?: PayButtonProps) => {
+  const Button = (props?: CreditCardPayButtonProps) => {
     const id = 'rswp-card-button';
 
     return (
@@ -186,4 +186,4 @@ function CreditCard({
 }
 
 export default CreditCard;
-export type { CreditCardChildren, CreditCardFunctionChildren, CreditCardProps, PayButtonProps };
+export * from './credit-card.types';

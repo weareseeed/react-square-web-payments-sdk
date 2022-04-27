@@ -110,3 +110,4 @@ function ApplePay({ id = 'rswps-apple-pay', ...props }: ApplePayProps) {
 }
 
 export default ApplePay;
+export * from './apple-pay.types';

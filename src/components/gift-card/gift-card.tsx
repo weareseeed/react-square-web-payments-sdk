@@ -127,4 +127,4 @@ function GiftCard({
 }
 
 export default GiftCard;
-export type { GiftCardBase, GiftCardProps, GiftCardWithChildren };
+export * from './gift-card.types';

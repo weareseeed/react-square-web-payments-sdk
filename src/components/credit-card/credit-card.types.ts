@@ -6,12 +6,15 @@ import type * as React from 'react';
 // Internals
 import { PayButton } from './credit-card.styles';
 
-export type PayButtonProps = Omit<React.ComponentPropsWithoutRef<'button'>, 'aria-disabled' | 'disabled' | 'type'> & {
+export type CreditCardPayButtonProps = Omit<
+  React.ComponentPropsWithoutRef<'button'>,
+  'aria-disabled' | 'disabled' | 'type'
+> & {
   css?: Stitches.ComponentProps<typeof PayButton>['css'];
 };
 
 export type CreditCardFunctionChildrenProps = {
-  Button: (props?: PayButtonProps) => React.ReactElement;
+  Button: (props?: CreditCardPayButtonProps) => React.ReactElement;
 };
 
 export interface CreditCardBase
@@ -92,12 +95,12 @@ export interface CreditCardBase
 }
 
 export interface CreditCardChildren extends CreditCardBase {
-  buttonProps?: PayButtonProps;
+  buttonProps?: CreditCardPayButtonProps;
   children?: React.ReactNode;
 }
 
 export interface CreditCardFunctionChildren extends CreditCardBase {
-  render?(Button: (props?: PayButtonProps) => React.ReactElement): React.ReactNode;
+  render?(Button: (props?: CreditCardPayButtonProps) => React.ReactElement): React.ReactNode;
 }
 
 export interface CreditCardProps extends CreditCardBase {
@@ -106,7 +109,7 @@ export interface CreditCardProps extends CreditCardBase {
    * supported: `aria-disabled`, `disabled`, `type`. Since we use that to
    * control the disabled state of the button, we don't support it.
    */
-  buttonProps?: PayButtonProps;
+  buttonProps?: CreditCardPayButtonProps;
   /**
    * Make it possible to put any component inside. If children is/are given then
    * `render` is not applied.
@@ -118,5 +121,5 @@ export interface CreditCardProps extends CreditCardBase {
    *
    * @param Button - The button component
    */
-  render?(Button: (props?: PayButtonProps) => React.ReactElement): React.ReactNode;
+  render?(Button: (props?: CreditCardPayButtonProps) => React.ReactElement): React.ReactNode;
 }

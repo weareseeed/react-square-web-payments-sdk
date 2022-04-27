@@ -181,10 +181,4 @@ function Afterpay(props: AfterpayButtonProps) {
 
 export { AfterpayContext, AfterpayProvider };
 export default Afterpay;
-export type {
-  AfterpayButtonProps,
-  AfterpayMessageBaseProps,
-  AfterpayMessageCustomComponentProps,
-  AfterpayMessageProps,
-  AfterpayWidgetProps,
-};
+export * from './afterpay.types';

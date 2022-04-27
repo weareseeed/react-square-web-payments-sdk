@@ -111,4 +111,4 @@ const GooglePay = ({
 };
 
 export default GooglePay;
-export type { GooglePayProps };
+export * from './google-pay.types';
