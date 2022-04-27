@@ -168,20 +168,21 @@ function CreditCard({
     },
   });
 
-  const Button = (props?: CreditCardPayButtonProps) => {
+  const Button = ({ children, isLoading, ...props }: CreditCardPayButtonProps) => {
     const id = 'rswp-card-button';
+    const disabled = isLoading || !card || isSubmitting;
 
     return (
       <PayButton
         {...props}
-        aria-disabled={!card || isSubmitting}
+        aria-disabled={disabled}
         css={props?.css}
-        disabled={!card || isSubmitting}
+        disabled={disabled}
         id={id}
         ref={buttonRef}
         type="button"
       >
-        {props?.children ?? 'Pay'}
+        {children ?? 'Pay'}
       </PayButton>
     );
   };

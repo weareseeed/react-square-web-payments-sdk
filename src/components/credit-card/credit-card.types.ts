@@ -11,10 +11,11 @@ export type CreditCardPayButtonProps = Omit<
   'aria-disabled' | 'disabled' | 'type'
 > & {
   css?: Stitches.ComponentProps<typeof PayButton>['css'];
+  isLoading?: boolean;
 };
 
 export type CreditCardFunctionChildrenProps = {
-  Button: (props?: CreditCardPayButtonProps) => React.ReactElement;
+  Button: (props: CreditCardPayButtonProps) => React.ReactElement;
 };
 
 export interface CreditCardBase
@@ -100,7 +101,7 @@ export interface CreditCardChildren extends CreditCardBase {
 }
 
 export interface CreditCardFunctionChildren extends CreditCardBase {
-  render?(Button: (props?: CreditCardPayButtonProps) => React.ReactElement): React.ReactNode;
+  render?(Button: (props: CreditCardPayButtonProps) => React.ReactElement): React.ReactNode;
 }
 
 export interface CreditCardProps extends CreditCardBase {
@@ -108,6 +109,9 @@ export interface CreditCardProps extends CreditCardBase {
    * Props to be passed to the `<button>` element. The following props are not
    * supported: `aria-disabled`, `disabled`, `type`. Since we use that to
    * control the disabled state of the button, we don't support it.
+   *
+   * But in addition to this we offer a `isLoading` prop to control the loading
+   * state of the button a.k.a disabling the button.
    */
   buttonProps?: CreditCardPayButtonProps;
   /**
@@ -121,5 +125,5 @@ export interface CreditCardProps extends CreditCardBase {
    *
    * @param Button - The button component
    */
-  render?(Button: (props?: CreditCardPayButtonProps) => React.ReactElement): React.ReactNode;
+  render?(Button: (props: CreditCardPayButtonProps) => React.ReactElement): React.ReactNode;
 }
