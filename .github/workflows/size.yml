@@ -1,5 +1,11 @@
-name: size
-on: [pull_request]
+name: Size limit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize]
+
 jobs:
   size:
     runs-on: ubuntu-latest
