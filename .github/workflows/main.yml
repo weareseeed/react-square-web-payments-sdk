@@ -1,8 +1,12 @@
-name: CI
+name: Build, lint, test and build
+
 on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize]
+
 jobs:
   build:
     name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
