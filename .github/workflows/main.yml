@@ -32,10 +32,10 @@ jobs:
         run: yarn install --frozen-lockfile --check-files
 
       - name: Lint 🔥
-        run: yarn lint --fix
+        run: yarn lint
 
       - name: Test 🧪
-        run: yarn test --ci --coverage --maxWorkers=2
+        run: yarn test
 
       - name: Build on Node ${{ matrix.node }} and ${{ matrix.os }} 🏗
         run: yarn build
