@@ -16,21 +16,29 @@ export type PaymentFormProps = {
     props: Square.TokenResult,
     verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
   ) => void;
-  children?: React.ReactNode;
-  /**
-   * **Required for digital wallets**
-   *
-   * Invoked when a digital wallet payment button is clicked.
-   */
-  createPaymentRequest?: () => Square.PaymentRequestOptions;
-  /** **Required for SCA** */
-  createVerificationDetails?: () => Square.ChargeVerifyBuyerDetails | Square.StoreVerifyBuyerDetails;
-  formProps?: Omit<React.HTMLProps<HTMLDivElement>, 'role'>;
+  children: React.ReactNode;
   /**
    * Identifies the location of the merchant that is taking the payment.
    * Obtained from the Square Application Dashboard - Locations tab.
    */
   locationId: string;
+  /**
+   * **Required for digital wallets**
+   *
+   * Encapsulates the details of an Apple Pay, Google Pay, or Afterpay/Clearpay
+   * request for payment and provides a means of listening for shipping option
+   * and shipping contact changes via event listeners.
+   */
+  createPaymentRequest?: () => Square.PaymentRequestOptions;
+  /**
+   * **Strong Customer Authentication**
+   *
+   * The verification details parameter, passed to the `payments.verifyBuyer()`
+   * function, for cases in which he buyer is being charged or the card is being
+   * stored on file.
+   */
+  createVerificationDetails?: () => Square.ChargeVerifyBuyerDetails | Square.StoreVerifyBuyerDetails;
+  formProps?: Omit<React.HTMLProps<HTMLDivElement>, 'role'>;
   /** Override the default payment form configuration. */
   overrides?: {
     /** The URL of the Square payment form script. */
