@@ -79,6 +79,8 @@ function CreditCard({
   const handlePayment = async (e: Event) => {
     e.stopPropagation();
 
+    if (buttonProps?.isLoading) return;
+
     if (!card) {
       console.warn('Credit Card button was clicked, but no Credit Card instance was found.');
 
