@@ -10,7 +10,23 @@ export type CreditCardPayButtonProps = Omit<
   React.ComponentPropsWithoutRef<'button'>,
   'aria-disabled' | 'disabled' | 'type'
 > & {
+  /**
+   * Sets the style for the Payment Button using a CSS object
+   *
+   * @example
+   *
+   * ```js
+   *   const overrideStyles = {
+   *    background: "white",
+   *    "&:hover": {
+   *      background: "rgba(1, 208, 158, 0.1)"
+   *    }
+   *   }
+   *   ```;
+   * ```
+   */
   css?: Stitches.ComponentProps<typeof PayButton>['css'];
+  /** Control the loading state of the button a.k.a disabling the button. */
   isLoading?: boolean;
 };
 

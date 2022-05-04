@@ -54,6 +54,8 @@ export type AchPayButtonProps = Omit<
    * ```
    */
   css?: Stitches.ComponentProps<typeof PayButton>['css'];
+  /** Control the loading state of the button a.k.a disabling the button. */
+  isLoading?: boolean;
 };
 
 export type SvgProps = React.ComponentPropsWithRef<'svg'> & {
@@ -151,37 +153,40 @@ export interface AchBase extends Square.AchOptions, Square.AchTokenOptions {
 }
 
 export interface AchWithChildrenProps extends AchBase {
+  /**
+   * The children of the button to override icon and text, you can put any
+   * component inside the button.
+   */
   children?: React.ReactNode;
 }
 
 export interface AchWithoutChildrenProps extends AchBase {
+  /**
+   * Props to be passed to the `<button>` element. The following props are not
+   * supported: `aria-disabled`, `disabled`, `type`. Since we use that to
+   * control the disabled state of the button, we don't support it.
+   *
+   * But in addition to this we offer a `isLoading` prop to control the loading
+   * state of the button a.k.a disabling the button.
+   */
   buttonProps?: AchPayButtonProps;
+  /** Props to be passed to the `<svg>` element. */
   svgProps?: SvgProps;
 }
 
 export interface AchProps extends AchBase {
   /**
    * The children of the button to override icon and text, you can put any
-   * component inside the button
-   *
-   * @example
-   *
-   * ```tsx
-   * function App() {
-   *   return (
-   *     <Ach>
-   *       <MyCustomIcon />
-   *       <span>Pay with ACH</span>
-   *     </Ach>
-   *   );
-   * }
-   * ```
+   * component inside the button.
    */
   children?: React.ReactNode;
   /**
    * Props to be passed to the `<button>` element. The following props are not
    * supported: `aria-disabled`, `disabled`, `type`. Since we use that to
    * control the disabled state of the button, we don't support it.
+   *
+   * But in addition to this we offer a `isLoading` prop to control the loading
+   * state of the button a.k.a disabling the button.
    */
   buttonProps?: AchPayButtonProps;
   /** Props to be passed to the `<svg>` element. */
