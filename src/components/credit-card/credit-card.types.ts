@@ -16,13 +16,12 @@ export type CreditCardPayButtonProps = Omit<
    * @example
    *
    * ```js
-   *   const overrideStyles = {
-   *    background: "white",
-   *    "&:hover": {
-   *      background: "rgba(1, 208, 158, 0.1)"
-   *    }
-   *   }
-   *   ```;
+   * const overrideStyles = {
+   *   background: 'white',
+   *   '&:hover': {
+   *     background: 'rgba(1, 208, 158, 0.1)',
+   *   },
+   * };
    * ```
    */
   css?: Stitches.ComponentProps<typeof PayButton>['css'];
