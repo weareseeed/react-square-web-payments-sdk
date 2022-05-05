@@ -69,12 +69,7 @@ function GiftCard({
     }, {});
   }, [includeInputLabels, style]);
 
-  /**
-   * Handle the on click of the Gift Card button click
-   *
-   * @param e An event which takes place in the DOM.
-   * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
-   */
+  /** Tokenizes a GiftCard payment method instance. */
   const handlePayment = async (e: Event) => {
     e.stopPropagation();
 
@@ -158,15 +153,16 @@ function GiftCard({
     },
   });
 
-  const Button = (props?: GiftCardPayButtonProps) => {
+  const Button = ({ isLoading, ...props }: GiftCardPayButtonProps) => {
     const id = 'rswp-gift-card-button';
+    const disabled = isLoading || !giftCard || isSubmitting;
 
     return (
       <PayButton
         {...props}
-        aria-disabled={!giftCard || isSubmitting}
+        aria-disabled={disabled}
         css={props?.css}
-        disabled={!giftCard || isSubmitting}
+        disabled={disabled}
         id={id}
         ref={buttonRef}
         type="button"

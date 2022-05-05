@@ -9,7 +9,24 @@ export type GiftCardPayButtonProps = Omit<
   React.ComponentPropsWithoutRef<'button'>,
   'aria-disabled' | 'disabled' | 'type'
 > & {
+  /**
+   * Sets the style for the Payment Button using a CSS object
+   *
+   * @example
+   *
+   * ```js
+   *   const overrideStyles = {
+   *    background: "white",
+   *    "&:hover": {
+   *      background: "rgba(1, 208, 158, 0.1)"
+   *    }
+   *   }
+   *   ```;
+   * ```
+   */
   css?: Stitches.ComponentProps<typeof PayButton>['css'];
+  /** Control the loading state of the button a.k.a disabling the button. */
+  isLoading?: boolean;
 };
 
 export interface GiftCardBase
@@ -57,12 +74,30 @@ export interface GiftCardBase
 }
 
 export interface GiftCardWithChildren extends GiftCardBase {
+  /**
+   * Props to be passed to the `<button>` element. The following props are not
+   * supported: `aria-disabled`, `disabled`, `type`. Since we use that to
+   * control the disabled state of the button, we don't support it.
+   *
+   * But in addition to this we offer a `isLoading` prop to control the loading
+   * state of the button a.k.a disabling the button.
+   */
   buttonProps?: GiftCardPayButtonProps;
+  /**
+   * Make it possible to put any component inside. If children is/are given then
+   * `render` is not applied.
+   */
   children?: React.ReactNode;
 }
 
 export interface GiftCardFunctionChildren extends GiftCardBase {
-  render?(Button: (props?: GiftCardPayButtonProps) => React.ReactElement): React.ReactNode;
+  /**
+   * Make it possible to put any component inside. If render is/are given then
+   * `children` and `buttonProps` is not applied.
+   *
+   * @param Button - The button component
+   */
+  render?(Button: (props: GiftCardPayButtonProps) => React.ReactElement): React.ReactNode;
 }
 
 export interface GiftCardProps extends GiftCardBase {
@@ -70,6 +105,9 @@ export interface GiftCardProps extends GiftCardBase {
    * Props to be passed to the `<button>` element. The following props are not
    * supported: `aria-disabled`, `disabled`, `type`. Since we use that to
    * control the disabled state of the button, we don't support it.
+   *
+   * But in addition to this we offer a `isLoading` prop to control the loading
+   * state of the button a.k.a disabling the button.
    */
   buttonProps?: GiftCardPayButtonProps;
   /**
@@ -83,5 +121,5 @@ export interface GiftCardProps extends GiftCardBase {
    *
    * @param Button - The button component
    */
-  render?(Button: (props?: GiftCardPayButtonProps) => React.ReactElement): React.ReactNode;
+  render?(Button: (props: GiftCardPayButtonProps) => React.ReactElement): React.ReactNode;
 }

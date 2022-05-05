@@ -134,28 +134,19 @@ export function Ach({
     },
   });
 
+  const { isLoading, ...props } = buttonProps ?? {};
+  const disabled = isLoading || !ach || isSubmitting;
+
   if (children) {
     return (
-      <PayButton
-        {...buttonProps}
-        aria-disabled={!ach || isSubmitting}
-        disabled={!ach || isSubmitting}
-        ref={buttonRef}
-        type="button"
-      >
+      <PayButton {...props} aria-disabled={disabled} disabled={disabled} ref={buttonRef} type="button">
         {children}
       </PayButton>
     );
   }
 
   return (
-    <PayButton
-      {...buttonProps}
-      aria-disabled={!ach || isSubmitting}
-      disabled={!ach || isSubmitting}
-      ref={buttonRef}
-      type="button"
-    >
+    <PayButton {...props} aria-disabled={disabled} disabled={disabled} ref={buttonRef} type="button">
       <SvgIcon
         fill="none"
         height="1em"
