@@ -35,6 +35,9 @@ export interface GiftCardBase
    * Props to be passed to the `<button>` element. The following props are not
    * supported: `aria-disabled`, `disabled`, `type`. Since we use that to
    * control the disabled state of the button, we don't support it.
+   *
+   * But in addition to this we offer a `isLoading` prop to control the loading
+   * state of the button a.k.a disabling the button.
    */
   buttonProps?: GiftCardPayButtonProps;
   callbacks?: {
