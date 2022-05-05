@@ -133,7 +133,7 @@ function GiftCard({
     return () => {
       abortController.abort();
     };
-  }, [payments, options]);
+  }, [payments, id]);
 
   if (callbacks) {
     for (const callback of Object.keys(callbacks)) {
