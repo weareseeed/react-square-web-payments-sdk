@@ -1,35 +1,86 @@
 name: CI
+
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize]
+
 jobs:
   build:
-    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
+    name: 🏗 Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'yarn'
+          cache-dependency-path: yarn.lock
 
-    runs-on: ${{ matrix.os }}
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 25
+
+      - name: tune linux network
+        run: sudo ethtool -K eth0 tx off rx off
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --check-files
+
+      - name: Cache build
+        uses: actions/cache@v3
+        id: cache-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}-${{ github.run_number }}-${{ github.run_attempt }}
+
+  lint:
+    name: ⬣ ESLint
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Restore build
+        uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}-${{ github.run_number }}-${{ github.run_attempt }}
+
+      - name: Lint
+        run: yarn lint
+
+  test:
+    name: 🧪 Test
+    runs-on: ubuntu-latest
+    needs: [build]
     strategy:
       matrix:
-        node: ['12.x', '14.x', '16.x']
+        node: ['14.x', '16.x']
         os: [ubuntu-latest, windows-latest, macOS-latest]
-
     steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@v2
-
-      - name: Use Node ${{ matrix.node }} 📦
-        uses: actions/setup-node@v1
+      - name: Setup node ${{ matrix.node }}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Install deps and build (with cache) 🔧
-        uses: bahmutov/npm-install@v1
+      # https://github.com/actions/virtual-environments/issues/1187
+      - name: tune linux network
+        run: sudo ethtool -K eth0 tx off rx off
 
-      - name: Lint 🔥
-        run: yarn lint --fix
+      - name: Restore build
+        uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}-${{ github.run_number }}-${{ github.run_attempt }}
 
-      - name: Test 🧪
-        run: yarn test --ci --coverage --maxWorkers=2
-
-      - name: Build on Node ${{ matrix.node }} and ${{ matrix.os }} 🏗
-        run: yarn build
+      - name: Run test
+        run: yarn test
