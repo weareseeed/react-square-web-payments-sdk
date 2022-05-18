@@ -4,8 +4,6 @@
 
 <div style={{ textAlign: 'center' }}>
 
-![react-square-web-payments-sdk](.github/logo.png)
-
 A react wrapper for [Square&apos;s Web Payments SDK](https://developer.squareup.com/docs/web-payments/overview)
 
 [![NPM Version](https://flat.badgen.net/npm/v/react-square-web-payments-sdk)](https://www.npmjs.com/package/react-square-web-payments-sdk)
@@ -22,8 +20,8 @@ A react wrapper for [Square&apos;s Web Payments SDK](https://developer.squareup.
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-📄 **[DOCS](https://react-square-web-payments-sdk.weareseeed.com/)**
-• ✨ **[CHANGELOG](https://github.com/weareseeed/react-square-web-payments-sdk/blob/main/CHANGELOG.md)**
+📄 **[DOCS](https://react-square-payments.weareseeed.com/)**
+• ✨ **[CHANGELOG](https://github.com/weareseeed/react-square-web-payments-sdk/releases)**
 
 </div>
 
