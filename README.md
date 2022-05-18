@@ -4,8 +4,6 @@
 
 <div style={{ textAlign: 'center' }}>
 
-![react-square-web-payments-sdk](.github/logo.png)
-
 A react wrapper for [Square&apos;s Web Payments SDK](https://developer.squareup.com/docs/web-payments/overview)
 
 [![NPM Version](https://flat.badgen.net/npm/v/react-square-web-payments-sdk)](https://www.npmjs.com/package/react-square-web-payments-sdk)
@@ -22,8 +20,8 @@ A react wrapper for [Square&apos;s Web Payments SDK](https://developer.squareup.
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-📄 **[DOCS](https://react-square-web-payments-sdk.weareseeed.com/)**
-• ✨ **[CHANGELOG](https://github.com/weareseeed/react-square-web-payments-sdk/blob/main/CHANGELOG.md)**
+📄 **[DOCS](https://react-square-payments.weareseeed.com/)**
+• ✨ **[CHANGELOG](https://github.com/weareseeed/react-square-web-payments-sdk/releases)**
 
 </div>
 
@@ -47,30 +45,28 @@ yarn add react-square-web-payments-sdk
 
 ```tsx
 // Dependencies
-import * as React from 'react'
-import SquarePaymentsForm, {
-  CreditCardInput,
-} from 'react-square-web-payments-sdk'
+import * as React from 'react';
+import { CreditCard, PaymentsForm } from 'react-square-web-payments-sdk';
 
 const MyPaymentForm = () => (
-  <SquarePaymentsForm
+  <PaymentsForm
     /**
-     * Identifies the calling form with a verified application ID
-     * generated from the Square Application Dashboard.
+     * Identifies the calling form with a verified application ID generated from
+     * the Square Application Dashboard.
      */
     applicationId="sq0idp-Y0QZQ-Xx-Xx-Xx-Xx"
     /**
-     * Invoked when payment form receives the result of a tokenize generation request.
-     * The result will be a valid credit card or wallet token, or an error.
+     * Invoked when payment form receives the result of a tokenize generation
+     * request. The result will be a valid credit card or wallet token, or an error.
      */
     cardTokenizeResponseReceived={(token, buyer) => {
-      console.info({ token, buyer })
+      console.info({ token, buyer });
     }}
     /**
      * This function enable the Strong Customer Authentication (SCA) flow
      *
-     * We strongly recommend use this function to verify the buyer and
-     * reduce the chance of fraudulent transactions.
+     * We strongly recommend use this function to verify the buyer and reduce
+     * the chance of fraudulent transactions.
      */
     createVerificationDetails={() => ({
       amount: '1.00',
@@ -91,11 +87,11 @@ const MyPaymentForm = () => (
      */
     locationId="LID"
   >
-    <CreditCardInput />
-  </SquarePaymentsForm>
-)
+    <CreditCard />
+  </PaymentsForm>
+);
 
-export default MyPaymentForm
+export default MyPaymentForm;
 ```
 
 ## Contributing
@@ -118,7 +114,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://danestves.com/"><img src="https://avatars.githubusercontent.com/u/31737273?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Daniel Esteves</b></sub></a><br /><a href="https://github.com/weareseeed/react-square-web-payments-sdk/commits?author=danestves" title="Code">💻</a> <a href="https://github.com/weareseeed/react-square-web-payments-sdk/commits?author=danestves" title="Documentation">📖</a> <a href="https://react-square-web-payments-sdk.weareseeed.com/" title="Examples">💡</a> <a href="https://github.com/weareseeed/react-square-web-payments-sdk/commits?author=danestves" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/rsaer"><img src="https://avatars.githubusercontent.com/u/38730951?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rowland Saer</b></sub></a><br /><a href="https://github.com/weareseeed/react-square-web-payments-sdk/commits?author=rsaer" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/WinglessFrame"><img src="https://avatars.githubusercontent.com/u/68775653?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hleb Siamionau</b></sub></a><br /><a href="https://github.com/weareseeed/react-square-web-payments-sdk/commits?author=WinglessFrame" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/gabrielelpidio"><img src="https://avatars.githubusercontent.com/u/30420087?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gabriel De Andrade</b></sub></a><br /><a href="https://github.com/weareseeed/react-square-web-payments-sdk/commits?author=gabrielelpidio" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/gabrielelpidio"><img src="https://avatars.githubusercontent.com/u/30420087?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gabriel De Andrade</b></sub></a><br /><a href="https://github.com/weareseeed/react-square-web-payments-sdk/commits?author=danestves" title="Code">💻</a> <a href="https://github.com/weareseeed/react-square-web-payments-sdk/commits?author=danestves" title="Documentation">📖</a> <a href="https://react-square-web-payments-sdk.weareseeed.com/" title="Examples">💡</a></td>
   </tr>
 </table>
 

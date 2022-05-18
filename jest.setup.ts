@@ -1,4 +1,1 @@
-// Dependencies
-import '@testing-library/jest-dom'
-
-jest.setTimeout(30000)
+import '@testing-library/jest-dom';
