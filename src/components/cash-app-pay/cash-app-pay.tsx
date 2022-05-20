@@ -11,10 +11,10 @@ function CashAppPay({
   id = 'rswps-cash-app-pay',
   redirectURL,
   referenceId,
-  shape,
-  size,
-  values,
-  width,
+  shape = 'round',
+  size = 'medium',
+  values = 'dark',
+  width = 'static',
   ...props
 }: CashAppPayProps) {
   const [cashApp, setCashApp] = React.useState<Square.CashAppPay>();
@@ -28,15 +28,23 @@ function CashAppPay({
     [redirectURL, referenceId]
   );
 
-  const options: Square.CashAppPayButtonOptions = React.useMemo(
-    () => ({
+  const options: Square.CashAppPayButtonOptions = React.useMemo(() => {
+    const baseOptions = {
       shape,
       size,
       values,
       width,
-    }),
-    [redirectURL, referenceId]
-  );
+    };
+
+    // if a value from options is undefined delete it from the options object
+    return Object.keys(baseOptions).reduce((acc: Record<string, unknown>, key) => {
+      if (baseOptions[key as keyof typeof baseOptions] !== undefined) {
+        acc[key as string] = baseOptions[key as keyof typeof baseOptions];
+      }
+
+      return acc;
+    }, {});
+  }, [shape, size, values, width]);
 
   React.useEffect(() => {
     if (!createPaymentRequest) {
