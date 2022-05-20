@@ -25,6 +25,11 @@
     "import": "{ ApplePay, PaymentForm }"
   },
   {
+    "name": "`{ CashAppPay, PaymentForm }`",
+    "path": "dist/index.es.js",
+    "import": "{ CashAppPay, PaymentForm }"
+  },
+  {
     "name": "`{ CreditCard, PaymentForm }`",
     "path": "dist/index.es.js",
     "import": "{ CreditCard, PaymentForm }"
@@ -40,13 +45,13 @@
     "import": "{ GooglePay, PaymentForm }"
   },
   {
-    "name": "`{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, GiftCard, GooglePay, PaymentForm }`",
+    "name": "`{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, CashAppPay, GiftCard, GooglePay, PaymentForm }`",
     "path": "dist/index.es.js",
-    "import": "{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, GiftCard, GooglePay, PaymentForm }"
+    "import": "{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, CashAppPay, GiftCard, GooglePay, PaymentForm }"
   },
   {
-    "name": "Format: cjs, `{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, GiftCard, GooglePay, PaymentForm }`",
+    "name": "Format: cjs, `{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, CashAppPay, GiftCard, GooglePay, PaymentForm }`",
     "path": "dist/index.cjs.js",
-    "import": "{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, GiftCard, GooglePay, PaymentForm }"
+    "import": "{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, CashAppPay, GiftCard, GooglePay, PaymentForm }"
   }
 ]

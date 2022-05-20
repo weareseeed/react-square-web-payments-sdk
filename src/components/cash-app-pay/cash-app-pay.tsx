@@ -1,0 +1,97 @@
+// Dependencies
+import * as React from 'react';
+import type * as Square from '@square/web-sdk';
+
+// Internals
+import { useForm } from '~/contexts/form';
+import type { CashAppPayProps } from './cash-app-pay.types';
+
+function CashAppPay({
+  callbacks,
+  id = 'rswps-cash-app-pay',
+  redirectURL,
+  referenceId,
+  shape,
+  size,
+  values,
+  width,
+  ...props
+}: CashAppPayProps) {
+  const [cashApp, setCashApp] = React.useState<Square.CashAppPay>();
+  const { createPaymentRequest, payments } = useForm();
+
+  const paymentRequestOptions: Square.CashAppPaymentRequestOptions = React.useMemo(
+    () => ({
+      redirectURL: redirectURL || window.location.href,
+      referenceId,
+    }),
+    [redirectURL, referenceId]
+  );
+
+  const options: Square.CashAppPayButtonOptions = React.useMemo(
+    () => ({
+      shape,
+      size,
+      values,
+      width,
+    }),
+    [redirectURL, referenceId]
+  );
+
+  React.useEffect(() => {
+    if (!createPaymentRequest) {
+      throw new Error('`createPaymentRequest()` is required when using digital wallets');
+    }
+
+    const abortController = new AbortController();
+    const { signal } = abortController;
+
+    const start = async (signal: AbortSignal) => {
+      const paymentRequest = payments?.paymentRequest(createPaymentRequest);
+
+      if (!paymentRequest) {
+        throw new Error('`paymentRequest` is required when using digital wallets');
+      }
+
+      try {
+        const cashApp = await payments?.cashAppPay(paymentRequest, paymentRequestOptions).then((res) => {
+          if (signal?.aborted) {
+            return;
+          }
+
+          setCashApp(res);
+
+          return res;
+        });
+
+        await cashApp?.attach(`#${id}`, options);
+
+        if (signal.aborted) {
+          await cashApp?.destroy();
+        }
+      } catch (error) {
+        console.error('Initializing Cash App Pay failed', error);
+      }
+    };
+
+    start(signal);
+
+    return () => {
+      abortController.abort();
+    };
+  }, [createPaymentRequest, options, paymentRequestOptions, payments]);
+
+  if (callbacks) {
+    for (const callback of Object.keys(callbacks)) {
+      cashApp?.addEventListener(
+        callback.toLowerCase() as 'ontokenization',
+        (callbacks as Record<string, (event: Square.SqEvent<Square.TokenizationEvent>) => void>)[callback]
+      );
+    }
+  }
+
+  return <div {...props} id={id} />;
+}
+
+export default CashAppPay;
+export * from './cash-app-pay.types';
