@@ -14,6 +14,28 @@ import type {
   CreditCardProps,
 } from './credit-card.types';
 
+const Button = React.forwardRef<HTMLButtonElement, CreditCardPayButtonProps>(
+  ({ children, isLoading, ...props }, buttonRef) => {
+    const id = 'rswp-card-button';
+
+    return (
+      <PayButton
+        {...props}
+        aria-disabled={isLoading}
+        css={props?.css}
+        disabled={isLoading}
+        id={id}
+        ref={buttonRef}
+        type="button"
+      >
+        {children ?? 'Pay'}
+      </PayButton>
+    );
+  }
+);
+
+Button.displayName = 'PaymentButton';
+
 /**
  * Renders a Credit Card Input to use in the Square Web Payment SDK, pre-styled
  * to meet Square branding guidelines.
@@ -48,7 +70,8 @@ function CreditCard({
   style,
   ...props
 }: CreditCardProps) {
-  const [card, setCard] = React.useState<Square.Card | undefined>(() => undefined);
+  const card = React.useRef<Square.Card | undefined>(undefined);
+  const [loadingCard, setLoadingCard] = React.useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const { cardTokenizeResponseReceived, payments } = useForm();
@@ -81,7 +104,7 @@ function CreditCard({
 
     if (buttonProps?.isLoading) return;
 
-    if (!card) {
+    if (!card.current) {
       console.warn('Credit Card button was clicked, but no Credit Card instance was found.');
 
       return;
@@ -90,7 +113,7 @@ function CreditCard({
     setIsSubmitting(true);
 
     try {
-      const result = await card.tokenize();
+      const result = await card.current.tokenize();
 
       if (result.status === 'OK') {
         return cardTokenizeResponseReceived(result);
@@ -116,22 +139,40 @@ function CreditCard({
     const { signal } = abortController;
 
     const start = async (signal: AbortSignal) => {
-      const card = await payments?.card(options).then((res) => {
-        if (!signal.aborted) {
-          setCard(res);
-          return res;
+      setLoadingCard(true);
+      const cardResponse = await payments
+        ?.card(options)
+        .then((res) => {
+          if (!signal.aborted) {
+            card.current = res;
+            return res;
+          }
+          return null;
+        })
+        .finally(() => {
+          setLoadingCard(false);
+        });
+
+      await cardResponse?.attach(`#${id}`).then(() => {
+        if (callbacks) {
+          for (const callback of Object.keys(callbacks)) {
+            cardResponse?.addEventListener(
+              callback as Square.CardInputEventTypes,
+              (callbacks as Record<string, (event: Square.SqEvent<Square.CardInputEvent>) => void>)[callback]
+            );
+          }
         }
-
-        return null;
+        if (recalculateSize) {
+          recalculateSize(cardResponse?.recalculateSize);
+        }
+        cardResponse?.focus(focus);
       });
-
-      await card?.attach(`#${id}`);
       if (focus) {
-        await card?.focus(focus);
+        await cardResponse?.focus(focus);
       }
 
       if (signal.aborted) {
-        await card?.destroy();
+        await cardResponse?.destroy();
       }
     };
 
@@ -139,27 +180,15 @@ function CreditCard({
 
     return () => {
       abortController.abort();
+      card.current?.destroy();
     };
   }, [payments, id]);
 
   React.useEffect(() => {
-    if (card && focus) {
-      card.focus(focus);
+    if (card.current && focus) {
+      card.current.focus(focus);
     }
-  }, [card, focus]);
-
-  if (callbacks) {
-    for (const callback of Object.keys(callbacks)) {
-      card?.addEventListener(
-        callback as Square.CardInputEventTypes,
-        (callbacks as Record<string, (event: Square.SqEvent<Square.CardInputEvent>) => void>)[callback]
-      );
-    }
-  }
-
-  if (recalculateSize) {
-    recalculateSize(card?.recalculateSize);
-  }
+  }, [focus]);
 
   useEventListener({
     listener: handlePayment,
@@ -170,32 +199,22 @@ function CreditCard({
     },
   });
 
-  const Button = ({ children, isLoading, ...props }: CreditCardPayButtonProps) => {
-    const id = 'rswp-card-button';
-    const disabled = isLoading || !card || isSubmitting;
-
-    return (
-      <PayButton
-        {...props}
-        aria-disabled={disabled}
-        css={props?.css}
-        disabled={disabled}
-        id={id}
-        ref={buttonRef}
-        type="button"
-      >
-        {children ?? 'Pay'}
-      </PayButton>
-    );
-  };
-
   return (
     <>
       <div {...props} data-testid="rswps-card-container" id={id} style={{ minHeight: 89 }}>
-        {!card && <LoadingCard />}
+        <>
+          {console.log(loadingCard)}
+          {loadingCard && <LoadingCard />}
+        </>
       </div>
 
-      {typeof render === 'function' ? render(Button) : <Button {...buttonProps}>{children ?? 'Pay'}</Button>}
+      {typeof render === 'function' ? (
+        render(Button)
+      ) : (
+        <Button {...buttonProps} isLoading={isSubmitting || buttonProps?.isLoading} ref={buttonRef}>
+          {children ?? 'Pay'}
+        </Button>
+      )}
     </>
   );
 }
