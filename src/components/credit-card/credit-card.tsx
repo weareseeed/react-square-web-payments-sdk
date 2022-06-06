@@ -93,7 +93,8 @@ function CreditCard({
       const result = await card.tokenize();
 
       if (result.status === 'OK') {
-        return cardTokenizeResponseReceived(result);
+        const tokenizedResult = await cardTokenizeResponseReceived(result);
+        return tokenizedResult
       }
 
       let message = `Tokenization failed with status: ${result.status}`;
