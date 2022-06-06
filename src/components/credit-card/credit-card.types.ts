@@ -158,5 +158,5 @@ export interface CreditCardProps extends CreditCardBase {
    *
    * @param Button - The button component
    */
-  render?(Button: (props: CreditCardPayButtonProps) => React.ReactElement): React.ReactNode;
+  render?(Button: (props: CreditCardPayButtonProps) => React.ReactElement | null): React.ReactNode;
 }
