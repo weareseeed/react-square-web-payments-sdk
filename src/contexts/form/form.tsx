@@ -13,7 +13,7 @@ import type { FormContextType, FormProviderProps } from './form.types';
  * expose access to the Web Payment SDK library.
  */
 const FormContext = React.createContext<FormContextType>({
-  cardTokenizeResponseReceived: null as unknown as () => void,
+  cardTokenizeResponseReceived: null as unknown as () => Promise<void>,
   createPaymentRequest: null as unknown as Square.PaymentRequestOptions,
   payments: null as unknown as Square.Payments,
 });
@@ -55,13 +55,13 @@ function FormProvider({ applicationId, locationId, children, overrides, ...props
 
   const cardTokenizeResponseReceived = async (rest: Square.TokenResult): Promise<void> => {
     if (rest.errors || !props.createVerificationDetails) {
-      props.cardTokenizeResponseReceived(rest);
+      await props.cardTokenizeResponseReceived(rest);
       return;
     }
 
     const verifyBuyerResults = await instance?.verifyBuyer(String(rest.token), props.createVerificationDetails());
 
-    props.cardTokenizeResponseReceived(rest, verifyBuyerResults);
+    await props.cardTokenizeResponseReceived(rest, verifyBuyerResults);
   };
 
   // Fixes stale closure issue with using React Hooks & SqPaymentForm callback functions

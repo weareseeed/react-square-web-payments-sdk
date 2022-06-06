@@ -11,7 +11,7 @@ export type FormContextType = {
   cardTokenizeResponseReceived: (
     token: Square.TokenResult,
     verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
-  ) => void;
+  ) => Promise<void>;
   /**
    * Returned by `Square.payments(appId, locationId)`.
    *
@@ -45,7 +45,7 @@ export type FormProviderProps = {
   cardTokenizeResponseReceived: (
     token: Square.TokenResult,
     verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
-  ) => void;
+  ) => void | Promise<void>;
   children: React.ReactNode;
   /**
    * Identifies the location of the merchant that is taking the payment.
