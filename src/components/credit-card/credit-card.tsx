@@ -14,28 +14,6 @@ import type {
   CreditCardProps,
 } from './credit-card.types';
 
-const Button = React.forwardRef<HTMLButtonElement, CreditCardPayButtonProps>(
-  ({ children, isLoading, ...props }, buttonRef) => {
-    const id = 'rswp-card-button';
-
-    return (
-      <PayButton
-        {...props}
-        aria-disabled={isLoading}
-        css={props?.css}
-        disabled={isLoading}
-        id={id}
-        ref={buttonRef}
-        type="button"
-      >
-        {children ?? 'Pay'}
-      </PayButton>
-    );
-  }
-);
-
-Button.displayName = 'PaymentButton';
-
 /**
  * Renders a Credit Card Input to use in the Square Web Payment SDK, pre-styled
  * to meet Square branding guidelines.
@@ -70,8 +48,7 @@ function CreditCard({
   style,
   ...props
 }: CreditCardProps) {
-  const card = React.useRef<Square.Card | undefined>(undefined);
-  const [loadingCard, setLoadingCard] = React.useState<boolean>(false);
+  const [card, setCard] = React.useState<Square.Card | undefined>(() => undefined);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const { cardTokenizeResponseReceived, payments } = useForm();
@@ -104,7 +81,7 @@ function CreditCard({
 
     if (buttonProps?.isLoading) return;
 
-    if (!card.current) {
+    if (!card) {
       console.warn('Credit Card button was clicked, but no Credit Card instance was found.');
 
       return;
@@ -113,11 +90,11 @@ function CreditCard({
     setIsSubmitting(true);
 
     try {
-      const result = await card.current.tokenize();
+      const result = await card.tokenize();
 
       if (result.status === 'OK') {
         const tokenizedResult = await cardTokenizeResponseReceived(result);
-        return tokenizedResult
+        return tokenizedResult;
       }
 
       let message = `Tokenization failed with status: ${result.status}`;
@@ -140,40 +117,22 @@ function CreditCard({
     const { signal } = abortController;
 
     const start = async (signal: AbortSignal) => {
-      setLoadingCard(true);
-      const cardResponse = await payments
-        ?.card(options)
-        .then((res) => {
-          if (!signal.aborted) {
-            card.current = res;
-            return res;
-          }
-          return null;
-        })
-        .finally(() => {
-          setLoadingCard(false);
-        });
+      const card = await payments?.card(options).then((res) => {
+        if (!signal.aborted) {
+          setCard(res);
+          return res;
+        }
 
-      await cardResponse?.attach(`#${id}`).then(() => {
-        if (callbacks) {
-          for (const callback of Object.keys(callbacks)) {
-            cardResponse?.addEventListener(
-              callback as Square.CardInputEventTypes,
-              (callbacks as Record<string, (event: Square.SqEvent<Square.CardInputEvent>) => void>)[callback]
-            );
-          }
-        }
-        if (recalculateSize) {
-          recalculateSize(cardResponse?.recalculateSize);
-        }
-        cardResponse?.focus(focus);
+        return null;
       });
+
+      await card?.attach(`#${id}`);
       if (focus) {
-        await cardResponse?.focus(focus);
+        await card?.focus(focus);
       }
 
       if (signal.aborted) {
-        await cardResponse?.destroy();
+        await card?.destroy();
       }
     };
 
@@ -181,15 +140,27 @@ function CreditCard({
 
     return () => {
       abortController.abort();
-      card.current?.destroy();
     };
   }, [payments, id]);
 
   React.useEffect(() => {
-    if (card.current && focus) {
-      card.current.focus(focus);
+    if (card && focus) {
+      card.focus(focus);
     }
-  }, [focus]);
+  }, [card, focus]);
+
+  if (callbacks) {
+    for (const callback of Object.keys(callbacks)) {
+      card?.addEventListener(
+        callback as Square.CardInputEventTypes,
+        (callbacks as Record<string, (event: Square.SqEvent<Square.CardInputEvent>) => void>)[callback]
+      );
+    }
+  }
+
+  if (recalculateSize) {
+    recalculateSize(card?.recalculateSize);
+  }
 
   useEventListener({
     listener: handlePayment,
@@ -200,22 +171,32 @@ function CreditCard({
     },
   });
 
+  const Button = ({ children, isLoading, ...props }: CreditCardPayButtonProps) => {
+    const id = 'rswp-card-button';
+    const disabled = isLoading || !card || isSubmitting;
+
+    return (
+      <PayButton
+        {...props}
+        aria-disabled={disabled}
+        css={props?.css}
+        disabled={disabled}
+        id={id}
+        ref={buttonRef}
+        type="button"
+      >
+        {children ?? 'Pay'}
+      </PayButton>
+    );
+  };
+
   return (
     <>
       <div {...props} data-testid="rswps-card-container" id={id} style={{ minHeight: 89 }}>
-        <>
-          {console.log(loadingCard)}
-          {loadingCard && <LoadingCard />}
-        </>
+        {!card && <LoadingCard />}
       </div>
 
-      {typeof render === 'function' ? (
-        render(Button)
-      ) : (
-        <Button {...buttonProps} isLoading={isSubmitting || buttonProps?.isLoading} ref={buttonRef}>
-          {children ?? 'Pay'}
-        </Button>
-      )}
+      {typeof render === 'function' ? render(Button) : <Button {...buttonProps}>{children ?? 'Pay'}</Button>}
     </>
   );
 }
