@@ -39,7 +39,7 @@ function CreditCard({
   buttonProps,
   callbacks,
   children,
-  focus = 'cardNumber',
+  focus,
   id = 'rswps-card-container',
   includeInputLabels,
   postalCode,
