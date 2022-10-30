@@ -46,7 +46,7 @@ yarn add react-square-web-payments-sdk
 ```tsx
 // Dependencies
 import * as React from 'react';
-import { CreditCard, PaymentsForm } from 'react-square-web-payments-sdk';
+import { CreditCard, PaymentForm } from 'react-square-web-payments-sdk';
 
 const MyPaymentForm = () => (
   <PaymentForm
