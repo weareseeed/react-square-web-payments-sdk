@@ -28,6 +28,15 @@ function CashAppPay({
     [redirectURL, referenceId]
   );
 
+  React.useEffect(() => {
+    if (!cashApp) return;
+    return () => {
+      if (cashApp) {
+      cashApp.destroy();
+    }
+    }
+  }, [cashApp])
+
   const options: Square.CashAppPayButtonOptions = React.useMemo(() => {
     const baseOptions = {
       shape,
