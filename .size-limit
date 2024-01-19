@@ -1,52 +1,52 @@
 [
   {
     "name": "`{ Ach, PaymentForm }`",
-    "path": "dist/index.es.js",
+    "path": "dist/index.es.mjs",
     "import": "{ Ach, PaymentForm }"
   },
   {
     "name": "`{ Afterpay, AfterpayProvider, PaymentForm }`",
-    "path": "dist/index.es.js",
+    "path": "dist/index.es.mjs",
     "import": "{ Afterpay, AfterpayProvider, PaymentForm }"
   },
   {
     "name": "`{ Afterpay, AfterpayMessage, AfterpayProvider, PaymentForm }`",
-    "path": "dist/index.es.js",
+    "path": "dist/index.es.mjs",
     "import": "{ Afterpay, AfterpayMessage, AfterpayProvider, PaymentForm }"
   },
   {
     "name": "`{ Afterpay, AfterpayWidget, AfterpayProvider, PaymentForm }`",
-    "path": "dist/index.es.js",
+    "path": "dist/index.es.mjs",
     "import": "{ Afterpay, AfterpayWidget, AfterpayProvider, PaymentForm }"
   },
   {
     "name": "`{ ApplePay, PaymentForm }`",
-    "path": "dist/index.es.js",
+    "path": "dist/index.es.mjs",
     "import": "{ ApplePay, PaymentForm }"
   },
   {
     "name": "`{ CashAppPay, PaymentForm }`",
-    "path": "dist/index.es.js",
+    "path": "dist/index.es.mjs",
     "import": "{ CashAppPay, PaymentForm }"
   },
   {
     "name": "`{ CreditCard, PaymentForm }`",
-    "path": "dist/index.es.js",
+    "path": "dist/index.es.mjs",
     "import": "{ CreditCard, PaymentForm }"
   },
   {
     "name": "`{ GiftCard, PaymentForm }`",
-    "path": "dist/index.es.js",
+    "path": "dist/index.es.mjs",
     "import": "{ GiftCard, PaymentForm }"
   },
   {
     "name": "`{ GooglePay, PaymentForm }`",
-    "path": "dist/index.es.js",
+    "path": "dist/index.es.mjs",
     "import": "{ GooglePay, PaymentForm }"
   },
   {
     "name": "`{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, CashAppPay, GiftCard, GooglePay, PaymentForm }`",
-    "path": "dist/index.es.js",
+    "path": "dist/index.es.mjs",
     "import": "{ Ach, Afterpay, AfterpayMessage, AfterpayWidget, ApplePay, CashAppPay, GiftCard, GooglePay, PaymentForm }"
   },
   {
