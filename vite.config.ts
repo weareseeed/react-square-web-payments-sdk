@@ -39,7 +39,7 @@ export default defineConfig({
         },
         {
           dir: resolve(__dirname, 'dist'),
-          entryFileNames: '[name].es.js',
+          entryFileNames: '[name].es.mjs',
           exports: 'named',
           format: 'es',
           preserveModules: true,
