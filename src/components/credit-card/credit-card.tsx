@@ -48,10 +48,7 @@ function CreditCard({
   style,
   ...props
 }: CreditCardProps) {
-  const [card, setCard] = React.useState<Square.Card | undefined>(() => undefined);
-  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const { cardTokenizeResponseReceived, payments } = useForm();
+  const { payments, card, setCard } = useForm();
 
   const options: Square.CardOptions = React.useMemo(() => {
     const baseOptions = {
@@ -69,48 +66,6 @@ function CreditCard({
       return acc;
     }, {});
   }, [includeInputLabels, postalCode, style]);
-
-  /**
-   * Handle the on click of the Credit Card button click
-   *
-   * @param e An event which takes place in the DOM.
-   * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
-   */
-  const handlePayment = async (e: Event) => {
-    e.stopPropagation();
-
-    if (buttonProps?.isLoading) return;
-
-    if (!card) {
-      console.warn('Credit Card button was clicked, but no Credit Card instance was found.');
-
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const result = await card.tokenize();
-
-      if (result.status === 'OK') {
-        const tokenizedResult = await cardTokenizeResponseReceived(result);
-        return tokenizedResult;
-      }
-
-      let message = `Tokenization failed with status: ${result.status}`;
-      if (result?.errors) {
-        message += ` and errors: ${JSON.stringify(result?.errors)}`;
-
-        throw new Error(message);
-      }
-
-      console.warn(message);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   React.useEffect(() => {
     const abortController = new AbortController();
@@ -162,6 +117,68 @@ function CreditCard({
     recalculateSize(card?.recalculateSize);
   }
 
+  return (
+    <>
+      <div {...props} data-testid="rswps-card-container" id={id} style={{ minHeight: 89 }}>
+        {!card && <LoadingCard />}
+      </div>
+
+      {props.hideButton ? null : typeof render === 'function' ? (
+        render(CreditCardButton)
+      ) : (
+        <CreditCardButton {...buttonProps}>{children ?? 'Pay'}</CreditCardButton>
+      )}
+    </>
+  );
+}
+
+export const CreditCardButton = ({ children, isLoading, render, ...props }: CreditCardPayButtonProps) => {
+  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const { cardTokenizeResponseReceived, card } = useForm();
+
+  /**
+   * Handle the on click of the Credit Card button click
+   *
+   * @param e An event which takes place in the DOM.
+   * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
+   */
+  const handlePayment = async (e: Event) => {
+    e.stopPropagation();
+
+    if (isLoading) return;
+
+    if (!card) {
+      console.warn('Credit Card button was clicked, but no Credit Card instance was found.');
+
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const result = await card.tokenize();
+
+      if (result.status === 'OK') {
+        const tokenizedResult = await cardTokenizeResponseReceived(result);
+        return tokenizedResult;
+      }
+
+      let message = `Tokenization failed with status: ${result.status}`;
+      if (result?.errors) {
+        message += ` and errors: ${JSON.stringify(result?.errors)}`;
+
+        throw new Error(message);
+      }
+
+      console.warn(message);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   useEventListener({
     listener: handlePayment,
     type: 'click',
@@ -171,35 +188,19 @@ function CreditCard({
     },
   });
 
-  const Button = ({ children, isLoading, ...props }: CreditCardPayButtonProps) => {
-    const id = 'rswp-card-button';
-    const disabled = isLoading || !card || isSubmitting;
+  const id = 'rswp-card-button';
+  const disabled = isLoading || !card || isSubmitting;
 
-    return (
-      <PayButton
-        {...props}
-        aria-disabled={disabled}
-        css={props?.css}
-        disabled={disabled}
-        id={id}
-        ref={buttonRef}
-        type="button"
-      >
-        {children ?? 'Pay'}
-      </PayButton>
-    );
-  };
+  if (render) {
+    return render({ isSubmitting, handlePayment, buttonRef });
+  }
 
   return (
-    <>
-      <div {...props} data-testid="rswps-card-container" id={id} style={{ minHeight: 89 }}>
-        {!card && <LoadingCard />}
-      </div>
-
-      {typeof render === 'function' ? render(Button) : <Button {...buttonProps}>{children ?? 'Pay'}</Button>}
-    </>
+    <PayButton {...props} aria-disabled={disabled} disabled={disabled} id={id} ref={buttonRef} type="button">
+      {children ?? 'Pay'}
+    </PayButton>
   );
-}
+};
 
 export default CreditCard;
 export * from './credit-card.types';

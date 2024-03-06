@@ -27,6 +27,21 @@ export type CreditCardPayButtonProps = Omit<
   css?: Stitches.ComponentProps<typeof PayButton>['css'];
   /** Control the loading state of the button a.k.a disabling the button. */
   isLoading?: boolean;
+  /** Render a custom button with full control. */
+  render?: (props: {
+    /** If handlePayment is currently running. Use this to disable the button */
+    isSubmitting: boolean;
+    /**
+     * Call this function onClick. Alternatively just set the `ref={buttonRef}`
+     * and it will be handled for you
+     */
+    handlePayment: (e: Event) => void;
+    /**
+     * Set `ref={buttonRef}` for it to handle the payment on click. You may want
+     * to use `handlePayment` instead for more control, but don't use both.
+     */
+    buttonRef: React.RefObject<HTMLElement>;
+  }) => React.ReactElement;
 };
 
 export type CreditCardFunctionChildrenProps = {
@@ -159,4 +174,10 @@ export interface CreditCardProps extends CreditCardBase {
    * @param Button - The button component
    */
   render?(Button: (props: CreditCardPayButtonProps) => React.ReactElement | null): React.ReactNode;
+  /**
+   * Make it possible to render the button outside of the component using
+   * `<CreditCardButton />` If `hideButton` is set to `true` then the button
+   * will not be rendered and `render`, `children` and `buttonProps` will be ignored.
+   */
+  hideButton?: boolean;
 }
