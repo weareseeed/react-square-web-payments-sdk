@@ -132,7 +132,7 @@ function CreditCard({
   );
 }
 
-export const CreditCardButton = ({ children, isLoading, render, ...props }: CreditCardPayButtonProps) => {
+function CreditCardButton({ children, isLoading, render, ...props }: CreditCardPayButtonProps) {
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const { cardTokenizeResponseReceived, card } = useForm();
@@ -200,7 +200,8 @@ export const CreditCardButton = ({ children, isLoading, render, ...props }: Cred
       {children ?? 'Pay'}
     </PayButton>
   );
-};
+}
 
 export default CreditCard;
+export { CreditCardButton };
 export * from './credit-card.types';
