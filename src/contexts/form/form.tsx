@@ -64,7 +64,7 @@ function FormProvider({ applicationId, locationId, children, overrides, ...props
 
     const verifyBuyerResults = await instance?.verifyBuyer(String(rest.token), props.createVerificationDetails());
 
-    await props.cardTokenizeResponseReceived(rest, verifyBuyerResults);
+    await props.cardTokenizeResponseReceived(rest, verifyBuyerResults, instance);
   };
 
   // Fixes stale closure issue with using React Hooks & SqPaymentForm callback functions

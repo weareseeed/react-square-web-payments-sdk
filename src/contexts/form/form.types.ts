@@ -46,7 +46,8 @@ export type FormProviderProps = {
    */
   cardTokenizeResponseReceived: (
     token: Square.TokenResult,
-    verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
+    verifiedBuyer?: Square.VerifyBuyerResponseDetails | null,
+    payments?: Square.Payments
   ) => void | Promise<void>;
   children: React.ReactNode;
   /**
