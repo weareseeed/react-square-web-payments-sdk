@@ -14,7 +14,8 @@ export type PaymentFormProps = {
    */
   cardTokenizeResponseReceived: (
     props: Square.TokenResult,
-    verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
+    verifiedBuyer?: Square.VerifyBuyerResponseDetails | null,
+    payments?: Square.Payments
   ) => void;
   children: React.ReactNode;
   /**

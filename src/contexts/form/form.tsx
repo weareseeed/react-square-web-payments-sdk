@@ -16,6 +16,8 @@ const FormContext = React.createContext<FormContextType>({
   cardTokenizeResponseReceived: null as unknown as () => Promise<void>,
   createPaymentRequest: null as unknown as Square.PaymentRequestOptions,
   payments: null as unknown as Square.Payments,
+  card: undefined,
+  setCard: () => undefined,
 });
 
 function FormProvider({ applicationId, locationId, children, overrides, ...props }: FormProviderProps) {
@@ -23,6 +25,7 @@ function FormProvider({ applicationId, locationId, children, overrides, ...props
   const [createPaymentRequest] = React.useState<undefined | Square.PaymentRequestOptions>(() =>
     props.createPaymentRequest?.()
   );
+  const [card, setCard] = React.useState<Square.Card | undefined>(() => undefined);
 
   React.useEffect(() => {
     const abortController = new AbortController();
@@ -61,7 +64,7 @@ function FormProvider({ applicationId, locationId, children, overrides, ...props
 
     const verifyBuyerResults = await instance?.verifyBuyer(String(rest.token), props.createVerificationDetails());
 
-    await props.cardTokenizeResponseReceived(rest, verifyBuyerResults);
+    await props.cardTokenizeResponseReceived(rest, verifyBuyerResults, instance);
   };
 
   // Fixes stale closure issue with using React Hooks & SqPaymentForm callback functions
@@ -78,6 +81,8 @@ function FormProvider({ applicationId, locationId, children, overrides, ...props
     cardTokenizeResponseReceived: cardTokenizeResponseReceivedCallback,
     createPaymentRequest,
     payments: instance,
+    card,
+    setCard,
   };
 
   return <FormContext.Provider value={context}>{children}</FormContext.Provider>;
