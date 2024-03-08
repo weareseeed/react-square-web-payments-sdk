@@ -10,6 +10,7 @@ import type {
   CreditCardBase,
   CreditCardChildren,
   CreditCardFunctionChildren,
+  CreditCardNoButton,
   CreditCardPayButtonProps,
   CreditCardProps,
 } from './credit-card.types';
@@ -35,6 +36,7 @@ import type {
 function CreditCard(props: CreditCardBase): JSX.Element;
 function CreditCard(props: CreditCardChildren): JSX.Element;
 function CreditCard(props: CreditCardFunctionChildren): JSX.Element;
+function CreditCard(props: CreditCardNoButton): JSX.Element;
 function CreditCard({
   buttonProps,
   callbacks,

@@ -152,6 +152,15 @@ export interface CreditCardFunctionChildren extends CreditCardBase {
   render?(Button: (props: CreditCardPayButtonProps) => React.ReactElement): React.ReactNode;
 }
 
+export interface CreditCardNoButton extends CreditCardBase {
+  /**
+   * Make it possible to render the button outside of the component using
+   * `<CreditCardButton />` If `hideButton` is set to `true` then the button
+   * will not be rendered and `render`, `children` and `buttonProps` will be ignored.
+   */
+  hideButton?: boolean;
+}
+
 export interface CreditCardProps extends CreditCardBase {
   /**
    * Props to be passed to the `<button>` element. The following props are not
