@@ -1,13 +1,13 @@
 // Dependencies
-import * as React from 'react';
 import type * as Square from '@square/web-sdk';
+import * as React from 'react';
 
 // Internals
 import { useForm } from '~/contexts/form';
 import { useEventListener } from '~/hooks/use-event-listener';
 import { PayButton, SvgIcon } from './ach.styles';
+import type { AchProps, AchWithChildrenProps, AchWithoutChildrenProps } from './ach.types';
 import { transformPlaidEventName } from './ach.utils';
-import type { AchProps, AchWithChildrenProps, AchWithoutChildrenProps, PlaidLinkOnEventMetadata } from './ach.types';
 
 /**
  * Renders a ACH button to use in the Square Web Payment SDK, pre-styled to meet
@@ -31,6 +31,8 @@ export function Ach(props: AchWithChildrenProps): React.ReactElement;
 export function Ach(props: AchWithoutChildrenProps): React.ReactElement;
 export function Ach({
   accountHolderName,
+  intent,
+  total,
   redirectURI,
   transactionId,
   callbacks,
@@ -49,7 +51,7 @@ export function Ach({
    * @param e An event which takes place in the DOM.
    * @returns The data be sended to `cardTokenizeResponseReceived()` function, or an error
    */
-  const handlePayment = async (e: Event) => {
+  const handleClick = async (e: Event) => {
     e.stopPropagation();
 
     if (!ach) {
@@ -58,32 +60,45 @@ export function Ach({
       return;
     }
 
-    setIsSubmitting(true);
-
     try {
-      const result = await ach.tokenize({
+      await ach.tokenize({
         accountHolderName,
+        intent,
+        total,
       });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-      if (result.status === 'OK') {
+  const handlePayment = async (e: Square.SqEvent<Square.TokenizationEvent>) => {
+    setIsSubmitting(true);
+    try {
+      const { tokenResult: result } = e.detail;
+      if (result && result.status === 'OK') {
         const tokenizedResult = await cardTokenizeResponseReceived(result);
         return tokenizedResult;
       }
 
-      let message = `Tokenization failed with status: ${result.status}`;
+      let message = `Tokenization failed with status: ${result?.status}`;
       if (result?.errors) {
         message += ` and errors: ${JSON.stringify(result?.errors)}`;
 
         throw new Error(message);
       }
-
-      console.warn(message);
     } catch (error) {
       console.error(error);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  React.useEffect(() => {
+    ach?.addEventListener('ontokenization' as Square.PlaidEventName, handlePayment);
+    return () => {
+      ach?.removeEventListener('ontokenization' as Square.PlaidEventName, handlePayment);
+    };
+  }, [ach]);
 
   React.useEffect(() => {
     const abortController = new AbortController();
@@ -120,14 +135,14 @@ export function Ach({
   if (callbacks) {
     for (const callback of Object.keys(callbacks)) {
       ach?.addEventListener(
-        transformPlaidEventName(callback),
-        (callbacks as Record<string, (event: Square.SqEvent<PlaidLinkOnEventMetadata>) => void>)[callback]
+        transformPlaidEventName(callback) as Square.PlaidEventName,
+        (callbacks as Record<string, (event: Square.SqEvent<Square.TokenizationEvent>) => void>)[callback]
       );
     }
   }
 
   useEventListener({
-    listener: handlePayment,
+    listener: handleClick,
     type: 'click',
     element: buttonRef,
     options: {

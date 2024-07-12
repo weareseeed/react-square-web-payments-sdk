@@ -1,7 +1,7 @@
 // Dependencies
-import type * as React from 'react';
 import type * as Square from '@square/web-sdk';
 import type * as Stitches from '@stitches/react';
+import type * as React from 'react';
 
 // Internals
 import { PayButton, SvgIcon } from './ach.styles';
@@ -75,7 +75,7 @@ export type SvgProps = React.ComponentPropsWithRef<'svg'> & {
   css?: Stitches.ComponentProps<typeof SvgIcon>['css'];
 };
 
-export interface AchBase extends Square.AchOptions, Square.AchTokenOptions {
+export interface AchBase extends Square.AchOptions, Square.AchChargeTokenOptions {
   callbacks?: {
     /** The user has completed the Assets and Bank Income Insights flow. */
     bankIncomeInsightsCompleted?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;

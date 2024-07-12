@@ -1,8 +1,8 @@
 // Dependencies
 import * as React from 'react';
 
-export const getRefElement = <T>(
-  element?: React.RefObject<Element> | T
+export const getRefElement = <T extends object>(
+  element?: React.RefObject<Element> | T | null
 ): Element | T | undefined | null | React.RefObject<Element> => {
   if (element && 'current' in element) {
     return element.current;
