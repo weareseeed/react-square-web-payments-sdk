@@ -30,7 +30,7 @@
         "default": "./dist/index.cjs.js"
       },
       "import": {
-        "types": "./dist/index.d.mts",
+        "types": "./dist/index.d.ts",
         "default": "./dist/index.es.mjs"
       }
     },
@@ -40,7 +40,7 @@
         "default": "./dist/index.cjs.js"
       },
       "import": {
-        "types": "./dist/index.d.mts",
+        "types": "./dist/index.d.ts",
         "default": "./dist/index.es.mjs"
       }
     }
