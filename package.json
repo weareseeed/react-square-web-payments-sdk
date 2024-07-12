@@ -59,6 +59,7 @@
   "scripts": {
     "prebuild": "yarn clean",
     "build": "run-p build:*",
+    "prepare": "npm run build",
     "build:scripts": "vite build",
     "build:types": "tsc --emitDeclarationOnly -p ./tsconfig.build.json && tsc-alias",
     "clean": "rimraf dist",
