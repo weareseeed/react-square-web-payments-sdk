@@ -65,6 +65,7 @@
     "clean": "rimraf dist",
     "coverage": "vitest run --coverage",
     "dev": "vite",
+    "postinstall": "patch-package",
     "format": "prettier --write 'src/**/*.{ts,tsx}'",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "preview": "vite preview",
@@ -75,14 +76,16 @@
   },
   "dependencies": {
     "@square/web-sdk": "^2.0.1",
-    "@stitches/react": "^1.2.8"
+    "@stitches/react": "^1.2.8",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0"
   },
   "devDependencies": {
     "@size-limit/preset-big-lib": "^8.2.6",
     "@size-limit/webpack-why": "^8.2.6",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
-    "@types/node": "^18.19.39",
+    "@types/node": "^22.5.4",
     "@types/react": "^18.3.3",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
@@ -101,7 +104,7 @@
     "rimraf": "^3.0.2",
     "size-limit": "^8.0.0",
     "tsc-alias": "^1.8.10",
-    "typescript": "^4.9.5",
+    "typescript": "^5.6.2",
     "vite": "^3.2.10",
     "vite-tsconfig-paths": "^3.6.0",
     "vitest": "^0.20.3"
