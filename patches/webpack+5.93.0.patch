@@ -1,0 +1,16 @@
+diff --git a/node_modules/webpack/types.d.ts b/node_modules/webpack/types.d.ts
+index 9e016a5..9335708 100644
+--- a/node_modules/webpack/types.d.ts
++++ b/node_modules/webpack/types.d.ts
+@@ -13293,11 +13293,6 @@ declare abstract class SortableSet<T> extends Set<T> {
+ 	 */
+ 	getFromUnorderedCache<R>(fn: (arg0: SortableSet<T>) => R): R;
+ 	toJSON(): T[];
+-
+-	/**
+-	 * Iterates over values in the set.
+-	 */
+-	[Symbol.iterator](): IterableIterator<T>;
+ }
+ declare class Source {
+ 	constructor();

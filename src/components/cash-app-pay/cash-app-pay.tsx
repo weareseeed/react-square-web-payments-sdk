@@ -1,6 +1,6 @@
 // Dependencies
-import * as React from 'react';
 import type * as Square from '@square/web-sdk';
+import * as React from 'react';
 
 // Internals
 import { useForm } from '~/contexts/form';
@@ -91,7 +91,7 @@ function CashAppPay({
     for (const callback of Object.keys(callbacks)) {
       cashApp?.addEventListener(
         callback.toLowerCase() as 'ontokenization',
-        (callbacks as Record<string, (event: Square.SqEvent<Square.TokenizationEvent>) => void>)[callback]
+        (callbacks as Record<string, (event: Square.SqEvent<Square.CashAppPayEventData>) => void>)[callback]
       );
     }
   }
