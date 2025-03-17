@@ -75,7 +75,7 @@ export type SvgProps = React.ComponentPropsWithRef<'svg'> & {
   css?: Stitches.ComponentProps<typeof SvgIcon>['css'];
 };
 
-export interface AchBase extends Square.AchOptions, Square.AchTokenOptions {
+export interface AchBase extends Square.AchOptions, Square.AchOptions {
   callbacks?: {
     /** The user has completed the Assets and Bank Income Insights flow. */
     bankIncomeInsightsCompleted?(event: Square.SqEvent<PlaidLinkOnEventMetadata>): void;
@@ -189,4 +189,6 @@ export interface AchProps extends AchBase {
   buttonProps?: AchPayButtonProps;
   /** Props to be passed to the `<svg>` element. */
   svgProps?: SvgProps;
+  /** Props to be passed to the ach.tokenize method */
+  accountHolderName: string;
 }

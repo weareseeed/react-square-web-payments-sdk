@@ -1,6 +1,6 @@
 {
   "name": "react-square-web-payments-sdk",
-  "version": "3.2.3",
+  "version": "3.2.4-beta.1",
   "homepage": "https://weareseeed.github.io/react-square-web-payments-sdk/",
   "bugs": {
     "url": "https://github.com/weareseeed/react-square-web-payments-sdk/issues"
@@ -59,7 +59,7 @@
     "size:why": "size-limit --why"
   },
   "dependencies": {
-    "@square/web-sdk": "^2.0.1",
+    "@square/web-sdk": "^2.1.0",
     "@stitches/react": "^1.2.8"
   },
   "devDependencies": {

@@ -620,21 +620,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@square/web-payments-sdk-types@npm:^1.1.1":
-  version: 1.33.0
-  resolution: "@square/web-payments-sdk-types@npm:1.33.0"
+"@square/web-payments-sdk-types@npm:^1.68.1":
+  version: 1.70.0
+  resolution: "@square/web-payments-sdk-types@npm:1.70.0"
   dependencies:
-    typescript: "npm:^4.1.0"
-  checksum: 10c0/55eb90ceffdd2837582db4759f4e5963fd761943c1e6a34153216c708e2903891c492d00c8c297224803b143703e1de35cc55edacdaca2efc83e341151eb9fc1
+    typescript: "npm:^4.9.5"
+  checksum: 10c0/5dbf975b968ece3660ebcd21b4882a94ace31880d41204d68e79819b1eee891b583bd1450254ba8d8c3f9f076835b609d625b44f3d948d793e487c6ae1b13178
   languageName: node
   linkType: hard
 
-"@square/web-sdk@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@square/web-sdk@npm:2.0.1"
+"@square/web-sdk@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@square/web-sdk@npm:2.1.0"
   dependencies:
-    "@square/web-payments-sdk-types": "npm:^1.1.1"
-  checksum: 10c0/8b1015de7ab23da1c84198d1dab7f3050dec239ce6f656fa7261015326733d3d4e0f840ee3a024e6839fd97c66def80f2ac3ce5e96c106cb7a039bbbe6b724ac
+    "@square/web-payments-sdk-types": "npm:^1.68.1"
+  checksum: 10c0/5b292f28f2f47e5228ef03b7f419c1627019cdc4ffa46407be085668f1514ebd64ed91ca56e481e38205b5ed4287c572112230e5402a52ecbd922c4d9158143e
   languageName: node
   linkType: hard
 
@@ -5294,7 +5294,7 @@ __metadata:
   dependencies:
     "@size-limit/preset-big-lib": "npm:^8.0.0"
     "@size-limit/webpack-why": "npm:^8.0.0"
-    "@square/web-sdk": "npm:^2.0.1"
+    "@square/web-sdk": "npm:^2.1.0"
     "@stitches/react": "npm:^1.2.8"
     "@testing-library/jest-dom": "npm:^5.16.4"
     "@testing-library/react": "npm:^13.3.0"
@@ -6303,7 +6303,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.1.0, typescript@npm:^4.7.4":
+"typescript@npm:^4.7.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
   bin:
@@ -6313,13 +6313,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^4.1.0#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^4.7.4#optional!builtin<compat/typescript>":
+"typescript@npm:^4.9.5":
+  version: 4.9.5
+  resolution: "typescript@npm:4.9.5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/5f6cad2e728a8a063521328e612d7876e12f0d8a8390d3b3aaa452a6a65e24e9ac8ea22beb72a924fd96ea0a49ea63bb4e251fb922b12eedfb7f7a26475e5c56
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^4.7.4#optional!builtin<compat/typescript>":
   version: 4.7.4
   resolution: "typescript@patch:typescript@npm%3A4.7.4#optional!builtin<compat/typescript>::version=4.7.4&hash=65a307"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/2eb6e31b04fabec84a4d07b5d567deb5ef0a2971d89d9adb16895f148f7d8508adfb12074abc2efc6966805d3664e68ab67925060e5b0ebd8da616db4b151906
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^4.9.5#optional!builtin<compat/typescript>":
+  version: 4.9.5
+  resolution: "typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/e3333f887c6829dfe0ab6c1dbe0dd1e3e2aeb56c66460cb85c5440c566f900c833d370ca34eb47558c0c69e78ced4bfe09b8f4f98b6de7afed9b84b8d1dd06a1
   languageName: node
   linkType: hard
 
