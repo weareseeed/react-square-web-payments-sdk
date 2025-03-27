@@ -30,6 +30,8 @@ export type FormContextType = {
    * Invoked when a digital wallet payment button is clicked.
    */
   createPaymentRequest?: Square.PaymentRequestOptions;
+  card?: Square.Card;
+  setCard: React.Dispatch<React.SetStateAction<Square.Card | undefined>>;
 };
 
 export type FormProviderProps = {
@@ -44,7 +46,8 @@ export type FormProviderProps = {
    */
   cardTokenizeResponseReceived: (
     token: Square.TokenResult,
-    verifiedBuyer?: Square.VerifyBuyerResponseDetails | null
+    verifiedBuyer?: Square.VerifyBuyerResponseDetails | null,
+    payments?: Square.Payments
   ) => void | Promise<void>;
   children: React.ReactNode;
   /**
