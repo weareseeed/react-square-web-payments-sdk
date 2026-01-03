@@ -7,7 +7,7 @@ import { useForm } from '~/contexts/form';
 import { useEventListener } from '~/hooks/use-event-listener';
 import { PayButton, SvgIcon } from './ach.styles';
 import { transformPlaidEventName } from './ach.utils';
-import type { AchProps, } from './ach.types';
+import type { AchProps } from './ach.types';
 
 /**
  * Renders a ACH button to use in the Square Web Payment SDK, pre-styled to meet
@@ -27,15 +27,7 @@ import type { AchProps, } from './ach.types';
  * }
  * ```
  */
-export function Ach({
-  accountHolderName,
-  redirectURI,
-  transactionId,
-  callbacks,
-  buttonProps,
-  children,
-  svgProps,
-}: AchProps) {
+export function Ach({ accountHolderName, transactionId, callbacks, buttonProps, children, svgProps }: AchProps) {
   const [ach, setAch] = React.useState<Square.ACH | undefined>(() => undefined);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { cardTokenizeResponseReceived, createPaymentRequest, payments } = useForm();
@@ -73,7 +65,7 @@ export function Ach({
       }
 
       let message = `Tokenization failed with status: ${result?.status ?? ''}`;
-      if (result?.errors) {
+      if (result && 'errors' in result) {
         message += ` and errors: ${JSON.stringify(result?.errors)}`;
         throw new Error(message);
       }
@@ -93,7 +85,6 @@ export function Ach({
     const start = async (signal: AbortSignal) => {
       const ach = await payments
         ?.ach({
-          redirectURI,
           transactionId,
         })
         .then((res) => {
@@ -103,7 +94,7 @@ export function Ach({
         });
 
       if (signal.aborted) {
-        ach?.removeEventListener('ontokenization' as Square.PlaidEventName, () => { })
+        ach?.removeEventListener('ontokenization' as Square.PlaidEventName, () => {});
         await ach?.destroy();
       } else {
         ach?.addEventListener(
@@ -116,7 +107,7 @@ export function Ach({
               await cardTokenizeResponseReceived(tokenResult);
             }
           }
-        )
+        );
       }
     };
 
@@ -135,7 +126,6 @@ export function Ach({
       );
     }
   }
-
 
   useEventListener({
     listener: handlePayment,
