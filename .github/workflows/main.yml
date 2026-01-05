@@ -15,7 +15,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 22
           cache: 'yarn'
           cache-dependency-path: yarn.lock
 
@@ -45,7 +45,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 22
 
       - name: Restore build
         uses: actions/cache@v3
@@ -63,7 +63,7 @@ jobs:
     needs: [build]
     strategy:
       matrix:
-        node: ['14.x', '16.x']
+        node: ['20.x', '22.x']
         os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
       - name: Setup node ${{ matrix.node }}

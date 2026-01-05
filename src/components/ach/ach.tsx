@@ -27,7 +27,15 @@ import type { AchProps } from './ach.types';
  * }
  * ```
  */
-export function Ach({ accountHolderName, transactionId, callbacks, buttonProps, children, svgProps }: AchProps) {
+export function Ach({
+  accountHolderName,
+  transactionId,
+  callbacks,
+  buttonProps,
+  children,
+  svgProps,
+  redirectURI,
+}: AchProps) {
   const [ach, setAch] = React.useState<Square.ACH | undefined>(() => undefined);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { cardTokenizeResponseReceived, createPaymentRequest, payments } = useForm();

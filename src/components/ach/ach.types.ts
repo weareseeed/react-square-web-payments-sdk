@@ -191,4 +191,5 @@ export interface AchProps extends AchBase {
   svgProps?: SvgProps;
   /** Props to be passed to the ach.tokenize method */
   accountHolderName: string;
+  redirectURI?: string;
 }
