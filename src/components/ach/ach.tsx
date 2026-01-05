@@ -34,7 +34,7 @@ export function Ach({
   buttonProps,
   children,
   svgProps,
-  redirectURI,
+  redirectURI, // eslint-disable-line @typescript-eslint/no-unused-vars
 }: AchProps) {
   const [ach, setAch] = React.useState<Square.ACH | undefined>(() => undefined);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
@@ -90,6 +90,13 @@ export function Ach({
     const abortController = new AbortController();
     const { signal } = abortController;
 
+    const handleTokenization = async (result: Square.SqEvent<Square.TokenizationEvent>) => {
+      const { tokenResult } = result.detail;
+      if (tokenResult?.status == 'OK') {
+        await cardTokenizeResponseReceived(tokenResult);
+      }
+    };
+
     const start = async (signal: AbortSignal) => {
       const ach = await payments
         ?.ach({
@@ -102,20 +109,10 @@ export function Ach({
         });
 
       if (signal.aborted) {
-        ach?.removeEventListener('ontokenization' as Square.PlaidEventName, () => {});
+        ach?.removeEventListener('ontokenization' as Square.PlaidEventName, handleTokenization);
         await ach?.destroy();
       } else {
-        ach?.addEventListener(
-          'ontokenization' as Square.PlaidEventName,
-          async (result: Square.SqEvent<Square.TokenizationEvent>) => {
-            const { tokenResult, error } = result.detail;
-            if (error) {
-              // add code here to handle error
-            } else if (tokenResult?.status == 'OK') {
-              await cardTokenizeResponseReceived(tokenResult);
-            }
-          }
-        );
+        ach?.addEventListener('ontokenization' as Square.PlaidEventName, handleTokenization);
       }
     };
 
