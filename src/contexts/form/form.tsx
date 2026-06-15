@@ -57,7 +57,7 @@ function FormProvider({ applicationId, locationId, children, overrides, ...props
   }, [applicationId, locationId]);
 
   const cardTokenizeResponseReceived = async (rest: Square.TokenResult): Promise<void> => {
-    if (rest.errors || !props.createVerificationDetails) {
+    if (rest.status !== 'OK' || !props.createVerificationDetails) {
       await props.cardTokenizeResponseReceived(rest);
       return;
     }

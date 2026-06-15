@@ -167,7 +167,7 @@ function CreditCardButton({ children, isLoading, render, ...props }: CreditCardP
       }
 
       let message = `Tokenization failed with status: ${result.status}`;
-      if (result?.errors) {
+      if (result && 'errors' in result) {
         message += ` and errors: ${JSON.stringify(result?.errors)}`;
 
         throw new Error(message);
